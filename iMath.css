@@ -1,0 +1,26 @@
+/*iMath.css*/
+
+/* _____________________BODY_____________________ */
+body {	
+	background-color: #f3f3f3;
+	background-repeat:repeat-y;
+	padding-top: 0;	
+	margin: 0;	
+	font-family: Century Gothic, Verdana, Tahoma, Arial;
+	color: #565656;
+}
+
+header{
+	margin: 0px;	
+	padding-left: 100px;
+	padding-right: 100px;
+	background-color: white;
+}
+#sky{
+	background-image: url("biru.jpg");	
+	margin-left:100px;
+	margin-right:100px;
+	margin-top:50px;
+	padding-top:25px;
+	height: 500px;
+}
