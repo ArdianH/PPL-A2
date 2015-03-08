@@ -1,0 +1,80 @@
+#sky{
+	background-image: url("biru.jpg");	
+	margin-left:100px;
+	margin-right:100px;
+	margin-top:50px;
+	padding-top:25px;
+	margin-bottom: 0px;
+	height:700px;
+	background-repeat: no-repeat;
+}
+
+#loginBox{
+	background-color:#ffaf24;	
+	margin-top:20px;
+	margin-left:300px;
+	height: 300px;
+	width:50%;
+}
+
+.email-input {
+	position: absolute;
+	margin-left: 75px;
+	margin-right: 350px;
+	margin-top: 32px;
+	border: none;
+	outline: none;
+	background: #fff;	
+	height: 50px;	
+	width: 400px;
+	z-index: 10;
+	padding-top:0;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: inherit;
+	font-size: 20px;
+	color: #2c3e50;
+}
+
+.email-input::-webkit-input-placeholder {
+	color: #ffbc54;
+}
+
+.email-input:-moz-placeholder {
+	color: #ffbc54;
+}
+
+.email-input:-ms-input-placeholder {
+	color: #ffbc54;
+}
+
+.password-input {
+	position: absolute;
+	margin-left: 75px;
+	margin-right: 350px;
+	margin-top: 90px;
+	border: none;
+	outline: none;
+	background: #fff;	
+	width: 400px;
+	height: 50px;	
+	z-index: 10;
+	padding-top:0;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: inherit;
+	font-size: 20px;
+	color: #2c3e50;
+}
+
+.password-input::-webkit-input-placeholder {
+	color: #ffbc54;
+}
+
+.password-input:-moz-placeholder {
+	color: #ffbc54;
+}
+
+.password-input:-ms-input-placeholder {
+	color: #ffbc54;
+}
