@@ -51,17 +51,30 @@ class matericontroller extends CI_Controller{
 	}
 	
 	public function simpanPerubahan($id){
-		$this->load->model('materimodel');		
-		
-		$data = array(			
-			'idKelas' => $this->input->post('idKelas'),
+		$this->load->library('upload');
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());           
+            // load images model
+            $upload = $data['upload_data'];
+            //ini link gambarnya tapi masih bingung gimana cara masukinnya ke database bersamaan dengan isi form yang lainnya
+        	$full_path = $upload['full_path'];
+
+			$this->load->model('materimodel');
+			$data = array(
 			'nama' => $this->input->post('nama'),
+			'idKelas' => $this->input->post('idKelas'),			
+			'rangkuman' => $this->input->post('rangkuman'),
 			'deskripsi' => $this->input->post('deskripsi'),
-			'rangkuman' => $this->input->post('rangkuman')			
+			'gambar' => $full_path
 		);
-		
-		$this->materimodel->update($data, $id);
-		redirect('matericontroller', 'refresh');
+			$this->materimodel->add($data);
+			redirect('matericontroller');
+		}
 	}
 
 	public function createview(){
@@ -78,17 +91,31 @@ class matericontroller extends CI_Controller{
 
 	function create()
 	{
-		$this->load->model('materimodel');
-		$data = array(
+		$this->load->library('upload');
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());           
+            // load images model
+            $upload = $data['upload_data'];
+            //ini link gambarnya tapi masih bingung gimana cara masukinnya ke database bersamaan dengan isi form yang lainnya
+        	$full_path = $upload['full_path'];
+
+			$this->load->model('materimodel');
+			$data = array(
 			'nama' => $this->input->post('nama'),
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),			
 			'rangkuman' => $this->input->post('rangkuman'),
-			'deskripsi' => $this->input->post('deskripsi')
+			'deskripsi' => $this->input->post('deskripsi'),
+			'gambar' => $full_path
 		);
-		
-		$this->materimodel->add($data);
-		redirect('matericontroller');
+			$this->materimodel->add($data);
+			redirect('matericontroller');
+		}
 	}
 
 	function do_upload()
@@ -102,12 +129,21 @@ class matericontroller extends CI_Controller{
 		{
 			$data = array('upload_data' => $this->upload->data());           
             // load images model
-            $this->load->model('materimodel');
-            $this->materimodel->insert_image($data);           
-            // insert
             $upload = $data['upload_data'];
             //ini link gambarnya tapi masih bingung gimana cara masukinnya ke database bersamaan dengan isi form yang lainnya
         	$full_path = $upload['full_path'];
+
+			$this->load->model('materimodel');
+			$data = array(
+			'nama' => $this->input->post('nama'),
+			'idMateri' => $this->input->post('idMateri'),
+			'idKelas' => $this->input->post('idKelas'),			
+			'rangkuman' => $this->input->post('rangkuman'),
+			'deskripsi' => $this->input->post('deskripsi'),
+			'gambar' => $full_path
+		);
+			$this->materimodel->add($data);
+			redirect('matericontroller');
 		}
 	}
 }
