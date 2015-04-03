@@ -1,35 +1,42 @@
 <html>
     <head>
-        <!--<title><?=$page_title?></title>-->
 	<title>Kelas</title>
     </head>
-    <body>  
+    
+    <body>
+     <a href=" <?php echo base_url();?>index.php/admin/daftar_kelas/buatBaru"><button> Buat Baru</button></a>
+
     <h1> Daftar Kelas </h1>
-	<a href=" <?php echo base_url();?>index.php/admin/daftar_kelas/buatBaru"><button> Buat Baru</button></a> 
     <table>
+	<thead>
+		<td>Materi</td><td>Deskripsi</td><td>Tindakan</td>
+	</thead>
 	<?php foreach($result as $row):?>	
-	<tr>
 	<td>
-	 Kelas <?php echo $row->idKelas ?> dengan deskripsi <?php echo $row->deskripsi ?> gambar <?php echo $row->gambar ?>
-	</td>
-	<!-- Done Button-->
+		<?php echo $row->idKelas ?>
+	</td>	
 	<td>
-	<a href="<?php echo base_url() ?>index.php/admin/daftar_kelas/detail/<?php echo $row->idKelas ?>">
-                                    <button type="submit">Detail</button></a>
+		<?php echo $row->deskripsi ?>
+	</td>	
+	<td>
+	<a href="<?php echo base_url();?>index.php/admin/daftar_kelas/detail/<?php echo $row->idKelas ?>">
+                                    <button type="submit">Lihat</button></a>
 	</td>
 	<td>
 	<!-- Edit Button-->
-	<a href="<?php echo base_url() ?>/index.php/admin/daftar_kelas/edit/<?php echo $row->idKelas ?>">
+	<a href="<?php echo base_url();?>index.php/admin/daftar_kelas/edit/<?php echo $row->idKelas ?>">
                                     <button type="submit">Edit</button></a>
 	</td>
 	<td>
 	<!-- Hapus Button-->
-	<a href="<?php echo base_url()."index.php/admin/daftar_kelas/delete/".$row->idKelas."/" ?>">
+	<a href="<?php echo base_url();?>index.php/admin/daftar_kelas/delete/<?php echo $row->idKelas ?>">
                                     <button type="submit">Hapus</button></a>
 	</td>
-        <tr>
-        <?php endforeach; ?>
+	<td>
+	<img src="<?php echo base_url();?>uploads/<?php echo $row->gambar ?>">
+	</td>
+        </tr>
+    <?php endforeach; ?>
 	</table>
-
     </body>
 </html>

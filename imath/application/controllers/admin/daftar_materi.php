@@ -33,33 +33,45 @@ class daftar_materi extends CI_Controller{
 		redirect('admin/daftar_materi', 'refresh');
 	}
 
-	public function detail($id){
-		$this->load->view('detailmateri_view');
+	public function detail($id){		
 		$this->load->model('materi_model');		
-		
 		$data['result'] = $this->materi_model->get($id); 
 		$this->load->view('admin/detailmateri_view', $data);
 	}	
 	
 	public function edit($id){
 		$this->load->model('materi_model');		
-		
-		$data['result'] = $this->materi_model->get($id); 
+		$data['result'] = $this->materi_model->get($id); 		
 		$this->load->view('admin/ubahmateri_view', $data);
 	}
 	
 	public function simpanPerubahan($id){
-		$this->load->model('materi_model');		
-		
-		$data = array(			
-			'idKelas' => $this->input->post('idKelas'),
-			'nama' => $this->input->post('nama'),
-			'deskripsi' => $this->input->post('deskripsi'),
-			'rangkuman' => $this->input->post('rangkuman')			
-		);
-		
-		$this->materi_model->update($data, $id);
-		redirect('admin/daftar_materi', 'refresh');
+		$this->load->library('upload');	
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+			echo "Error: gambar terlalu besar atau Anda belum memilih gambar";
+		}
+		else
+		{		
+			$data = array('upload_data' => $this->upload->data());           
+			// load images model
+			$upload = $data['upload_data'];
+			//ini link gambarnya
+			$orig_name = $upload['orig_name'];
+
+			$this->load->model('materi_model');
+			$data = array(
+				'nama' => $this->input->post('nama'),			
+				'idKelas' => $this->input->post('idKelas'),			
+				'rangkuman' => $this->input->post('rangkuman'),
+				'deskripsi' => $this->input->post('deskripsi'),
+				'gambar' => $orig_name
+			);
+
+			$this->materi_model->update($data, $id);
+			redirect('admin/daftar_materi', 'refresh');
+		}
 	}
 
 	public function createview(){
@@ -68,25 +80,25 @@ class daftar_materi extends CI_Controller{
 		$this->load->view('admin/buatmateri_view', $data);
 	}	
 
-	function create()
+	public function create()
 	{
 		$this->load->library('upload');
 		if ( ! $this->upload->do_upload())
 		{
 			$error = array('error' => $this->upload->display_errors());
+			echo "Error: gambar terlalu besar atau Anda belum memilih gambar";
 		}
 		else
-		{
+		{		
 			$data = array('upload_data' => $this->upload->data());           
 			// load images model
 			$upload = $data['upload_data'];
-			//ini link gambarnya tapi masih bingung gimana cara masukinnya ke database bersamaan dengan isi form yang lainnya
+				//ini link gambarnya
 			$orig_name = $upload['orig_name'];
 
 			$this->load->model('materi_model');
 			$data = array(
-				'nama' => $this->input->post('nama'),
-				'idMateri' => $this->input->post('idMateri'),
+				'nama' => $this->input->post('nama'),			
 				'idKelas' => $this->input->post('idKelas'),			
 				'rangkuman' => $this->input->post('rangkuman'),
 				'deskripsi' => $this->input->post('deskripsi'),

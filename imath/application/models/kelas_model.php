@@ -16,5 +16,22 @@ class kelas_model extends CI_Model {
 
 		return $this->db->get('kelas')->result();
 	}
+	
+	function insert(){
+		$this->load->database();
+		$kelas = $_POST['kelas'];		
+		$deskripsi = $_POST['deskripsi'];
+		$this->db->query("insert into Kelas ( idKelas, deskripsi ) values('$kelas', '$deskripsi')");
+	}
+	
+	function add($data){
+		$this->db->insert('Kelas', $data);
+		return;
+	}
+	
+	function delete($id){
+		$this->load->database();		
+		$this->db->delete('Kelas', array('idKelas' => $id));
+	}
 }
 ?>

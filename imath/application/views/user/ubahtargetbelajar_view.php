@@ -17,7 +17,6 @@
 		<?php endforeach?>		
 		</select>
 		
-	<div id="txtHint"><b>Person info will be listed here...</b></div>
 	<p>Materi <input type="text" name ="idmateri" value="<?php echo $result[0]->idMateri ;?>"></p>
 	<p>BanyakSoal <input type="text" name ="banyaksoal"  value="<?php echo $result[0]->banyakSoal ;?>"></p>
 	<p>Nilai <input type="text" name ="targetnilai" value="<?php echo $result[0]->targetNilai ;?>"></p>	

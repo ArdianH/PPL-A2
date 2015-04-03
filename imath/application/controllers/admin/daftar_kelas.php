@@ -2,24 +2,21 @@
     class daftar_kelas extends CI_Controller{
         public function index(){
 		$this->load->model('kelas_model');
-		$data['result'] = $this->kelas_model->getAllKelas();           
-	    
+		$data['result'] = $this->kelas_model->getAllKelas();	    
 		$this->load->view('admin/daftarkelas_view',$data);
 	}
 	    
 	public function detail($id){
 		$this->load->model('kelas_model');
 		$data['result'] = $this->kelas_model->get($id);
-		$this->load->view('DetailKelasUI', $data);
+		$this->load->view('admin/detailkelas_view', $data);
 	}
 	
 
 	public function delete($id){
 		$this->load->model('kelas_model');
-		
-		$this->Kelas->delete($id);
-		redirect('KelasController', 'refresh');
-		
+		$this->kelas_model->delete($id);
+		redirect('admin/daftar_kelas', 'refresh');		
 	}
 	
 	
@@ -27,7 +24,7 @@
 		$this->load->model('kelas_model');
 		
 		$data['result'] = $this->kelas_model->get($id); 
-		$this->load->view('UbahKelasUI', $data);
+		$this->load->view('admin/ubahkelas_view', $data);
 	}
 	
 	public function simpanPerubahan($id){
@@ -45,20 +42,37 @@
 	}
 	
 	public function buatBaru(){
-		$this->load->view('admin/buatkelas_view');
+		$this->load->model('kelas_model');
+		$data['result'] = $this->kelas_model->getAllKelas();	    		
+		$this->load->view('admin/buatkelas_view', $data);
 	}
 	
 	public function create()
 	{
-		$this->load->model('kelas_model');
-		$data = array(
-			'nama' => $this->input->post('nama'),
-			'idKelas' => $this->input->post('idKelas'),
-			'deskripsi' => $this->input->post('deskripsi')
-		);
-		
-		$this->materimodel->add($data);
-		redirect('matericontroller');
+		$this->load->library('upload');
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+			echo "Error: gambar terlalu besar atau Anda belum memilih gambar";
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());           
+			// load images model
+			$upload = $data['upload_data'];
+			
+			$orig_name = $upload['orig_name'];
+
+			$this->load->model('kelas_model');
+			$data = array(				
+				'idKelas' => $this->input->post('idKelas'),				
+				'deskripsi' => $this->input->post('deskripsi'),
+				'gambar' => $orig_name
+			);
+			$this->kelas_model->add($data);
+			$idKelas = $this->input->post('idKelas');
+			redirect('admin/daftar_kelas', 'refresh');
+		}
 	}
 	
     }

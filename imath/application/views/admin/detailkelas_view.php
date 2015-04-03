@@ -4,23 +4,17 @@
 	<title>Kelas</title>
     </head>
     <body>  
-		<?php foreach($result as $row):?>
-    <h1> Kelas <?php echo $row->idKelas?> SD</h1>
-    <table>
+
+		<h1> Kelas <?php $idKelas=$result[0]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2); ?></h1>		
+		<p>	
+			Deskripsi: <?php $deskripsi=$result[0]->deskripsi; echo $deskripsi; ?>
+		</p>
+		<p>
+			Gambar: <img src="<?php echo base_url();?>uploads/<?php echo $result[0]->gambar ?>">
+		</p>		
 	
-	<tr>
-	<td>
-	 Deskripsi : <?php echo $row->deskripsi?>
-	</td>
-
-
-        <tr>
-        <?php endforeach; ?>
-	</table>
 	
 		<!-- Hapus Button-->
-	<a href="<?php echo base_url()."index.php/KelasController/"?>">
-                                    <button type="submit">Kembali</button></a>
-
+		<a href="<?php echo base_url()."index.php/admin/daftar_kelas/"?>"><button>Kembali</button></a>
     </body>
 </html>

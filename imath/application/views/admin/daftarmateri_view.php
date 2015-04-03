@@ -17,10 +17,7 @@
 
     <h1> Daftar Materi </h1>
     <table>
-	<?php foreach($result as $row):?>	
-	<td>
-		<?php echo $row->idMateri ?>
-	</td>
+	<?php foreach($result as $row):?>		
 	<td>
 		<?php echo $row->nama ?>
 	</td>

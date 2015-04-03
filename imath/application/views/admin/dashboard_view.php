@@ -15,19 +15,19 @@
                     <h3>Materi</h3>
 	</a>
 	
-	<a href="<?php echo base_url() ?>index.php/KelasController/">
+	<a href="">
 		<img src ="<?php echo base_url() ?>assets/images/icon_soallatihan.png" width="150px" height="150px">
 		<h3>Soal Latihan</h3>
 	</a>	
-	<a href="<?php echo base_url() ?>index.php/KelasController/">
+	<a href="">
 		<img src ="<?php echo base_url() ?>assets/images/icon_soaltes.png" width="150px" height="150px">
 		<h3>Soal Tes</h3>
 	</a>
-	<a href="<?php echo base_url() ?>index.php/KelasController/">
+	<a href="<?php echo base_url() ?>index.php/admin/anggota/">
 		<img src ="<?php echo base_url() ?>assets/images/icon_dataanggota.png" width="150px" height="150px">
 		<h3>Data Anggota</h3>
 	</a>
-	<a href="<?php echo base_url() ?>index.php/KelasController/">
+	<a href="<?php echo base_url() ?>index.php/admin/pesan/">
 		<img src ="<?php echo base_url() ?>assets/images/icon_pesan.png" width="150px" height="150px">
 		<h3>Pesan</h3>
 	</a>
