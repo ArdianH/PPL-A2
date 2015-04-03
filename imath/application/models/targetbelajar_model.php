@@ -8,7 +8,7 @@ class targetbelajar_model extends CI_Model {
 	
 	function get($id){
 	    	$this->load->database();	    			
-		return $this->db->get_where('targetbelajar', array('idTargetBelajar' => $id))->result();
+		return $this->db->get_where('target_belajar', array('idTargetBelajar' => $id))->result();
 	}
 	
 	//Fungsi ini mengambil semua target belajar
@@ -16,25 +16,25 @@ class targetbelajar_model extends CI_Model {
 	    	$this->load->database();
 	    	//return $this->db->get('targetbelajar')->result();
 		$selesai = 'tidak';
-		return $this->db->get_where('targetbelajar', array('isSelesai' => $selesai))->result();
+		return $this->db->get_where('target_belajar', array('isSelesai' => $selesai))->result();
 	}
 	
 	function getHistory(){
 	    	$this->load->database();
 	    	//return $this->db->get('targetbelajar')->result();
 		$selesai = 'tercapai';
-		return $this->db->get_where('targetbelajar', array('isSelesai' => $selesai))->result();
+		return $this->db->get_where('target_belajar', array('isSelesai' => $selesai))->result();
 	}
 	
 	function deleteHistory(){
 		$this->load->database();
 		$selesai = 'tercapai';
-		$this->db->delete('targetbelajar', array('isSelesai' => $selesai));
+		$this->db->delete('target_belajar', array('isSelesai' => $selesai));
 	}
 	
 	function delete($id){
 		$this->load->database();		
-		$this->db->delete('targetbelajar', array('idTargetBelajar' => $id));
+		$this->db->delete('target_belajar', array('idTargetBelajar' => $id));
 	}
 	
 	function insertTargetBelajar(){
@@ -44,17 +44,17 @@ class targetbelajar_model extends CI_Model {
 		$kelas = $_POST['kelas'];
 		$materi = $_POST['materi'];
 		$nilai = $_POST['nilai'];		
-		$this->db->query("insert into targetbelajar (idTargetBelajar, username, idkelas, idmateri, targetnilai) values('$id', '$username','$kelas', '$materi', 'nilai')");		
+		$this->db->query("insert into target_belajar (idTargetBelajar, username, idkelas, idmateri, targetnilai) values('$id', '$username','$kelas', '$materi', 'nilai')");		
 	}
 	
 	function add($data){
-		$this->db->insert('TargetBelajar', $data);
+		$this->db->insert('target_belajar', $data);
 		return;
 	}
 	
 	function update($data, $id){
 		$this->db->where('idTargetBelajar', $id);
-		$this->db->update('TargetBelajar', $data);
+		$this->db->update('target_belajar', $data);
 	}
 }
 ?>

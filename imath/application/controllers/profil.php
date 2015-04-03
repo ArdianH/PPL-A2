@@ -6,7 +6,7 @@
 	    $username = 'princess_anna'; //nanti diganti
             $data['result'] = $this->profil_model->getProfil($username);
 	    
-	    $this->load->view('profil_view',$data);
+	    $this->load->view('user/profil_view',$data);
 	}
 	
 	public function ubah(){
@@ -14,7 +14,7 @@
 		$username = 'princess_anna';
 		
 		$data['result'] = $this->profil_model->getProfil($username); 
-		$this->load->view('ubahprofil_view', $data);
+		$this->load->view('user/ubahprofil_view', $data);
 	}
 		
 	public function simpanPerubahan($username){

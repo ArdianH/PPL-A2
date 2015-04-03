@@ -25,9 +25,7 @@
 	
 	<p>Nama Panggilan: <?php echo $row->namaPanggilan?> </p>
 	
-	<p>Email <?php echo $row->email?></p>
-	
-	<p>Password: ***</p>
+	<p>Email: <?php echo $row->email?></p>	
 	
 	<p>Username: <?php echo $row->username?> </p>
 	
