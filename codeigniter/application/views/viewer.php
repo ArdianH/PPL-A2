@@ -7,8 +7,8 @@
 
 <body bgcolor="green">
 	<h1 align="center">Welcome to Homepage</h1>
-	<h3 align="center">Hi <?php echo $this->session->userdata['username'] ?> !</h6>
+	<h3 align="center">Hi <?php echo $this->session->userdata('namaPanggilan') ?> !</h6>
 	<p align="center">Ini adalah contoh text html pada viewer<br /></p>
-	<a href="<?php echo base_url()."control/logout";?>">Logout</a>
+	<a href="<?php echo base_url()."autentikasi/logout";?>">Logout</a>
 </body>
 </html>

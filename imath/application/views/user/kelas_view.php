@@ -7,20 +7,18 @@
     <body>
 	
     <h1> Kelas </h1>
-   
 	<table>
 	<?php foreach($result as $row):?>	
-	
 	<tr>
-	
-	<td>
-	 Kelas <?php echo $row->nama ?> 
-	</td>
+		<td>
+			Kelas <?php echo $row->idKelas ?> 
+		</td>
 
 	<td>
 	<!-- Pilih Button-->
 	<a href="<?php echo base_url() ?>/index.php/materi/pilih/<?php echo $row->idKelas ?>">
-                                    <button type="submit">Pilih</button></a>
+                              <img src="<?php echo base_url();?>uploads/<?php echo $row->gambar ?>">
+	</a>
 	</td>
 
     </tr>
