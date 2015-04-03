@@ -1,0 +1,15 @@
+body{
+	font-family: "Century Gothic", "Verdana", "Arial", sans-serif;
+}
+
+#girl{
+	background-image: url('../images/Girl.png');
+	width: 200px;
+	height: 200px;	
+}
+
+#boy{
+	background-image: url('../images/Boy.png');
+	width: 200px;
+	height: 200px;
+}
