@@ -4,19 +4,30 @@ class materi_model extends CI_Model {
 	function __construct(){
 		parent::__construct();
 	}	
-	
+
 	//Fungsi ini mengambil semua materi di kelas dipilih
-	function getAllMateri($idKelas){
-	    	$this->load->database();
-	    	return $this->db->get_where('Materi', array('idKelas' => $idKelas))->result();
-	}
-
-	//Fungsi ini mengambil materi dengan id yang diinginkan
 	function get($id){
-    	$this->load->database();	    			
-		return $this->db->get_where('Materi', array('idMateri' => $id))->result();
+	    	$this->load->database();	    			
+		return $this->db->get_where('materi', array('idKelas' => $id))->result();
 	}
 
+	//Fungsi ini mengambil materi dengan id yang diinginkan	
+	function getAllMateri($idMateri){
+	    	$this->load->database();
+		return $this->db->get_where('materi', array('idMateri' => $idMateri))->result();
+	}
+
+	function getAllSoal($idSoal){
+	    	$this->load->database();
+		return $this->db->get_where('soal', array('idSoal' => $idSoal))->result();
+	}
+	
+	function getAllJawaban($idSoal){
+	    	$this->load->database();
+		return $this->db->get_where('pilhan_jawaban', array('idSoal' => $idSoal))->hasil();
+	}
+	
+	
 	function delete($id){
 		$this->load->database();		
 		$this->db->delete('Materi', array('idMateri' => $id));
