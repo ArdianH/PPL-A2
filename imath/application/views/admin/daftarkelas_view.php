@@ -6,6 +6,7 @@
     <body>
      <a href=" <?php echo base_url();?>index.php/admin/daftar_kelas/buatBaru"><button> Buat Baru</button></a>
 
+
     <h1> Daftar Kelas </h1>
     <table>
 	<thead>
@@ -34,6 +35,13 @@
 	</td>
 	<td>
 	<img src="<?php echo base_url();?>uploads/<?php echo $row->gambar ?>">
+	</td>
+	<td>
+	<a href="<?php echo base_url();?>index.php/admin/daftar_kelas/unggah/<?php echo $row->idKelas ?>">
+                                    <button type="submit">Unggah Sertifikat</button></a>
+	</td>
+		<td>
+	<img src="<?php echo base_url();?>uploads/<?php echo $row->sertifikat ?>">
 	</td>
         </tr>
     <?php endforeach; ?>
