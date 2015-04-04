@@ -13,7 +13,7 @@
 		
 		$data['result'] = $this->materi_model->get($id); 
 		
-		$this->load->view('materi_view', $data); //UbahAgggotaUI
+		$this->load->view('user/materi_view', $data); //UbahAgggotaUI
 		}
 	
 	public function lihatMateri($idMateri){
@@ -21,7 +21,7 @@
 		
 		$data['result'] = $this->materi_model->getAllMateri($idMateri); 
 		
-		$this->load->view('lihat_materi_view', $data); //UbahAgggotaUI
+		$this->load->view('user/lihatmateri_view', $data); //UbahAgggotaUI
 		}
 		
 	public function latihanMateri($idSoal){
@@ -29,7 +29,7 @@
 		
 		$data['result'] = $this->materi_model->getAllSoal($idSoal); 
 		
-		$this->load->view('latihan_materi_view', $data); //UbahAgggotaUI
+		$this->load->view('user/latihanmateri_view', $data); //UbahAgggotaUI
 		}
 		
 	public function jawaban($idSoal){
