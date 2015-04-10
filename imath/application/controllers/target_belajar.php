@@ -50,7 +50,7 @@
 		);
 		
 		$this->db->where('idTargetBelajar', $id);
-		$this->db->update('TargetBelajar', $data);
+		$this->db->update('target_belajar', $data);
 		redirect('target_belajar', 'refresh');
 	}
 	
@@ -85,11 +85,11 @@
 		$this->targetbelajar_model->add($data);
 		redirect('target_belajar');
 	}
-	
-	public function apasaja($input)
-	{
-		
-	//	return
+
+	public function materi($idKelas){
+		$this->load->model('materi_model');
+		$arr = $this->materi_model->getAllMateri($idKelas);
+		echo json_encode($arr);
 	}
     }
 ?>
