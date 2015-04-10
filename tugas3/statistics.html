@@ -1,0 +1,65 @@
+<!DOCTYPE html> 
+<!--
+	Tugas 3 PPW
+	Nama: Shirley Anugrah Hayati
+	NPM: 1206242492
+	Kelas: D
+	
+	mahasiswa.cs.ui.ac.id/~shirley.anugrah/tugas3/statistics.html
+	============================= Home Page================================
+-->
+
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>Library of Scientific Publications - Statistics</title>
+		<link rel="stylesheet" type="text/css" href="css/theCSS.css" /> 
+		<script src = "js/thescript.js"></script> <!-- script untuk menerima query dan mengatur statistik-->		
+	</head>
+	
+	<body onload = "statisticsStarter()"> <!-- selalu dijalankan di halaman statistics.html-->
+		<div class = "container">
+	
+			<!-- Header berisi penjelasan situs ini-->
+			<div class = "headerContainer">
+				<header>Library of Scientific Publications - Statistics</header>
+				<p id = "smallFont">Assignment &#35;3 by Shirley Anugrah Hayati</p>
+			</div>
+		
+		
+			<!--Kolom kiri untuk reset statistik dan menampilkan berapa banyak query yang sudah ditanyakan
+			dan daftar query yang sudah ditanyakan, isi dari{ } berarti berapa kali query itu sudah ditanyakan-->
+			<div class = "column">	
+				<button type = "button" onclick = "reset()">Reset</button> <!-- Button untuk reset semua statistik-->
+				
+				<span class = "chartie">Number of query(ies) asked:</span>
+					<span id = "counter" class = "query"></span> <!-- Banyaknya query yang sudah diberikan-->				
+				<br>
+				<br>
+				<!-- Daftar query-->
+				<span class = "chartie">List of Query(ies):</span>
+				<div id = "keyNum" class = "query"></div>
+			</div>
+			
+			<!--Kolom kanan berisi grafik (chart) dari daftar query. Bar paling panjang (jika 100%) adalah 750 pixel -->
+			<div class = "column">
+				<div id = "bigFont">Chart</div>
+				<div id="chart"></div>
+			</div>
+			
+			<!-- Bagian menu bar di samping kiri atas layar-->
+			<nav id="bt-menu" class="bt-menu">
+				<a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+				<ul>
+					<li><a href="index.html">Search</a></li>
+					<li><a href="statistics.html">Statistics</a></li>
+					<li><a href="miscellaneous.html">Miscellaneous</a></li>				
+				</ul>
+			</nav>			
+		</div>
+		
+		<!-- script untuk mengatur menu-->
+		<script src="js/classie.js"></script> 
+		<script src="js/borderMenu.js"></script>
+	</body>	
+</html>

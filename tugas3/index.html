@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<!--
+	Tugas 3 PPW
+	Nama: Shirley Anugrah Hayati
+	NPM: 1206242492
+	Kelas: D
+	
+	mahasiswa.cs.ui.ac.id/~shirley.anugrah/tugas3
+	============================= Home Page================================
+-->
+
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>Library of Scientific Publications - Search</title>
+		<link rel="stylesheet" type="text/css" href="css/theCSS.css" /> 
+		<script src = "js/thescript.js"></script> <!-- script untuk menerima query dan mengatur statistik-->		
+	</head>
+	
+	<body>
+		<div class = "container">
+	
+			<!-- Header berisi penjelasan situs ini-->
+			<div class = "headerContainer">
+				<header>Library of Scientific Publications - Search</header>
+				<p id = "smallFont">Assignment &#35;3 by Shirley Anugrah Hayati</p>
+			</div>
+	
+			<!-- Bagian kotak "search"-->
+			<div id="searchBox" class="searchBox">
+				<form>
+					<input class="searchBox-input" placeholder="Enter your search here..." type="text" value="" name="search" id="search">
+				</form>
+			</div>
+			<!-- Button yang jika diklik, proses pencarian terjadi-->
+			<div class = "button"><button type = "button" onclick = "show()">Search</button></div>
+
+			<!-- Menampilkan apa yang dicari-->
+			<div id="result"></div>
+		
+			<!-- Bagian menu bar di samping kiri atas layar-->
+			<nav id="bt-menu" class="bt-menu">
+				<a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+				<ul>
+					<li><a href="index.html">Search</a></li>
+					<li><a href="statistics.html">Statistics</a></li>
+					<li><a href="miscellaneous.html">Miscellaneous</a></li>				
+				</ul>
+			</nav>
+		</div>
+	
+		<!-- script untuk mengatur menu-->
+		<script src="js/classie.js"></script> 
+		<script src="js/borderMenu.js"></script>
+	</body>	
+</html>
