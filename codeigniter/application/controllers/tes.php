@@ -5,184 +5,159 @@ class Tes extends CI_Controller {
     public function __construct()
     {
             parent::__construct();
-            $this->load->model('tes_model');
-			$this->load->helper('email');
+			$this->load->model('tes_model');
     }
 	
 	public function index()
 	{	
-		$this->load->view("prepareTes_view");			
-	}			
+		$this->load->view("prepareTes_view");
+	}	
 
-	public function retrieveSoal($kelas){
-		$dataSoal = $this->tes_model->getSoalTes($kelas)->result_array();
-		$this->session->set_userdata('nomorSoal', 1);
-		$this->processSoal($dataSoal);
-		
-	}
-	
-	public function processSoal($dataSoal){
-		if(count($dataSoal) > 0){
-			$satuSoal = array_pop($dataSoal);
-			$dataSoal = array(
-				'idSoal'		=>	$satuSoal['idSoal'],
-				'pertanyaan' 	=> 	$satuSoal['pertanyaan'],
-				'nomor'			=> 	$this->session->userdata('nomorSoal')			
-			);
-			$this->session->set_userdata('nomorSoal', $dataSoal['nomor']+1);
-			$this->load->view('tes_view', $dataSoal);
-		} else {
-			echo "selesai mengerjakan tes";
-			$this->selesaiTes();
-		}
-	}
-	
-	public function processJawaban(){
-		$jawabanUser = $this->input->post('jawab', TRUE);
-		$idSoal = $this->input->post('idSoal', TRUE);
-		$jawaban = $this->tes_model->getJawabanSoal($idSoal)->row()->jawaban; 
-		if(jawabanUser == $jawaban) {
-			//jika jawaban benar..
-		}
-	}
-	
-/*	
-	public function login() 
+	public function retrieveSoal($kelas)
 	{
-	    $username = $this->input->post('username', TRUE);
-		$password = md5($this->input->post('password', TRUE));
-		$dataDB = $this->akun_model->getDataAkun($username, $password);
-		//jika tidak ada hasil query yang dikembalikan dari database (pasangan username-password tidak ditemukan).
-		if($dataDB->num_rows() < 1) {
-			$this->session->set_flashdata('messageLogin', "Username atau Password Salah !");
-		} else {
-			//jika ada hasil query dari database (ditemukan kecocokan username dan password).
-			//proses data return query menjadi data session, agar nantinya diload pada view.
-			$dataDB = $dataDB->row();
-			$data_session = array (
-				'namaPanggilan' => $dataDB->namaPanggilan,
-				'username' => $username,
-				'role' => $dataDB->role,
-				'loggedin' => TRUE
-			);
-			$this->session->set_userdata($data_session);
-		}
-
-		redirect('/autentikasi/index');
-	}
-	
-	public function logout() 
-	{
-		$this->session->sess_destroy();
-		redirect('/autentikasi/index');
-	}
-	
-	public function signup() {
-		$this->load->view('signup_view');
-	}
-	
-	public function process_signup() 
-	{
-		$username = $this->input->post('username', TRUE);
-		$password = md5($this->input->post('password', TRUE));
-		$retypePassword = md5($this->input->post('retypePassword', TRUE));
-		$email = $this->input->post('email', TRUE);
-		$namaPanggilan = $this->input->post('namaPanggilan', TRUE);
-		$gender = $this->input->post('gender');
-		$data = array(
-			'username' => $username,
-			'password' => $password,
-			'email' => $email,
-			'role' => "user",
-			'gender' => $gender,
-			'namaPanggilan' => $namaPanggilan	
+		$this->session->unset_userdata(array('setIdSoal'=>'', 'currentSoal'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>''));
+		$dataDB = $this->tes_model->getIdSoalTes($kelas)->result_array();
+		$jumlahSoal = count($dataDB);
+		$dataSession = array(
+			'kelas'			=>	$kelas,
+			'nomorSoal'		=>	0,
+			'skor'			=>	0,
+			'setIdSoal'		=>	$dataDB,
+			'jumlahSoal'	=>	$jumlahSoal
 		);
-		if($password == $retypePassword && valid_email($email)) {	
-			//Cek apakah email sudah terdaftar pada database atau belum.
-			$dataDB = $this->akun_model->getEmailAkun($email);
-			//Cek apakah username sudah terdaftar pada database atau belum.
-			$dataDB2 = $this->akun_model->getDataAkun($username, $password);
+		$this->session->set_userdata($dataSession);
+		$this->processSoal("init");
+	}
+	
+	public function processSoal($param = '')
+	{
+		$jumlahSoal	= $this->session->userdata('jumlahSoal');
+		$nomorSoal 	= $this->session->userdata('nomorSoal');
+		$setIdSoal 	= $this->session->userdata('setIdSoal');
+	
+		if($nomorSoal < $jumlahSoal && $param != 'selesai'){
+			$satuIdSoal	= $setIdSoal[$nomorSoal]['idSoal'];
+			$satuSoal 	= $this->tes_model->getSatuSoalTes($satuIdSoal)->row();
+			$nomorSoalUpdate = $nomorSoal + 1;
+			$this->session->set_userdata('nomorSoal', $nomorSoalUpdate);
+			$this->session->set_userdata('currentIdSoal', $satuSoal->idSoal);
+
 			
-			//Jika terjadi duplikat email / duplikat username / captcha salah, tampilkan pesan error.
-			if($dataDB->num_rows() >= 1) {
-				$this->session->set_flashdata('messageSignup',"Account Gagal dibuat, silahkan gunakan email lain.");
-			} else if ($dataDB2->num_rows() >= 1) {
-				$this->session->set_flashdata('messageSignup',"Account Gagal dibuat, silahkan gunakan username lain.");			
+			$pilihanJawaban = $this->tes_model->getJawabanSoalTes($satuIdSoal)->result_array();
+			shuffle($pilihanJawaban);
+			$satuSoal = array(
+				'idSoal'		=>	$satuSoal->idSoal,
+				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
+				'jawaban' 		=> 	$satuSoal->jawaban,
+				'opsiA'			=>	$pilihanJawaban[0]['deskripsi'],
+				'opsiB'			=>	$pilihanJawaban[1]['deskripsi'],
+				'opsiC'			=>	$pilihanJawaban[2]['deskripsi'],
+				'opsiD'			=>	$pilihanJawaban[3]['deskripsi'],
+				'nomor'			=> 	$this->session->userdata('nomorSoal'),
+				'skor'			=>	$this->session->userdata('skor'),
+				'flagJawaban'	=>	0,
+				'flagNext'		=>	FALSE
+			);
+			
+			if($param == "init"){
+				$satuSoal['flagInit'] = TRUE;
 			} else {
-				$res = $this->akun_model->setDataAkun($data);
-				$this->session->set_flashdata('messageSignup',"Account Berhasil dibuat");
+				$satuSoal['flagInit'] = FALSE;
 			}
-		} else {
-			$this->session->set_flashdata('messageSignup',"Account Gagal dibuat, Isian data tidak valid.");
-		}
-		redirect('/autentikasi/signup');
-	}
-	
-	public function forget()
-	{
-		$this->load->view('lupapassword_view');
-	}
-	
-	public function process_forget() 
-	{
-		$email = $this->input->post('email', TRUE);
-		$dataDB = $this->akun_model->getEmailAkun($email);
-		
-			if($dataDB->num_rows() >= 1 && valid_email($email)) {
-				$this->session->set_flashdata('messageForget', "Sukses request Password, silahkan cek email anda.");
-				$userPassword = $dataDB->row()->password;
-				$userUsername = $dataDB->row()->username;
-				
-				//kirim password ke email user 
-				
-				$config = array(
-					'protocol' => 'smtp',
-					'smtp_host' => 'ssl://smtp.googlemail.com',
-					'smtp_port' => 465,
-					'smtp_user' => 'imathcsui@gmail.com', // change it to yours
-					'smtp_pass' => 'adminimathcsui5' // change it to yours
-				);
-				
-				$this->load->library('email', $config);
-				$this->email->set_newline("\r\n");
-				$message = "Passcode ".$userUsername." = ".$userPassword;
-				$this->email->from('imathcsui@gmail.com'); // change it to yours
-				$this->email->to($email);// change it to yours
-				$this->email->subject('iMath account Password');
-				$this->email->message($message);
-				$this->email->send();
-			} else {
-				$this->session->set_flashdata('messageForget',"Anda belum pernah mendaftar.");
-			}			
+			$this->load->view('tes_view', $satuSoal);
 			
-		redirect('autentikasi/forget');	
-	}
-	
-	public function update_password()
-	{
-		$this->load->view("lupapassword2_view");
-	}
-	
-	public function process_updatepassword() 
-	{
-		$passcode = $this->input->post('passcode', TRUE);
-		$username = $this->input->post('username', TRUE);
-		$newPassword = $this->input->post('newPassword', TRUE);
-		$recPassword = $this->input->post('retypeNewPassword', TRUE);
-		
-		if($newPassword == $recPassword) {
-			$res = $this->akun_model->updatePassword(array('password' => md5($newPassword)), $passcode);
-			
-			if($res == 1){
-				$this->session->set_flashdata('messageChangePassword',"Sukses mengubah password.");
-			} else {
-				$this->session->set_flashdata('messageChangePassword',"Gagal mengubah password.");
-			}
 		} else {
-			$this->session->set_flashdata('messageChangePassword',"Gagal mengubah password.");
+			$data = array(
+				'kelas'			=>	$this->session->userdata('kelas'),
+				'skor'			=>	$this->session->userdata('skor'),
+				'namaPanggilan'	=>	$this->session->userdata('namaPanggilan')
+			);
+			$this->load->view('detailTes_view', $data);
 		}
 		
-		redirect('/autentikasi/update_password');
 	}
-*/
+
+	public function processJawaban(){
+		
+		$jawabanUser	=	$this->input->post('jawab', TRUE);
+		$jawabanBenar	=	$this->input->post('jawaban', TRUE);
+		$opsiA		=	$this->input->post('opsiA', TRUE);
+		$opsiB		=	$this->input->post('opsiB', TRUE);
+		$opsiC		=	$this->input->post('opsiC', TRUE);
+		$opsiD		=	$this->input->post('opsiD', TRUE);
+		$checkA = '';
+		$checkB = '';
+		$checkC = '';
+		$checkD = '';
+		switch($jawabanUser) {
+			case($opsiA): $checkA = 'checked'; break;
+			case($opsiB): $checkB = 'checked'; break;
+			case($opsiC): $checkC = 'checked'; break;			
+			case($opsiD): $checkD = 'checked'; break;			
+			default : break;
+		}
+		$satuIdSoal = $this->session->userdata('currentIdSoal');
+		$satuSoal 	= $this->tes_model->getSatuSoalTes($satuIdSoal)->row();
+
+		if($jawabanUser == $jawabanBenar) {
+			//jika jawaban benar..
+			$skorUpdate = $this->session->userdata('skor') + 10;
+			$this->session->set_userdata('skor', $skorUpdate);
+			$satuSoal = array(
+				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
+				'jawab' 		=> 	$jawabanUser,
+				'opsiA'			=>	$opsiA,
+				'opsiB'			=>	$opsiB,
+				'opsiC'			=>	$opsiC,
+				'opsiD'			=>	$opsiD,
+				'checkA'		=>	$checkA,
+				'checkB'		=>	$checkB,
+				'checkC'		=>	$checkC,
+				'checkD'		=>	$checkD,
+				'nomor'			=> 	$this->session->userdata('nomorSoal'),
+				'skor'			=>	$skorUpdate,
+				'flagJawaban'	=>	1,
+				'flagNext'		=>	TRUE
+			);	
+
+		} else {
+			$satuSoal = array(
+				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
+				'jawab' 		=> 	$jawabanUser,
+				'opsiA'			=>	$opsiA,
+				'opsiB'			=>	$opsiB,
+				'opsiC'			=>	$opsiC,
+				'opsiD'			=>	$opsiD,
+				'checkA'		=>	$checkA,
+				'checkB'		=>	$checkB,
+				'checkC'		=>	$checkC,
+				'checkD'		=>	$checkD,
+				'nomor'			=> 	$this->session->userdata('nomorSoal'),
+				'skor'			=>	$this->session->userdata('skor'),
+				'flagJawaban'	=>	2,
+				'flagNext'		=>	TRUE
+			);							
+		}
+		$this->load->view('tes_view', $satuSoal);		
+	}
+	
+	public function keluarTes() {
+		$this->session->unset_userdata(array('setIdSoal'=>'', 'currentSoal'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>''));
+		redirect('/tes');
+	}
+	
+	public function solusiTes() {
+		$setIdSoal 	= $this->session->userdata('setIdSoal');
+		$dataDB;
+		foreach($setIdSoal as $row) {
+			$dataTemp = $this->tes_model->getSatuSoalTes($row['idSoal'])->row();
+			$dataDB[] = $dataTemp;
+		}
+		$data = array(
+			'kelas'			=>	$this->session->userdata('kelas'),
+			'dataSoalTes'	=>	$dataDB
+		);
+
+		$this->load->view('solusiTes_view', $data);
+	}
 }
