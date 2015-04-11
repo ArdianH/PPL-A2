@@ -1,6 +1,11 @@
 <html>
     <head>        
 	<title>Buat soal</title>
+	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script>
 	jQuery(document).ready(function(){
