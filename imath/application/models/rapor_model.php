@@ -16,10 +16,13 @@ class rapor_model extends CI_Model {
 	}
 	
 	function getRapor(){
-	    	$this->load->database();
+	    $this->load->database();
 		return $this->db->get_where('rapor')->result();
 	}
 	
+	function getCatatanLatihan($id, $idKelas, $idMateri) {
+		return $this->db->get_where('catatan_latihan', array ('idRapor'=>$id, 'idMateri'=>$idMateri, 'idKelas'=>$idKelas))->result();
+	}
 
 }
 ?>

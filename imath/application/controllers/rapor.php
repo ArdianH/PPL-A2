@@ -1,38 +1,29 @@
 <?php
-//INDAH
+
     class Rapor extends CI_Controller{
         public function index()
         {          
-	    $this->load->model('Kelas');
-		$data['Kelas'] = $this->Kelas->getAllKelas(); 
-	    $this->load->view('rapor_view', $data);
+	    $this->load->model('kelas_model');
+		$data['kelas_model'] = $this->kelas_model->getAllKelas(); 
+		$this->load->view('user/rapor_view', $data);
 	    }
 		
-		public function show()
+	public function view($id){
+		$this->load->model('kelas_model');          
+	    $data['kelas_model'] = $this->kelas_model->getAllKelas();
+	    $this->load->model('materi_model');
+		$data['result'] = $this->materi_model->getAllMateri($id);
+		$this->load->view('user/rapor_view',$data);
+	}
+	
+	public function hasil($id, $idKelas, $idMateri)
 	{
-		$this->load->model('Pesan');
-		$data['result'] = $this->Pesan->getAllPesan(); 
-		$this->load->view('DaftarPesanUI', $data);
-	}
-	    
-		public function insert(){
-		$this->load->model('Pesan');
-		$this->pesan->insertPesan();
-		//$this->load->view('KelasUI');
-	}
-
-	public function delete($id){
-		$this->load->model('Pesan');		
+		$this->load->model('rapor_model');		
+		$data['result']= $this->rapor_model->getCatatanLatihan($id, $idKelas, $idMateri);
 		
-		$this->Pesan->delete($id);
-		redirect('PesanController/show/', 'refresh');
+		echo count($data['result']); 
 		
 	}
-
-	
-	
-	
-	
 	
     }
 ?>
