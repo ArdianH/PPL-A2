@@ -30,13 +30,15 @@
 	<form method="POST" action="create"> 	
 	<p>username<input type="text" name ="username"></p>	
 	Kelas 
-		<select id = "pilihkelas">
+		<select id = "pilihkelas" name ="idkelas">
 		<?php foreach($kelas as $row):?>			
-		<option value="<?php echo $row->idKelas?>" name ="idkelas"><?php echo $row->idKelas ?> </option>
+		<option value="<?php echo $row->idKelas?>"><?php echo $row->idKelas ?> </option>
 		<?php endforeach?>
-		</select>
+		</select>		
+	<br>
+	
 	Materi
-		<select id="pilihmateri">
+		<select id="pilihmateri" name ="idmateri">
 		</select>
 	<p>Banyak Soal <input type="text" name ="banyaksoal"></p>
 	<p>Nilai <input type="text" name ="targetnilai"></p>	
