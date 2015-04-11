@@ -33,5 +33,11 @@ class kelas_model extends CI_Model {
 		$this->load->database();		
 		$this->db->delete('Kelas', array('idKelas' => $id));
 	}
+	
+	function update($data, $id){
+		$this->load->database();
+		$this->db->where('idKelas', $id);
+		$this->db->update('Kelas', $data);
+	}
 }
 ?>

@@ -1,14 +1,30 @@
 <?php
+
     class target_belajar extends CI_Controller{
-        public function index()
+        /**public function index()
         {
             $this->load->model('targetbelajar_model');
  
-            $data['result'] = $this->targetbelajar_model->getAllTargetBelajar(); 
+            $data['result'] = $this->targetbelajar_model->getAllTargetBelajar();
 	    $data['history'] = $this->targetbelajar_model->getHistory();            
 	    
 	    $this->load->view('user/targetbelajar_view',$data);
-	    }
+	} back up*/
+	
+	public function index()
+        {
+            $this->load->model('targetbelajar_model');	    
+	    $username = 'kristoff';
+            $data['result'] = $this->targetbelajar_model->getAllTargetBelajar($username);
+	    $data['history'] = $this->targetbelajar_model->getHistory($username); 
+	    
+	    $data['materi'] = $this->targetbelajar_model->getAllMateri($username, 'tidak');
+	    $data['materiHistory'] = $this->targetbelajar_model->getAllMateri($username, 'tercapai');
+	    
+	    $data['tbRow'] = count($data['result']);	    	
+	    $data['historyRow'] = count($data['history']);
+	    $this->load->view('user/targetbelajar_view',$data);
+	}
 	    
 	public function done($id){
 		$this->load->model('targetbelajar_model');
@@ -56,7 +72,8 @@
 	
 	public function hapusHistory(){
 		$this->load->model('targetbelajar_model');
-		$this->targetbelajar_model->deleteHistory(); 
+		$username = 'kristoff'; //hard code username
+		$this->targetbelajar_model->deleteHistory($username); 
 		redirect('target_belajar', 'refresh');
 	}	
 	
@@ -89,6 +106,12 @@
 	public function materi($idKelas){
 		$this->load->model('materi_model');
 		$arr = $this->materi_model->getAllMateri($idKelas);
+		echo json_encode($arr);
+	}
+	
+	public function getNamaMateri($idMateri){
+		$this->load->model('materi_model');
+		$arr = $this->materi_model->get($idMateri);
 		echo json_encode($arr);
 	}
     }

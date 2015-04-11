@@ -29,7 +29,9 @@ class daftar_materi extends CI_Controller{
 
 	public function delete($id){
 		$this->load->model('materi_model');
+		$this->load->model('targetbelajar_model');
 		$this->materi_model->delete($id);
+		$this->targetbelajar_model->deleteByMateri($id);
 		redirect('admin/daftar_materi', 'refresh');
 	}
 
@@ -46,19 +48,20 @@ class daftar_materi extends CI_Controller{
 	}
 	
 	public function simpanPerubahan($id){
-		$this->load->library('upload');	
+		
+		$this->load->library('upload');		
 		if ( ! $this->upload->do_upload())
 		{
 			$error = array('error' => $this->upload->display_errors());
 			echo "Error: gambar terlalu besar atau Anda belum memilih gambar";
 		}
 		else
-		{		
+		{	
 			$data = array('upload_data' => $this->upload->data());           
 			// load images model
 			$upload = $data['upload_data'];
-			//ini link gambarnya
-			$orig_name = $upload['orig_name'];
+				//ini link gambarnya
+			$img_name = $upload['file_name'];
 
 			$this->load->model('materi_model');
 			$data = array(
@@ -66,8 +69,8 @@ class daftar_materi extends CI_Controller{
 				'idKelas' => $this->input->post('idKelas'),			
 				'rangkuman' => $this->input->post('rangkuman'),
 				'deskripsi' => $this->input->post('deskripsi'),
-				'gambar' => $orig_name
-			);
+				'gambar' => $img_name
+			);		
 
 			$this->materi_model->update($data, $id);
 			redirect('admin/daftar_materi', 'refresh');
@@ -89,12 +92,12 @@ class daftar_materi extends CI_Controller{
 			echo "Error: gambar terlalu besar atau Anda belum memilih gambar";
 		}
 		else
-		{		
+		{	
 			$data = array('upload_data' => $this->upload->data());           
 			// load images model
 			$upload = $data['upload_data'];
 				//ini link gambarnya
-			$orig_name = $upload['orig_name'];
+			$img_name = $upload['file_name'];
 
 			$this->load->model('materi_model');
 			$data = array(
@@ -102,7 +105,7 @@ class daftar_materi extends CI_Controller{
 				'idKelas' => $this->input->post('idKelas'),			
 				'rangkuman' => $this->input->post('rangkuman'),
 				'deskripsi' => $this->input->post('deskripsi'),
-				'gambar' => $orig_name
+				'gambar' => $img_name
 			);
 			$this->materi_model->add($data);
 			redirect('admin/daftar_materi', 'refresh');

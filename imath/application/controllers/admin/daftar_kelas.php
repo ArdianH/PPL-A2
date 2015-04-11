@@ -28,17 +28,41 @@
 	}
 	
 	public function simpanPerubahan($id){
-		$this->load->model('kelas_model');		
-		
-		$data = array(			
-			'idKelas' => $this->input->post('idKelas'),
-			'deskripsi' => $this->input->post('deskripsi'),
-			'gambar' => $this->input->post('gambar'),					
-		);
-		
-		$this->db->where('idKelas', $id);
-		$this->db->update('Kelas', $data);
-		redirect('admin/daftar_kelas', 'refresh');
+	
+		$this->load->library('upload');
+		if ( $this->upload->do_upload())	
+		{
+			$data = array('upload_data' => $this->upload->data());           
+			// load images model
+			$upload = $data['upload_data'];
+			
+			$img_name = $upload['file_name'];
+
+			$this->load->model('kelas_model');
+			$data = array(				
+				'idKelas' => $this->input->post('idKelas'),				
+				'deskripsi' => $this->input->post('deskripsi'),
+				'gambar' => $img_name
+			);
+				
+			$this->kelas_model->update($data, $id);
+			redirect('admin/daftar_kelas', 'refresh');
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());           
+			// load images model
+			$upload = $data['upload_data'];			
+
+			$this->load->model('kelas_model');
+			$data = array(				
+				'idKelas' => $this->input->post('idKelas'),				
+				'deskripsi' => $this->input->post('deskripsi'),				
+			);
+				
+			$this->kelas_model->update($data, $id);
+			redirect('admin/daftar_kelas', 'refresh');
+		}		
 	}
 	
 	public function buatBaru(){
@@ -68,21 +92,21 @@
 			// load images model
 			$upload = $data['upload_data'];
 			
-			$orig_name = $upload['orig_name'];
+			$img_name = $upload['file_name'];
 
 			$this->load->model('kelas_model');
 			$data = array(				
 				'idKelas' => $this->input->post('idKelas'),				
 				'deskripsi' => $this->input->post('deskripsi'),
-				'gambar' => $orig_name
+				'gambar' => $img_name
 			);
 			$this->kelas_model->add($data);
-			$idKelas = $this->input->post('idKelas');
+			
 			redirect('admin/daftar_kelas', 'refresh');
 		}
 	}
 	
-		public function createSertifikat($id)
+	public function createSertifikat($id)
 	{
 		$this->load->library('upload');
 		if ( ! $this->upload->do_upload())
@@ -96,11 +120,11 @@
 			// load images model
 			$upload = $data['upload_data'];
 			
-			$orig_name = $upload['orig_name'];
+			$img_name = $upload['file_name'];
 
 			$this->load->model('kelas_model');
 			$data = array(								
-				'sertifikat' => $orig_name
+				'sertifikat' => $img_name
 			);
 				
 			$this->db->where('idKelas', $id);			
