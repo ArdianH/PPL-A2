@@ -6,14 +6,14 @@ class soal_model extends CI_Model {
 	}	
 	
 	//Fungsi ini mengambil semua soal di kelas dipilih
-	function getAllsoal($idMateri, $idKelas){
-	    	$this->load->database();
-	    	return $this->db->get_where('soal', array('idMateri' => $idMateri && 'idKelas' => $idKelas))->result();
+	function getAllSoal($idMateri){
+    	$this->load->database();
+    	return $this->db->get_where('soal', array('idMateri' => $idMateri))->result();
 	}
 
 	//Fungsi ini mengambil soal dengan id yang diinginkan
 	function get($id){
-    	$this->load->database();	    			
+    	$this->load->database();
 		return $this->db->get_where('soal', array('idsoal' => $id))->result();
 	}
 
@@ -24,20 +24,6 @@ class soal_model extends CI_Model {
 	
 	function insert(){
 		$this->load->database();
-		$kelas = $_POST['kelas'];
-		$materi = $_POST['materi'];
-		$pertanyaan = $_POST['pertanyaan'];
-		$optiona = $_POST['optiona'];
-		$gambara = $_POST['gambara'];
-		$optionb = $_POST['optionb'];
-		$gambarb = $_POST['gambarb'];
-		$optionc = $_POST['optionc'];
-		$gambarc = $_POST['gambarc'];
-		$optiond = $_POST['optiond'];
-		$gambard = $_POST['gambard'];
-		$jawaban = $_POST['jawaban'];
-		$pembahasan = $_POST['pembahasan'];
-		$gambar = $_POST['gambar'];		
 		$isTes = 'false';
 		$this->db->query("insert into soal ( idKelas, idMateri, pertanyaan, jawaban, pembahasan, isTes, gambar) 
 			values('$kelas', '$materi', '$pertanyaan', '$jawaban','$isTes', '$gambar')");
@@ -53,12 +39,14 @@ class soal_model extends CI_Model {
 	
 	function add($data){
 		$this->db->insert('soal', $data);
-		return;
+		$a = $this->db->insert_id();
+		return $a;
 	}
 	
 	function update($data, $id){
 		$this->db->where('idsoal', $id);
 		$this->db->update('soal', $data);
+		return;		
 	}
 }
 ?>
