@@ -55,5 +55,10 @@ class materi_model extends CI_Model {
 		return $this->db->get('asset_types');
 	
 	}
+	
+	function getAllSoal($idSoal){
+	    	$this->load->database();
+		return $this->db->get_where('soal', array('idSoal' => $idSoal))->result();
+	}
 }
 ?>

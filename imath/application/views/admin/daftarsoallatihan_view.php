@@ -56,7 +56,7 @@
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_kelas"><p>Kelas</p></a></div>
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_materi"><p>Materi</p></a></div>
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/soal_latihan"><p>Soal Latihan</p></a></div>
-          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_soal"><p>Soal Tes</p></a></div> 
+          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/soal_latihan"><p>Soal Tes</p></a></div> 
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/anggota"><p>Data Anggota</p></a></div> 
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/pesan"><p>Pesan Anggota</p></a></div>   
         </div>
@@ -94,13 +94,13 @@
 	</td>
   <td>
     <a href="<?php echo base_url();?>index.php/admin/soal_latihan/detail/<?php echo $row->idSoal ?>">
-                                            <img src="<?php echo base_url() ?>assets/images/info.png" width="50px" height="50px"></a>
+                                            <img src="<?php echo base_url() ?>assets/images/info_icon.png" width="50px" height="50px"></a>
           <!-- Edit Button-->
           <a href="<?php echo base_url();?>index.php/admin/soal_latihan/edit/<?php echo $row->idSoal ?>">
-                                            <img src="<?php echo base_url() ?>assets/images/editicon.png" width="50px" height="50px"></a>
+                                            <img src="<?php echo base_url() ?>assets/images/edit_icon.png" width="50px" height="50px"></a>
           <!-- Hapus Button-->
           <a href="<?php echo base_url();?>index.php/admin/soal_latihan/delete/<?php echo $row->idSoal ?>">
-                                            <img src="<?php echo base_url() ?>assets/images/deleteicon.png" width="50px" height="50px"></a>
+                                            <img src="<?php echo base_url() ?>assets/images/delete_icon.png" width="50px" height="50px"></a>
   </td>
         </tr>
     <?php endforeach; ?>

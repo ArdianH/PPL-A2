@@ -17,7 +17,7 @@
       //var linkJSON = $(location).attr('href',toController);
       $.getJSON(location, function(arrayMateri) {
         var content = '';
-        arrayMateri.forEach(function (materi) {
+        arrayMateri.forEach(function (materi) {		
           content += '<option value="' + materi.idMateri + '">' + materi.nama + '</option>';
         });
         $('#idMateri').html(content);
@@ -54,7 +54,7 @@
           <div class="row">
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_kelas"><p>Kelas</p></a></div>
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_materi"><p>Materi</p></a></div>
-          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_soal"><p>Soal Latihan</p></a></div>
+          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/soal_latihan"><p>Soal Latihan</p></a></div>
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_soal"><p>Soal Tes</p></a></div> 
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/anggota"><p>Data Anggota</p></a></div> 
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/pesan"><p>Pesan Anggota</p></a></div>   
@@ -67,7 +67,7 @@
     Kelas 
       <select id = "idKelas" name="idKelas">
       <?php foreach($Kelas as $row):?>      
-      <option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
+      <option <?php $idKelas =  $row->idKelas; if ($idKelas == $kelasSelected) echo "selected";?> value="<?php echo $idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
       <?php endforeach?>
       </select>
     Materi

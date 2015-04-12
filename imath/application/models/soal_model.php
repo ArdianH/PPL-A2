@@ -33,12 +33,18 @@ class soal_model extends CI_Model {
 		return $a;
 	}
 	
+	function addJawaban($data){
+		$this->db->insert('pilihan_jawaban', $data);
+		$a = $this->db->insert_id();
+		return $a;
+	}
+	
 	function update($data, $id){
 		$this->db->where('idsoal', $id);
 		$this->db->update('soal', $data);		
 	}
 
-	function updateJawaban($data, $id, $pilihanGanda){
+	function updateJawaban($idSoal, $pilihanGanda, $data){
 		$this->db->where('idsoal', $id);
 		$this->db->where('pilihanGanda', $pilihanGanda);
 		$this->db->update('pilihan_jawaban', $data);		

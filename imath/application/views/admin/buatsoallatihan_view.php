@@ -73,8 +73,10 @@
 	Materi
 		<select id="idMateri" name="idMateri">
 		</select>
-	<p>pertanyaan<input type="text" name ="pertanyaan"></p>
+	<p>pertanyaan</p>
+	<textarea name ="pertanyaan" rows="15" cols="50"></textarea>
 	<input type="file" name="gambarSoal" id="gambarSoal" size="20" />
+	
 	<p>A. <input type="text" name ="optiona"></p>	
 	<input type="file" name="gambara" id="gambara" size="20" />
 	<p>B. <input type="text" name ="optionb"></p>
@@ -89,7 +91,8 @@
 	<option value="c">C</option>
 	<option value="d">D</option>
 	</select></p>
-	<p>pembahasan<input type="text" name ="pembahasan"></p>
+	<p>pembahasan</p>
+	<textarea name ="pembahasan" rows="15" cols="50"></textarea>
 	<input type="file" name="gambarSolusi" id="gambarSolusi" size="20" />	
 	<p>
 		<input type="submit" name="submit" value="Submit" />

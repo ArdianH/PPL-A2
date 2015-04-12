@@ -7,14 +7,13 @@ class kelas_model extends CI_Model {
 
 	function get($id){
 	    	$this->load->database();	    			
-		return $this->db->get_where('kelas', array('idKelas' => $id))->result();
+		return $this->db->get_where('kelas', array('idKelas' => $id));
 	}
 	
 	//Fungsi ini mengambil semua target belajar
 	function getAllKelas(){
 	    	$this->load->database();
-
-		return $this->db->get('kelas')->result();
+		return $this->db->get('kelas');
 	}
 	
 	function insert(){

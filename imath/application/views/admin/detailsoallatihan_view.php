@@ -43,7 +43,7 @@
 
     <h1> Soal </h1>
     <h3> Kelas <?php $idKelas=$soal[0]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2); ?>		</h3>
-    <h3> Materi <>
+    <h3> Materi </h3>
     		
 		<h3>
 			Pertanyaan : <?php echo $soal[0]->pertanyaan ?>
@@ -58,11 +58,17 @@
     </p>
      <p>
         B : <?php echo $pilihanJawaban[1]->deskripsi ?>
-       <img src="<?php echo base_url();?>uploads/<?php echo $pilihanJawaban[1]->gambarJawaban ?>">
+       <?php $gambar=base_url()."uploads/".($pilihanJawaban[1]->gambarJawaban);
+		if(($pilihanJawaban[1]->gambarJawaban) != "")
+		echo '<img src="'.$gambar.'">';
+       ?>   
     </p>
      <p>
        C : <?php echo $pilihanJawaban[2]->deskripsi ?>
-       <img src="<?php echo base_url();?>uploads/<?php echo $pilihanJawaban[2]->gambarJawaban ?>">
+       <?php $gambar=base_url()."uploads/".($pilihanJawaban[2]->gambarJawaban);
+		if(($pilihanJawaban[2]->gambarJawaban) != "")
+		echo '<img src="'.$gambar.'">';
+       ?>       
     </p>
      <p>
         D : <?php echo $pilihanJawaban[3]->deskripsi ?>
