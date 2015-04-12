@@ -41,11 +41,11 @@ class soal_model extends CI_Model {
 	
 	function update($data, $id){
 		$this->db->where('idsoal', $id);
-		$this->db->update('soal', $data);		
+		$this->db->update('soal', $data);
 	}
 
-	function updateJawaban($idSoal, $pilihanGanda, $data){
-		$this->db->where('idsoal', $id);
+	function updateJawaban($data,$pilihanGanda,$idSoal){
+		$this->db->where('idSoal', $idSoal);
 		$this->db->where('pilihanGanda', $pilihanGanda);
 		$this->db->update('pilihan_jawaban', $data);		
 	}
