@@ -40,7 +40,7 @@ class soal_latihan extends CI_Controller{
 			$c = 'FALSE';
 			$d = 'FALSE';
 			$solusi='FALSE';
-			if (!empty($_FILES['gambarSoal']['name']))
+			if (!empty($_FILES['gambarSoal']))
 			{
 				$soal='TRUE';
 				echo "masuk";
@@ -61,6 +61,7 @@ class soal_latihan extends CI_Controller{
 					$upload = $data['upload_data'];						
 					$gambarSoal = $upload['file_name'];
 					echo "do-upload hahahaha";
+					echo $soal;
 			    }
 			}
 			// Do we have a second file?
@@ -166,15 +167,7 @@ class soal_latihan extends CI_Controller{
 			}
 	    }
 		$this->load->model('soal_model');
-		if($soal=='TRUE')
-		{	
-			echo " in";
-			$data = array('gambarSoal' => $gambarSoal);
-		}
-		if($solusi=='TRUE')
-		{
-			$data = array('gambarSolusi' => $gambarSolusi);
-		}
+
 			$data = array(
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),
@@ -183,11 +176,20 @@ class soal_latihan extends CI_Controller{
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'pembahasan' => $this->input->post('pembahasan'),
 			'isDitunjukkan' => "1");
-			
-		if($a=='TRUE')
-		{
-			$arraya = array( 'gambarJawaban' => $gambara);
+
+		if($soal=='TRUE')
+		{	
+			echo " in";
+			$data['gambarSoal']=$gambarSoal;
 		}
+		if($solusi=='TRUE')
+		{
+			$data['gambarSolusi']=$gambarSolusi;
+		}
+
+		$this->soal_model->update($data, $idSoal);
+			
+		
 		$arraya= array(
 		      'pilihanGanda' => "a" ,
 		      'idSoal' => $idSoal,
@@ -195,10 +197,11 @@ class soal_latihan extends CI_Controller{
 		      'idKelas' => $this->input->post('idKelas'),
 		      'deskripsi' => $this->input->post('optiona'),
 		   );
-		if($b=='TRUE')
+		if($a=='TRUE')
 		{
-			$arrayb = array('gambarJawaban' => $gambarb);
+			$arraya['gambarJawaban'] = $gambara;
 		}
+		
 		$arrayb= array(
 		      'pilihanGanda' => "b" ,
 		      'idSoal' => $idSoal,
@@ -206,10 +209,11 @@ class soal_latihan extends CI_Controller{
 		      'idKelas' => $this->input->post('idKelas'),
 		      'deskripsi' => $this->input->post('optionb'),
 		   );
-		if($c=='TRUE')
+		if($b=='TRUE')
 		{
-			$arrayc = array('gambarJawaban' => $gambarc);
+			$arrayb['gambarJawaban'] = $gambarb;
 		}
+		
 		$arrayc = array(
 		      'pilihanGanda' => "c" ,
 		      'idSoal' => $idSoal,
@@ -217,12 +221,11 @@ class soal_latihan extends CI_Controller{
 		      'idKelas' => $this->input->post('idKelas'),
 		      'deskripsi' => $this->input->post('optionc'),
 		   );
-		if($d=='TRUE')
+		if($c=='TRUE')
 		{
-			$arrayd = array(
-		      'gambarJawaban' => $gambard
-		   );
+			$arrayc['gambarJawaban']=$gambarc;
 		}
+		
 		$arrayd = array(
 		      'pilihanGanda' => "d" ,
 		      'idSoal' => $idSoal,
@@ -230,12 +233,15 @@ class soal_latihan extends CI_Controller{
 		      'idKelas' => $this->input->post('idKelas'),
 		      'deskripsi' => $this->input->post('optiond'),
 		   );
-		$this->soal_model->updateJawaban($arraya, $idSoal, 'a');
-		$this->soal_model->updateJawaban($arrayb, $idSoal, 'b');
-		$this->soal_model->updateJawaban($arrayc, $idSoal, 'c');
-		$this->soal_model->updateJawaban($arrayd, $idSoal, 'd');
+		if($d=='TRUE')
+		{
+			$arrayd['gambarJawaban'] =$gambard;
+		}
+		$this->soal_model->updateJawaban($arraya,'a', $idSoal);
+		$this->soal_model->updateJawaban($arrayb,'b', $idSoal);
+		$this->soal_model->updateJawaban($arrayc, 'c', $idSoal);
+		$this->soal_model->updateJawaban($arrayd, 'd', $idSoal);
 		echo ($soal == 'TRUE').$idSoal;
-		$this->soal_model->update($data, $idSoal);
 
 		//redirect('admin/soal_latihan', 'refresh');
 	}
