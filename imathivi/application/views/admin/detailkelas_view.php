@@ -1,6 +1,11 @@
 <html>
     <head>
         <!--<title><?=$page_title?></title>-->
+    <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Kelas</title>
     </head>
     <body>
@@ -34,17 +39,34 @@
         </div>
       </div>
     </nav>  
-
-		<h1> Kelas <?php $idKelas=$result[0]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2); ?></h1>		
-		<p>	
-			Deskripsi: <?php $deskripsi=$result[0]->deskripsi; echo $deskripsi; ?>
-		</p>
-		<p>
-			Gambar: <img src="<?php echo base_url();?>uploads/<?php echo $result[0]->gambar ?>">
-		</p>		
-	
-	
-		<!-- Hapus Button-->
+    <div class="container contents">
+      <div class="formImath">
+    		<h1> Kelas <?php $idKelas=$result[0]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2); ?></h1>	
+        </br></br>	
+    		<label>	
+    			Deskripsi: </label><?php $deskripsi=$result[0]->deskripsi; echo $deskripsi; ?>
+    	</br></br>
+    		<label>
+    			Gambar: </label><img src="<?php echo base_url();?>uploads/<?php echo $result[0]->gambar ?>">
+      </div>
+    		<!-- Hapus Button-->
 		<a href="<?php echo base_url()."index.php/admin/daftar_kelas/"?>"><button>Kembali</button></a>
+  </div>
+
+   <footer class="footer">
+        <div class="container">
+          <p class="text-muted">
+            <div class="row">
+            <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
+          </div>
+          <div class="row">
+            <div class="col-md-12"><p>Copyright(c) 2015</p></div>
+          </div>
+          </p>
+        </div>
+      </footer>
     </body>
 </html>

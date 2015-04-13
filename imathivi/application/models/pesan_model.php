@@ -12,5 +12,10 @@ class pesan_model extends CI_Model {
 		$this->load->database();		
 		$this->db->delete('pesan', array('idPesan' => $id));
 	}
+	
+	function add($data){
+		$this->db->insert('pesan', $data);
+		return;
+	}
 }
 ?>

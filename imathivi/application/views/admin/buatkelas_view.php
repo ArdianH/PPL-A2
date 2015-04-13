@@ -44,7 +44,9 @@
 	    <div class="titleText">    
 	    <h1>Buat Kelas</h1>
 	</div>
+
     <div class="container">
+    	<?php echo $this->session->flashdata('duplicatePrimaryKeyKelas'); ?>
 	<form class="formiMath" method="POST" action="<?php echo base_url()?>index.php/admin/daftar_kelas/create" enctype="multipart/form-data"> 	
 	 <label>Kode Kelas </label></br><select name ="idKelas">	 
 		<option value="SD001">SD 1</option>
@@ -55,7 +57,7 @@
 		<option value="SD006">SD 6</option>	
 	</select></br></br>
 	<label>Deskripsi </label></br>
-	<textarea type="text" name ="deskripsi" rows="4" cols="50"></textarea></br></br>
+	<textarea name ="deskripsi" rows="15" cols="50"><?php echo $result[0]->deskripsi ;?></textarea></br></br>
 	<label>Unggah Gambar </label>
 	<input type="file" name="userfile" size="20" />
 	<br /><br />
@@ -82,4 +84,3 @@
 	    </footer>
     </body>
 </html>
-

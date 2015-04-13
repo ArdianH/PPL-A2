@@ -6,6 +6,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+	function confirmDelete(url) {
+		if (confirm("Kamu yakin ingin menghapus kelas ini? Semua materi kelas juga akan terhapus")) {
+			window.location.href = url;
+		}		
+	}
+	</script>
     </head>
     <body>
 
@@ -65,7 +72,7 @@
 				</td>
 				<td class="col-md-2">
 				<!-- Hapus Button-->
-				<a href="<?php echo base_url() ?>/index.php/admin/pesan/delete/<?php echo $row->idPesan?>">
+				<a onclick="return confirmDelete('<?php echo base_url() ?>/index.php/admin/pesan/delete/<?php echo $row->idPesan?>');">
 			                                    <img src="<?php echo base_url() ?>assets/images/deleteicon.png" width="50px" height="50px"></a>
 				</td>
         </tr>

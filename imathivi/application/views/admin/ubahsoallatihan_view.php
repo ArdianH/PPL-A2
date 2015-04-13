@@ -1,6 +1,6 @@
 <html>
     <head>        
-	<title>Ubah soal</title>
+  <title>Ubah soal</title>
   <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     <meta charset="utf-8">
@@ -33,13 +33,13 @@
     </head>
     <body>
     <nav class="navbar navbar-default navbar-static-top">
-	      <div class="container" id="navbar">
-	        <div class="navbar-header" id="logobar">
-	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	          <span class="sr-only">Toggle navigation</span>
-	        </button>
-	        <a class="navbar-brand" href="#">iMath</a>
-	      </div>
+        <div class="container" id="navbar">
+          <div class="navbar-header" id="logobar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="#">iMath</a>
+        </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../navbar/">PROFIL ADMIN</a></li>
@@ -67,10 +67,10 @@
       <form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/soal_latihan/simpanPerubahan/<?php echo $soal[0]->idSoal ?>" enctype="multipart/form-data">
       Kelas 
         <select id = "idKelas" name="idKelas">
-        <?php foreach($Kelas as $row):?>      
-        <option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
-        <?php endforeach?>
-        </select>
+         <?php foreach($Kelas as $row):?>      
+      <option <?php $idKelas =  $row->idKelas; if ($idKelas == $kelasSelected) echo "selected";?> value="<?php echo $idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
+      <?php endforeach?>
+      </select>
       Materi
         <select id="idMateri" name="idMateri">
         </select></br></br>
@@ -94,9 +94,8 @@
       <label>Pembahasan</label></br><textarea name ="pembahasan"><?php echo $soal[0]->pembahasan ?></textarea></br>
       <input type="file" name="gambarSolusi" id="gambarSolusi" size="20" /> </br></br>
         <input type="submit" name="submit" value="Submit" /></form>
-        <a href = "<?php echo base_url()?>index.php/admin/soal_latihan"><button/>Batal</button></a>
     </div>
-	
+  
     <footer class="footer">
         <div class="container">
           <p class="text-muted">

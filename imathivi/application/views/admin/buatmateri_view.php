@@ -44,6 +44,7 @@
 	    <h1>Buat Materi</h1>
 	</div>
 	    </br>
+	    <?php echo $this->session->flashdata('duplicatePrimaryKeyMateri'); ?>
 		<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/daftar_materi/create" enctype="multipart/form-data"> 	
 		<label>Nama Materi</label></br>
 		<input type="text" name ="nama"></br></br>

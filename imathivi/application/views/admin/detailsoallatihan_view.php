@@ -1,6 +1,6 @@
 <html>
     <head>
-	<title>DETAIL MATERI</title>
+  <title>DETAIL SOAL LATIHAN</title>
   <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     <meta charset="utf-8">
@@ -9,14 +9,14 @@
     </head>
     
     <body>
-    	<nav class="navbar navbar-default navbar-static-top">
-	      <div class="container" id="navbar">
-	        <div class="navbar-header" id="logobar">
-	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	          <span class="sr-only">Toggle navigation</span>
-	        </button>
-	        <a class="navbar-brand" href="#">iMath</a>
-	      </div>
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container" id="navbar">
+          <div class="navbar-header" id="logobar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="#">iMath</a>
+        </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../navbar/">PROFIL ADMIN</a></li>
@@ -40,15 +40,15 @@
       </div>
     </nav>
     
-
+<div class="container contents">
     <h1> Soal </h1>
-    <h3> Kelas <?php $idKelas=$soal[0]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2); ?>		</h3>
+    <h3> Kelas <?php $idKelas=$soal[0]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2); ?>    </h3>
     <h3> Materi <>
-    		
-		<h3>
-			Pertanyaan : <?php echo $soal[0]->pertanyaan ?>
+        
+    <h3>
+      Pertanyaan : <?php echo $soal[0]->pertanyaan ?>
       <img src="<?php echo base_url();?>uploads/<?php echo $soal[0]->gambarSoal ?>">
-		</h3>
+    </h3>
     <h3>
       Jawaban : <?php echo $soal[0]->jawaban ?>
     </h3>
@@ -68,9 +68,25 @@
         D : <?php echo $pilihanJawaban[3]->deskripsi ?>
        <img src="<?php echo base_url();?>uploads/<?php echo $pilihanJawaban[3]->gambarJawaban ?>">
     </p>
-		<p>
+    <p>
       Pembahasan: <?php echo $soal[0]->pembahasan ?>
-			<img src="<?php echo base_url();?>uploads/<?php echo $soal[0]->gambarSolusi ?>">
-		</p>
-	</body>
+      <img src="<?php echo base_url();?>uploads/<?php echo $soal[0]->gambarSolusi ?>">
+    </p>
+  </div>
+   <footer class="footer">
+        <div class="container">
+          <p class="text-muted">
+            <div class="row">
+            <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
+          </div>
+          <div class="row">
+            <div class="col-md-12"><p>Copyright(c) 2015</p></div>
+          </div>
+          </p>
+        </div>
+      </footer>
+  </body>
 </html>

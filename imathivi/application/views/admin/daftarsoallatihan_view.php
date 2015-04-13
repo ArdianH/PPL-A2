@@ -1,6 +1,6 @@
 <html>
     <head>
-	 <title>soal</title>
+   <title>soal</title>
    <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     <meta charset="utf-8">
@@ -29,18 +29,26 @@
            $('#idKelas').change();
            $
          });
+
+  </script>
+  <script>
+  function confirmDelete(url) {
+    if (confirm("Kamu yakin ingin menghapus soal ini?")) {
+      window.location.href = url;
+    }   
+  }
   </script>
     </head>
     
     <body>
-    	<nav class="navbar navbar-default navbar-static-top">
-	      <div class="container" id="navbar">
-	        <div class="navbar-header" id="logobar">
-	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	          <span class="sr-only">Toggle navigation</span>
-	        </button>
-	        <a class="navbar-brand" href="#">iMath</a>
-	      </div>
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container" id="navbar">
+          <div class="navbar-header" id="logobar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="#">iMath</a>
+        </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../navbar/">PROFIL ADMIN</a></li>
@@ -64,7 +72,7 @@
       </div>
     </nav>
 
-	 <div class="container contents">
+   <div class="container contents">
       <div class="titleText">
       <h1>Daftar Soal Latihan</h1>
       </div>
@@ -114,7 +122,7 @@
             <a href="<?php echo base_url();?>index.php/admin/soal_latihan/edit/<?php echo $row->idSoal ?>">
                                               <img src="<?php echo base_url() ?>assets/images/editicon.png" width="50px" height="50px"></a>
             <!-- Hapus Button-->
-            <a href="<?php echo base_url();?>index.php/admin/soal_latihan/delete/<?php echo $row->idSoal ?>">
+            <a onclick="return confirmDelete('<?php echo base_url() ?>/index.php/admin/soal_latihan/delete/<?php echo $row->idSoal?>');">
                                               <img src="<?php echo base_url() ?>assets/images/deleteicon.png" width="50px" height="50px"></a>
           </td>
                 </tr>

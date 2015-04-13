@@ -8,33 +8,43 @@ class targetbelajar_model extends CI_Model {
 	
 	function get($id){
 	    	$this->load->database();	    			
-		return $this->db->get_where('targetbelajar', array('idTargetBelajar' => $id))->result();
+		return $this->db->get_where('target_belajar', array('idTargetBelajar' => $id))->result();
 	}
 	
-	//Fungsi ini mengambil semua target belajar
-	function getAllTargetBelajar(){
+	//=====================================================
+	// Fungsi ini mengambil semua target belajar dari $username
+	//=====================================================
+	function getAllTargetBelajar($username){
 	    	$this->load->database();
 	    	//return $this->db->get('targetbelajar')->result();
 		$selesai = 'tidak';
-		return $this->db->get_where('targetbelajar', array('isSelesai' => $selesai))->result();
+		return $this->db->get_where('target_belajar', array('isSelesai' => $selesai, 'username' => $username))->result();
 	}
 	
-	function getHistory(){
+	function getHistory($username){
 	    	$this->load->database();
 	    	//return $this->db->get('targetbelajar')->result();
 		$selesai = 'tercapai';
-		return $this->db->get_where('targetbelajar', array('isSelesai' => $selesai))->result();
+		return $this->db->get_where('target_belajar', array('isSelesai' => $selesai, 'username' => $username))->result();
 	}
 	
-	function deleteHistory(){
+	function deleteHistory($username){
 		$this->load->database();
 		$selesai = 'tercapai';
-		$this->db->delete('targetbelajar', array('isSelesai' => $selesai));
+		$this->db->delete('target_belajar', array('isSelesai' => $selesai, 'username' => $username));
 	}
 	
 	function delete($id){
 		$this->load->database();		
-		$this->db->delete('targetbelajar', array('idTargetBelajar' => $id));
+		$this->db->delete('target_belajar', array('idTargetBelajar' => $id));
+	}
+	
+	//=====================================================================================
+	// Fungsi ini menghapus semua target belajar dengan id materi = $idMateri
+	//=====================================================================================
+	function deleteByMateri($idMateri){
+		$this->load->database();		
+		$this->db->delete('target_belajar', array('idMateri' => $idMateri));
 	}
 	
 	function insertTargetBelajar(){
@@ -44,17 +54,26 @@ class targetbelajar_model extends CI_Model {
 		$kelas = $_POST['kelas'];
 		$materi = $_POST['materi'];
 		$nilai = $_POST['nilai'];		
-		$this->db->query("insert into targetbelajar (idTargetBelajar, username, idkelas, idmateri, targetnilai) values('$id', '$username','$kelas', '$materi', 'nilai')");		
+		$this->db->query("insert into target_belajar (idTargetBelajar, username, idkelas, idmateri, targetnilai) values('$id', '$username','$kelas', '$materi', 'nilai')");		
 	}
 	
 	function add($data){
-		$this->db->insert('TargetBelajar', $data);
+		$this->db->insert('target_belajar', $data);
 		return;
 	}
 	
 	function update($data, $id){
 		$this->db->where('idTargetBelajar', $id);
-		$this->db->update('TargetBelajar', $data);
+		$this->db->update('target_belajar', $data);
+	}
+	
+	//=====================================================
+	// Fungsi ini mengambil semua materi dari $username
+	//=====================================================
+	function getAllMateri($username, $selesai){
+	    	$this->load->database();
+	    	
+		return $this->db->query('SELECT * FROM Materi as M where M.idMateri in (Select TB.idMateri from Target_Belajar as TB where TB.username="'.$username.'" and TB.isSelesai = "'.$selesai.'")')->result();
 	}
 }
 ?>

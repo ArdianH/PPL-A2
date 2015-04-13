@@ -41,18 +41,19 @@
     </nav>
     <div class="container contents">
     <div class="titleText">    
-    <h1>Ubah Kelas</h1>
-  </div>
+    <h1>Ubah Kelas
 	    <?php $id=$result[0]->idKelas;
-	    ?>
-		<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/KelasController/simpanPerubahan/<?php echo $id?>">
+	    ?> </h1> </div>
+      <div class="container formImath">
+
+    <form method="POST" onsubmit="return confirm('Kamu yakin ingin mengubah isi kelas ini?');" action="<?php echo base_url()?>index.php/admin/daftar_kelas/simpanPerubahan/<?php echo $id?>" enctype="multipart/form-data">
 		<label>Kode Kelas</label></br><?php echo $result[0]->idKelas ;?></br></br>
 		<label>Deskripsi</label></br> <textarea type="text" name ="deskripsi" rows="4" cols="50"><?php echo $result[0]->deskripsi ;?></textarea></br></br>
 		<form action="insert_product.php" method="POST" enctype="multipart/form-data">
 	    <label>Unggah Gambar </label><input type="file" name="gambar" />
 		<p>
 			<input type="submit" value="Submit" /></form>
-  <a href = "<?php echo base_url()?>index.php/admin/daftar_kelas"><button/>Batal</button></a>
+    </div>
 </div>
 
 	<footer class="footer">

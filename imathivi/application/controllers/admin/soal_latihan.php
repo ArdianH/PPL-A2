@@ -3,7 +3,7 @@ class soal_latihan extends CI_Controller{
 	public function index()
 	{
 		$this->load->model('kelas_model');				
-		$data['Kelas'] = $this->kelas_model->getAllKelas();
+		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->model('soal_model');
 		$data['result'] = $this->soal_model->getAllSoal('0');
 		$this->load->view('admin/daftarsoallatihan_view',$data);
@@ -11,7 +11,7 @@ class soal_latihan extends CI_Controller{
 
 	public function view(){
 		$this->load->model('kelas_model');				
-		$data['Kelas'] = $this->kelas_model->getAllKelas();
+		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->model('soal_model');
 		$id = $this->input->post('idMateri');
 		$data['result'] = $this->soal_model->getAllSoal($id);
@@ -31,30 +31,25 @@ class soal_latihan extends CI_Controller{
 		$this->load->view('admin/detailsoallatihan_view',$data);
 	}
 	public function simpanPerubahan($idSoal){
-		if (isset($_POST['submit']))
-	    {
-		// Load the library - no config specified here
-		$this->load->library('upload');
-
-		// Check if there was a file uploaded - there are other ways to
-		// check this such as checking the 'error' for the file - if error
-		// is 0, you are good to code
-		$soal ='FALSE';
-		$a = 'FALSE';
-		$b = 'FALSE';
-		$c = 'FALSE';
-		$d = 'FALSE';
-		$solusi='FALSE';
-			if (!empty($_FILES['gambarSoal']['name']))
+		if (isset($_POST['submit'])){
+			// Load the library - no config specified here
+			$this->load->library('upload');
+			$soal ='FALSE';
+			$a = 'FALSE';
+			$b = 'FALSE';
+			$c = 'FALSE';
+			$d = 'FALSE';
+			$solusi='FALSE';
+			if (!empty($_FILES['gambarSoal']))
 			{
 				$soal='TRUE';
 				echo "masuk";
-			    // Specify configuration for File 1
-			    $config['upload_path'] = './uploads/';
-			    $config['allowed_types'] = 'gif|jpg|png';
-			    $config['max_size'] = '100';
-			    $config['max_width']  = '1024';
-			    $config['max_height']  = '768';       
+				// Specify configuration for File 1
+				$config['upload_path'] = './uploads/';
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size'] = '100';
+				$config['max_width']  = '1024';
+				$config['max_height']  = '768';       
 
 			    // Initialize config for File 1
 			    $this->upload->initialize($config);
@@ -62,39 +57,47 @@ class soal_latihan extends CI_Controller{
 			    // Upload file 1
 			    if ($this->upload->do_upload('gambarSoal'))
 			    {			    	
-					$data = array('upload_data' => $this->upload->data());           
-					// load images model
-					$upload = $data['upload_data'];
-						//ini link gambarnya
+					$data = array('upload_data' => $this->upload->data());					
+					$upload = $data['upload_data'];						
 					$gambarSoal = $upload['file_name'];
+					echo "do-upload hahahaha";
+					echo $soal;
 			    }
 			}
-
 			// Do we have a second file?
 			if (!empty($_FILES['gambara']['name']))
 			{
 				$a='TRUE';
-			    $this->upload->initialize($config);
+				// Specify configuration for File 1
+				$config['upload_path'] = './uploads/';
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size'] = '100';
+				$config['max_width']  = '1024';
+				$config['max_height']  = '768';       
+				$this->upload->initialize($config);
 
 			    // Upload the second file
 			    if ($this->upload->do_upload('gambara'))
 			    {			    	
 					$data = array('upload_data' => $this->upload->data());           
 					// load images model
-					$upload = $data['upload_data'];
-						//ini link gambarnya
-					$gambara = $upload['file_name'];
+					$upload = $data['upload_data'];						
+					$gambara = $upload['file_name']; //ini link gambarnya
 			    }
 			}
-			
-			// Do we have a second file?
+
 			if (!empty($_FILES['gambarb']['name']))
 			{
 				$b='TRUE';
-			    $this->upload->initialize($config);
+				$config['upload_path'] = './uploads/';
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size'] = '100';
+				$config['max_width']  = '1024';
+				$config['max_height']  = '768';       
+				$this->upload->initialize($config);
 
-			    // Upload the second file
-			    if ($this->upload->do_upload('gambarb'))
+				// Upload the second file
+				if ($this->upload->do_upload('gambarb'))
 			    {			    	
 					$data = array('upload_data' => $this->upload->data());           
 					// load images model
@@ -108,6 +111,11 @@ class soal_latihan extends CI_Controller{
 			if (!empty($_FILES['gambarc']['name']))
 			{
 				$c='TRUE';
+				$config['upload_path'] = './uploads/';
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size'] = '100';
+				$config['max_width']  = '1024';
+				$config['max_height']  = '768';       
 			    $this->upload->initialize($config);
 
 			    // Upload the second file
@@ -123,6 +131,11 @@ class soal_latihan extends CI_Controller{
 			if (!empty($_FILES['gambard']['name']))
 			{
 				$d='TRUE';
+				$config['upload_path'] = './uploads/';
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size'] = '100';
+				$config['max_width']  = '1024';
+				$config['max_height']  = '768';      
 			    $this->upload->initialize($config);
 
 			    // Upload the second file
@@ -138,7 +151,7 @@ class soal_latihan extends CI_Controller{
 			}
 			if (!empty($_FILES['gambarSolusi']['name']))
 			{
-				$solusi='TRUE';
+			    $solusi='TRUE';
 			    $this->upload->initialize($config);
 
 			    // Upload the second file
@@ -154,16 +167,7 @@ class soal_latihan extends CI_Controller{
 			}
 	    }
 		$this->load->model('soal_model');
-		if($soal=='TRUE')
-		{
-			echo "hahahaha";
-			$data = array(			
-			'gambarSoal' => $gambarSoal	);
-		}
-		if($solusi=='TRUE')
-		{
-			$data = array('gambarSolusi' => $gambarSolusi);
-		}
+
 			$data = array(
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),
@@ -171,14 +175,21 @@ class soal_latihan extends CI_Controller{
 			'jawaban' => $this->input->post('jawaban'),
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'pembahasan' => $this->input->post('pembahasan'),
-			'isDitunjukkan' => "1"		);
-			
-		if($a=='TRUE')
-		{
-			$arraya = array(
-		      'gambarJawaban' => $gambara
-		   );
+			'isDitunjukkan' => "1");
+
+		if($soal=='TRUE')
+		{	
+			echo " in";
+			$data['gambarSoal']=$gambarSoal;
 		}
+		if($solusi=='TRUE')
+		{
+			$data['gambarSolusi']=$gambarSolusi;
+		}
+
+		$this->soal_model->update($data, $idSoal);
+			
+		
 		$arraya= array(
 		      'pilihanGanda' => "a" ,
 		      'idSoal' => $idSoal,
@@ -186,12 +197,11 @@ class soal_latihan extends CI_Controller{
 		      'idKelas' => $this->input->post('idKelas'),
 		      'deskripsi' => $this->input->post('optiona'),
 		   );
-		if($b=='TRUE')
+		if($a=='TRUE')
 		{
-			$arrayb = array(
-		      'gambarJawaban' => $gambarb
-		   );
+			$arraya['gambarJawaban'] = $gambara;
 		}
+		
 		$arrayb= array(
 		      'pilihanGanda' => "b" ,
 		      'idSoal' => $idSoal,
@@ -199,12 +209,11 @@ class soal_latihan extends CI_Controller{
 		      'idKelas' => $this->input->post('idKelas'),
 		      'deskripsi' => $this->input->post('optionb'),
 		   );
-		if($c=='TRUE')
+		if($b=='TRUE')
 		{
-			$arrayc = array(
-		      'gambarJawaban' => $gambarc
-		   );
+			$arrayb['gambarJawaban'] = $gambarb;
 		}
+		
 		$arrayc = array(
 		      'pilihanGanda' => "c" ,
 		      'idSoal' => $idSoal,
@@ -212,12 +221,11 @@ class soal_latihan extends CI_Controller{
 		      'idKelas' => $this->input->post('idKelas'),
 		      'deskripsi' => $this->input->post('optionc'),
 		   );
-		if($d=='TRUE')
+		if($c=='TRUE')
 		{
-			$arrayd = array(
-		      'gambarJawaban' => $gambard
-		   );
+			$arrayc['gambarJawaban']=$gambarc;
 		}
+		
 		$arrayd = array(
 		      'pilihanGanda' => "d" ,
 		      'idSoal' => $idSoal,
@@ -225,25 +233,29 @@ class soal_latihan extends CI_Controller{
 		      'idKelas' => $this->input->post('idKelas'),
 		      'deskripsi' => $this->input->post('optiond'),
 		   );
-		$this->soal_model->updateJawaban($arraya, $idSoal, 'a');
-		$this->soal_model->updateJawaban($arrayb, $idSoal, 'b');
-		$this->soal_model->updateJawaban($arrayc, $idSoal, 'c');
-		$this->soal_model->updateJawaban($arrayd, $idSoal, 'd');
-		$this->soal_model->update($data, $idSoal);
+		if($d=='TRUE')
+		{
+			$arrayd['gambarJawaban'] =$gambard;
+		}
+		$this->soal_model->updateJawaban($arraya,'a', $idSoal);
+		$this->soal_model->updateJawaban($arrayb,'b', $idSoal);
+		$this->soal_model->updateJawaban($arrayc, 'c', $idSoal);
+		$this->soal_model->updateJawaban($arrayd, 'd', $idSoal);
+		echo ($soal == 'TRUE').$idSoal;
 
-		redirect('admin/soal_latihan', 'refresh');
+		//redirect('admin/soal_latihan', 'refresh');
 	}
 	
 	public function createview(){
 		$this->load->model('kelas_model');				
-		$data['Kelas'] = $this->kelas_model->getAllKelas();
+		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->view('admin/buatsoallatihan_view', $data);
 	}
 
 
 	public function edit($id){
 		$this->load->model('kelas_model');				
-		$data['Kelas'] = $this->kelas_model->getAllKelas();
+		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->model('soal_model');		
 		$data['soal'] = $this->soal_model->get($id); 
 		$data['pilihanJawaban']	= $this->soal_model->getPilihanJawaban($id);
@@ -279,7 +291,7 @@ class soal_latihan extends CI_Controller{
 					// load images model
 					$upload = $data['upload_data'];
 						//ini link gambarnya
-					$gambarSoal = $upload['file_name'];
+					$gambarSoal = $upload['file_name'];					
 			    }
 
 			}
@@ -402,50 +414,53 @@ class soal_latihan extends CI_Controller{
 		);
 		
 		$id = $this->soal_model->add($data);
-		$this->load->model('pilihanjawaban_model');
-		$data2 = array(
-			array(
+		$this->load->model('soal_model');
+		$dataa = array(			
 		      'pilihanGanda' => "a" ,
 		      'idSoal' => $id,
 		      'idMateri' => $this->input->post('idMateri'),
 		      'idKelas' => $this->input->post('idKelas'),
 		      'gambarJawaban' => $gambara,
 		      'deskripsi' => $this->input->post('optiona'),
-		   ),
-		   array(
+		);
+		
+		$datab=  array(
 		      'pilihanGanda' => "b" ,
 		      'idSoal' => $id,
 		      'idMateri' => $this->input->post('idMateri'),
 		      'idKelas' => $this->input->post('idKelas'),
 		      'gambarJawaban' => $gambarb,
 		      'deskripsi' => $this->input->post('optionb'),
-		   ),
-		   array(
+		   );
+		$datac = array(
 		      'pilihanGanda' => "c" ,
 		      'idSoal' => $id,
 		      'idMateri' => $this->input->post('idMateri'),
 		      'idKelas' => $this->input->post('idKelas'),
 		      'gambarJawaban' => $gambarc,
 		      'deskripsi' => $this->input->post('optionc'),
-		   ),
-		   array(
+		   );
+		   $datad = array(
 		      'pilihanGanda' => "d" ,
 		      'idSoal' => $id,
 		      'idMateri' => $this->input->post('idMateri'),
 		      'idKelas' => $this->input->post('idKelas'),
 		      'gambarJawaban' => $gambard,
 		      'deskripsi' => $this->input->post('optiond'),
-		   ),
-		);
+		   );
 		
-		$this->pilihanjawaban_model->add($data2);
+		$this->soal_model->addJawaban($dataa);
+		$this->soal_model->addJawaban($datab);
+		$this->soal_model->addJawaban($datac);
+		$this->soal_model->addJawaban($datad);
 
 		redirect('admin/soal_latihan');
 	}
+	
 	public function materi($idKelas){
 		$this->load->model('materi_model');
 		$arr = $this->materi_model->getAllMateri($idKelas);
 		echo json_encode($arr);
-	}
+	}	
 }
 ?>

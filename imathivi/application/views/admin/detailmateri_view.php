@@ -1,6 +1,8 @@
-<html>
+html>
     <head>
 	<title>DETAIL MATERI</title>
+   <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     </head>
     
     <body>
@@ -35,7 +37,7 @@
       </div>
     </nav>
     
-
+<div class="container contents">
     <h1> Materi  Kelas <?php $idKelas=$result[0]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2); ?>		</h1>
     		
 		<p>
@@ -50,6 +52,21 @@
 		<p>
 			Rangkuman: <?php $rangkuman=$result[0]->rangkuman; echo $rangkuman; ?>
 		</p>
-	
+  </div>
+	<footer class="footer">
+        <div class="container">
+          <p class="text-muted">
+            <div class="row">
+            <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
+          </div>
+          <div class="row">
+            <div class="col-md-12"><p>Copyright(c) 2015</p></div>
+          </div>
+          </p>
+        </div>
+      </footer>
     </body>
 </html>

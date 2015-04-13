@@ -7,14 +7,13 @@ class kelas_model extends CI_Model {
 
 	function get($id){
 	    	$this->load->database();	    			
-		return $this->db->get_where('kelas', array('idKelas' => $id))->result();
+		return $this->db->get_where('kelas', array('idKelas' => $id));
 	}
 	
 	//Fungsi ini mengambil semua target belajar
 	function getAllKelas(){
 	    	$this->load->database();
-
-		return $this->db->get('kelas')->result();
+		return $this->db->get('kelas');
 	}
 	
 	function insert(){
@@ -32,6 +31,12 @@ class kelas_model extends CI_Model {
 	function delete($id){
 		$this->load->database();		
 		$this->db->delete('Kelas', array('idKelas' => $id));
+	}
+	
+	function update($data, $id){
+		$this->load->database();
+		$this->db->where('idKelas', $id);
+		$this->db->update('Kelas', $data);
 	}
 }
 ?>

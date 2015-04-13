@@ -6,6 +6,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+	function confirmDelete(url) {
+		if (confirm("Kamu yakin ingin menghapus kelas ini? Semua materi kelas juga akan terhapus")) {
+			window.location.href = url;
+		}		
+	}
+	</script>
     </head>
     <body>
 
@@ -59,7 +66,7 @@
 	        	<?php foreach($result as $row):?>
 	        	<tr>	
 					<td class="col-md-2">
-						<?php echo $row->idKelas ?>
+						<a href="<?php  $idKelas = $row->idKelas; echo base_url()."admin/daftar_materi/view/".$idKelas.'/">'.$idKelas;?>"></a>
 					</td>	
 					<td class="col-md-4">
 						<?php echo $row->deskripsi ?>
@@ -73,8 +80,10 @@
 					<a href="<?php echo base_url();?>index.php/admin/daftar_kelas/edit/<?php echo $row->idKelas ?>">
 				                                    <img src="<?php echo base_url() ?>assets/images/editicon.png" width="50px" height="50px"></a>
 					<!-- Hapus Button-->
-					<a href="<?php echo base_url();?>index.php/admin/daftar_kelas/delete/<?php echo $row->idKelas ?>">
+					<a href="" onclick="return confirmDelete('<?php echo base_url();?>admin/daftar_kelas/delete/<?php echo $row->idKelas ?>');">
 				                                    <img src="<?php echo base_url() ?>assets/images/deleteicon.png" width="50px" height="50px"></a>
+				    <a href="<?php echo base_url();?>index.php/admin/daftar_kelas/unggah/<?php echo $row->idKelas ?>">
+				    								<img src="<?php echo base_url() ?>assets/images/sertifikat.png" width="50px" height="50px"></a>
 					</td>
 				        </tr>
 				    <?php endforeach; ?>

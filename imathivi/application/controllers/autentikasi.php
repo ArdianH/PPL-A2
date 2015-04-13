@@ -13,12 +13,12 @@ class Autentikasi extends CI_Controller {
 	{	
 		if($this->session->userdata('loggedin')) {
 			if($this->session->userdata('role') == "admin") {
-				$this->load->view("viewerAdmin");
+				redirect ('dashboard');
 			} else {
-				$this->load->view("viewer");
+				redirect ('home');
 			}
 		} else {
-			$this->load->view("login_view");			
+			$this->load->view("user/login_view");			
 		}
 	}			
 
@@ -53,7 +53,7 @@ class Autentikasi extends CI_Controller {
 	}
 	
 	public function signup() {
-		$this->load->view('signup_view');
+		$this->load->view('user/signup_view');
 	}
 	
 	public function process_signup() 

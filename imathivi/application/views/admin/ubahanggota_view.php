@@ -1,4 +1,4 @@
-<html>
+html>
     <head>        
 	<title>Ubah Anggota</title>
     <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
@@ -40,13 +40,11 @@
       </div>
     </nav>
 
-  <div class="container contents">    
-    <h1>Ubah Anggota</h1>
-    <div class="container formiMath">
-    <h2><?php $id=$result[0]->username;
-    echo $id;?></h2> 
+  <div class="container contents">       
+    <h1>Ubah Data <?php $id=$result[0]->username; echo $id;?></h1> 
+    <div class="container formImath">
    
-	<form method="POST" action="<?php echo base_url()?>index.php/admin/anggota/simpanPerubahan/<?php echo $id?>">
+	<form method="POST" onsubmit="return confirm('Kamu yakin ingin mengubah target belajar ini?');" action="<?php echo base_url()?>index.php/admin/anggota/simpanPerubahan/<?php echo $id?>">
 	<label>Username</label></br>
 	<input type="text" name ="username" value="<?php echo $result[0]->username ;?>"></br></br>
 	<label>Nama Panggilan</label></br>
@@ -56,9 +54,10 @@
 	<label>Password</label></br>
 	<input type="password" name ="password"  value="<?php echo $result[0]->password ;?>"></br><br>
 	<input type="submit" value="Submit" />
-	</form>
+		<input type="submit" value="Submit" />
 	
-	</div>
+	</form>
+</div>
 </div>
 <footer class="footer">
 	      <div class="container">
@@ -75,6 +74,7 @@
 	        </p>
 	      </div>
 	    </footer>
+	
     </body>
 </html>
 
