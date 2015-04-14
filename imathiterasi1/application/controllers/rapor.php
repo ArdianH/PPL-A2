@@ -39,6 +39,14 @@
 		}
 	}
 	
+	public function hapusHistory($id, $idKelas, $idMateri){
+			$this->load->model('rapor_model');
+			//$this->load->model('rapor_model');
+			$username = $this->session->userdata('username'); //sudah diganti
+			$this->rapor_model->deleteHistory($id, $idKelas, $idMateri); 
+			redirect('rapor', 'refresh');
+	}
+	
 	public function hasil($id, $idKelas, $idMateri)
 	{
 		$this->load->model('rapor_model');		
@@ -58,7 +66,7 @@
 			$hasil = $sum;	
 		}
 
-		$data['hasil'] = $hasil*10;
+		$data['hasil'] = round($hasil*10);
 		echo json_encode($data); 
 		
 	}
@@ -72,7 +80,7 @@
 
 		$jumlahData = count($data['result']);
 		
-		$n = $jumlahData - 3; //ambil 3 terakhir
+		$n = $jumlahData - 10; //ambil 3 terakhir
 
 		for ($i = $jumlahData-1; $i>=$n && $i>=0; $i--) {
 			array_push($array,$hasil[$i]);
@@ -80,6 +88,8 @@
 		echo json_encode($array); 
 	
 	}
+	
+	
 	
 	
     }
