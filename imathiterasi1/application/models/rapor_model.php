@@ -29,5 +29,11 @@ class rapor_model extends CI_Model {
 	function getCatatanLatihan($id, $idKelas, $idMateri) {
 		return $this->db->get_where('catatan_latihan', array ('idRapor'=>$id, 'idMateri'=>$idMateri, 'idKelas'=>$idKelas))->result();
 	}
+	
+	function deleteHistory($id, $idKelas, $idMateri){
+		$this->load->database();
+		//$selesai = 'tercapai';
+		$this->db->delete('catatan_latihan',array ('idRapor'=>$id, 'idMateri'=>$idMateri, 'idKelas'=>$idKelas));
+	}
 }
 ?>
