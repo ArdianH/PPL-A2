@@ -16,8 +16,6 @@
 		$("#pilihmateri").change(function(){
 			var getUrl = window.location;
 			var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/";
-			//var location = baseUrl + "/index.php/rapor/hasil/1/" + $("#pilihkelas").val() + "/" + $("#pilihmateri").val();
-			//var location2 = baseUrl + "/index.php/rapor/ambilTerbaru/1/" + $("#pilihkelas").val() + "/" + $("#pilihmateri").val();
 			var location = baseUrl + "/index.php/rapor/hasil/" + $("#idRapor").val() + "/" + $("#pilihkelas").val() + "/" + $("#pilihmateri").val();
 			var location2 = baseUrl + "/index.php/rapor/ambilTerbaru/"+ $("#idRapor").val() + "/" + $("#pilihkelas").val() + "/" + $("#pilihmateri").val();
 			$.getJSON(location, function(data, status){
@@ -33,16 +31,16 @@
 				$valuesY = [];
 				$waktu = [];
 				$waktuUpdate = [];
-				$.each(obj, function(i) {
-					$tanggal.push(new Date(obj[i]["tglMengerjakan"]));
-					$valuesY.push(obj[i]["jawabanBenar"]);
-					$waktu.push(obj[i]["lamaWaktu"]);
-				});
+				for ($i = obj.length-1; $i>=0; $i--) {
+					$tanggal.push(new Date(obj[$i]["tglMengerjakan"]));
+					$valuesY.push(obj[$i]["jawabanBenar"]);
+					$waktu.push(obj[$i]["lamaWaktu"]);
+				}
 				$nilaiX = [];
 				$.each($tanggal, function(i) {
-					$twoDigitMonth = ($tanggal[i].getMonth())+"";if($twoDigitMonth.length==1)	$twoDigitMonth="0" +$twoDigitMonth;
+					$twoDigitMonth = ($tanggal[i].getMonth()+1)+"";if($twoDigitMonth.length==1)	$twoDigitMonth="0" +$twoDigitMonth;
 					$twoDigitDate = ($tanggal[i].getDate()+1)+"";if($twoDigitDate.length==1)	$twoDigitDate="0" +$twoDigitDate;
-					$currentDate = $tanggal[i].getFullYear()+ "-" + $twoDigitMonth + "-" + $twoDigitDate;
+					$currentDate = $twoDigitDate + "-" + $twoDigitMonth + "-" + $tanggal[i].getFullYear();
 					$nilaiX.push($currentDate);
 				});
 				
@@ -51,7 +49,7 @@
 					$jam = Math.floor($waktu[i]/3600);
 					$menit = Math.floor(($waktu[i] - ($jam*60))/60);
 					$detik = $waktu[i] - $menit*60 - $jam*3600;
-					$waktuGabung = $jam+" jam "+$menit+" menit"+$detik+" detik.";
+					$waktuGabung = $jam+" jam "+$menit+" menit "+$detik+" detik";
 					$waktuUpdate.push($waktuGabung);
 				});
 				
@@ -70,24 +68,18 @@
 				var dataPoints = [];
 				
 				for (var i = 0; i<$currentDate.length; i++){
-					var parts = $currentDate[i].split("-");
-					$tgl = new Date(parts[0], parts[1], parts[2]);
 					
 					dataPoints.push({ 
-						
-						//x: new Date(parts[0], parts[1], parts[2]),
-						//w: new Date(parts[0], parts[1], parts[2])
+
 						x: i+1,
 						y: parseInt($y[i]*10),
-						z: ("Lama Waktu :" + $waktu[i] + " Tanggal :" + $currentDate[i])
+						z: ("Nilai : " + ($y[i]*10) + "<br>" + "Waktu : " + $waktu[i] + "<br>" + "Tanggal : " + $currentDate[i])
 					});
 					
 				}
 		var options = {
-			title: {
-				text: "GRAFIK RAPOR",
-				fontSize: 20
-			},
+			theme: "theme2", 
+
 			toolTip:{  
 				
 				content: function(e){
@@ -97,17 +89,17 @@
 				}
 				
 			},
-					animationEnabled: true,	
+					animationEnabled: true,
+					animationDuration: 1500,
 					
 			axisX:{      
-				//valueFormatString: "YYYY-MMM-D",
-				//valueFormatString: "MMM",
+
 				title: "Banyaknya Latihan",
 				labelFontSize: 15,
 				titleFontSize: 20,
 				interval: 1,
-				minimum: 1,
-				maximum: $currentDate.length, 
+				minimum: 0,
+				maximum: $currentDate.length+1, 
 				titleFontFamily: "comic sans ms"
 			},
 			axisY: {
@@ -122,6 +114,7 @@
 			  
 			data: [
 			{
+				color: "pink",
 				type: "column", //change it to line, area, bar, pie, etc
 				name: "Lama Waktu ",
 				dataPoints: dataPoints
@@ -188,7 +181,8 @@
 		echo '<input type = "hidden" id="idRapor" value="'.$idRapor.'">';
 	?>
 	<div class="container contents">
-	    <h1>RAPOR</h1> 			    
+	    <h1>RAPOR</h1> 
+			<button type="submit" onclick="return confirmDelete('<?php echo base_url() ?>index.php/rapor/hapusHistory/');">Reset</button>
 		<form method="GET" action="" >
 		<?php foreach($kelas_model as $row):?>			
 		<a href="<?php echo base_url() ?>index.php/rapor/view/<?php echo $row->idKelas?>"> <?php echo $row->idKelas ?></a>		
@@ -212,6 +206,7 @@
 	<h1>Ringkasan</h1>
 	<p>Total Latihan: <span id="number"></span></p>
 	<p>Rata-rata Nilai: <span id="rata-rata"></span></p>
+	<br><br>
 		<div id="chartContainer" style="height: 400px; width: 80%;"></div>
 	</div>
 	<footer class="footer">
