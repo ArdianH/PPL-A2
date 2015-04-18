@@ -1,0 +1,319 @@
+body{
+	font-family: "Century Gothic", "Verdana", "Arial", sans-serif;
+	background-color: #E7E7E7;
+}
+
+p{
+	text-align: center;
+	vertical-align: middle;
+}
+
+.navbar-static-top {
+  margin-bottom: 19px;
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 140px;
+  background-color: #b5ff54;
+}
+
+.buttonDelete{
+	background:none;
+	border:none;
+}
+.contentdetail {
+	background-color:#FFF;
+	text-align: left;
+	padding-top: 10px;
+	padding-left: 80px;
+	padding-right: 30px;
+	padding-bottom: 20px;
+	font-size:18;
+}
+
+.contents {
+	background-color:#FFF;
+	margin-top:0px;
+	text-align: center;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+	min-height:450px;
+}
+
+.titleText {
+	padding-left: 40px;
+	padding-right:40px;
+	background-color: #FFFFFF;
+}
+.loginbg{
+	background-image: url('../images/biru.jpg');
+	background-size: 100% 100%;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	padding-left: 40px;
+	padding-right:40px;
+	font:bold;
+	text-align: center;
+	height: 500px;
+}
+
+.jumbotron {
+	background-image: url("../images/GambarAtas.png");
+	background-size: cover;}
+
+.row{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.navbar-header{
+	font-size:16px;
+	background-color: #FAFAFA;
+}
+
+.nav{
+	font-size:16px;
+	background-color: #FAFAFA;
+}
+.navbar{
+	font-size:16px;
+	background-color: #FAFAFA;
+}
+
+.tableimath{
+	text-align: center;	
+}
+.tablesoal{
+	text-align: left;
+	border-collapse:collapse;
+	border-color:white;	
+}
+th{
+	text-align: center;
+}
+
+.formImath{
+	text-align: left;
+	font-size: 16px;
+	margin-left:20px;	
+}
+
+.form-signin
+{
+    max-width: 500px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+{
+    margin-bottom: 10px;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+.form-signin input[type="text"]
+{
+    margin-bottom: 10px;
+    border-radius: 0px;
+}
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-radius: 0px;
+}
+#account-wall
+{
+    text-align: center;
+    background-color: #ffaf25;
+    color:white;
+}
+
+#submitlogin{
+	background-color: #fff38d;
+    color:black;
+}
+
+#girl{
+	background-image: url('../images/Girl.png');
+	width: 200px;
+	height: 200px;	
+}
+
+#boy{
+	background-image: url('../images/Boy.png');
+	width: 200px;
+	height: 200px;
+}
+
+#chooseKelas{
+	margin-bottom: 100px;
+	vertical-align: middle;
+}
+
+#formlogin{
+	background-color: rgba(204, 204, 204);	
+}
+
+#logobar{
+	padding-bottom:10px;
+}
+
+
+/*============================= BUTTON ===========================*/
+.loginButton {
+	font-size: 16pt;
+	background-color: #fff38d;
+	padding: 5px 80px;
+	display: inline-block;
+	margin: 2px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 300;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	border: 3px solid #fff38d;
+	color: #6b4700;
+}
+
+.loginButton:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+
+a {
+	color: #888;
+	text-decoration: none;
+}
+
+.loginButton:hover,
+.loginButton:active {
+	color: #ffba00;
+	background: #fff;
+}
+
+
+/*============================= BUTTON ===========================*/
+.targetButton {
+	font-size: 18pt;
+	background-color: #ffaf24;
+	padding: 5px 25px;
+	display: inline-block;
+	margin: 2px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 300;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	border: 3px solid #ffaf24;
+	color: white;
+	font-weight:600;
+}
+
+.targetButton:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+
+a {
+	color: #888;
+	text-decoration: none;
+}
+
+.targetButton:hover,
+.targetButton:active {
+	color: #ffaf25;
+	background: #fff;
+}
+	
+
+
+
+/*=========================== LUPA PASSWORD =============================*/
+#lupaPassword{
+	color: #fff;
+}
+
+#none{
+	background: none;
+	border:none;
+	margin:0px;
+}
+
+/*=============== TARGET BELAJAR ================*/
+.dashboardUser {
+	background-image: url("../images/Bulatbulat.png");
+	background-size: cover;}
+	
+h1.tBelajar{
+	font-weight:600;
+	text-align:left;
+}
+
+h2.userDashboard{
+	font-size:40pt;
+	font-weight:600;
+	text-align:left;
+}
+
+.tbelajarPink{
+	background:#ffe4dd;
+	padding:15px;
+	margin:20px;
+}
+
+.tbelajarBiru{
+	background:#c2dfff;
+	padding:15px;
+	margin:20px;
+	text-align:left;
+}
+
+
+.containerTB{
+	margin-left:30px;
+}
+
+.ungu{
+	background:#f6d0ff;
+	padding:15px;
+	margin:20px;	
+	color:#7c0094;
+}
+
+.fontt{
+	text-align:left;
+	font-size:14pt;
+	font-weight:bold;
+}
