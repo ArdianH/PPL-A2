@@ -170,15 +170,14 @@ Modified by: Ardian*/
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
-		$gender = $this->session->userdata('gender');
-		if($gender=='Laki-Laki'){
+		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
 		}
 		else{
 			echo '<img src="'.base_url().'assets/images/boy.png" img size="height="20" width="20">';
 		}
 		echo '<a href="'.base_url().'profil"> Hai ';
-		echo $this->session->userdata('namaPanggilan')."</a>:)</div>";
+		echo $this->session->userdata('namaPanggilan')."</a></div>";
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';

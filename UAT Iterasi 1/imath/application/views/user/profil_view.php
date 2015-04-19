@@ -46,16 +46,15 @@
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
-		echo '<div class="col-md-2">';
-		$gender = $this->session->userdata('gender');
-		if($gender=='Laki-Laki'){
+		echo '<div class="col-md-2">';		
+		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
 		}
 		else{
 			echo '<img src="'.base_url().'assets/images/boy.png" img size="height="20" width="20">';
 		}
 		echo '<a href="'.base_url().'profil"> Hai ';
-		echo $this->session->userdata('namaPanggilan')."</a>:)</div>";
+		echo $this->session->userdata('namaPanggilan')."</a></div>";
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';
@@ -65,9 +64,9 @@
 <!-- nav end -->
 <div class="container contents">      
 <?php foreach($result as $row):?>
-      <div class="jumbotron dashboardUser">      
+	<div class="jumbotron dashboardUser">      
       		<div class="row">
-      			<div class="col-md-4">
+      			<div class="col-md-4 white">
       				<?php		
 					if(($row->gender) == 'Perempuan')
 					{			
@@ -79,25 +78,38 @@
 					}
 				?>
       			</div>
-      			<div class="col-md-8">
-      				<h2 class="userDashboard"> Profil </h2> 
-				<a href="<?php echo base_url() ?>/index.php/profil/ubah/<?php echo $row->username ?>">
-                                    <button type="submit" class="orangeButton">Ubah</button></a>		
+      			<div class="col-md-8 white2">
+      				<h2 class="userDashboard">Profil</h2><br><br>
+				<div class="right">
+					<a href="<?php echo base_url() ?>/index.php/profil/ubah/<?php echo $row->username ?>"><button type="submit" class="orangeButton">Ubah</button></a>	  
+				</div>
       			</div>
       		</div>
-    	</div>     
-		<p>Nama Panggilan: <?php echo $row->namaPanggilan?> </p>
-		
-		<p>Email: <?php echo $row->email?></p>	
-		
-		<p>Username: <?php echo $row->username?> </p>
-		
-		<p>Gender: <?php echo $row->gender?> </p>
-		
-		<?php endforeach; ?>
-	 </div>
-
-       <footer class="footer">
+    	</div> 
+	 
+	<div class="container">    
+		<div class="profil">	
+			<div class="row">
+				<div class="col-md-3">	Nama Panggilan: </div>
+				<div class="col-md-9"> <?php echo $row->namaPanggilan?> </div>
+			</div>	
+			<div class="row">
+				<div class="col-md-3">	Email:	</div>
+				<div class="col-md-9"> <?php echo $row->email?></div>
+			</div>	
+			<div class="row">
+				<div class="col-md-3">Username:</div>
+				<div class="col-md-9"> <?php echo $row->username?></div>
+			</div>	
+			<div class="row">
+				<div class="col-md-3">Gender</div>
+				<div class="col-md-9"> <?php echo $row->gender?></div>
+			</div>
+		</div>
+		<?php endforeach?>
+	</div>
+       </div>
+	<footer class="footer">
 	      <div class="container">
 	        <p class="text-muted">
 	          <div class="row">
@@ -112,6 +124,5 @@
 	        </p>
 	      </div>
 	    </footer>
-
 	</body>
 </html>

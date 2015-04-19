@@ -68,7 +68,6 @@
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
-		$gender = $this->session->userdata('gender');				
 		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
 			
@@ -147,7 +146,7 @@
 		</select>	
 		</div>
 		</div>
-	</div>	
+	</div>
 	</div>
 		<button class="blueButton" type="submit">Ubah</button>
 		<a href="<?php echo base_url()?>index.php/target_belajar"><button type="button" class="redButton">Batal</button></a></form>
