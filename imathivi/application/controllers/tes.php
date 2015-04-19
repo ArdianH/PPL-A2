@@ -78,26 +78,8 @@ class Tes extends CI_Controller {
 			} else {
 				$satuSoal['flagInit'] = FALSE;
 			}
-			//$satuSoal['notifJawaban'] = "Tester";
-			//$satuSoal['nomor']			=	$this->session->userdata('nomorSoal');
-			//$satuSoal['skor']			=	$this->session->userdata('skor');
-			//$satuSoal['flagJawaban']	=	0;
-			//$satuSoal['flagNext']		=	FALSE;
-			
-			/*
-			echo $satuSoal['idSoal'];
-			echo $satuSoal['pertanyaan'];
-			echo $satuSoal['jawaban'];
-			echo $satuSoal['nomor'];
-			echo $satuSoal['skor'];
-			echo $satuSoal['flagJawaban'];
-			echo "<br/>";
-			echo $satuSoal['flagNext'];
-			*/
-			
 			$this->load->view('user/tes_view', $satuSoal);
-			
-			
+
 		} else {
 			$skor = $this->session->userdata('skor');
 			$waktuTes = $this->session->userdata('waktuTes');
@@ -111,12 +93,7 @@ class Tes extends CI_Controller {
 				'namaPanggilan'	=>	$this->session->userdata('namaPanggilan'),
 				'username'		=>	$this->session->userdata('username'),
 			);
-			//echo $waktuTes;
-			//echo $data['kelas'];
-			//echo $data['jumlahBenar'];
-			//echo $this->session->userdata('idRapor');
-			//print_r(getdate(time()));
-			
+
 			$dataSimpan = array(
 				'idKelas'	=>	$data['kelas'],
 				'idRapor'	=>	$this->session->userdata('idRapor'),
@@ -125,7 +102,7 @@ class Tes extends CI_Controller {
 				'lamaWaktu'		=>	$waktuTes
 			);
 			$this->tes_model->simpanDetailTes($dataSimpan);
-			$this->load->view('detailTes_view', $data);
+			$this->load->view('user/detailTes_view', $data);
 			
 		}
 		
@@ -143,8 +120,7 @@ class Tes extends CI_Controller {
 		$desOpsiB		=	$this->input->post('desOpsiB', TRUE);
 		$desOpsiC		=	$this->input->post('desOpsiC', TRUE);
 		$desOpsiD		=	$this->input->post('desOpsiD', TRUE);
-		//$idSoal = $this->input->post('idSoal', TRUE);
-		//$satuSoal = $this->session->userdata('currentSoal');
+		
 		$checkA = '';
 		$checkB = '';
 		$checkC = '';
@@ -156,34 +132,9 @@ class Tes extends CI_Controller {
 			case($idOpsiD): $checkD = 'checked'; break;			
 			default : break;
 		}
-		/*
-		if($jawabanUser == $opsiA){
-			$checkA = 'checked';
-		} elseif($jawabanUser == $opsiB){
-			$checkB = 'checked';
-		} elseif($jawabanUser == $opsiC){
-			$checkC = 'checked';
-		} else{
-			$checkD = 'checked';
-		}		
-		*/
+
 		$satuIdSoal = $this->session->userdata('currentIdSoal');
 		$satuSoal 	= $this->tes_model->getSatuSoalTes($satuIdSoal)->row();
-
-		
-		/*
-			echo $satuSoal;
-			echo count($satuSoal);
-			
-			echo $satuSoal['satuSoal'];
-			echo "pertanyaan :".$satuSoal['pertanyaan'];
-			echo $jawaban;
-			echo $satuSoal['satuSoal']['nomor'];
-			echo $satuSoal['$satuSoal']['skor'];
-			echo $satuSoal['flagJawaban'];
-			echo "<br/>";
-			echo $satuSoal['flagNext'];
-		*/	
 		
 		if($jawabanUser == $jawabanBenar) {
 			//jika jawaban benar..
@@ -209,9 +160,7 @@ class Tes extends CI_Controller {
 				'flagJawaban'	=>	1,
 				'flagNext'		=>	TRUE
 			);	
-			//$satuSoal['flagJawaban'] = 1;
-			//$satuSoal['skor']	=	$skorUpdate;
-			//$satuSoal['notifJawaban'] = "Jawaban Anda Benar!";
+
 		} else {
 			$satuSoal = array(
 				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
@@ -233,20 +182,14 @@ class Tes extends CI_Controller {
 				'flagJawaban'	=>	2,
 				'flagNext'		=>	TRUE
 			);				
-			
-			//$satuSoal['flagJawaban'] = 2;
-			//$satuSoal['skor']	=	$this->session->userdata('skor');
-			//$satuSoal['notifJawaban'] = "Jawaban Anda Salah :(";
 		}
-		//tombol next muncul hanya setelah user menjawab pertanyaan.
-		//$satuSoal['jawabanUser'] = $jawabanUser;
-		$this->load->view('tes_view', $satuSoal);		
+		$this->load->view('user/tes_view', $satuSoal);		
 		
 	}
 	
 	public function keluarTes() {
 		$this->session->unset_userdata(array('setIdSoal'=>'', 'currentSoal'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>''));
-		redirect('/tes');
+		redirect('/home');
 	}
 	
 	public function solusiTes() {
@@ -261,6 +204,6 @@ class Tes extends CI_Controller {
 			'dataSoalTes'	=>	$dataDB
 		);
 
-		$this->load->view('solusiTes_view', $data);
+		$this->load->view('user/solusiTes_view', $data);
 	}
 }

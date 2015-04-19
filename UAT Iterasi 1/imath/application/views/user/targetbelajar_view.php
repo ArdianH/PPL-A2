@@ -73,8 +73,8 @@
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
-		$gender = $this->session->userdata('gender');
-		if($gender=='Laki-Laki'){
+		
+		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
 		}
 		else{
@@ -92,12 +92,14 @@
 <div class="container contents">      
       <div class="jumbotron dashboardUser">      
       		<div class="row">
-      			<div class="col-md-4">
+      			<div class="col-md-4 white">
       				<img src="<?php echo base_url();?>assets/images/clock.png" height="200" width="200">
       			</div>
-      			<div class="col-md-8">
-      				<h1> Target Belajar </h1>
-      				<a href=" <?php echo base_url();?>index.php/target_belajar/buatBaru"><button type = "submit" class="targetButton"> Buat Baru</button></a>   
+      			<div class="col-md-8 white2">
+      				<h1 class="tBelajar"> Target Belajar </h1><br><br>
+				<div class="right">
+					<a href=" <?php echo base_url();?>index.php/target_belajar/buatBaru"><button type = "submit" class="orangeButton"> Buat Baru</button></a>   
+				</div>
       			</div>
       		</div>
     	</div> 

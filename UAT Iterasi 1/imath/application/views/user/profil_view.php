@@ -82,7 +82,7 @@
       			<div class="col-md-8">
       				<h2 class="userDashboard"> Profil </h2> 
 				<a href="<?php echo base_url() ?>/index.php/profil/ubah/<?php echo $row->username ?>">
-                                    <button type="submit" class="targetButton">Ubah</button></a>		
+                                    <button type="submit" class="orangeButton">Ubah</button></a>		
       			</div>
       		</div>
     	</div>     

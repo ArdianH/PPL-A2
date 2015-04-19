@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 -- Database: `imath`
 --
 
+CREATE DATABASE IF NOT EXISTS `imath` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `imath`;
+
 -- --------------------------------------------------------
 
 --

@@ -1,15 +1,14 @@
 <html>
     <head>
-        <!--<title><?=$page_title?></title>-->
 	<title>Kelas</title>
 	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
+	<link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     </head>
 	
     <body>
 	
 	
-	 <nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top">
       <div class="container" id="logobar">
         <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -35,7 +34,8 @@
 				?>	</li>
           </ul>
         </div><!--/.nav-collapse -->
-      </div>
+      </div>      
+      
        <?php 
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {
@@ -44,7 +44,7 @@
         echo '<div class="row">';
 		echo '<div class="col-md-2">';
 		echo '<a href="'.base_url().'profil">';
-		echo "Hello ".$this->session->userdata('username')." :)</a></div>";
+		echo "Hai ".$this->session->userdata('namaPanggilan')." :)</a></div>";
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor"><button>RAPOR</button></a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar"><button>TARGET BELAJAR</button></a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi"><button>PRESTASI</button></a></div>';

@@ -38,6 +38,7 @@ class Autentikasi extends CI_Controller {
 				'namaPanggilan' => $dataDB->namaPanggilan,
 				'username' => $username,
 				'role' => $dataDB->role,
+				'gender' => $dataDB->gender,
 				'loggedin' => TRUE
 			);
 			$this->session->set_userdata($data_session);

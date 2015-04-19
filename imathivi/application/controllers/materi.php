@@ -11,10 +11,7 @@
 	public function pilih($id){
 		$this->load->model('materi_model');		
 		
-		$data['result'] = $this->materi_model->getAllMateri($id);
-
-		$this->load->model('kelas_model');	
-		$data['kelas'] = $this->kelas_model->get($id);
+		$data['result'] = $this->materi_model->getAllMateri($id); 
 		
 		$this->load->view('user/materi_view', $data);
 		}
