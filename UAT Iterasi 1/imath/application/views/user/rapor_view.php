@@ -184,11 +184,29 @@
 	?>
 </nav>
 <!-- nav end -->
+
+<div class="container contents">      
+      <div class="jumbotron dashboardUser">      
+      		<div class="row">
+      			<div class="col-md-4 white">
+      				<img src="<?php echo base_url();?>assets/images/rapor.png" height="200" width="200">
+      			</div>
+      			<div class="col-md-8 white2">
+      				<h1 class="tBelajar"> Rapor </h1><br><br>
+				<div class="right">
+					<a href=" <?php echo base_url();?>index.php/daftar_kelas/reset"><button type = "submit" class="orangeButton"> Reset</button></a>   
+				</div>
+      			</div>
+      		</div>
+    	</div> 
+
+
+	<div class="table-responsive"> 
+
 	<?php $idRapor=$dataId[0]->idRapor;
 		echo '<input type = "hidden" id="idRapor" value="'.$idRapor.'">';
 	?>
 	<div class="container contents">
-	    <h1>RAPOR</h1> 
 			<!--<button type="submit" onclick="return confirmDelete('<?php echo base_url() ?>index.php/rapor/hapusHistory/');">Reset</button>-->
 		<form method="GET" action="" >
 		<?php foreach($kelas_model as $row):?>			
@@ -211,12 +229,17 @@
 	
 	<br>			
 	</form>
-	<h1>Ringkasan</h1>
+
+	<h3 class="rapor containerTB">Ringkasan</h3>
+	<div class="raporPink">
 	<p>Total Latihan: <span id="number"></span></p>
 	<p>Rata-rata Nilai: <span id="rata-rata"></span></p>
-	<br><br>
-		<div id="chartContainer" style="height: 400px; width: 80%;"></div>
 	</div>
+		<div id="chartContainer" style="height: 400px; width: 80%;"></div>
+
+	</div>
+
+</div>
 	<footer class="footer">
 	      <div class="container">
 	        <p class="text-muted">
