@@ -201,60 +201,59 @@ Modified by: Ardian*/
 			Jika telah menjawab(flagNext==TRUE) maka tombol button NextSoal yang muncul-->
 		<?php
 		
-		if(!$flagNext) {
-			echo "<form method=POST action= ".base_url()."tes/processJawaban/ onsubmit='return localGetMin()' >";
-			echo "<h1>Soal ".$nomor."</h1>";
-			echo "<p>".$pertanyaan."</p>";
-			//echo "<input type='text' name='jawab' size='30' required />";
-			//idOpsiA sama dengan jawabanBenar
-			echo '<img src=".base_url()."uploads/"'.$gambar.'" >';
-			echo "<input type='radio' name='jawab' id='idOpsiA' value='".$idOpsiA."' required /> A. ".$desOpsiA."<br/>";
-			echo "<input type='radio' name='jawab' id='idOpsiB' value='".$idOpsiB."' /> B. ".$desOpsiB."<br/>";
-			echo "<input type='radio' name='jawab' id='idOpsiC' value='".$idOpsiC."' /> C. ".$desOpsiC."<br/>";
-			echo "<input type='radio' name='jawab' id='idOpsiD' value='".$idOpsiD."' /> D. ".$desOpsiD."<br/><br/>";
-			echo "<input type='hidden' name='idOpsiA' value='".$idOpsiA."' />";
-			echo "<input type='hidden' name='idOpsiB' value='".$idOpsiB."' />";
-			echo "<input type='hidden' name='idOpsiC' value='".$idOpsiC."' />";
-			echo "<input type='hidden' name='idOpsiD' value='".$idOpsiD."' />";
-			echo "<input type='hidden' name='desOpsiA' value='".$desOpsiA."' />";
-			echo "<input type='hidden' name='desOpsiB' value='".$desOpsiB."' />";
-			echo "<input type='hidden' name='desOpsiC' value='".$desOpsiC."' />";
-			echo "<input type='hidden' name='desOpsiD' value='".$desOpsiD."' />";
-			echo "<input type='hidden' name='jawaban' value='".$jawaban."' />";
-			//echo "<input type='hidden' name='waktuTes' id='waktutes' value='01' />";
-			echo "<input type='submit' value='Kirim' onclick='localStore()' />";
-			echo "</form>";
-			if($flagInit) {
-				echo "<script> localClear(); </script>";
-			}
-		} else {
-			echo "<form method=POST action= ".base_url()."tes/processSoal/ onsubmit='return localGetMin()'>";
-			echo "<h1>Soal ".$nomor."</h1>";
-			echo "<p>".$pertanyaan."</p>";
-			echo "<input type='radio' name='jawab' id='idOpsiA' value='".$idOpsiA."' ".$checkA." /> A. ".$desOpsiA."<br/>";
-			echo "<input type='radio' name='jawab' id='idOpsiB' value='".$idOpsiB."' ".$checkB." /> B. ".$desOpsiB."<br/>";
-			echo "<input type='radio' name='jawab' id='idOpsiC' value='".$idOpsiC."' ".$checkC." /> C. ".$desOpsiC."<br/>";
-			echo "<input type='radio' name='jawab' id='idOpsiD' value='".$idOpsiD."' ".$checkD." /> D. ".$desOpsiD."<br/>";
-			//echo "<input type='text' name='jawab' size='30' value=".$jawab." readonly/>";
-			echo "<input type='hidden' name='waktuTes' id='waktutes' value='01' />";
-			echo "<input type='submit' value='Next Soal' onclick='localStore()' />";
-			echo "</form>";
+		if(!$flagNext) : ?>
+			<form method='POST' action='<?php echo base_url()."tes/processJawaban/";?>' onsubmit='return localGetMin()' >
+			<h1>Soal <?php echo $nomor; ?></h1>
+			<p><?php echo $pertanyaan ?></p>
+
 			
+			<?php if($gambar !== NULL) : ?>
+				<img src=<?php echo base_url()."uploads/".$gambar; ?> />
+				<br />
+			<?php endif; ?>
+			
+			<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiA; ?>' required /> A. <?php echo $desOpsiA; ?> <br/>
+			<input type='radio' name='jawab' id='idOpsiB' value='<?php echo $idOpsiB; ?>' required /> B. <?php echo $desOpsiB; ?> <br/>
+			<input type='radio' name='jawab' id='idOpsiC' value='<?php echo $idOpsiC; ?>' required /> C. <?php echo $desOpsiC; ?> <br/>
+			<input type='radio' name='jawab' id='idOpsiD' value='<?php echo $idOpsiD; ?>' required /> D. <?php echo $desOpsiD; ?> <br/>
+			<input type='hidden' name='idOpsiA' value='<?php echo $idOpsiA; ?>' />
+			<input type='hidden' name='idOpsiB' value='<?php echo $idOpsiB; ?>' />
+			<input type='hidden' name='idOpsiC' value='<?php echo $idOpsiC; ?>' />
+			<input type='hidden' name='idOpsiD' value='<?php echo $idOpsiD; ?>' />
+			<input type='hidden' name='desOpsiA' value='<?php echo $desOpsiA; ?>' />
+			<input type='hidden' name='desOpsiB' value='<?php echo $desOpsiB; ?>' />
+			<input type='hidden' name='desOpsiC' value='<?php echo $desOpsiC; ?>' />
+			<input type='hidden' name='desOpsiD' value='<?php echo $desOpsiD; ?>' />
+			<input type='hidden' name='jawaban' value='<?php echo $jawaban; ?>' />
+			<input type='submit' value='Kirim' onclick='localStore()' />
+			</form>
+			<?php if($flagInit) {
+				echo "<script> localClear(); </script>";
+			} ?>
+		<?php else : ?>
+			<form method='POST' action= '<?php echo base_url()."tes/processSoal/";?>' onsubmit='return localGetMin()'>
+			<h1>Soal <?php echo $nomor; ?></h1>
+			<p><?php echo $pertanyaan; ?></p>
+			<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiA; ?>' <?php echo $checkA; ?> disabled/> A. <?php echo $desOpsiA;?> <br/>
+			<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiB; ?>' <?php echo $checkB; ?> disabled/> B. <?php echo $desOpsiB;?> <br/>
+			<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiC; ?>' <?php echo $checkC; ?> disabled/> C. <?php echo $desOpsiC;?> <br/>
+			<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiD; ?>' <?php echo $checkD; ?> disabled/> D. <?php echo $desOpsiD;?> <br/>
+			<input type='hidden' name='waktuTes' id='waktutes' value='01' />
+			<input type='submit' value='Next Soal' onclick='localStore()' />
+			</form>
+		
+			<?php
 			if($flagJawaban == 1) {
 				echo "Jawaban Anda Benar!";
 			} else {
 				echo "Jawaban Anda Salah :(";
-			}
+			} ?>
 			
-		}
+		<?php endif; ?>
 		
-		?>
 	<br/>
 	<br/>
-	<a href= "<?php echo "#" ?>" onclick="localStore()">Store</a>
-	<a href= "<?php echo "#" ?>" onclick="printMinSec()">print</a>
-	<a href= "<?php echo "#" ?>" onclick="alertt()">all</a>
-	<a href= "<?php echo base_url()."home"; ?>" onclick="localClear()">Keluar Tes</a>
+	<a href= "<?php echo base_url()."home"; ?>" onclick="localClear()"> << Keluar Tes >> </a>
 </div>
 
 	<footer class="footer">

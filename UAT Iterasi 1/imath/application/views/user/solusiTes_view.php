@@ -70,30 +70,30 @@
 		
 		<table align="center">
 		<?php 
-		for($i=0; $i<$jumlahSoal; $i++) {
-		echo	'<tr>';
-		echo		'<td> Pertanyaan &emsp; : <br/>'.$dataSoalTes[$i]['pertanyaan'].'</td>';
-		echo	'</tr>';
-		echo	'<tr>';
-		echo		'<td> Jawaban Anda : </td>';
-		echo		'<td>'.$setJawabanUser[$i].'</td>';
-		echo	'</tr>';		
-		echo	'<tr>';
-		echo		'<td> Solusi &emsp;&emsp;&emsp; : </td>';
-		echo		'<td>'.$dataSoalTes[$i]['jawaban'].'</td>';
-		echo	'</tr>';
-		echo	'<tr>';
-		echo		'<td> Pembahasan&emsp;: <br/>'.$dataSoalTes[$i]['pembahasan'].'</td>';
-		echo	'</tr>';
-		echo	'<tr>';
-		echo		'<td><hr/></td>';
-		echo	'</tr>';
-		}
-		?>
+		for($i=0; $i<$jumlahSoal; $i++) : ?>
+		<tr>
+		<td> Pertanyaan &emsp; : <br/><?php echo $dataSoalTes[$i]['pertanyaan']; ?></td>
+		</tr>
+		<tr>
+		<td> Jawaban Anda : </td>
+		<td><?php echo $setJawabanUser[$i]; ?></td>
+		</tr>	
+		<tr>
+		<td> Solusi &emsp;&emsp;&emsp;&emsp;&emsp;: </td>'
+		<td><?php echo $dataSoalTes[$i]['jawaban']; ?></td>
+		</tr>
+		<tr>
+		<td> Pembahasan&emsp;: <br/><?php echo $dataSoalTes[$i]['pembahasan']; ?></td>
+		</tr>
+		<tr>
+		<td><hr/></td>
+		</tr>
+		
+		<?php endfor; ?>
 		
 			<tr>
 				<td><a href="<?php echo base_url()."tes/processSoal/selesai";?>" onClick="window.history.back();">Lihat Detail Tes </a></td>				
-				<td><a href="<?php echo base_url()."kelas/pilih/".$kelas; ?>"> Keluar </a></td>
+				<td><a href="<?php echo base_url()."kelas/pilih/".$kelas; ?>"> << Keluar Tes >> </a></td>
 			</tr>
 		</table>
 		<footer class="footer">

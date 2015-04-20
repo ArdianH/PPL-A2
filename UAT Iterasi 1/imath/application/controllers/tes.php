@@ -15,7 +15,7 @@ class Tes extends CI_Controller {
 
 	public function retrieveSoal($kelas)
 	{
-		$this->session->unset_userdata(array('setIdSoal'=>'', 'currentSoal'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>''));
+		$this->session->unset_userdata(array('setIdSoal'=>'', 'setNamaMateri'=>'', 'setNilaiMateri'=>'', 'currentSoal'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>''));
 		$dataDB = $this->tes_model->getIdSoalTes($kelas)->result_array();
 		$username = $this->session->userdata('username');
 		$dataDB2 = $this->tes_model->getIdRapor($username)->row();
@@ -44,13 +44,9 @@ class Tes extends CI_Controller {
 		if($nomorSoal < $jumlahSoal && $param != 'selesai'){
 			$satuIdSoal	= $setIdSoal[$nomorSoal]['idSoal'];
 			$satuSoal 	= $this->tes_model->getSatuSoalTes($satuIdSoal)->row();
-			//print_r($satuSoal);
-			//echo $satuSoal[0]['pertanyaan'];
 			$nomorSoalUpdate = $nomorSoal + 1;
 			$this->session->set_userdata('nomorSoal', $nomorSoalUpdate);
 			$this->session->set_userdata('currentIdSoal', $satuSoal->idSoal);
-			//langsung kirim saja ke view			
-			//implement jawaban
 			
 			$pilihanJawaban = $this->tes_model->getJawabanSoalTes($satuIdSoal)->result_array();
 			
@@ -80,47 +76,14 @@ class Tes extends CI_Controller {
 				$setNilaiMateri;
 				$setJawabanUser = array();
 				foreach($setIdSoal as $row) {
-					//echo $row['idSoal'];
 					$satuIdMateri = $this->tes_model->getSatuIdMateriTes($row['idSoal'])->row();
-					//echo $satuIdMateri->idMateri;
-					//$setNamaMateri[] = $this->tes_model->getSatuNamaMateri($satuIdMateri->idMateri)->row();
 					$satuNamaMateri = $this->tes_model->getSatuNamaMateri($satuIdMateri->idMateri)->row();
 					$setNamaMateri[] = $satuNamaMateri->nama;
 					$setNilaiMateri[] = "SALAH";
 				}
-				/*
-				//print_r($setNamaMateri);
-				//print_r($setNilaiMateri);
-				//$countNamaMateri = count($setNamaMateri);
-
-				//$setNilaiMateri[$countNamaMateri];
-				//print_r($setNilaiMateri);
-				//$setNamaMateriUnique = array_unique($setNamaMateri);
-				//print_r($setNamaMateriUnique);
 				$this->session->set_userdata('setNamaMateri', $setNamaMateri);
 				$this->session->set_userdata('setNilaiMateri', $setNilaiMateri);	
-				$this->session->set_userdata('setJawabanUser', $setJawabanUser);	
-				/*
-				// $setNamaMateri = $this->session->userdata('setNamaMateri');
-				// $setNilaiMateri = $this->session->userdata('setNilaiMateri');
-				// $setNilaiMateri[1] = "BENAR";
-				// print_r($setNilaiMateri);
-				//save SetNamamateriunique ke session
-				//echo $namaMateri[0];
-				//$arrayMateri;
-				//foreach($setNamaMateri as $row){
-				//	$arrayMateri[] = [$row => "SALAH"];
-					//echo $row;
-				//}
-				//$this->session->set_userdata('arrayMateri', $arrayMateri);
-				//$arrayMateri = $this->session->userdata('arrayMateri');
-				//print_r($arrayMateri);
-				//echo count($arrayMateri);
-				//foreach($arrayMateri as $key => $value){
-				//	$arrayMateri[$key] = $value + 1 + 5;
-				//}
-				//print_r($arrayMateri);
-				*/
+				
 			} else {
 				$satuSoal['flagInit'] = FALSE;
 			}
@@ -155,7 +118,6 @@ class Tes extends CI_Controller {
 			$this->load->view('user/detailTes_view', $data);
 			
 		}
-		
 	}
 
 	public function processJawaban(){
@@ -190,8 +152,6 @@ class Tes extends CI_Controller {
 		
 		$satuIdSoal = $this->session->userdata('currentIdSoal');
 		$satuSoal 	= $this->tes_model->getSatuSoalTes($satuIdSoal)->row();
-		//$satuIdMateri 	= $this->tes_model->getSatuIdMateriTes($satuIdSoal)->row();
-		//$satuNamaMateri = $this->tes_model->getNamaMateri($satuIdMateri->idMateri)->row();
 		$setJawabanUser = $this->session->userdata('setJawabanUser');
 		$setJawabanUser[] = $jawabanUser;
 		$this->session->set_userdata('setJawabanUser', $setJawabanUser);
@@ -226,14 +186,7 @@ class Tes extends CI_Controller {
 			$setNilaiMateri = $this->session->userdata('setNilaiMateri');
 			$setNilaiMateri[$nomorSoal] = "BENAR";
 			$this->session->set_userdata('setNilaiMateri', $setNilaiMateri);
-			/*
-			//foreach($arrayMateri as $key => $value){
-			//	if($satuNamaMateri == $key) {
-			//		$arrayMateri[$key] = $value + 1;
-			//	}
-			//}
-			//$this->session->set_userdata('arrayMateri', $arrayMateri);
-			*/
+			
 		} else {
 			
 			$satuSoal = array(
@@ -263,7 +216,7 @@ class Tes extends CI_Controller {
 	}
 	
 	public function keluarTes() {
-		$this->session->unset_userdata(array('setIdSoal'=>'', 'currentSoal'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>''));
+		$this->session->unset_userdata(array('setIdSoal'=>'', 'setNamaMateri'=>'', 'setNilaiMateri'=>'', 'currentSoal'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>''));
 		redirect('/home');
 	}
 	

@@ -75,7 +75,7 @@
 
 		<table align="center">
 			<tr>
-				<td><?php echo "Hello".$namaPanggilan; ?></td>
+				<td><?php echo "Hello ".$namaPanggilan; ?></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -97,7 +97,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><a href= "<?php echo base_url()."home"; ?>" onclick="localClear()"> << Keluar Tes </a></td>
+				<td><a href= "<?php echo base_url()."kelas/pilih/".$kelas; ?>" onclick="localClear()"> << Keluar Tes >> </a></td>
 				<td></td>
 			</tr>	
 		</table>
@@ -109,7 +109,7 @@
 				<td>Hasil</td>
 			</tr>
 			<?php
-			for($i = 0; $i < $jumlahSoal; $i++){
+			for ($i = 0; $i < $jumlahSoal; $i++){
 				echo	'<tr>';
 				echo		'<td>'.$setNamaMateri[$i].'</td>';
 				echo		'<td>'.$setNilaiMateri[$i].'</td>';
