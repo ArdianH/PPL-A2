@@ -271,6 +271,21 @@ a {
 	margin:0px;
 }
 
+/*=============== RAPOR ================*/
+h3.rapor{
+	font-weight:600;
+	text-align:left;
+}
+.raporPink{
+	background:#ffe4dd;
+	padding:15px;
+	margin:20px;
+}
+.containerTB{
+	margin-left:30px;
+}
+
+
 /*=============== TARGET BELAJAR ================*/
 .dashboardUser {
 	background-image: url("../images/Bulatbulat.png");
