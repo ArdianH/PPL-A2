@@ -17,7 +17,7 @@
       //var linkJSON = $(location).attr('href',toController);
       $.getJSON(location, function(arrayMateri) {
         var content = '';
-        arrayMateri.forEach(function (materi) {		
+        arrayMateri.forEach(function (materi) {
           content += '<option value="' + materi.idMateri + '">' + materi.nama + '</option>';
         });
         $('#idMateri').html(content);
@@ -32,73 +32,90 @@
   </script>
     </head>
     <body>
-    <nav class="navbar navbar-default navbar-static-top">
-	      <div class="container" id="navbar">
-	        <div class="navbar-header" id="logobar">
-	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	          <span class="sr-only">Toggle navigation</span>
-	        </button>
-	        <a class="navbar-brand" href="#">iMath</a>
-	      </div>
+
+ <!-- Navigation Bar iMath -->
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container" id="navbar">
+          <div class="navbar-header" id="logobar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="<?php echo base_url();?>index.php"><img src="<?php echo base_url();?>assets/images/logo.png" height="42px" width="120px";></a>
+        </div>
+        <!-- Navbar Atas -->
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">PROFIL ADMIN</a></li>
+          <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url();?>index.php/profil">PROFIL ADMIN</a></li>
             <li><a href="<?php echo base_url();?>index.php/admin/dashboard">DASHBOARD</a></li>
-            <li><a href="<?php echo base_url();?>index.php/">BERANDA IMATH</a></li>
-            <li><a href="<?php echo base_url();?>index.php/logout">LOG OUT</a></li>
+            <li><a href="<?php echo base_url();?>index.php/home">BERANDA IMATH</a></li>
+            <li><a href="<?php echo base_url();?>index.php/autentikasi/logout">LOG OUT</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
-        <div class="row">
+      <!-- Navbar khusus admin -->
+      <div class="row">
         <div class="container" id="iconbar">
           <div class="row">
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_kelas"><p>Kelas</p></a></div>
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_materi"><p>Materi</p></a></div>
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/soal_latihan"><p>Soal Latihan</p></a></div>
-          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_soal"><p>Soal Tes</p></a></div> 
+          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/soal_latihan"><p>Soal Tes</p></a></div> 
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/anggota"><p>Data Anggota</p></a></div> 
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/pesan"><p>Pesan Anggota</p></a></div>   
         </div>
         </div>
       </div>
-    </nav>    
-    <h1>Ubah soal </h1>
-    <form method="POST" action="<?php echo base_url()?>index.php/admin/soal_latihan/simpanPerubahan/<?php echo $soal[0]->idSoal ?>" enctype="multipart/form-data">
-    Kelas 
-      <select id = "idKelas" name="idKelas">
-      <?php foreach($Kelas as $row):?>      
-      <option <?php $idKelas =  $row->idKelas; if ($idKelas == $kelasSelected) echo "selected";?> value="<?php echo $idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
-      <?php endforeach?>
-      </select>
-    Materi
-      <select id="idMateri" name="idMateri">
-      </select>
-    <p>pertanyaan<input type="text" name ="pertanyaan" value="<?php echo $soal[0]->pertanyaan ;?>"></input></p>
-    <input type="file" name="gambarSoal" id="gambarSoal" size="20" />
-    <p>A. <input type="text" name ="optiona" value="<?php echo $pilihanJawaban[0]->deskripsi ;?>"></input></p> 
-    <input type="file" name="gambara" id="gambara" size="20" />
-    <p>B. <input type="text" name ="optionb" value="<?php echo $pilihanJawaban[1]->deskripsi ;?>"></p>
-    <input type="file" name="gambarb" id="gambarb" size="20" />
-    <p>C. <input type="text" name ="optionc" value="<?php echo $pilihanJawaban[2]->deskripsi ;?>"></p>
-    <input type="file" name="gambarc" id="gambarc" size="20" />
-    <p>D. <input type="text" name ="optiond" value="<?php echo $pilihanJawaban[3]->deskripsi ;?>"></p>
-    <input type="file" name="gambard" id="gambard" size="20" />
-    <p><select name ="jawaban">
-    <option value="a" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="a") echo "selected"?>>A</option>
-    <option value="b" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="b") echo "selected"?>>B</option>
-    <option value="c" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="c") echo "selected"?>>C</option>
-    <option value="d" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="d") echo "selected"?>>D</option>        
-    </select></p>
-    <p>pembahasan<input type="text" name ="pembahasan" value="<?php echo $soal[0]->pembahasan ?>"></input></p>
-    <input type="file" name="gambarSolusi" id="gambarSolusi" size="20" /> 
-    <p>
-      <input type="submit" name="submit" value="Submit" />
-      <a href = "<?php echo base_url()?>index.php/admin/soal_latihan"><button/>Batal</button></a>
-    </p>
-    
-    </form>
+    </nav>
+   <!--  nav collapse -->
+   
+    <div class="container contents">    
+      <h1>Ubah soal </h1>
+      <form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/soal_latihan/simpanPerubahan/<?php echo $soal[0]->idSoal ?>" enctype="multipart/form-data">
+      Kelas 
+        <select id = "idKelas" name="idKelas">
+        <?php foreach($Kelas as $row):?>      
+        <option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
+        <?php endforeach?>
+        </select>
+      Materi
+        <select id="idMateri" name="idMateri">
+        </select></br></br>
+      <label>Pertanyaan</label></br><textarea name ="pertanyaan" required><?php echo $soal[0]->pertanyaan ;?></textarea>
+            <input type="file" name="gambarSoal" id="gambarSoal" size="20" /></br>
+      <label>A.  </label><input type="text" name ="optiona" value="<?php echo $pilihanJawaban[0]->deskripsi ;?>" required></input>
+      <input type="file" name="gambara" id="gambara" size="20" /></br></br>
+      <label>B.  </label><input type="text" name ="optionb" value="<?php echo $pilihanJawaban[1]->deskripsi ;?>" required>
+      <input type="file" name="gambarb" id="gambarb" size="20" /></br></br>
+      <label>C.  </label><input type="text" name ="optionc" value="<?php echo $pilihanJawaban[2]->deskripsi ;?>" required>
+      <input type="file" name="gambarc" id="gambarc" size="20" /></br></br>
+      <label>D.  </label><input type="text" name ="optiond" value="<?php echo $pilihanJawaban[3]->deskripsi ;?>" required>
+      <input type="file" name="gambard" id="gambard" size="20" /></br>
+      <label>Jawaban</label>
+      <select name ="jawaban">
+      <option value="a" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="a") echo "selected"?>>A</option>
+      <option value="b" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="b") echo "selected"?>>B</option>
+      <option value="c" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="c") echo "selected"?>>C</option>
+      <option value="d" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="d") echo "selected"?>>D</option>        
+      </select></br>
+      <label>Pembahasan</label></br><textarea name ="pembahasan" required/><?php echo $soal[0]->pembahasan ?></textarea></br>
+      <input type="file" name="gambarSolusi" id="gambarSolusi" size="20" /> </br></br>
+        <input type="submit" name="submit" value="Submit" /></form>
+        <a href = "<?php echo base_url()?>index.php/admin/soal_latihan"><button/>Batal</button></a>
+    </div>
 	
-	</form>
-	
+    <footer class="footer">
+        <div class="container">
+          <p class="text-muted">
+            <div class="row">
+            <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
+          </div>
+          <div class="row">
+            <div class="col-md-12"><p>Copyright(c) 2015</p></div>
+          </div>
+          </p>
+        </div>
+      </footer>
     </body>
 </html>

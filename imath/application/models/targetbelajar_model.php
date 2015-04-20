@@ -68,12 +68,12 @@ class targetbelajar_model extends CI_Model {
 	}
 	
 	//=====================================================
-	// Fungsi ini mengambil semua materi dari $username
+	// Fungsi ini mengambil nama Materi dari $idTargetBelajar
 	//=====================================================
-	function getAllMateri($username, $selesai){
+	function getNamaMateri($idTargetBelajar){
 	    	$this->load->database();
 	    	
-		return $this->db->query('SELECT * FROM Materi as M where M.idMateri in (Select TB.idMateri from Target_Belajar as TB where TB.username="'.$username.'" and TB.isSelesai = "'.$selesai.'")')->result();
+		return $this->db->query('SELECT nama FROM Materi as M where M.idMateri in (Select TB.idMateri from Target_Belajar as TB where TB.idTargetBelajar = "'.$idTargetBelajar.'")');
 	}
 }
 ?>

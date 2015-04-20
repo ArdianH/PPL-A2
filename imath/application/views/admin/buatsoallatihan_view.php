@@ -32,74 +32,88 @@
 	</script>
     </head>
     <body>
-    <nav class="navbar navbar-default navbar-static-top">
+ <!-- Navigation Bar iMath -->
+    	<nav class="navbar navbar-default navbar-static-top">
 	      <div class="container" id="navbar">
 	        <div class="navbar-header" id="logobar">
 	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 	          <span class="sr-only">Toggle navigation</span>
 	        </button>
-	        <a class="navbar-brand" href="#">iMath</a>
+	       <a class="navbar-brand" href="<?php echo base_url();?>index.php"><img src="<?php echo base_url();?>assets/images/logo.png" height="42px" width="120px";></a>
 	      </div>
+        <!-- Navbar Atas -->
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">PROFIL ADMIN</a></li>
+          <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url();?>index.php/profil">PROFIL ADMIN</a></li>
             <li><a href="<?php echo base_url();?>index.php/admin/dashboard">DASHBOARD</a></li>
-            <li><a href="<?php echo base_url();?>index.php/">BERANDA IMATH</a></li>
-            <li><a href="<?php echo base_url();?>index.php/logout">LOG OUT</a></li>
+            <li><a href="<?php echo base_url();?>index.php/home">BERANDA IMATH</a></li>
+            <li><a href="<?php echo base_url();?>index.php/autentikasi/logout">LOG OUT</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
-        <div class="row">
+      <!-- Navbar khusus admin -->
+      <div class="row">
         <div class="container" id="iconbar">
           <div class="row">
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_kelas"><p>Kelas</p></a></div>
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_materi"><p>Materi</p></a></div>
-          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_soal"><p>Soal Latihan</p></a></div>
-          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_soal"><p>Soal Tes</p></a></div> 
+          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/soal_latihan"><p>Soal Latihan</p></a></div>
+          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/soal_latihan"><p>Soal Tes</p></a></div> 
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/anggota"><p>Data Anggota</p></a></div> 
           <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/pesan"><p>Pesan Anggota</p></a></div>   
         </div>
         </div>
       </div>
-    </nav>    
-    <h1>Buat soal </h1> 
-	<form method="POST" action="<?php echo base_url()?>index.php/admin/soal_latihan/create" enctype="multipart/form-data">
-	Kelas 
-		<select id = "idKelas" name="idKelas">
-		<?php foreach($Kelas as $row):?>			
-		<option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
-		<?php endforeach?>
-		</select>
-	Materi
-		<select id="idMateri" name="idMateri">
-		</select>
-	<p>pertanyaan</p>
-	<textarea name ="pertanyaan" rows="15" cols="50"></textarea>
-	<input type="file" name="gambarSoal" id="gambarSoal" size="20" />
-	
-	<p>A. <input type="text" name ="optiona"></p>	
-	<input type="file" name="gambara" id="gambara" size="20" />
-	<p>B. <input type="text" name ="optionb"></p>
-	<input type="file" name="gambarb" id="gambarb" size="20" />
-	<p>C. <input type="text" name ="optionc"></p>
-	<input type="file" name="gambarc" id="gambarc" size="20" />
-	<p>D. <input type="text" name ="optiond"></p>
-	<input type="file" name="gambard" id="gambard" size="20" />
-	<p><select name ="jawaban">		
-	<option value="a">A</option>
-	<option value="b">B</option>
-	<option value="c">C</option>
-	<option value="d">D</option>
-	</select></p>
-	<p>pembahasan</p>
-	<textarea name ="pembahasan" rows="15" cols="50"></textarea>
-	<input type="file" name="gambarSolusi" id="gambarSolusi" size="20" />	
-	<p>
-		<input type="submit" name="submit" value="Submit" />
-		<a href = "<?php echo base_url()?>index.php/admin/soal_latihan"><button/>Batal</button></a>
-	</p>
-	
-	</form>
-	
+    </nav>
+   <!--  nav collapse -->
+    <div class="container contents">
+	    <h1>Buat soal </h1> 
+		<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/soal_latihan/create" enctype="multipart/form-data">
+		Kelas 
+			<select id = "idKelas" name="idKelas">
+			<?php foreach($Kelas as $row):?>			
+			<option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
+			<?php endforeach?>
+			</select>
+		Materi
+			<select id="idMateri" name="idMateri">
+			</select></br></br>
+		<label>Pertanyaan</label></br><textarea name ="pertanyaan" required></textarea></br>
+		<input type="file" name="gambarSoal" id="gambarSoal" size="20" /></br></br>
+		<label>A.  </label><input type="text" name ="optiona" required></br>	
+		<input type="file" name="gambara" id="gambara" size="20" /></br></br>
+		<label>B.  </label><input type="text" name ="optionb" required></br>
+		<input type="file" name="gambarb" id="gambarb" size="20" /></br></br>
+		<label>C.  </label><input type="text" name ="optionc" required></br>
+		<input type="file" name="gambarc" id="gambarc" size="20" /></br></br>
+		<label>D.  </label><input type="text" name ="optiond" required></br>
+		<input type="file" name="gambard" id="gambard" size="20" /></br></br>
+		<label>Jawaban</label></br><select name ="jawaban">		
+		<option value="a">A</option>
+		<option value="b">B</option>
+		<option value="c">C</option>
+		<option value="d">D</option>
+		</select></br></br>
+		<label>Pembahasan</label></br><textarea name ="pembahasan" required></textarea></br></br>
+		<input type="file" name="gambarSolusi" id="gambarSolusi" size="20" />	
+		</br></br>
+			<input type="submit" name="submit" value="Submit" />
+		</form>
+			<a href = "<?php echo base_url()?>index.php/admin/soal_latihan"><button/>Batal</button></a>
+	</div>
+		<footer class="footer">
+	      <div class="container">
+	        <p class="text-muted">
+	          <div class="row">
+	          <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
+	        </div>
+	        <div class="row">
+	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>
+	        </div>
+	        </p>
+	      </div>
+	    </footer>
     </body>
 </html>
