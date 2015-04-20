@@ -1,137 +1,221 @@
 <?php
     class daftar_kelas extends CI_Controller{
         public function index(){
-		$this->load->model('kelas_model');
-		$data['result'] = $this->kelas_model->getAllKelas();	    
-		$this->load->view('admin/daftarkelas_view',$data);
+		if($this->session->userdata('role')=="admin") {
+			$this->load->model('kelas_model');
+			$data['result'] = $this->kelas_model->getAllKelas()->result();	    
+			$this->load->view('admin/daftarkelas_view',$data);
+		} else {
+			redirect('home');
+		}	
 	}
 	    
 	public function detail($id){
-		$this->load->model('kelas_model');
-		$data['result'] = $this->kelas_model->get($id);
-		$this->load->view('admin/detailkelas_view', $data);
+		if($this->session->userdata('role')=="admin") {
+			$this->load->model('kelas_model');
+			$data['result'] = $this->kelas_model->get($id)->result();
+			$this->load->view('admin/detailkelas_view', $data);
+		} else {
+			redirect('home');
+		}	
 	}
 	
-
+	//=============================================================================
+	// Menghapus kelas dengan id = $id
+	// Semua materi, soal latihan, dan target belajar juga terhapus yg terkait soal ini
+	//=============================================================================
 	public function delete($id){
-		$this->load->model('kelas_model');
-		$this->kelas_model->delete($id);
-		redirect('admin/daftar_kelas', 'refresh');		
+		if($this->session->userdata('role')=="admin") {
+			$this->load->model('kelas_model');
+			$this->kelas_model->delete($id);
+			$sukses = "Kelas berhasil dihapus";
+			echo "<script type='text/javascript'>alert('$sukses');</script>";
+			redirect('admin/daftar_kelas', 'refresh');		
+		} else {
+			redirect('home');
+		}	
 	}
 	
 	
 	public function edit($id){
-		$this->load->model('kelas_model');
-		
-		$data['result'] = $this->kelas_model->get($id); 
-		$this->load->view('admin/ubahkelas_view', $data);
+		if($this->session->userdata('role')=="admin") {
+			$this->load->model('kelas_model');			
+			$data['result'] = $this->kelas_model->get($id)->result(); 
+			$this->load->view('admin/ubahkelas_view', $data);
+		} else {
+			redirect('home');
+		}	
 	}
 	
 	public function simpanPerubahan($id){
-	
+		//$deskripsi = $this->input->post('deskripsi');
 		$this->load->library('upload');
-		if ( $this->upload->do_upload())	
+		$sukses = "Kelas berhasil diubah";
+		if ( ! $this->upload->do_upload())	
 		{
+		//echo "haha";
+			//$this->load->model('kelas_model');
 			$data = array('upload_data' => $this->upload->data());           
 			// load images model
-			$upload = $data['upload_data'];
 			
+			$upload = $data['upload_data'];
+				
 			$img_name = $upload['file_name'];
 
 			$this->load->model('kelas_model');
-			$data = array(				
-				'idKelas' => $this->input->post('idKelas'),				
-				'deskripsi' => $this->input->post('deskripsi'),
-				'gambar' => $img_name
+			$data = array(							
+					'deskripsi' => $this->input->post('deskripsi'),
+					'gambar' => $img_name
 			);
-				
+			echo $img_name;
 			$this->kelas_model->update($data, $id);
+			echo "<script type='text/javascript'>alert('$sukses');</script>";
 			redirect('admin/daftar_kelas', 'refresh');
+		
 		}
 		else
 		{
 			$data = array('upload_data' => $this->upload->data());           
 			// load images model
-			$upload = $data['upload_data'];			
+			
+			$upload = $data['upload_data'];
+				
+			$img_name = $upload['file_name'];
 
 			$this->load->model('kelas_model');
-			$data = array(				
-				'idKelas' => $this->input->post('idKelas'),				
-				'deskripsi' => $this->input->post('deskripsi'),				
+			$data = array(							
+					'deskripsi' => $this->input->post('deskripsi'),
+					'gambar' => $img_name
 			);
-				
+			
+			//$this->kelas_model->update('kelas', $data);
+			//redirect('admin/daftar_kelas', 'refresh');
 			$this->kelas_model->update($data, $id);
+			echo "<script type='text/javascript'>alert('$sukses');</script>";
 			redirect('admin/daftar_kelas', 'refresh');
-		}		
+
+		}
 	}
 	
 	public function buatBaru(){
-		$this->load->model('kelas_model');
-		$data['result'] = $this->kelas_model->getAllKelas();	    		
-		$this->load->view('admin/buatkelas_view', $data);
+		if($this->session->userdata('role')=="admin") {
+			$this->load->model('kelas_model');
+			$data['result'] = $this->kelas_model->getAllKelas()->result();	    		
+			$this->load->view('admin/buatkelas_view', $data);
+		} else {
+			redirect('home');
+		}	
 	}
 	
 	public function unggah($id){
-		$this->load->model('kelas_model');
-		$data['result'] = $this->kelas_model->get($id);	    		
-		$this->load->view('admin/unggahsertifikat_view', $data);
+		if($this->session->userdata('role')=="admin") {
+			$this->load->model('kelas_model');
+			$data['result'] = $this->kelas_model->get($id)->result();	 
+			$this->load->view('admin/unggahsertifikat_view', $data);
+		} else {
+			redirect('home');
+		}
 	}
 	
 	
 	public function create()
 	{
-		$this->load->library('upload');
-		if ( ! $this->upload->do_upload())
-		{
-			$error = array('error' => $this->upload->display_errors());
-			echo "Error: gambar terlalu besar atau Anda belum memilih gambar";
-		}
-		else
-		{
-			$data = array('upload_data' => $this->upload->data());           
-			// load images model
-			$upload = $data['upload_data'];
+		if($this->session->userdata('role')=="admin") {
+			$this->load->library('upload');
+			$idKelas = $this->input->post('idKelas');
+			$message = "Kelas sudah pernah dibuat";
+			$sukses = "Kelas berhasil dibuat";
+			if ( ! $this->upload->do_upload())
+			{     
+				$error = array('error' => $this->upload->display_errors());
+				$pesanGambar = "gambar terlalu besar atau Anda belum memilih gambar";
 			
-			$img_name = $upload['file_name'];
+				$this->load->model('kelas_model');			
+				$data = array(
+					'idKelas' => $idKelas,				
+					'deskripsi' => $this->input->post('deskripsi')
+				);
+				$cekKelas = $this->kelas_model->get($idKelas);
+				if($cekKelas->num_rows() < 1){
+					echo "<script type='text/javascript'>alert('$pesanGambar');</script>";
+					redirect('admin/daftar_kelas/buatBaru', 'refresh');
+				}
+				else{				
+					$this->session->set_flashdata('duplicatePrimaryKeyKelas',"Sudah ada ".$idKelas);
+					echo "<script type='text/javascript'>alert('$message');</script>";
+					echo "<script type='text/javascript'>alert('$pesanGambar');</script>";
+					redirect('admin/daftar_kelas/buatBaru', 'refresh');
+				}
 
-			$this->load->model('kelas_model');
-			$data = array(				
-				'idKelas' => $this->input->post('idKelas'),				
-				'deskripsi' => $this->input->post('deskripsi'),
-				'gambar' => $img_name
-			);
-			$this->kelas_model->add($data);
-			
-			redirect('admin/daftar_kelas', 'refresh');
-		}
+				//$this->unggah($id);
+			}
+			else
+			{
+				$data = array('upload_data' => $this->upload->data());           
+				// load images model
+				$upload = $data['upload_data'];
+				
+				$img_name = $upload['file_name'];
+
+				$this->load->model('kelas_model');
+				$data = array(				
+					'idKelas' => $this->input->post('idKelas'),				
+					'deskripsi' => $this->input->post('deskripsi'),
+					'gambar' => $img_name
+				);
+				$cekKelas = $this->kelas_model->get($idKelas);
+				if($cekKelas->num_rows() < 1){
+					$this->kelas_model->add($data);
+					echo "<script type='text/javascript'>alert('$sukses');</script>";
+					redirect('admin/daftar_kelas', 'refresh');
+				}
+				else{				
+					$this->session->set_flashdata('duplicatePrimaryKeyKelas',"Sudah ada ".$idKelas);
+					echo "<script type='text/javascript'>alert('$message');</script>";
+					redirect('admin/daftar_kelas/buatBaru', 'refresh');
+				}
+			}
+		} else {
+			redirect('home');
+		}	
 	}
+	
+	
 	
 	public function createSertifikat($id)
 	{
-		$this->load->library('upload');
-		if ( ! $this->upload->do_upload())
-		{
-			$error = array('error' => $this->upload->display_errors());
-			echo "Error: gambar terlalu besar atau Anda belum memilih gambar";
-		}
-		else
-		{
-			$data = array('upload_data' => $this->upload->data());           
-			// load images model
-			$upload = $data['upload_data'];
-			
-			$img_name = $upload['file_name'];
-
-			$this->load->model('kelas_model');
-			$data = array(								
-				'sertifikat' => $img_name
-			);
+		if($this->session->userdata('role')=="admin") {
+			$this->load->library('upload');
+			if ( ! $this->upload->do_upload())
+			{
+				$error = array('error' => $this->upload->display_errors());
+				$message = "gambar terlalu besar atau Anda belum memilih gambar";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+				$this->unggah($id);
 				
-			$this->db->where('idKelas', $id);			
-			$this->db->update('kelas', $data);
-			redirect('admin/daftar_kelas', 'refresh');
-			
-		}
+			}
+			else
+			{
+				$data = array('upload_data' => $this->upload->data());           
+				// load images model
+				$upload = $data['upload_data'];
+				
+				$img_name = $upload['file_name'];
+
+				$this->load->model('kelas_model');
+				$data = array(								
+					'sertifikat' => $img_name
+				);
+					
+				$this->db->where('idKelas', $id);			
+				$this->db->update('kelas', $data);
+				$sukses = "Gambar sertifikat berhasil disimpan";
+				echo "<script type='text/javascript'>alert('$sukses');</script>";
+				redirect('admin/daftar_kelas', 'refresh');			
+			}
+		} else {
+			redirect('home');
+		}	
 	}
 	
     }

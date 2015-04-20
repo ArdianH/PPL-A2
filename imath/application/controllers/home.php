@@ -3,8 +3,8 @@
         public function index(){
             $this->load->model('kelas_model');
  
-            $data['result'] = $this->kelas_model->getAllKelas();          
+            $data['result'] = $this->kelas_model->getAllKelas()->result();          
 	   
-	    $this->load->view('user/kelas_view',$data);	    
+	    $this->load->view('user/home_view',$data);	    
 	}
 }

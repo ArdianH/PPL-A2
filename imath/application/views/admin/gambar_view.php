@@ -4,10 +4,8 @@
     </head>
     <body>    
     <h1>Gambar </h1> 
-		<?php echo form_open_multipart('admin/gambar_controller');  ?>
-	<p>
-		<?php echo form_label('File 1', 'userfile1') ?>
-		<?php echo form_upload('userfile1') ?>
+    <form method="POST" action="<?php echo base_url()?>index.php/admin/gambar_controller" enctype="multipart/form-data">
+		<input type="file" name="userfile1" id="userfile1" size="20" />
 	</p>
 	<p>
 		<?php echo form_label('File 2', 'userfile2') ?>
@@ -21,8 +19,8 @@
 		<?php echo form_label('File 4', 'userfile4') ?>
 		<?php echo form_upload('userfile4') ?>
 	</p>
-	<p><?php echo form_submit('submit', 'Upload them files!') ?></p>
-	<?php form_close() ?>
+	<input type="submit" name="submit" value="Simpan" />
+	</form>
 	
     </body>
 </html>

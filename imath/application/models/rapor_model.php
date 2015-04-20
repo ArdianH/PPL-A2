@@ -6,9 +6,15 @@ class rapor_model extends CI_Model {
 	}	
 	
 	function get($id){
-	    	$this->load->database();	    			
+	    $this->load->database();	    			
 		return $this->db->get_where('rapor', array('idRapor' => $id))->result();
 	}
+	
+	function getIdRapor($username){
+	    $this->load->database();	    			
+		return $this->db->get_where('rapor', array('username' => $username));
+	}
+	
 	//Fungsi ini mengambil semua target belajar
 	function getAllRapor(){
 	    	$this->load->database();
@@ -22,6 +28,16 @@ class rapor_model extends CI_Model {
 	
 	function getCatatanLatihan($id, $idKelas, $idMateri) {
 		return $this->db->get_where('catatan_latihan', array ('idRapor'=>$id, 'idMateri'=>$idMateri, 'idKelas'=>$idKelas))->result();
+	}
+	
+	function getCatatanTes($id, $idKelas, $idMateri) {
+		return $this->db->get_where('catatan_tes', array ('idRapor'=>$id, 'idKelas'=>$idKelas))->result();
+	}
+	
+	function deleteHistory($id, $idKelas, $idMateri){
+		$this->load->database();
+		//$selesai = 'tercapai';
+		$this->db->delete('catatan_latihan',array ('idRapor'=>$id, 'idMateri'=>$idMateri, 'idKelas'=>$idKelas));
 	}
 }
 ?>

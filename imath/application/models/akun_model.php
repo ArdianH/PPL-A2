@@ -7,9 +7,9 @@ class Akun_model extends CI_Model {
         parent::__construct();
     }
 	
-	public function getDataAkun($username)
+	public function getDataAkun($username, $password)
 	{
-		$dataDB = $this->db->get_where('akun', array('username' => $username));
+		$dataDB = $this->db->get_where('akun', array('username' => $username, 'password' => $password));
 		return $dataDB;
 	}
 	
@@ -22,6 +22,12 @@ class Akun_model extends CI_Model {
 	public function setDataAkun($data)
 	{
 		$res = $this->db->insert('akun', $data);
+		return $res;
+	}
+
+	public function setIdRapor($data)
+	{
+		$res = $this->db->insert('rapor', $data);
 		return $res;
 	}
 	
