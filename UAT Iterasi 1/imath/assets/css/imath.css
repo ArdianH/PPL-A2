@@ -20,29 +20,10 @@ p{
   background-color: #b5ff54;
 }
 
-.buttonDelete{
-	background:none;
-	border:none;
-}
-.contentdetail {
-	background-color:#FFF;
-	text-align: left;
-	padding-top: 10px;
-	padding-left: 80px;
-	padding-right: 30px;
-	padding-bottom: 20px;
-	font-size:18;
-}
-
 .contents {
-	background-color:#FFF;
-	margin-top:0px;
 	text-align: center;
 	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
 	padding-bottom: 20px;
-	min-height:450px;
 }
 
 .titleText {
@@ -50,7 +31,7 @@ p{
 	padding-right:40px;
 	background-color: #FFFFFF;
 }
-.loginbg{
+.loginbg{	
 	background-image: url('../images/biru.jpg');
 	background-size: 100% 100%;
 	text-align: center;
@@ -58,14 +39,12 @@ p{
 	padding-bottom: 20px;
 	padding-left: 40px;
 	padding-right:40px;
+	margin-top:0px;
 	font:bold;
 	text-align: center;
 	height: 500px;
 }
 
-.jumbotron {
-	background-image: url("../images/GambarAtas.png");
-	background-size: cover;}
 
 .row{
 	padding-top:5px;
@@ -89,19 +68,12 @@ p{
 .tableimath{
 	text-align: center;	
 }
-.tablesoal{
-	text-align: left;
-	border-collapse:collapse;
-	border-color:white;	
-}
 th{
 	text-align: center;
 }
 
 .formImath{
-	text-align: left;
-	font-size: 16px;
-	margin-left:20px;	
+	text-align: left;	
 }
 
 .form-signin
@@ -167,11 +139,7 @@ th{
 }
 
 #formlogin{
-	background-color: rgba(204, 204, 204);	
-}
-
-#logobar{
-	padding-bottom:10px;
+	background:none;
 }
 
 
@@ -215,51 +183,6 @@ a {
 	background: #fff;
 }
 
-
-/*============================= BUTTON ===========================*/
-.targetButton {
-	font-size: 18pt;
-	background-color: #ffaf24;
-	padding: 5px 25px;
-	display: inline-block;
-	margin: 2px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: 300;
-	outline: none;
-	position: relative;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
-	border: 3px solid #ffaf24;
-	color: white;
-	font-weight:600;
-}
-
-.targetButton:after {
-	content: '';
-	position: absolute;
-	z-index: -1;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-
-a {
-	color: #888;
-	text-decoration: none;
-}
-
-.targetButton:hover,
-.targetButton:active {
-	color: #ffaf25;
-	background: #fff;
-}
-	
-
-
-
 /*=========================== LUPA PASSWORD =============================*/
 #lupaPassword{
 	color: #fff;
@@ -269,51 +192,4 @@ a {
 	background: none;
 	border:none;
 	margin:0px;
-}
-
-/*=============== TARGET BELAJAR ================*/
-.dashboardUser {
-	background-image: url("../images/Bulatbulat.png");
-	background-size: cover;}
-	
-h1.tBelajar{
-	font-weight:600;
-	text-align:left;
-}
-
-h2.userDashboard{
-	font-size:40pt;
-	font-weight:600;
-	text-align:left;
-}
-
-.tbelajarPink{
-	background:#ffe4dd;
-	padding:15px;
-	margin:20px;
-}
-
-.tbelajarBiru{
-	background:#c2dfff;
-	padding:15px;
-	margin:20px;
-	text-align:left;
-}
-
-
-.containerTB{
-	margin-left:30px;
-}
-
-.ungu{
-	background:#f6d0ff;
-	padding:15px;
-	margin:20px;	
-	color:#7c0094;
-}
-
-.fontt{
-	text-align:left;
-	font-size:14pt;
-	font-weight:bold;
 }
