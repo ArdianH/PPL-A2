@@ -13,11 +13,11 @@
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
           </button>
-          <a class="navbar-brand" href="<?php echo base_url();?>">iMath</a>
+          <a class="navbar-brand" href="<?php echo base_url();?>index.php"><img src="<?php echo base_url();?>assets/images/logo.png" height="42px" width="120px";></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a>DAFTAR/LOGIN</a></li>
+            <li><a href="<?php echo base_url()?>autentikasi/signup">DAFTAR</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -31,15 +31,16 @@
 		<div class="col-md-4" id="none">		
 		  <div id="account-wall"> 
 			<form class="form-signin" method="POST" action= <?php echo base_url()."autentikasi/login/" ?> >
-			<input type="text" name="username" class="form-control" placeholder="Username" title="Username harus valid (5-16 alphanumeric)" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{4,15}$" required ></input>
+			<input type="text" name="username" class="form-control" placeholder="Username" title="Username harus valid (2-16 alphanumeric)" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,15}$" required ></input>
 			<input type="password" name="password" class="form-control" placeholder="Password" title="Minimum 5 karakter" pattern=".{5,}" required ></input>
-			<button class="loginButton" type="submit" value="Login">SUBMIT</button>
+			<button class="loginButton" type="submit" value="Login">LOG IN</button>
 			<?php echo $this->session->flashdata('messageLogin'); ?>
 			<p><a href = "<?php echo base_url()?>autentikasi/forget" id="lupaPassword">Lupa Password?</a></p>
 			</form>
 		    </div>
 			</br></br>
-			<p>Kamu belum menjadi anggota? Yuk <a href = "<?php echo base_url()?>autentikasi/signup"> Daftar!</a></p>
+			<p class="anggotaLogin">Kamu belum menjadi anggota? </p>
+			<p class="anggotaLogin">Yuk <a class="anggotaLogin" href = "<?php echo base_url()?>autentikasi/signup"> Daftar!</a></p>
 		</div>
 		<div class="col-md-4" id="none"></div>		
 	 </div>	      

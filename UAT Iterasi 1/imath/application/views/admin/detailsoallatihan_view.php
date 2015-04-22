@@ -52,7 +52,7 @@
   		<h3>
   			Pertanyaan : <?php echo $soal[0]->pertanyaan;
         echo '</br>';
-        if(is_null($soal[0]->gambarSoal) || $soal[0]->gambarSoal)==''){
+        if(is_null($soal[0]->gambarSoal) || ($soal[0]->gambarSoal)==''){
           echo '';
         }
         else{
@@ -102,9 +102,11 @@
         }?>
       </h4>
   		<h3>
-        Pembahasan: <?php echo $soal[0]->pembahasan;
+        Pembahasan: <br>
+	<?php echo $soal[0]->pembahasan;
           echo '  ';
           if(!is_null($soal[0]->gambarSolusi)){
+	  echo '<br>';
           echo '<img src="'.base_url().'uploads/';
           echo $soal[0]->gambarSolusi;
           echo '">';

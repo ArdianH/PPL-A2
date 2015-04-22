@@ -51,7 +51,7 @@
 	    </br>
 		<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/daftar_materi/create" enctype="multipart/form-data"> 	
 		<label>Nama Materi</label></br>
-		<input type="text" name ="nama"></br></br>
+		<input type="text" name ="nama" required></br></br>
 		<label>Kelas</label></br><select name ="idKelas">
 		<?php foreach($Kelas as $row): ?>			
 			<option value="<?php echo $row->idKelas ?>" ><?php echo $row->idKelas ?></option>
@@ -59,7 +59,7 @@
 		</select>
 		</br></br>
 		<label>Deskripsi</label></br>
-		<textarea type="text" name ="deskripsi" rows="4" cols="50"></textarea></br></br>
+		<textarea type="text" name ="deskripsi" rows="4" cols="50" required></textarea></br></br>
 		<label>Rangkuman</label></br>
 		<textarea type="text" name ="rangkuman" rows="4" cols="50" required></textarea></br></br>
 		<label>Unggah Gambar</label></br>

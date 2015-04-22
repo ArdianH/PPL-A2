@@ -81,18 +81,18 @@
 			</tr>
 			<tr>
 				<td>Waktu :</td>
-				<td><?php echo floor($waktuTes/60)." menit ".($waktuTes%60)." detik"; ?></td>
+				<td><h1><?php echo floor($waktuTes/60)." menit ".($waktuTes%60)." detik"; ?></h1></td>
 			</tr>
 			<tr>
 				<td>Nilai Latihan Materi : </td>
-				<td><?php echo $skor; ?></td>
+				<td><h1><?php echo $skor; ?> </h1></td>
 			</tr>	
 			<tr>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td><a href= "<?php echo base_url()."index.php/latihan/keluarTes"; ?>" onclick="localClear()"> OK </a></td>
+				<td><a href= "<?php echo base_url()."index.php/latihan/keluarTes"; ?>" onclick="localClear()"><button class="orangeButton"> OK </button></a></td>
 				<td></td>
 			</tr>	
 		</table>

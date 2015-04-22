@@ -22,12 +22,12 @@
 				if($this->session->userdata('loggedin')) { 
 					if($this->session->userdata('role') == "admin") {
 						echo '<a href="'.base_url().'admin/dashboard"> Dashboard Admin </a></li><li>';
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} else {
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} 
 				} else {
-						echo '<a href="'.base_url().'autentikasi"> Masuk </a>';
+						echo '<a href="'.base_url().'autentikasi"> LOG IN </a>';
 				}
 				?>	</li>
           </ul>
@@ -42,7 +42,7 @@
         echo '<div class="col-md-2"></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">RAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">PRESTASI</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
 		if($this->session->userdata('gender') =="Perempuan"){
@@ -51,8 +51,8 @@
 		else{
 			echo '<img src="'.base_url().'assets/images/boy.png" img size="height="20" width="20">';
 		}
-		echo '<a href="'.base_url().'profil"> Hai ';
-		echo $this->session->userdata('namaPanggilan')."</a></div>";
+		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
+		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';
@@ -70,9 +70,10 @@
       					</div>
       				</div>
       			</div>
-      			<div class="col-md-8">
-      				<h1>Apakah iMath?</h1>
-      				<p>iMath adalah sistem belajar e-learning matematika untuk anak SD</p>
+      			<div class="col-md-8 white2">
+      				<h2 class="userDashboard"> Apakah iMath? </h2>
+				iMath adalah situs belajar matematika online untuk anak SD 1 - 6. <br>
+				Yuk jadi anggota iMath supaya bisa melihat rapor, membuat target belajar, dan membaca rangkuman materi.
       			</div>
       		</div>
     	</div>
@@ -80,9 +81,9 @@
 <div class="container">
 	<?php foreach($result as $row):?>
 		<div class="col-md-4">
-			<a href="<?php echo base_url() ?>kelas/pilih/<?php echo $row->idKelas ?>">
+			<a class="homeview" href="<?php echo base_url() ?>kelas/pilih/<?php echo $row->idKelas ?>">
 				<img src="<?php echo base_url();?>uploads/<?php echo $row->gambar ?>" height="200" width="200">
-				<h2>	 Kelas <?php echo $row->idKelas ?> </h2>			
+				<h2 class="homeview">	 Kelas <?php $idKelas=$row->idKelas; echo substr($idKelas,4,5);?> </h2>			
 			</a>			
 	</div>
 	<?php endforeach; ?>

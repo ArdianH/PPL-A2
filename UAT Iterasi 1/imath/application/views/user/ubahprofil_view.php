@@ -35,12 +35,12 @@
 				if($this->session->userdata('loggedin')) { 
 					if($this->session->userdata('role') == "admin") {
 						echo '<a href="'.base_url().'admin/dashboard"> Dashboard Admin </a></li><li>';
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} else {
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} 
 				} else {
-						echo '<a href="'.base_url().'autentikasi"> Masuk </a>';
+						echo '<a href="'.base_url().'autentikasi"> LOG IN </a>';
 				}
 				?>	</li>
           </ul>
@@ -57,15 +57,15 @@
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
-		echo '<div class="col-md-2">';		
+		echo '<div class="col-md-2">';
 		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
 		}
 		else{
 			echo '<img src="'.base_url().'assets/images/boy.png" img size="height="20" width="20">';
 		}
-		echo '<a href="'.base_url().'profil"> Hai ';
-		echo $this->session->userdata('namaPanggilan')."</a></div>";
+		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
+		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';
@@ -108,7 +108,7 @@
 			<div class="row">
 				<div class="col-md-3">Email: </div>
 				<div class="col-md-9">					
-					<input class="box-input" type="email" name="email" value="<?php echo $result[0]->email ;?>"><br><br>
+					<input class="box-input" type="email" name="email" value="<?php echo $result[0]->email ;?>" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"><br><br>
 				</div>
 			</div>
 			<div class="row">

@@ -50,12 +50,12 @@
 				if($this->session->userdata('loggedin')) { 
 					if($this->session->userdata('role') == "admin") {
 						echo '<a href="'.base_url().'admin/dashboard"> Dashboard Admin </a></li><li>';
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} else {
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} 
 				} else {
-						echo '<a href="'.base_url().'autentikasi"> Masuk </a>';
+						echo '<a href="'.base_url().'autentikasi"> LOG IN </a>';
 				}
 				?>	</li>
           </ul>
@@ -73,15 +73,14 @@
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
-		
 		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
 		}
 		else{
 			echo '<img src="'.base_url().'assets/images/boy.png" img size="height="20" width="20">';
 		}
-		echo '<a href="'.base_url().'profil"> Hai ';
-		echo $this->session->userdata('namaPanggilan')."</a></div>";
+		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
+		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';
@@ -116,6 +115,23 @@
 	 <?php echo $nama[$i]->nama?> 
 	 <!--<?php echo $result[$i]->idMateri?> -->
 	 kelas <?php $idKelas = $result[$i]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2)?>  dengan target nilai <?php echo $result[$i]->targetNilai?>
+	 <?php 
+		if(!is_null($result[$i] ->targetWaktu)) //target waktunya ada
+		{
+			$totalDalamDetik = $result[$i] ->targetWaktu;
+			$menit = $totalDalamDetik/60;			
+			$floorMenit = floor($menit);
+			$detik = $totalDalamDetik - ($floorMenit * 60);
+			echo 'dalam waktu ';
+			if($floorMenit > 0)
+				echo $floorMenit.' menit ';
+			else
+			{
+				if($detik > 0)
+					echo $detik.' detik';
+			}
+		}
+	 ?>
 	 (Dibuat: <?php echo $result[$i]->tanggal ?>)
 	</td>
 	<!-- Done Button-->
@@ -154,6 +170,8 @@
 			 <?php echo $history[$i]->idMateri?> 
 			 kelas <?php $idKelas = $history[$i]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2)?> 
 			 dengan target nilai <?php echo $history[$i]->targetNilai?>
+			 <?php 			 
+			 ?>
 			 (Dibuat: <?php echo $history[$i]->tanggal ?>)
 			</br></br>
 		<?php } ?>

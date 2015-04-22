@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to My Web </title>
+	<title>Latihan</title>
 	
 <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
@@ -142,12 +142,12 @@
 				if($this->session->userdata('loggedin')) { 
 					if($this->session->userdata('role') == "admin") {
 						echo '<a href="'.base_url().'admin/dashboard"> Dashboard Admin </a></li><li>';
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} else {
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} 
 				} else {
-						echo '<a href="'.base_url().'autentikasi"> Masuk </a>';
+						echo '<a href="'.base_url().'autentikasi"> LOG IN </a>';
 				}
 				?>	</li>
           </ul>
@@ -165,15 +165,14 @@
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
-		$gender = $this->session->userdata('gender');
-		if($gender=='Laki-Laki'){
+		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
 		}
 		else{
 			echo '<img src="'.base_url().'assets/images/boy.png" img size="height="20" width="20">';
 		}
-		echo '<a href="'.base_url().'profil"> Hai ';
-		echo $this->session->userdata('namaPanggilan')."</a>:)</div>";
+		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
+		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';
@@ -183,105 +182,167 @@
 <!-- nav end -->
 
 <div class="container contents">
-	<h1 align="center">Kerjakan dengan baik :)</h1>
 	<div class="row">
-		<div class="col-md-4">
+		<div class="soalcontainer">
+		<div class="col-md-3">
 			<div class="row">
-				<form name="cd"><h2>Waktu:</h2> 
-			</div>
-			<div class="row"><h2>
-				<input id="Time" readonly="true" type="text" value="00:00" border="0" name="disp">
-				</form>
-				<span id="minute"></span>
-				<span id="waktuTes"></span></h2>
+				<div class="col-md-12">
+					<div class="panel panel-default paneliMath">
+					
+						<div class="panel-heading merah">
+							
+							<h3>SOAL</h3>
+					
+						</div>
+						<div class="panel-body">
+							<?php
+								echo "<h3>".$nomor."</h3>";
+							 ?>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="row">
-				<h2>Nilai </h2>
+				<div class="col-md-12">
+					<div class="panel panel-default paneliMath">
+						<div class="panel-heading hijau"><form name="cd"><h3>WAKTU</h3> </div>
+						<div class="panel-body"><input class="waktuBox" id="Time" readonly="true" type="text" value="00:00" border="0" name="disp">
+							</form>
+							<span id="minute"></span>
+							<span id="waktuTes"></span></h2>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="row">
-			<h2><?php echo $skor; ?> </h2> 
+				<div class="col-md-12">
+					<div class="panel panel-default paneliMath">
+						<div class="panel-heading unguGelap"><h3>NILAI</h3></div>
+						<div class="panel-body"><h3><?php echo $skor; ?> </h3> </div>
+					</div>
+				</div>
+			</div>
 			<!--<input type="hidden" name="idSoal" value= * echo $idSoal; */ />-->
 
 			<!--Jika belum menjawab(flagNext==FALSE) maka tombol kirim muncul
 				Jika telah menjawab(flagNext==TRUE) maka tombol button NextSoal yang muncul-->
+		</div>
+		<div class="col-md-9">
+			<div class="soalText">
+					<?php
+				if(!$flagNext) {
+					echo "<form method=POST action= ".base_url()."index.php/latihan/processJawaban/ >";
+					echo '<div class="row">';
+					echo '<div class="pertanyaaniMath">';
+					echo $pertanyaan."</div>";
+					echo '</div>';
+					echo '<div class="row gambarSoaliMath">';
+					if(!is_null($gambar)){
+						echo '<img src="'.base_url().'uploads/'.$gambar.'">';						
+					}
+					echo '</div>';
+					echo '</div>';
+					echo '<div class="jawabText">';
+					//echo "<input type='text' name='jawab' size='30' required />";
+					echo '<div class="row soaliMath">';
+					echo "<input type='radio' name='jawab' id='idOpsiA' value='".$idOpsiA."' required /> A. ".$desOpsiA."</div>";
+					echo '<div class="row soaliMath">';
+					echo "<input type='radio' name='jawab' id='idOpsiB' value='".$idOpsiB."' /> B. ".$desOpsiB."</div>";
+					echo '<div class="row soaliMath">';
+					echo "<input type='radio' name='jawab' id='idOpsiC' value='".$idOpsiC."' /> C. ".$desOpsiC."</div>";
+					echo '<div class="row soaliMath">';
+					echo "<input type='radio' name='jawab' id='idOpsiD' value='".$idOpsiD."' /> D. ".$desOpsiD."</div>";
+					echo "<input type='hidden' name='idOpsiA' value='".$idOpsiA."' />";
+					echo "<input type='hidden' name='idOpsiB' value='".$idOpsiB."' />";
+					echo "<input type='hidden' name='idOpsiC' value='".$idOpsiC."' />";
+					echo "<input type='hidden' name='idOpsiD' value='".$idOpsiD."' />";
+					echo "<input type='hidden' name='desOpsiA' value='".$desOpsiA."' />";
+					echo "<input type='hidden' name='desOpsiB' value='".$desOpsiB."' />";
+					echo "<input type='hidden' name='desOpsiC' value='".$desOpsiC."' />";
+					echo "<input type='hidden' name='desOpsiD' value='".$desOpsiD."' />";
+					echo "<input type='hidden' name='jawaban' value=".$jawaban." />";
+					echo '<div class="row soaliMath">';
+					echo "<input type='hidden' name='pembahasan' value='".$pembahasan."' /></div>";
+					echo '<div class="row soaliMath">';
+					echo "<input class='orangeButton' type='submit' value='Submit' onclick='localStore()' />";
+					echo "</form></div>";
+					if($flagInit) {
+						echo "<script> localClear(); </script>";
+					}
+				} else {
+					echo "<form method=POST action= ".base_url()."index.php/latihan/processSoal/ >";
+					echo '<div class="row soaliMath">';
+					echo $pertanyaan."</div>";
+					echo '<div class="row gambarSoaliMath">';
+					if(!is_null($gambar)){
+						echo '<img src="'.base_url().'uploads/'.$gambar.'">';
+					}
+					echo '</div>';
+					echo '</div>';
+					echo '<div class="jawabText">';
+					echo '<div class="row soaliMath">';
+					echo "<input type='radio' name='jawab' id='idOpsiA' value='".$idOpsiA."' ".$checkA." /> A. ".$desOpsiA."</div>";
+					echo '<div class="row soaliMath">';
+					echo "<input type='radio' name='jawab' id='idOpsiB' value='".$idOpsiB."' ".$checkB." /> B. ".$desOpsiB."</div>";
+					echo '<div class="row soaliMath">';
+					echo "<input type='radio' name='jawab' id='idOpsiC' value='".$idOpsiC."' ".$checkC." /> C. ".$desOpsiC."</div>";
+					echo '<div class="row soaliMath">';
+					echo "<input type='radio' name='jawab' id='idOpsiD' value='".$idOpsiD."' ".$checkD." /> D. ".$desOpsiD."</div>";
+					//echo "<input type='text' name='jawab' size='30' value=".$jawab." readonly/>";
+					echo "<input type='hidden' name='waktuTes' id='waktutes' value='01' />";
+					echo '<div class="row">';
+					//echo "</form>";
+					
+					if($flagJawaban == 1) {
+						echo '<div class="result">';
+							echo '<div class="row">';
+								echo '<div class="col-md-8">';						
+									echo "<p><div class='resultBenar'>Kerja yang baik!</div></p>";
+									echo "<details>";
+									echo "<summary>Lihat Solusi dan Pembahasan</summary></p>";
+									echo 	'<table>';
+									echo	'<tr>';
+									echo		'<td> Solusi :  '.$jawabanBenar.'</td>';
+									echo	'</tr>';
+									echo	'<tr>';
+									echo		'<td> Pembahasan : '.$pembahasanSoal.'</td>';
+									echo	'</tr>';
+									echo 	'</table>';	
+									echo "</details>";
+								echo '</div>';
+								echo '<div class="col-md-4">';						
+									echo '</p><input class="orangeButton" type="submit" value="Lanjut" onclick="localStore()" /></p>';
+								echo '</div>';
+							echo '</div>';
+						echo '</div>';
+					} else {
+						echo '<div class="result">';
+							echo '<div class="row">';
+								echo '<div class="col-md-8">';	
+									echo "<p><div class='resultSalah'>Ups, jawabanmu belum benar </div><p>";
+								echo '</div>';
+								echo '<div class="col-md-4">';					
+									echo "</p><input class='orangeButton' type='submit' value='Lanjut' onclick='localStore()' /></p>";
+								echo '</div>';
+							echo '</div>';
+							echo '<div class="row">';
+								echo '<div class="col-md-12">';
+								//echo "<br/>".$jawabanBenar;
+								//echo '<td> Solusi : <br/>'.$jawabanBenar.'</td>';
+								echo 'Solusi :'.$jawabanBenar.' ';
+								echo 'Pembahasan : '.$pembahasanSoal;
+								echo '</div>';
+							echo '</div>';
+						echo '</div>';		
+					}
+					echo "</form>";
+				}
+				?>
 			</div>
 		</div>
-		<div class="col-md-8"><h3>
-			<?php
-		if(!$flagNext) {
-			echo "<form method=POST action= ".base_url()."index.php/latihan/processJawaban/ >";
-			echo '<div class="row">';
-			echo "<h1>Soal ".$nomor."</h1>";
-			echo $pertanyaan."</div>";
-			echo '<div class="row"><img src='.base_url().'uploads/'.$gambar.'></div>';
-			//echo "<input type='text' name='jawab' size='30' required />";
-			echo '<div class="row">';
-			echo "<input type='radio' name='jawab' id='idOpsiA' value='".$idOpsiA."' required /> A. ".$desOpsiA."</div>";
-			echo '<div class="row">';
-			echo "<input type='radio' name='jawab' id='idOpsiB' value='".$idOpsiB."' /> B. ".$desOpsiB."</div>";
-			echo '<div class="row">';
-			echo "<input type='radio' name='jawab' id='idOpsiC' value='".$idOpsiC."' /> C. ".$desOpsiC."</div>";
-			echo '<div class="row">';
-			echo "<input type='radio' name='jawab' id='idOpsiD' value='".$idOpsiD."' /> D. ".$desOpsiD."</div>";
-			echo "<input type='hidden' name='idOpsiA' value='".$idOpsiA."' />";
-			echo "<input type='hidden' name='idOpsiB' value='".$idOpsiB."' />";
-			echo "<input type='hidden' name='idOpsiC' value='".$idOpsiC."' />";
-			echo "<input type='hidden' name='idOpsiD' value='".$idOpsiD."' />";
-			echo "<input type='hidden' name='desOpsiA' value='".$desOpsiA."' />";
-			echo "<input type='hidden' name='desOpsiB' value='".$desOpsiB."' />";
-			echo "<input type='hidden' name='desOpsiC' value='".$desOpsiC."' />";
-			echo "<input type='hidden' name='desOpsiD' value='".$desOpsiD."' />";
-			echo "<input type='hidden' name='jawaban' value=".$jawaban." />";
-	
-			echo "<input type='hidden' name='pembahasan' value='".$pembahasan."' />";
-			echo '<div class="row">';
-			echo "<input type='submit' value='Submit' onclick='localStore()' />";
-			echo "</form></div>";
-			if($flagInit) {
-				echo "<script> localClear(); </script>";
-			}
-		} else {
-			echo "<form method=POST action= ".base_url()."index.php/latihan/processSoal/ >";
-			echo "<h1>Soal ".$nomor."</h1>";
-			echo "<p>".$pertanyaan."</p>";
-			echo "<input type='radio' name='jawab' id='idOpsiA' value='".$idOpsiA."' ".$checkA." /> A. ".$desOpsiA."<br/>";
-			echo "<input type='radio' name='jawab' id='idOpsiB' value='".$idOpsiB."' ".$checkB." /> B. ".$desOpsiB."<br/>";
-			echo "<input type='radio' name='jawab' id='idOpsiC' value='".$idOpsiC."' ".$checkC." /> C. ".$desOpsiC."<br/>";
-			echo "<input type='radio' name='jawab' id='idOpsiD' value='".$idOpsiD."' ".$checkD." /> D. ".$desOpsiD."<br/>";
-			//echo "<input type='text' name='jawab' size='30' value=".$jawab." readonly/>";
-			echo "<input type='hidden' name='waktuTes' id='waktutes' value='01' />";
-
-			//echo "</form>";
-			
-			if($flagJawaban == 1) {
-				echo "<p>Kerja yang baik!";
-				echo "<a href=".base_url()."index.php/latihan/solusiLatihan"." onclick='localClear()'>Lihat Solusi dan Pembahasan</a>";
-				echo '<div class="col-md-12">';
-				echo "</p><input type='submit' value='Next Soal' onclick='localStore()' /></p>";
-				echo '</div>';
-			} else {
-				echo "Ups, jawabanmu belum benar :'(";					
-				echo "</p><input type='submit' value='Next Soal' onclick='localStore()' /></p>";
-				//echo "<br/>".$jawabanBenar;
-				//echo '<td> Solusi : <br/>'.$jawabanBenar.'</td>';
-				echo '<div class="row">';
-				echo '<div class="col-md-5">';
-				echo '</div>';
-				echo '<div class="col-md-2">';
-				echo 'Solusi :'.$jawabanBenar.'';
-				echo  '</div>';
-				echo '<div class="col-md-5">';
-				echo '</div>';
-				echo '<div class="row"><div class="col-md-12">';
-				echo		'Pembahasan : </div></div><div class="row"><div class="col-md-12">'.$pembahasanSoal.'</div></div>';
-				echo '</div>';		
-			}
-			echo "</form>";
-		}
-		?></h3>
-		</div>
-	</div>	
-	<a href= "<?php echo base_url()."latihan/keluarTes"; ?>" onclick="localClear()">Keluar</a>
+	</div>
+	</div>
+</div>
 </div>
 
 	<footer class="footer">

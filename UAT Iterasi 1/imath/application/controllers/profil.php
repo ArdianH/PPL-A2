@@ -31,7 +31,7 @@
 			$data = array(			
 				'namapanggilan' => $this->input->post('namapanggilan'),
 				'email' => $this->input->post('email'),
-				'password' => $this->input->post('password')		
+				'password' => md5($this->input->post('password'))		
 			);
 			$username = $this->session->userdata('username'); //sudah diganti
 			$this->db->where('username', $username);

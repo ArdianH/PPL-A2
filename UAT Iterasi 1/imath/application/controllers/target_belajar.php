@@ -17,11 +17,11 @@
 		    $data['historyRow'] = count($data['history']);
 		    
 		    for($i=0; $i<count($data['result']);$i++)
-			{
-				$idTB = $data['result'][$i]->idTargetBelajar;
-				//echo $idTB;
-				$data['nama'][$i] = $this->targetbelajar_model->getNamaMateri($idTB)->row(); 
-			}
+		    {
+			$idTB = $data['result'][$i]->idTargetBelajar;
+			//echo $idTB;
+			$data['nama'][$i] = $this->targetbelajar_model->getNamaMateri($idTB)->row(); 
+		    }
 		    $this->load->view('user/targetbelajar_view',$data);
 		} 
 		else {
@@ -84,9 +84,11 @@
 			
 			$this->db->where('idTargetBelajar', $id);
 			$this->db->update('target_belajar', $data);
+			echo "<script type='text/javascript'>alert('Perubahan target belajar berhasil disimpan');</script>";
 			redirect('target_belajar', 'refresh');
 		} 
 		else {
+			echo "<script type='text/javascript'>alert('Perubahan target belajar tidak berhasil disimpan');</script>";
 			redirect('home');
 		}
 	}
@@ -119,6 +121,9 @@
 		if($this->session->userdata('loggedin')) {
 			$username = $this->session->userdata('username'); //sudah diganti
 			$this->load->model('targetbelajar_model');
+			$menit = $this->input->post('menit');
+			$detik = $this->input->post('detik');
+			$totalWaktu = ($menit*60) + $detik;
 			$data = array(
 				'idtargetbelajar' => $this->input->post('idtargetbelajar'),
 				'username' => $username,
@@ -126,9 +131,13 @@
 				'idkelas' => $this->input->post('idkelas'),			
 				'banyaksoal' => $this->input->post('banyaksoal'),
 				'targetnilai' => $this->input->post('targetnilai'),
-				'tanggal' => date("Y-m-d"),
+				'tanggal' => date("Y-m-d"),				
 				'isselesai' => 'tidak'
 			);
+			if($totalWaktu > 0)
+			{
+				$data['targetwaktu'] = $totalWaktu;
+			}			
 			
 			$this->targetbelajar_model->add($data);
 			redirect('target_belajar');

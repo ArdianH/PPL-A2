@@ -37,7 +37,7 @@ class Latihan extends CI_Controller {
 			'skor'			=>	0,
 			'jumlahTrue'	=>  0,
 			'setIdSoal'		=>	$dataDB,
-			'jumlahSoal'	=>	$jumlahSoal,
+			'jumlahSoal'		=>	$jumlahSoal,
 			'idKelas'		=>	$idKelas,
 			'idRapor'		=>  $idRapor
 		);
@@ -97,7 +97,7 @@ class Latihan extends CI_Controller {
 		} else {
 			$waktuTes = $this->session->userdata('waktuTes');		
 			$data = array(
-				'kelas'			=>	$this->session->userdata('kelas'),				
+				'kelas'		=>	$this->session->userdata('kelas'),				
 				'skor'			=>	$this->session->userdata('skor'),
 				'jawabanTrue'	=>  $this->session->userdata('jawabanTrue'),
 				'namaPanggilan'	=>	$this->session->userdata('namaPanggilan'),
@@ -159,6 +159,11 @@ class Latihan extends CI_Controller {
 			$this->session->set_userdata('jawabanTrue', $jawabanTrueUpdate);
 			$satuSoal = array(
 				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
+				'jawabanBenar'	=>	$jawabanBenar,
+				'pembahasanSoal' =>  $pembahasanSoal,
+				
+				'gambar'		=>  $satuSoal->gambarSoal,
+				
 				'jawab' 		=> 	$jawabanUser,
 				'idOpsiA'		=>	$idOpsiA,
 				'idOpsiB'		=>	$idOpsiB,
@@ -185,6 +190,9 @@ class Latihan extends CI_Controller {
 				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
 				'jawabanBenar'	=>	$jawabanBenar,
 				'pembahasanSoal' =>  $pembahasanSoal,
+				
+				'gambar'		=>  $satuSoal->gambarSoal,
+				
 				'jawab' 		=> 	$jawabanUser,
 				'idOpsiA'		=>	$idOpsiA,
 				'idOpsiB'		=>	$idOpsiB,
@@ -211,7 +219,7 @@ class Latihan extends CI_Controller {
 	
 	public function keluarTes() {
 		$this->session->unset_userdata(array('setIdSoal'=>'', 'currentSoal'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'jawabanTrue'=>'', 'kelas'=>''));
-		redirect('/home');
+		redirect('/home/');
 	}
 	
 	public function solusiLatihan() {
@@ -222,6 +230,6 @@ class Latihan extends CI_Controller {
 			'dataSoalTes'	=>	$dataTemp
 		);
 
-		$this->load->view('user/solusiLatihan_view', $data);
+		$this->load->view('user/latihan_view', $data);
 	}
 }
