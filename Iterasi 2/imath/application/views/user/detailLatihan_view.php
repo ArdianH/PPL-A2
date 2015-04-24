@@ -68,34 +68,54 @@
 	?>
 </nav>
 <div class="container contents">
-	<h1 align="center">Selamat, kamu telah menyelesaikan materi <?php echo $kelas; ?> !</h1>
-		<br/>
-		<br/>
-
-		<table align="center">
-			<tr>
-				<td>Soal :</td>
-				<td><?php echo $skor/10; ?> Benar <?php echo 10-($skor/10); ?> Salah</td>			
-
-			</tr>
-			<tr>
-				<td>Waktu :</td>
-				<td><h1><?php echo floor($waktuTes/60)." menit ".($waktuTes%60)." detik"; ?></h1></td>
-			</tr>
-			<tr>
-				<td>Nilai Latihan Materi : </td>
-				<td><h1><?php echo $skor; ?> </h1></td>
-			</tr>	
-			<tr>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><a href= "<?php echo base_url()."index.php/latihan/keluarTes"; ?>" onclick="localClear()"><button class="orangeButton"> OK </button></a></td>
-				<td></td>
-			</tr>	
-		</table>
+	<div class="row">
+		<div class="container">
+		<div class="col-md-3">
+			<img src="<?php echo base_url();?>assets/images/medali.png" height="200px" width="200px";>
+		</div>
+		<div class="col-md-9">
+			<div class="resultbox">
+			Selamat, kamu telah menyelesaikan latihan materi!
+		</div>
+		</div>
 	</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default paneliMath panelResult">
+					<div class="panel-heading merah">
+						SOAL
+					</div>
+				<div class="panel-body">
+					<?php echo $skor/10; ?> Benar <?php echo 10-($skor/10); ?> Salah
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default paneliMath panelResult">
+				<div class="panel-heading hijau"><form name="cd">WAKTU </div>
+				<div class="panel-body">
+					<?php echo floor($waktuTes/60)." menit ".($waktuTes%60)." detik"; ?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default paneliMath panelResult">
+				<div class="panel-heading unguGelap">NILAI</div>
+				<div class="panel-body"><?php echo $skor; ?></h3> </div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<a href= "<?php echo base_url().'index.php/latihan/keluarTes'; ?>" onclick="localClear()" ><div class="orangeButton">OK</div></a>
+		</div>
+	</div>
+</div>
 	<footer class="footer">
 	      <div class="container">
 	        <p class="text-muted">

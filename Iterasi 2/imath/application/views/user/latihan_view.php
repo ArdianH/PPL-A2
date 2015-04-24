@@ -296,6 +296,9 @@
 					if($flagJawaban == 1) {
 						echo '<div class="result">';
 							echo '<div class="row">';
+								echo '<div class="col-md-3">';						
+									echo '</p><input class="orangeButton" type="submit" value="Lanjut" onclick="localStore()" /></p>';
+								echo '</div>';
 								echo '<div class="col-md-8">';						
 									echo "<p><div class='resultBenar'>Kerja yang baik!</div></p>";
 									echo "<details>";
@@ -310,23 +313,22 @@
 									echo 	'</table>';	
 									echo "</details>";
 								echo '</div>';
-								echo '<div class="col-md-4">';						
-									echo '</p><input class="orangeButton" type="submit" value="Lanjut" onclick="localStore()" /></p>';
-								echo '</div>';
 							echo '</div>';
 						echo '</div>';
 					} else {
 						echo '<div class="result">';
 							echo '<div class="row">';
+								echo '<div class="col-md-3">';					
+									echo "</p><input class='orangeButton' type='submit' value='Lanjut' onclick='localStore()' /></p>";
+								echo '</div>';
 								echo '<div class="col-md-8">';	
 									echo "<p><div class='resultSalah'>Ups, jawabanmu belum benar </div><p>";
 								echo '</div>';
-								echo '<div class="col-md-4">';					
-									echo "</p><input class='orangeButton' type='submit' value='Lanjut' onclick='localStore()' /></p>";
-								echo '</div>';
 							echo '</div>';
 							echo '<div class="row">';
-								echo '<div class="col-md-12">';
+								echo '<div class="col-md-4">';
+								echo '</div>';
+								echo '<div class="col-md-8">';
 								//echo "<br/>".$jawabanBenar;
 								//echo '<td> Solusi : <br/>'.$jawabanBenar.'</td>';
 								echo 'Solusi :'.$jawabanBenar.' ';
