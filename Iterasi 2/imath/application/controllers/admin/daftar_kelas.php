@@ -45,52 +45,6 @@
 		}	
 	}
 	
-	//~ public function simpanPerubahan($id){
-		//~ //$deskripsi = $this->input->post('deskripsi');
-		//~ $this->load->library('upload');
-		//~ if ( ! $this->upload->do_upload())	
-		//~ {
-		//~ //echo "haha";
-			//~ //$this->load->model('kelas_model');
-			//~ $data = array('upload_data' => $this->upload->data());           
-			//~ // load images model
-			
-			//~ $upload = $data['upload_data'];
-				
-			//~ $img_name = $upload['file_name'];
-
-			//~ $this->load->model('kelas_model');
-			//~ $data = array(							
-					//~ 'deskripsi' => $this->input->post('deskripsi'),
-					//~ 'gambar' => $img_name
-			//~ );
-			//~ echo $img_name;
-			//~ $this->kelas_model->update($data, $id);
-			//~ redirect('admin/daftar_kelas', 'refresh');
-		
-		//~ }
-		//~ else
-		//~ {
-			//~ $data = array('upload_data' => $this->upload->data());           
-			//~ // load images model
-			
-			//~ $upload = $data['upload_data'];
-				
-			//~ $img_name = $upload['file_name'];
-
-			//~ $this->load->model('kelas_model');
-			//~ $data = array(							
-					//~ 'deskripsi' => $this->input->post('deskripsi'),
-					//~ 'gambar' => $img_name
-			//~ );
-			
-			//~ //$this->kelas_model->update('kelas', $data);
-			//~ //redirect('admin/daftar_kelas', 'refresh');
-			//~ $this->kelas_model->update($data, $id);
-			//~ redirect('admin/daftar_kelas', 'refresh');
-
-		//~ }
-	//~ }
 	
 	public function simpanPerubahan($id){
 		
@@ -114,12 +68,14 @@
 			$img_name = $upload['file_name'];
 
 			$this->load->model('kelas_model');
+			$sukses = "kelas berhasil diubah";
 			$data = array(
 				'deskripsi' => $this->input->post('deskripsi'),
 				'gambar' => $img_name
 			);		
 
 			$this->kelas_model->update($data, $id);
+			echo "<script type='text/javascript'>alert('$sukses');</script>";
 			redirect('admin/daftar_kelas', 'refresh');
 		}
 	}
