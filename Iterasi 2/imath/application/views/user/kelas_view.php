@@ -76,13 +76,13 @@
       			<div class="col-md-8 white2">				
       				<h2 class="userDashboard">Kelas <?php $idKelas=$kelas[0]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2);?></h2>
 				<?php echo $kelas[0]->deskripsi ?><br>
-				<?php if($this->session->userdata('loggedin')) { ?>
+				<?php if($this->session->userdata('loggedin') && isset($result[0])): ?>
 				<div class="right">	
-					<!-- Pilih Button-->					
+					<!-- Pilih Button-->
 					<a href="<?php echo base_url() ?>tes/retrieveSoal/<?php echo $result[0]->idKelas ?>">
 					<button class="orangeButton" type="submit">Lakukan Tes</button></a>					
 				</div>
-				<?php } ?>
+				<?php endif; ?>
       			</div>
       		</div>
     	</div> 
@@ -91,7 +91,7 @@
 	<?php foreach($all as $row):?>
 		<?php 				
 			$idKelas = $row->idKelas;
-			if($idKelas == $result[0]->idKelas)
+			if(isset($result[0]) && ($idKelas == ($result[0]->idKelas)))
 			{
 				echo '<button class="circleGreen buttonDelete">';
 				echo substr($idKelas,4,5);
@@ -110,7 +110,10 @@
 		?>		
 	<?php endforeach ?>
 	</div>
-	<?php foreach($result as $row):?>	
+	<?php 
+	if(count($result) > 0):
+	foreach($result as $row):
+	?>	
 	<div class="col-md-3 kelasMateri">
 		<div class="row">
 			<p><img src="<?php echo base_url();?>uploads/<?php echo $row->gambar ?>" height="175" width="175"></p>
@@ -135,7 +138,13 @@
 		</div>
 	</div>
 
-        <?php endforeach; ?>	
+        <?php 
+		endforeach;
+		else: ?>
+		Materi belum Tersedia :(
+		<?php
+		endif;
+		?>	
 </div>
 
 		
