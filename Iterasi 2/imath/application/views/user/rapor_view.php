@@ -194,7 +194,7 @@
       			<div class="col-md-8 white2">
       				<h1 class="tBelajar"> Rapor </h1><br><br>
 				<div class="right">
-					<a href=" <?php echo base_url();?>index.php/daftar_kelas/reset"><button type = "submit" class="orangeButton"> Reset</button></a>   
+					<a href=" <?php echo base_url();?>index.php/rapor/hapusHistory/"><button type = "submit" class="orangeButton"> Reset</button></a>   
 				</div>
       			</div>
       		</div>
@@ -208,10 +208,44 @@
 	?>
 	<div class="container contents">
 			<!--<button type="submit" onclick="return confirmDelete('<?php echo base_url() ?>index.php/rapor/hapusHistory/');">Reset</button>-->
-		<form method="GET" action="" >
-		<?php foreach($kelas_model as $row):?>			
-		<span class="rapor"><a href="<?php echo base_url() ?>index.php/rapor/view/<?php echo $row->idKelas?>"> <?php echo $row->idKelas ?></a></span>
-		<?php endforeach?>
+		<form method="GET" action="" >	
+		
+		Kelas	
+		<?php foreach($kelas_model as $row):?>
+
+			<a href="<?php echo base_url() ?>index.php/rapor/view/<?php echo $row->idKelas?>"> 
+			
+				<?php 				
+					$url = $_SERVER['REQUEST_URI'];
+					$arr = explode("/",$url);
+					$length = count($arr);
+					$id = $arr[$length - 1];
+					
+					$idKelas = $row->idKelas;
+					if($idKelas == $id)
+					{
+						echo '<button type="button" class="circleGreen buttonDelete">';
+						echo substr($idKelas,4,5);
+						echo '</button>';
+					}
+					else
+					{
+						echo '<button type="button" class="circle buttonDelete">';
+						echo substr($idKelas,4,5);
+						echo '</button>';
+					}
+					
+				?>
+			</a>
+
+			
+			
+			
+			
+		<?php endforeach ?>
+		
+		
+		
 		<input id="pilihkelas" type="hidden" name="idKelas" value="<?php 
 			$url=current_url();
 
@@ -219,12 +253,13 @@
 			$length = count($arr);
 			echo $arr[$length - 1];			
 		?>">
-	<br>
+	<br><br><br>
+		Materi
 		<select name ="idMateri" id="pilihmateri" onchange="showAlertBox()">
 		<?php foreach($result as $row):?>			
 		<option value="<?php echo $row->idMateri; ?>" ><?php echo $row->nama ?></option>
 		<?php endforeach?>
-		<option value="all" >Semua</option>
+		<option value="all" >TES</option>
 		</select>
 	
 	<br>			
