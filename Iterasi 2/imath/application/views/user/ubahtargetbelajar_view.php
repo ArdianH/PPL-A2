@@ -26,6 +26,17 @@
 	       $('#pilihkelas').change();
 	     });
 	</script>
+	<script>
+		function showTargetWaktu()
+		{			
+			document.getElementById("waktu").innerHTML = '<input name="menit" type="number" min="0" max="60"> menit <input name="detik" type="number" min="0" max="59"> detik';
+		}
+		
+		function hideTargetWaktu()
+		{						
+			document.getElementById("waktu").innerHTML = '<input name="menit" type="hidden" value="0"> <input name="detik" type="hidden" value="0">';
+		}
+	</script>
     </head>
     <body>
 
@@ -103,50 +114,72 @@
 	<div class="ungu fontt">
 	<form id="ubahtargetbelajar" method="POST" action="<?php echo base_url()?>index.php/target_belajar/simpanPerubahan/<?php echo $id?>" 
 		onsubmit="return confirm('Kamu yakin ingin mengubah target belajar ini?');">
-	<div class="row">
-		<div class="col-md-3">
-		Kelas
-		</div>
-		<div class="col-md-9">
-			<select name = "kelas" id = "pilihkelas" onchange="showMateri(this.value)">
-			<?php foreach($kelas as $row):?>			
-				<option value="<?php echo $row->idKelas?>" name ="idkelas" <?php $idKelas=$row->idKelas; $kelasSelected = $result[0]->idKelas; if ($idKelas == $kelasSelected) echo "selected";?>><?php echo $row->idKelas ?> </option>		
-			<?php endforeach?>		
-			</select>
-		</div>
-	</div>	
-	<div class="row">
-		<div class="col-md-3">
-			Materi
-		</div>
-		<div class="col-md-9">
-			<select id="pilihmateri" name ="idmateri">
-		</select>
-		</div>
-	</div>	
-	<div class="row">
-		<div class="col-md-3">
-			Banyak Soal
-		</div>
-		<div class="col-md-9">
-			<input min="1" max="100" type="number" name ="banyaksoal"  value="<?php echo $result[0]->banyakSoal ;?>">
-		</div>
-	</div>	
-	<div class="row">
-		<div class="col-md-3">
-			Nilai
-		</div>
-		<div class="col-md-9">
-			<select id = "pilihkelas" name ="targetnilai">
-			<option value="100" <?php $targetnilai=$result[0]->targetNilai; if ($targetnilai ==100) echo "selected"?>>100</option>
-			<option value="90" <?php $targetnilai=$result[0]->targetNilai; if ($targetnilai ==90) echo "selected"?>>90</option>
-			<option value="80" <?php $targetnilai=$result[0]->targetNilai; if ($targetnilai ==80) echo "selected"?>>80</option>		
-			<option value="70" <?php $targetnilai=$result[0]->targetNilai; if ($targetnilai ==70) echo "selected"?>>70</option>		
-		</select>	
-		</div>
+		<div class="row">
+			<div class="col-md-3">
+			Kelas
+			</div>
+			<div class="col-md-9">
+				<select name = "kelas" id = "pilihkelas" onchange="showMateri(this.value)">
+				<?php foreach($kelas as $row):?>			
+					<option value="<?php echo $row->idKelas?>" name ="idkelas" <?php $idKelas=$row->idKelas; $kelasSelected = $result[0]->idKelas; if ($idKelas == $kelasSelected) echo "selected";?>><?php echo $row->idKelas ?> </option>		
+				<?php endforeach?>		
+				</select>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-3">Materi	</div>
+			<div class="col-md-9">
+				<select id="pilihmateri" name ="idmateri">	</select>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-3">
+				Banyak Soal
+			</div>
+			<div class="col-md-9">
+				<input min="1" max="100" type="number" name ="banyaksoal"  value="<?php echo $result[0]->banyakSoal ;?>">
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-3">
+				Nilai
+			</div>
+			<div class="col-md-9">
+				<select id = "pilihkelas" name ="targetnilai">
+				<option value="100" <?php $targetnilai=$result[0]->targetNilai; if ($targetnilai ==100) echo "selected"?>>100</option>
+				<option value="90" <?php $targetnilai=$result[0]->targetNilai; if ($targetnilai ==90) echo "selected"?>>90</option>
+				<option value="80" <?php $targetnilai=$result[0]->targetNilai; if ($targetnilai ==80) echo "selected"?>>80</option>		
+				<option value="70" <?php $targetnilai=$result[0]->targetNilai; if ($targetnilai ==70) echo "selected"?>>70</option>		
+			</select>	
+			</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">Target Waktu </div>
+					<div class="col-md-9">
+						<?php $targetwaktu=$result[0]->targetWaktu; ?>						
+						<input type="radio" name="targetWaktu" value="ya" onclick="showTargetWaktu()" <?php if ($targetwaktu >0) echo 'checked = "checked"';?>>Ya<br>
+												
+						<input type="radio" name="targetWaktu" value="tidak" onclick="hideTargetWaktu()" <?php if ($targetwaktu == 0) echo 'checked = "checked"';?>>Tidak					
+					<div id="waktu">
+					<?php if ($targetwaktu >0)
+					{
+						$menit = $targetwaktu/60;			
+						$floorMenit = floor($menit);
+						$detik = $targetwaktu - ($floorMenit * 60);
+						echo '<input name="menit" type="number" min="0" max="60"';
+						if($floorMenit > 0)
+							echo 'value="'.$floorMenit.'"> menit';
+						echo '<input name="detik" type="number" min="0" max="59"';
+						if($detik > 0)
+							 echo 'value="'.$detik.'"> detik';
+					}
+					?>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	</div>
+	
 		<button class="blueButton" type="submit">Ubah</button>
 		<a href="<?php echo base_url()?>index.php/target_belajar"><button type="button" class="redButton">Batal</button></a></form>
 </div>	

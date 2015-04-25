@@ -7,7 +7,7 @@
 		function pindah(idKelas)
 		{			
 			var getUrl = window.location;
-			var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];			
+			var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 			window.location = baseUrl + '/kelas/pilih/' + idKelas;			
 		}
 	</script>
@@ -91,14 +91,18 @@
 	<?php foreach($all as $row):?>
 		<?php 				
 			$idKelas = $row->idKelas;
-			if(isset($result[0]) && ($idKelas == ($result[0]->idKelas)))
+			$url = $_SERVER['REQUEST_URI'];
+			$arr = explode("/", $url);
+			$kelas = $arr[count($arr) - 1];
+			//echo $kelas;
+			if($idKelas == $kelas)
 			{
 				echo '<button class="circleGreen buttonDelete">';
 				echo substr($idKelas,4,5);
 				echo '</button>';
 			}
 			else
-			{
+			{				
 				echo '<button class="circle buttonDelete" onclick="pindah(';
 				echo "'";
 				echo $idKelas;
@@ -141,7 +145,11 @@
         <?php 
 		endforeach;
 		else: ?>
-		Materi belum Tersedia :(
+		<br>
+		<h2 class="weight" id="tulisanBiru">Materi belum tersedia :(</h2>
+		<br>
+		<br>
+		<br>
 		<?php
 		endif;
 		?>	

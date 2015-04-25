@@ -124,12 +124,9 @@
 			$detik = $totalDalamDetik - ($floorMenit * 60);
 			echo 'dalam waktu ';
 			if($floorMenit > 0)
-				echo $floorMenit.' menit ';
-			else
-			{
-				if($detik > 0)
-					echo $detik.' detik';
-			}
+				echo $floorMenit.' menit ';			
+			if($detik > 0)
+				echo $detik.' detik';			
 		}
 	 ?>
 	 (Dibuat: <?php echo $result[$i]->tanggal ?>)

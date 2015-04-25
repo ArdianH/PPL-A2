@@ -6,9 +6,9 @@ class targetbelajar_model extends CI_Model {
 		parent::__construct();
 	}
 	
-	function get($id){
+	function get($idTargetBelajar){
 	    	$this->load->database();	    			
-		return $this->db->get_where('target_belajar', array('idTargetBelajar' => $id))->result();
+		return $this->db->get_where('target_belajar', array('idTargetBelajar' => $idTargetBelajar))->result();
 	}
 	
 	//=====================================================
@@ -45,17 +45,7 @@ class targetbelajar_model extends CI_Model {
 	function deleteByMateri($idMateri){
 		$this->load->database();		
 		$this->db->delete('target_belajar', array('idMateri' => $idMateri));
-	}
-	
-	function insertTargetBelajar(){
-		$this->load->database();		
-		$id = $_POST['id'];
-		$username = $_POST['username'];
-		$kelas = $_POST['kelas'];
-		$materi = $_POST['materi'];
-		$nilai = $_POST['nilai'];		
-		$this->db->query("insert into target_belajar (idTargetBelajar, username, idkelas, idmateri, targetnilai) values('$id', '$username','$kelas', '$materi', 'nilai')");		
-	}
+	}	
 	
 	function add($data){
 		$this->db->insert('target_belajar', $data);
