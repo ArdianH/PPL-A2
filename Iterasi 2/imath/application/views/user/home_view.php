@@ -102,7 +102,7 @@
 			<div class="col-md-3"><a class="footerColor" href="#"><p>BANTUAN</p></a></div>           
 	        </div>
 	        <div class="row">
-	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>
+	          <div class="col-md-12"><p class="footerColor">Copyright(c) 2015</p></div>
 	        </div>
 	        </p>
 	      </div>

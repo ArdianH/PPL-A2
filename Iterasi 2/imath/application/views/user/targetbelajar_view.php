@@ -64,9 +64,9 @@
 	<?php 
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {
-		echo '<div class="row">';
-		echo '<div class="container" id="iconbar">';
-		echo '<div class="row">';
+		
+        echo '<div class="container" id="iconbar">';
+        
 		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
@@ -81,8 +81,7 @@
 		}
 		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
 		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
-		echo '</div>';
-		echo '</div>';
+		
 		echo '</div>';
 	}
 	?>
@@ -167,7 +166,19 @@
 			 <?php echo $history[$i]->idMateri?> 
 			 kelas <?php $idKelas = $history[$i]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2)?> 
 			 dengan target nilai <?php echo $history[$i]->targetNilai?>
-			 <?php 			 
+			  <?php 
+				if(!is_null($history[$i] ->targetWaktu)) //target waktunya ada
+				{
+					$totalDalamDetik = $history[$i] ->targetWaktu;
+					$menit = $totalDalamDetik/60;			
+					$floorMenit = floor($menit);
+					$detik = $totalDalamDetik - ($floorMenit * 60);
+					echo 'dalam waktu ';
+					if($floorMenit > 0)
+						echo $floorMenit.' menit ';			
+					if($detik > 0)
+						echo $detik.' detik';			
+				}
 			 ?>
 			 (Dibuat: <?php echo $history[$i]->tanggal ?>)
 			</br></br>
@@ -178,13 +189,13 @@
 	      <div class="container">
 	        <p class="text-muted">
 	          <div class="row">
-	          <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
-	          <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
-	          <div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-	          <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
+			<div class="col-md-3"><a class="footerColor" href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="#"><p>TENTANG KAMI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="#"><p>HUBUNGI KAMI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="#"><p>BANTUAN</p></a></div>           
 	        </div>
 	        <div class="row">
-	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>
+	          <div class="col-md-12"><p class="footerColor">Copyright(c) 2015</p></div>
 	        </div>
 	        </p>
 	      </div>

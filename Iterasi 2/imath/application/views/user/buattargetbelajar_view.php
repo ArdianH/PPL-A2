@@ -40,15 +40,6 @@
     </head>
 	
     <body>
-<!-- Navigation Bar iMath -->
-    	<nav class="navbar navbar-default navbar-static-top">
-	      <div class="container" id="navbar">
-	        <div class="navbar-header" id="logobar">
-	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	          <span class="sr-only">Toggle navigation</span>
-	        </button>
-	        <a class="navbar-brand" href="<?php echo base_url();?>index.php"><img src="<?php echo base_url();?>assets/images/logo.png" height="42px" width="120px";></a>
-	      </div>
 <!-- Navbar Atas -->
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -66,7 +57,7 @@
 				?>	</li>
           </ul>
         </div><!--/.nav-collapse -->
-      </div>      	
+      </div>      
 	<?php 
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {

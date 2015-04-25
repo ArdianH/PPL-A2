@@ -341,13 +341,13 @@ Modified by: Ardian*/
         <div class="container">
           <p class="text-muted">
             <div class="row">
-            <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
-            <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
-            <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
-            <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
+            <div class="col-md-3"><a class="footerColor" href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="#"><p>TENTANG KAMI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="#"><p>HUBUNGI KAMI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="#"><p>BANTUAN</p></a></div>           
           </div>
           <div class="row">
-            <div class="col-md-12"><p>Copyright(c) 2015</p></div>
+            <div class="col-md-12"><p class="footerColor">Copyright(c) 2015</p></div>
           </div>
           </p>
         </div>

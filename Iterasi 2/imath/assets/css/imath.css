@@ -20,8 +20,8 @@ p{
 	width:100%;	
 	margin-top:10px;
 	margin-bottom:0px;	
-	padding-top:10px;
-	padding-bottom:10px;
+	padding-top:15px;
+	padding-bottom:15px;
 }
 
 .footer {
@@ -30,10 +30,16 @@ p{
   /* Set the fixed height of the footer here */
   height: 140px;
   background-color: #b5ff54;  
+  padding-top:30px;
 }
 
 a.footerColor{
 	color:#002401;
+}
+
+a.footerColor:hover{
+	color:#002401;
+	font-weight:bold;
 }
 
 .buttonDelete{
