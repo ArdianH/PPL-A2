@@ -73,7 +73,7 @@
 		echo '<div class="row">';
         echo '<div class="container" id="iconbar">';
         echo '<div class="row">';
-        echo '<div class="col-md-2"></div>';
+		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
@@ -100,12 +100,16 @@
       				<img src="<?php echo base_url();?>assets/images/clock.png" height="200" width="200">
       			</div>
       			<div class="col-md-8 white2">
-      				<h2 class="userDashboard">Buat Target Belajar Baru</h2><br><br>				
+      				<h2 class="userDashboard">Buat Target Belajar Baru</h2><br>
+				<form method="POST" action="create"> 
+				<div class="right">
+					<button class="blueButton" type="submit">Buat</button>
+					<a href="<?php echo base_url()?>index.php/target_belajar"><button type="button" class="redButton">Batal</button></a>
+				</div>
       			</div>
       		</div>
     	</div> 
- 	
-	<form method="POST" action="create"> 
+ 		
 		<div class="ungu fontt">
 			<div class="row">
 				<div class="col-md-3">Kelas </div>
@@ -151,8 +155,7 @@
 				</div>
 			</div>
 
-		</div>
-		<button class="blueButton" type="submit">Submit</button>
+		</div>		
 	</form>
 	
 </div>

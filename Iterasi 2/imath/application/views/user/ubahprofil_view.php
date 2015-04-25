@@ -52,7 +52,7 @@
 		echo '<div class="row">';
         echo '<div class="container" id="iconbar">';
         echo '<div class="row">';
-        echo '<div class="col-md-2"></div>';
+		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">RAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
@@ -89,10 +89,11 @@
 				?>
       			</div>
       			<div class="col-md-8 white2">
-      				<h2 class="userDashboard">Ubah Profil</h2><br><br>				
+      				<h2 class="userDashboard">Ubah Profil</h2><br><br>		
 				<form method="POST" action="<?php echo base_url()?>index.php/profil/simpanPerubahan" onsubmit="return checkForm(this)" class="formimath">
-				<div class="right">
-					<input type="submit" value="Simpan" class="orangeButton"/>
+				<div class="right">					
+					<input type="submit" value="Simpan" class="blueButton"/>
+					<a href="<?php echo base_url()?>index.php/profil"><button type="button" class="redButton">Batal</button></a>
 				</div>
       			</div>			
       		</div>
@@ -127,7 +128,7 @@
 			<div class="col-md-3">Gender:</div>
 			<div class="col-md-9"><?php echo $result[0]->gender;?></div>					
 	</div>
-	</form>
+	</form>	
 	
 	</div>
 	</div>

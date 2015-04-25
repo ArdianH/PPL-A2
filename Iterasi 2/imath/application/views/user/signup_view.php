@@ -61,7 +61,7 @@
 		<div class="row">				
 			<p><input class="orangeButton" type="submit" name="submit" value="DAFTAR"/></p>
 		</div>
-		<p class="weight">
+		<p id="tulisanBiru" class="weight">
 			<?php echo $this->session->flashdata('messageSignup'); ?>
 		</p>
 	</form>	

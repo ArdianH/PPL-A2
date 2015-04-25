@@ -41,7 +41,7 @@
 		echo '<div class="row">';
 		echo '<div class="container" id="iconbar">';
 		echo '<div class="row">';
-		echo '<div class="col-md-2"></div>';
+		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
@@ -88,7 +88,8 @@
     	</div> 
 	 
 	<div class="container">    
-		<div class="profil">	
+		<div class="profil">
+			<p id="tulisanBiru" class="weight"><?php echo $this->session->flashdata('message'); ?></p>
 			<div class="row">
 				<div class="col-md-3">	Nama Panggilan: </div>
 				<div class="col-md-9"> <?php echo $row->namaPanggilan?> </div>

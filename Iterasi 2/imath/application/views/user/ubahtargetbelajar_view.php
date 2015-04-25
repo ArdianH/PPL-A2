@@ -73,7 +73,7 @@
 		echo '<div class="row">';
         echo '<div class="container" id="iconbar">';
         echo '<div class="row">';
-        echo '<div class="col-md-2"></div>';
+		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">RAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
@@ -103,17 +103,21 @@
       				<img src="<?php echo base_url();?>assets/images/clock.png" height="200" width="200">
       			</div>
       			<div class="col-md-8 white2">
-      				<h2 class="userDashboard"> Ubah Target Belajar </h2>
-				<?php $id=$result[0]->idTargetBelajar;  ?>	
+      				<h2 class="userDashboard"> Ubah Target Belajar </h2><br><br>
+				<?php $id=$result[0]->idTargetBelajar;  ?>
+				<div class="right">
+						<form id="ubahtargetbelajar" method="POST" action="<?php echo base_url()?>index.php/target_belajar/simpanPerubahan/<?php echo $id?>" 
+						onsubmit="return confirm('Kamu yakin ingin mengubah target belajar ini?');">
+					<button class="blueButton" type="submit">Simpan</button>
+					<a href="<?php echo base_url()?>index.php/target_belajar"><button type="button" class="redButton">Batal</button></a>
+				</div>
       			</div>
       		</div>
     	</div> 
 	
 	
 <div class="container formiMath">    
-	<div class="ungu fontt">
-	<form id="ubahtargetbelajar" method="POST" action="<?php echo base_url()?>index.php/target_belajar/simpanPerubahan/<?php echo $id?>" 
-		onsubmit="return confirm('Kamu yakin ingin mengubah target belajar ini?');">
+	<div class="ungu fontt">	
 		<div class="row">
 			<div class="col-md-3">
 			Kelas
@@ -180,8 +184,7 @@
 		</div>
 	</div>
 	
-		<button class="blueButton" type="submit">Ubah</button>
-		<a href="<?php echo base_url()?>index.php/target_belajar"><button type="button" class="redButton">Batal</button></a></form>
+	</form>
 </div>	
 
        <footer class="footer">

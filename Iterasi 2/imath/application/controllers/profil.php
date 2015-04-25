@@ -35,6 +35,7 @@
 			);
 			$username = $this->session->userdata('username'); //sudah diganti			
 			$this->anggota_model->update($data, $username);
+			$this->session->set_flashdata('message',"Perubahan profil telah disimpan");
 			redirect('profil', 'refresh');
 		} 
 		else {

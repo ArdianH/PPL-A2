@@ -154,7 +154,7 @@ Modified by: Ardian*/
 		echo '<div class="row">';
         echo '<div class="container" id="iconbar">';
         echo '<div class="row">';
-        echo '<div class="col-md-2"></div>';
+		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">RAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
@@ -189,7 +189,7 @@ Modified by: Ardian*/
 							<h3>SOAL</h3>
 					
 						</div>
-						<div class="panel-body">
+						<div class="panel-body abu">
 							<?php
 								echo "<h3>".$nomor."</h3>";
 							 ?>
@@ -201,7 +201,7 @@ Modified by: Ardian*/
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
 						<div class="panel-heading hijau"><form name="cd"><h3>WAKTU</h3> </div>
-						<div class="panel-body">
+						<div class="panel-body abu">
 							<input id="Time" class="waktuBox" readonly="true" type="text" value="00:00" border="0" name="disp">
 							</form>
 							<span id="minute"></span>
@@ -214,7 +214,7 @@ Modified by: Ardian*/
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
 						<div class="panel-heading unguGelap"><h3>NILAI</h3></div>
-						<div class="panel-body"><h3><?php echo $skor; ?> </h3> </div>
+						<div class="panel-body abu"><h3><?php echo $skor; ?> </h3> </div>
 					</div>
 				</div>
 			</div>

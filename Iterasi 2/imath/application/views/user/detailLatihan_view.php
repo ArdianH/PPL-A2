@@ -47,7 +47,7 @@
 		echo '<div class="row">';
         echo '<div class="container" id="iconbar">';
         echo '<div class="row">';
-        echo '<div class="col-md-2"></div>';
+		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
@@ -86,8 +86,8 @@
 					<div class="panel-heading merah">
 						SOAL
 					</div>
-				<div class="panel-body">
-					<?php echo $skor/10; ?> Benar <?php echo 10-($skor/10); ?> Salah
+				<div class="panel-body abu">
+					<?php echo $skor/10; ?> Benar <?php echo 10-($skor/10); ?> Salah					
 				</div>
 			</div>
 		</div>
@@ -96,8 +96,13 @@
 		<div class="col-md-12">
 			<div class="panel panel-default paneliMath panelResult">
 				<div class="panel-heading hijau"><form name="cd">WAKTU </div>
-				<div class="panel-body">
-					<?php echo floor($waktuTes/60)." menit ".($waktuTes%60)." detik"; ?>
+				<div class="panel-body abu">
+					<?php 
+						if(floor($waktuTes/60) > 0)
+							echo floor($waktuTes/60)." menit ";
+						if (($waktuTes%60) > 0)
+							echo ($waktuTes%60)." detik"; 
+					?>		
 				</div>
 			</div>
 		</div>
@@ -106,7 +111,7 @@
 		<div class="col-md-12">
 			<div class="panel panel-default paneliMath panelResult">
 				<div class="panel-heading unguGelap">NILAI</div>
-				<div class="panel-body"><?php echo $skor; ?></h3> </div>
+				<div class="panel-body abu"><?php echo $skor; ?></h3> </div>
 			</div>
 		</div>
 	</div>

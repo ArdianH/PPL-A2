@@ -29,7 +29,7 @@
       </div>
     <!-- Navbar Atas -->
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url();?>index.php/profil">PROFIL ADMIN</a></li>
+      <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo base_url();?>index.php/admin/dashboard">DASHBOARD</a></li>
         <li><a href="<?php echo base_url();?>index.php/home">BERANDA IMATH</a></li>
         <li><a href="<?php echo base_url();?>index.php/autentikasi/logout">LOG OUT</a></li>
