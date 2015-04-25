@@ -66,13 +66,13 @@
 				?>	</li>
           </ul>
         </div><!--/.nav-collapse -->
-      </div>      
+      </div>      	
 	<?php 
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {
-		echo '<div class="row">';
+		
         echo '<div class="container" id="iconbar">';
-        echo '<div class="row">';
+        
 		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
@@ -87,8 +87,7 @@
 		}
 		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
 		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
-		echo '</div>';
-		echo '</div>';
+		
 		echo '</div>';
 	}
 	?>
@@ -113,31 +112,31 @@
 		<div class="ungu fontt">
 			<div class="row">
 				<div class="col-md-3">Kelas </div>
-				<div class="col-md-9">
-					<select id = "pilihkelas" name ="idkelas">
+				<div class="col-md-9">					
+					<select class="noBorder tb" id = "pilihkelas" name ="idkelas">
 					<?php foreach($kelas as $row):?>			
 					<option value="<?php echo $row->idKelas?>"><?php echo $row->idKelas ?> </option>
 					<?php endforeach?>
-					</select>
+					</select>					
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-3">Materi</div>
 				<div class="col-md-9">
-					<select id="pilihmateri" name ="idmateri">
+					<select class="noBorder tb" id="pilihmateri" name ="idmateri">
 					</select>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-3">Banyak Soal</div>
 				<div class="col-md-9">
-					<input required type="number" name ="banyaksoal" min="1" max="100"></p>
+					<input class="noBorder tb" required type="number" name ="banyaksoal" min="1" max="100"></p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-3">Nilai </div>
 				<div class="col-md-9">
-					<select id = "pilihkelas" name ="targetnilai">
+					<select class="noBorder tb" id = "pilihkelas" name ="targetnilai">
 					<option value="100">100</option>
 					<option value="90">90</option>
 					<option value="80">80</option>		

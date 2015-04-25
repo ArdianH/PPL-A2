@@ -1,52 +1,6 @@
 <html>
     <head>        
-	<title>Prestasi - iMath</title>
-	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script>
-	function showMedali(idKelas, username)
-	{
-		//alert("Hai" + username);
-		fetch(idKelas, username);
-	}
-	</script>
-	<script>
-	
-	       function fetch(idKelas, username) {	       
-			var getUrl = window.location;
-			var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
-			var location = baseUrl + "/index.php/target_belajar/materi/" + idKelas;			
-			var location2 = baseUrl + "/index.php/prestasi/materi/" + username;	
-			//alert("Hi" + location2);
-			//var linkJSON = $(location).attr('href',toController);
-			var i = 0;
-			var temp = [];
-			$.getJSON(location2, function(arrayMateri) {
-			//	alert("halo");				
-				arrayMateri.forEach(function (medali) {
-					 temp[i] = medali.idMateri;
-					 i = i + 1;
-				});
-			});
-			
-			var j = 0;
-			$.getJSON(location, function(arrayMateri) {				
-				var content = '<div><h1>Kelas '+idKelas + '</h1></div><br><br>';
-				arrayMateri.forEach(function (materi) {
-					for(var j = 0; j < temp.length; j++)
-					{
-						if(temp[j] == materi.idMateri)
-						{	
-							var div ='<div class="col-md-3">';
-							 var myString = '<span class="weight">' + materi.nama + '</span><img src="' + baseUrl + '/assets/images/medali.png" height="200" width="200"><br></div>';
-							 content += div + myString;
-						}
-					}
-				});
-				$('#materi').html(content);
-			});
-	       }
-	     
-	</script>	
+	<title>Prestasi - iMath</title>		
 	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     </head>
@@ -120,21 +74,25 @@
 	<button class="orangeButton">Medali</button>
 	<a href="<?php echo base_url()?>prestasi/sertifikat"><button class="orangeButton">Sertifikat</button></a>
 	<br><br>
+	
 	<span id="kelas">Kelas</span>
 	<?php foreach($kelas as $row):?>
 		<?php 				
 				$idKelas = $row->idKelas;
 		?>
-		<button class="circle buttonDelete" onclick="showMedali('<?php echo $idKelas;?>', '<?php echo $this->session->userdata('username')?>')">
+		<a href="<?php echo base_url() ?>prestasi/medali/<?php echo $row->idKelas?>"><button class="circle buttonDelete">
 			<?php 				
 				echo substr($idKelas,4,5);
 			?>
-		</button>
-	<?php endforeach ?>
-	<div>			
-	<br><br>
-	</div>	
-	<span id="materi"></span>	
+		</button></a>
+	<?php endforeach ?><br>
+	
+	<?php foreach($medali as $row):
+		echo $row -> nama;
+		echo '<img src="'.base_url().'assets/images/medali.png" height="200" width="200">';			
+	endforeach ?>
+	
+	
 </div>
     	<footer class="footer">
 	      <div class="container">

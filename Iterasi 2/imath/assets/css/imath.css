@@ -1,6 +1,6 @@
 body{
 	font-family: "Century Gothic", "Verdana", "Arial", sans-serif;
-	background-color: #E7E7E7;
+	background-color: #E7E7E7;	
 	font-size:12pt;
 }
 
@@ -11,6 +11,17 @@ p{
 
 .navbar-static-top {
   margin-bottom: 19px;
+  background-color:white;    
+}
+
+#iconbar{
+	background-color:#f3f3f3;
+	padding-left:100px;
+	width:100%;	
+	margin-top:10px;
+	margin-bottom:0px;	
+	padding-top:10px;
+	padding-bottom:10px;
 }
 
 .footer {
@@ -18,7 +29,11 @@ p{
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 140px;
-  background-color: #b5ff54;
+  background-color: #b5ff54;  
+}
+
+a.footerColor{
+	color:#002401;
 }
 
 .buttonDelete{
@@ -52,8 +67,6 @@ p{
 	background-color: #FFFFFF;
 }
 .loginbg{
-	background-image: url('../images/biru.jpg');
-	background-size: 100% 100%;
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 20px;
@@ -62,6 +75,14 @@ p{
 	font:bold;
 	text-align: center;
 	
+}
+
+.imgLogin{	
+	z-index:-1;
+	position:fixed;
+	width: 100%;	
+	top:0px;
+	left:0px;	
 }
 
 .jumbotron {
@@ -75,16 +96,16 @@ p{
 
 .navbar-header{
 	font-size:16px;
-	background-color: #FAFAFA;
+	background-color: #white;
 }
 
 .nav{
 	font-size:16px;
-	background-color: #FAFAFA;
+	background-color: #white;	
 }
 .navbar{
 	font-size:16px;
-	background-color: #FAFAFA;
+	background-color: #white;	
 }
 
 .tableimath{
@@ -104,12 +125,16 @@ th{
 	font-size: 16px;
 	margin-left:20px;	
 }
-
+.noBorder
+{
+	border:none;
+}
 .form-signin
 {
     max-width: 500px;
     padding: 15px;
     margin: 0 auto;
+	border:none;
 }
 .form-signin .form-signin-heading,
 {
@@ -175,12 +200,25 @@ th{
 	padding-bottom:10px;
 }
 
+.form-control::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #ffaf25;
+}
+.form-control:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #ffaf25;   
+}
+.form-control::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #ffaf25;   
+}
+.form-control:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #ffaf25;
+}
+
 
 /*============================= BUTTON ===========================*/
 .loginButton {
 	font-size: 16pt;
 	background-color: #fff38d;
-	padding: 5px 80px;
+	padding: 5px;
 	display: inline-block;
 	margin: 2px;
 	text-transform: uppercase;
@@ -193,6 +231,7 @@ th{
 	transition: all 0.3s;
 	border: 3px solid #fff38d;
 	color: #6b4700;
+	width:100%;
 }
 
 .loginButton:after {
@@ -290,6 +329,15 @@ h3.rapor{
 
 
 /*=============== TARGET BELAJAR ================*/
+.tb{
+	width:500px;
+	height:35px;
+	padding-left:10px;
+}
+select.tb{
+	width:500px;
+}
+
 .dashboardUser {
 	background-image: url("../images/Bulatbulat.png");
 	background-size: cover;}
@@ -659,6 +707,11 @@ a:hover{
 
 a.anggotaLogin{
 	color:#2675c4;
+	font-weight:bold;
+}
+
+a.anggotaLogin:hover{
+	color:#00356c;
 }
 
 /*=====Kelas===*/
@@ -697,6 +750,36 @@ a.anggotaLogin{
 	color:#1947A3;
 }
 
-.navigationB{
-	margin-left:40px;
+/**================================= HUBUNGI KAMI CSS==================================== */
+.contentsHubungiKami {
+	background:none;
+	margin-top:0px;
+	text-align: center;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 50px;
+	min-height:450px;
+}
+
+input.hubungi {
+	position: relative;	
+	padding:10px;
+	width: 420px;
+	height: auto;
+}
+
+textarea.hubungi {
+	position: relative;	
+	padding:10px;
+	width: 100%;
+	height: 150px;
+}
+
+.textright{
+	text-align:right;	
+}
+
+.textungu{
+	color:#7d0090;
 }

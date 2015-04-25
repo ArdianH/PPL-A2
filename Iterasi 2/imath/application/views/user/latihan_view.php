@@ -191,7 +191,7 @@
 					
 						<div class="panel-heading merah">
 							
-							<h3>SOAL</h3>
+							<h3 class="weight">SOAL</h3>
 					
 						</div>
 						<div class="panel-body abu">
@@ -205,7 +205,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
-						<div class="panel-heading hijau"><form name="cd"><h3>WAKTU</h3> </div>
+						<div class="panel-heading hijau"><form name="cd"><h3 class="weight">WAKTU</h3> </div>
 						<div class="panel-body abu"><input class="waktuBox panelResult" id="Time" readonly="true" type="text" value="00:00" border="0" name="disp">
 							</form>
 							<span id="minute"></span>
@@ -217,7 +217,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
-						<div class="panel-heading unguGelap"><h3>NILAI</h3></div>
+						<div class="panel-heading unguGelap"><h3 class="weight">NILAI</h3></div>
 						<div class="panel-body abu"><span class="panelResult"><?php echo $skor; ?> </span> </div>
 					</div>
 				</div>
@@ -298,19 +298,13 @@
 							echo '<div class="row">';
 								echo '<div class="col-md-3">';						
 									echo '</p><input class="orangeButton" type="submit" value="Lanjut" onclick="localStore()" /></p>';
-								echo '</div>';
-								echo '<div class="col-md-8">';						
+								echo '</div><br>';
+								echo '<div class="col-md-10">';						
 									echo "<p><div class='resultBenar'>Kerja yang baik!</div></p>";
 									echo "<details>";
 									echo "<summary>Lihat Solusi dan Pembahasan</summary></p>";
-									echo 	'<table>';
-									echo	'<tr>';
-									echo		'<td> Solusi :  '.$jawabanBenar.'</td>';
-									echo	'</tr>';
-									echo	'<tr>';
-									echo		'<td> Pembahasan : '.$pembahasanSoal.'</td>';
-									echo	'</tr>';
-									echo 	'</table>';	
+									echo '<h3 class="textungu weight">Solusi</h3><span class="weight">Jawaban Benar:</span> '.$jawabanBenar.'</td>';									
+									echo		'<br><span class="weight">Pembahasan:</span> <br>'.$pembahasanSoal.'';									
 									echo "</details>";
 								echo '</div>';
 							echo '</div>';
@@ -320,19 +314,17 @@
 							echo '<div class="row">';
 								echo '<div class="col-md-3">';					
 									echo "</p><input class='orangeButton' type='submit' value='Lanjut' onclick='localStore()' /></p>";
-								echo '</div>';
-								echo '<div class="col-md-8">';	
+								echo '</div><br>';
+								echo '<div class="col-md-10">';	
 									echo "<p><div class='resultSalah'>Ups, jawabanmu belum benar </div><p>";
 								echo '</div>';
 							echo '</div>';
-							echo '<div class="row">';
-								echo '<div class="col-md-4">';
-								echo '</div>';
-								echo '<div class="col-md-8">';
+							echo '<div class="row">';								
+								echo '<div class="col-md-10">';
 								//echo "<br/>".$jawabanBenar;
 								//echo '<td> Solusi : <br/>'.$jawabanBenar.'</td>';
-								echo 'Solusi :'.$jawabanBenar.' ';
-								echo 'Pembahasan : '.$pembahasanSoal;
+								echo '<h3 class="textungu weight">Solusi</h3><span class="weight">Jawaban Benar:</span> '.$jawabanBenar.' ';
+								echo '<br><span class="weight">Pembahasan:</span> <br> '.$pembahasanSoal;
 								echo '</div>';
 							echo '</div>';
 						echo '</div>';		

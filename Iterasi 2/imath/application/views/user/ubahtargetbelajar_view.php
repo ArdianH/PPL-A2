@@ -123,7 +123,7 @@
 			Kelas
 			</div>
 			<div class="col-md-9">
-				<select name = "kelas" id = "pilihkelas" onchange="showMateri(this.value)">
+				<select class="noBorder tb" name = "kelas" id = "pilihkelas" onchange="showMateri(this.value)">
 				<?php foreach($kelas as $row):?>			
 					<option value="<?php echo $row->idKelas?>" name ="idkelas" <?php $idKelas=$row->idKelas; $kelasSelected = $result[0]->idKelas; if ($idKelas == $kelasSelected) echo "selected";?>><?php echo $row->idKelas ?> </option>		
 				<?php endforeach?>		
@@ -133,7 +133,7 @@
 		<div class="row">
 			<div class="col-md-3">Materi	</div>
 			<div class="col-md-9">
-				<select id="pilihmateri" name ="idmateri">	</select>
+				<select class="noBorder tb" id="pilihmateri" name ="idmateri">	</select>
 			</div>
 		</div>	
 		<div class="row">
@@ -141,7 +141,7 @@
 				Banyak Soal
 			</div>
 			<div class="col-md-9">
-				<input min="1" max="100" type="number" name ="banyaksoal"  value="<?php echo $result[0]->banyakSoal ;?>">
+				<input class="noBorder tb" min="1" max="100" type="number" name ="banyaksoal"  value="<?php echo $result[0]->banyakSoal ;?>">
 			</div>
 		</div>	
 		<div class="row">
@@ -149,7 +149,7 @@
 				Nilai
 			</div>
 			<div class="col-md-9">
-				<select id = "pilihkelas" name ="targetnilai">
+				<select class="noBorder tb" id = "pilihkelas" name ="targetnilai">
 				<option value="100" <?php $targetnilai=$result[0]->targetNilai; if ($targetnilai ==100) echo "selected"?>>100</option>
 				<option value="90" <?php $targetnilai=$result[0]->targetNilai; if ($targetnilai ==90) echo "selected"?>>90</option>
 				<option value="80" <?php $targetnilai=$result[0]->targetNilai; if ($targetnilai ==80) echo "selected"?>>80</option>		

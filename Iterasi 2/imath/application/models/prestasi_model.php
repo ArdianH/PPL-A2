@@ -11,9 +11,13 @@ class prestasi_model extends CI_Model {
 		return $this->db->query('SELECT K.sertifikat, K.idKelas FROM Kelas K where K.idKelas in (Select S.idKelas from Sertifikat S where S.username = "'.$username.'")');
 	}
 	
-	function getIdMateri($username){		
+	function getMedali($username, $idKelas){
 	    	$this->load->database();		
-		return $this->db->get_where('medali', array('username' => $username));	
+		return $this->db->query(
+		'SELECT M.idMateri, M.nama FROM Materi M where M.idMateri in
+		(Select ME.idMateri from Medali ME where ME.username = "'.$username.'") and
+		M.idKelas in
+		(SELECT K.idKelas from Kelas K where K.idKelas = "'.$idKelas.'")');
 	}
 		
 }

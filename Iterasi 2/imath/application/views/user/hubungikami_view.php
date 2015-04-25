@@ -59,22 +59,25 @@
 	?>
 </nav>
 
-<div class="container contents loginbg">
-	<h1>Hubungi Kami</h1>
-	<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/hubungi_kami/create">
-	<label>Email :</label></br><input type="email" name ="email" title="Email harus valid" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required>	
-	</br></br>
-	<label>Pesan :</label></br><textarea name ="isi" size="50" ></textarea>
-	</br></br>
-	<label>Kode Verifikasi :</label>
-	</br>
-	<?php echo $image; ?>
-	</br></br>
-	<input type="text" placeholder="Input kode verifikasi" name="captcha" size="30" required/>
-	</br></br>
-	<input type="reset" onclick="location.reload()" value="Reset" />
-	<input type="submit" value="Submit" />
-	</form>
+<div class="container">
+	<img class="imgLogin" src='<?php echo base_url() ?>assets/images/biru.jpg' height="700px">
+	<div class="contentsHubungiKami">
+		<h1 id="tulisanBiru" class="weight">Hubungi Kami</h1>
+		<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/hubungi_kami/create">
+		<label id="tulisanBiru">Email</label></br><input class="hubungi" type="email" name ="email" title="Email harus valid" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required>	
+		</br></br>
+		<label id="tulisanBiru">Pesan</label></br><textarea class="hubungi" name ="isi"></textarea>
+		</br></br>
+		<label id="tulisanBiru">Kode Verifikasi</label>
+		</br>
+		<?php echo $image; ?>
+		</br></br>
+		<input type="text" placeholder="Input kode verifikasi" name="captcha" size="30" required/>
+		</br></br>
+		<p>		
+		<button type="submit" class="orangeButton"> Kirim </button></p>
+		</form>
+		</div>
 	</div>
 
        <footer class="footer">

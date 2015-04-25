@@ -10,8 +10,12 @@ class Prestasi extends CI_Controller {
 	}
 	public function index()
 	{	
-		if($this->session->userdata('loggedin')) {			
-			redirect ('prestasi/medali');
+		if($this->session->userdata('loggedin')) {
+			$data['kelas'] = $this->kelas_model->getAllKelas()->result();
+			$idKelas = $data['kelas'][0]->idKelas;
+			//echo $idKelas;
+			$page = "prestasi/medali/".$idKelas;			
+			redirect ($page);
 		} else {
 			redirect ('home');
 		}
@@ -30,26 +34,21 @@ class Prestasi extends CI_Controller {
 		}
 	}
 	
-	//Load halaman medali
-	public function medali()
-	{	
-		if($this->session->userdata('loggedin')) {			
-			$username = $this->session->userdata('username');
+	//Load halaman medali	
+	public function medali($idKelas){
+		if($this->session->userdata('loggedin')) {
+
+			$this->load->model('kelas_model'); 			
+			$this->load->model('prestasi_model'); 
+			
+			$username = $this->session->userdata('username');			
 			$data['kelas'] = $this->kelas_model->getAllKelas()->result();
-			$this->load->view("user/medali_view", $data);	
-		} else {
-			redirect ('home');
-		}
-	}
-	
-	//Mengambil id materi sesuai username
-	public function materi($username){
-		if($this->session->userdata('loggedin')) {			
-			$arr = $this->prestasi_model->getIdMateri($username)->result();			
-			echo json_encode($arr);
+			$data['medali'] = $this->prestasi_model->getMedali($username, $idKelas)->result();
+			
+			$this->load->view('user/medali_view',$data);
 		} 
 		else {
 			redirect('home');
 		}
-	}
+	}	
 }
