@@ -35,6 +35,13 @@ class Latihan_model extends CI_Model {
 		$dataDB = $this->db->get_where('pilihan_jawaban', array('idSoal' => $idSoal));
 		return $dataDB;
 	}
+	
+	public function getNamaMateri($idSoal)
+	{
+		$dataDB = $this->db->query('SELECT idMateri FROM soal WHERE idSoal = ?', array($idSoal))->row_array();
+		$dataDB2 = $this->db->query('SELECT nama FROM materi WHERE idMateri = ?', array($dataDB['idMateri']))->row_array();
+		return $dataDB2;
+	}
 		
 	public function getIdRapor($username)
 	{

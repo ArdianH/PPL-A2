@@ -58,8 +58,10 @@ class Latihan extends CI_Controller {
 			$this->session->set_userdata('currentIdSoal', $satuSoal->idSoal);
 			
 			$pilihanJawaban = $this->latihan_model->getJawabanSoalTes($satuIdSoal)->result_array();
-
+			$namaMateri = $this->latihan_model->getNamaMateri($satuIdSoal);
+			$namaMateri = $namaMateri['nama'];
 			$satuSoal = array(
+				'namaMateri'	=>	$namaMateri,
 				'idSoal'		=>	$satuSoal->idSoal,
 				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
 				'jawaban' 		=> 	$satuSoal->jawaban,
@@ -122,6 +124,7 @@ class Latihan extends CI_Controller {
 		$jawabanUser		=	$this->input->post('jawab', TRUE);
 		$jawabanBenar		=	$this->input->post('jawaban', TRUE);
 		$pembahasanSoal 	= 	$this->input->post('pembahasan', TRUE);
+		$namaMateri 	= 	$this->input->post('namaMateri', TRUE);
 		$idOpsiA		=	$this->input->post('idOpsiA', TRUE);
 		$idOpsiB		=	$this->input->post('idOpsiB', TRUE);
 		$idOpsiC		=	$this->input->post('idOpsiC', TRUE);
@@ -155,6 +158,7 @@ class Latihan extends CI_Controller {
 			$this->session->set_userdata('skor', $skorUpdate);
 			$this->session->set_userdata('jawabanTrue', $jawabanTrueUpdate);
 			$satuSoal = array(
+				'namaMateri'	=>	$namaMateri,
 				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
 				'jawabanBenar'	=>	$jawabanBenar,
 				'pembahasanSoal' =>  $pembahasanSoal,
@@ -184,6 +188,7 @@ class Latihan extends CI_Controller {
 
 		} else {
 			$satuSoal = array(
+				'namaMateri'	=>	$namaMateri,
 				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
 				'jawabanBenar'	=>	$jawabanBenar,
 				'pembahasanSoal' =>  $pembahasanSoal,

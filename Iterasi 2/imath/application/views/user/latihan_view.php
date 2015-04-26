@@ -229,6 +229,8 @@
 		</div>
 		<div class="col-md-9">
 			<div class="soalText">
+			<div id="headerSoal" style="text-align:center;">Tes Kelas <?php echo $this->session->userdata('kelas');?> <br />
+			Materi : <?php echo $namaMateri; ?></div>
 					<?php
 				if(!$flagNext) {
 					echo "<form method=POST action= ".base_url()."index.php/latihan/processJawaban/ >";
@@ -261,6 +263,7 @@
 					echo "<input type='hidden' name='desOpsiC' value='".$desOpsiC."' />";
 					echo "<input type='hidden' name='desOpsiD' value='".$desOpsiD."' />";
 					echo "<input type='hidden' name='jawaban' value=".$jawaban." />";
+					echo "<input type='hidden' name='namaMateri' value=".$namaMateri." />";
 					echo '<div class="row soaliMath">';
 					echo "<input type='hidden' name='pembahasan' value='".$pembahasan."' /></div>";
 					echo '<div class="row soaliMath">';
