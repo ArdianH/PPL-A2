@@ -8,6 +8,17 @@
 			window.localStorage.clear();
 		}
 	</script>
+		<?php 
+		$kebenaran = 0;
+		$kesalahan = 0;
+		for ($i = 0; $i < $jumlahSoal; $i++){
+			if($setNilaiMateri[$i] == "BENAR") {
+				$kebenaran++;
+			} else{
+				$kesalahan++;
+			}
+		}
+		?>
 <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
 
@@ -47,7 +58,7 @@
 		echo '<div class="row">';
         echo '<div class="container" id="iconbar">';
         echo '<div class="row">';
-		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
+        echo '<div class="col-md-2"></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
@@ -79,11 +90,11 @@
 			</tr>
 			<tr>
 				<td>Nilai Tes kelas <?php echo $kelas; ?> : </td>
-				<td><?php echo $skor; ?></td>
+				<td><?php echo $kebenaran*10;?></td>
 			</tr>
 			<tr>
-				<td>Jumlah Benar : <?php echo $jumlahBenar; ?> </td>
-				<td>Jumlah Salah : <?php echo $jumlahSalah; ?></td>
+				<td>Jumlah Benar : <?php echo $kebenaran; ?> </td>
+				<td>Jumlah Salah : <?php echo $kesalahan; ?> </td>
 			</tr>
 			<tr>
 				<td>Waktu Pengerjaan : </td>
@@ -113,7 +124,6 @@
 				echo		'<td>'.$setNamaMateri[$i].'</td>';
 				echo		'<td>'.$setNilaiMateri[$i].'</td>';
 				echo	'</tr>';
-				//echo $setNamaMateri[$i]."  ".$setNilaiMateri[$i];
 			}
 			?>
 		</table>

@@ -39,7 +39,7 @@
 		echo '<div class="row">';
 		echo '<div class="container" id="iconbar">';
 		echo '<div class="row">';
-		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
+		echo '<div class="col-md-2"></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
@@ -62,23 +62,29 @@
 <!-- nav end -->
 
 
-<body bgcolor="aqua">
-	<h1 align="center" style="color:blue">Solusi dan Pembahasan Tes Kelas <?php echo $kelas;?> </h1>
-		<br/>
-		<br/>
-		
+<body>
+	<h1 align="center" style="color:blue">Solusi dan Pembahasan Tes Kelas<?php echo $kelas;?></h1>
 		<table align="center">
+		<br />
+		<br />
 		<?php 
 		for($i=0; $i<$jumlahSoal; $i++) : ?>
 		<tr>
 		<td> Pertanyaan &emsp; : <br/><?php echo $dataSoalTes[$i]['pertanyaan']; ?></td>
 		</tr>
 		<tr>
-		<td> Jawaban Anda : </td>
-		<td><?php echo $setJawabanUser[$i]; ?></td>
+			<td> Jawaban Anda : </td>
+			<td><?php 
+			if(isset($setJawabanUser[$i])):
+				echo $setJawabanUser[$i];
+			else:
+				echo "-";
+			endif;	
+			?>
+			</td>
 		</tr>	
 		<tr>
-		<td> Solusi &emsp;&emsp;&emsp;&emsp;&emsp;: </td>'
+		<td> Solusi &emsp;&emsp;&emsp;&emsp;&emsp;: </td>
 		<td><?php echo $dataSoalTes[$i]['jawaban']; ?></td>
 		</tr>
 		<tr>

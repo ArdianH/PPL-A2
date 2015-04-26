@@ -98,7 +98,7 @@
 	          <div class="row">
 			<div class="col-md-3"><a class="footerColor" href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
 			<div class="col-md-3"><a class="footerColor" href="#"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="#"><p>HUBUNGI KAMI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
 			<div class="col-md-3"><a class="footerColor" href="#"><p>BANTUAN</p></a></div>           
 	        </div>
 	        <div class="row">

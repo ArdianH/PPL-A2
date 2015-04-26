@@ -116,6 +116,14 @@ Modified by: Ardian*/
 	}
 
 	window.onload = cekSession;;
+	
+	$("form").submit(function() {
+    $(this).submit(function() {
+        return false;
+    });
+    return true;
+});
+	
 </script>
 	
 </head>
@@ -154,7 +162,7 @@ Modified by: Ardian*/
 		echo '<div class="row">';
         echo '<div class="container" id="iconbar">';
         echo '<div class="row">';
-		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
+        echo '<div class="col-md-2"></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">RAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
@@ -189,7 +197,7 @@ Modified by: Ardian*/
 							<h3>SOAL</h3>
 					
 						</div>
-						<div class="panel-body abu">
+						<div class="panel-body">
 							<?php
 								echo "<h3>".$nomor."</h3>";
 							 ?>
@@ -201,7 +209,7 @@ Modified by: Ardian*/
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
 						<div class="panel-heading hijau"><form name="cd"><h3>WAKTU</h3> </div>
-						<div class="panel-body abu">
+						<div class="panel-body">
 							<input id="Time" class="waktuBox" readonly="true" type="text" value="00:00" border="0" name="disp">
 							</form>
 							<span id="minute"></span>
@@ -214,7 +222,7 @@ Modified by: Ardian*/
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
 						<div class="panel-heading unguGelap"><h3>NILAI</h3></div>
-						<div class="panel-body abu"><h3><?php echo $skor; ?> </h3> </div>
+						<div class="panel-body"><h3><?php echo $skor; ?> </h3> </div>
 					</div>
 				</div>
 			</div>
@@ -228,6 +236,8 @@ Modified by: Ardian*/
 				<?php
 		
 		if(!$flagNext) : ?>
+			<div id='headerSoal' style="text-align:center;">Tes Kelas <?php echo substr($this->session->userdata('kelas'), 4, 1);?> <br />
+			Materi : <?php echo $namaMateri; ?></div>
 			<form method='POST' action='<?php echo base_url()."tes/processJawaban/";?>' onsubmit='return localGetMin()' >
 				<div class="row">
 					<div class="pertanyaaniMath">
@@ -273,6 +283,8 @@ Modified by: Ardian*/
 			} ?>
 		<?php else : ?>
 		<div class="soalText">
+		<div id='headerSoal2' style="text-align:center;">Tes Kelas <?php echo substr($this->session->userdata('kelas'), 4, 1);?> <br />
+		Materi : <?php echo $namaMateri; ?></div>
 			<form method='POST' action= '<?php echo base_url()."tes/processSoal/";?>' onsubmit='return localGetMin()'>
 				<div class="row">
 					<div class="pertanyaaniMath">
@@ -341,13 +353,13 @@ Modified by: Ardian*/
         <div class="container">
           <p class="text-muted">
             <div class="row">
-            <div class="col-md-3"><a class="footerColor" href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="#"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="#"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="#"><p>BANTUAN</p></a></div>           
+            <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
           </div>
           <div class="row">
-            <div class="col-md-12"><p class="footerColor">Copyright(c) 2015</p></div>
+            <div class="col-md-12"><p>Copyright(c) 2015</p></div>
           </div>
           </p>
         </div>

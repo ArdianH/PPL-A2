@@ -42,6 +42,22 @@ class Tes_model extends CI_Model {
 		$res = $this->db->insert('catatan_tes', $dataSimpan);
 		return $res;
 	}
+
+	public function updateJumlahBenar($idSoal)
+	{
+		$dataDB = $this->db->query("SELECT jumlahBenar FROM soal WHERE idSoal = ? ", array($idSoal))->row_array();
+		$jumlahBenar = $dataDB['jumlahBenar'] + 1;
+		$res = $this->db->update('soal', array('jumlahBenar' => $jumlahBenar), array('idSoal' => $idSoal));
+		return $res;
+	}
+	
+	public function updateJumlahSalah($idSoal)
+	{
+		$dataDB = $this->db->query("SELECT jumlahSalah FROM soal WHERE idSoal = ? ", array($idSoal))->row_array();
+		$jumlahSalah = $dataDB['jumlahSalah'] + 1;
+		$res = $this->db->update('soal', array('jumlahSalah' => $jumlahSalah), array('idSoal' => $idSoal));
+		return $res;
+	}
 	
 	public function getIdRapor($username)
 	{

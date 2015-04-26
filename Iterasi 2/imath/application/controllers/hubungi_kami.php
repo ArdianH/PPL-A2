@@ -31,8 +31,8 @@
 		if($this->session->flashdata('captWord') == $captcha) {
 			$this->load->model('pesan_model');
 			$data = array(			
-				'email' => $this->input->post('email'),
-				'isi' => $this->input->post('isi'),
+				'email' => $this->input->post('email', TRUE),
+				'isi' => htmlspecialchars($this->input->post('isi', TRUE)),
 				'tanggal' => date("Y-m-d")
 			);
 			
