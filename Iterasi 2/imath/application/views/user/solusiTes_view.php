@@ -6,6 +6,7 @@
 	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
 </head>
+<body>
 <!-- Navigation Bar iMath -->
     	<nav class="navbar navbar-default navbar-static-top">
 	      <div class="container" id="navbar">
@@ -36,10 +37,10 @@
 	<?php 
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {
-		echo '<div class="row">';
-		echo '<div class="container" id="iconbar">';
-		echo '<div class="row">';
-		echo '<div class="col-md-2"></div>';
+		
+        echo '<div class="container" id="iconbar">';
+        
+		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
@@ -53,54 +54,56 @@
 		}
 		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
 		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
-		echo '</div>';
-		echo '</div>';
+		
 		echo '</div>';
 	}
 	?>
 </nav>
-<!-- nav end -->
+	<div class="pembahasanNavBar container">
+		<div class="kuning col-md-6">
+			<button class="buttoncoklat" href="<?php echo base_url()."tes/processSoal/selesai";?>" onClick="window.history.back();">Detil Nilai Tes</button>
+		</div>
+		<div class="coklat col-md-6">
+			<button class="buttonkuning" onclick="location.href = '<?php echo base_url()."tes/solusiTes/".$kelas."/"; ?>'; localClear()">
+					 Pembahasan Tes</button>
+		</div>
+</div>
 
-
-<body>
-	<h1 align="center" style="color:blue">Solusi dan Pembahasan Tes Kelas<?php echo $kelas;?></h1>
-		<table align="center">
-		<br />
-		<br />
-		<?php 
+<div class="container contents contentPembahasanTes">
+	<div class="container contentDetilTes2">
+		<div class="row titleDetilTes">
+			Pembahasan Tes Kelas <?php echo $kelas; ?>
+		</div>
+		<div class="row pembahasanTesRow">
+			<div class="col-md-9" style="font-weight:bold;">
+				Solusi
+			</div>
+			<div class="col-md-3" style="font-weight:bold;">
+				Jawabanmu
+			</div>
+		</div>
+<?php 
 		for($i=0; $i<$jumlahSoal; $i++) : ?>
-		<tr>
-		<td> Pertanyaan &emsp; : <br/><?php echo $dataSoalTes[$i]['pertanyaan']; ?></td>
-		</tr>
-		<tr>
-			<td> Jawaban Anda : </td>
-			<td><?php 
-			if(isset($setJawabanUser[$i])):
-				echo $setJawabanUser[$i];
-			else:
-				echo "-";
-			endif;	
-			?>
-			</td>
-		</tr>	
-		<tr>
-		<td> Solusi &emsp;&emsp;&emsp;&emsp;&emsp;: </td>
-		<td><?php echo $dataSoalTes[$i]['jawaban']; ?></td>
-		</tr>
-		<tr>
-		<td> Pembahasan&emsp;: <br/><?php echo $dataSoalTes[$i]['pembahasan']; ?></td>
-		</tr>
-		<tr>
-		<td><hr/></td>
-		</tr>
+		<div class="row pembahasanTesRow">
+			<div class="col-md-9">
+				<div class="soalBenar">Soal <?php $j=$i+1; echo $j; ?> : <?php echo $dataSoalTes[$i]['jawaban']; ?></div>
+			 <?php echo $dataSoalTes[$i]['pertanyaan']; ?>   <?php echo $dataSoalTes[$i]['pembahasan']; ?>
+			</div>
+			<div class="col-md-3"><?php 
+				if(isset($setJawabanUser[$i])):
+					echo $setJawabanUser[$i];
+				else:
+					echo "-";
+				endif;	
+				?>
+			</div>
+		</div>
 		
 		<?php endfor; ?>
-		
-			<tr>
-				<td><a href="<?php echo base_url()."tes/processSoal/selesai";?>" onClick="window.history.back();">Lihat Detail Tes </a></td>				
-				<td><a href="<?php echo base_url()."kelas/pilih/".$kelas; ?>"> << Keluar Tes >> </a></td>
-			</tr>
-		</table>
+		<a href= "<?php echo base_url()."kelas/pilih/".$kelas; ?>" onclick="localClear()"> Kembali ke Kelas</a>
+	</div>
+	</div>
+</div>
 		<footer class="footer">
 	      <div class="container">
 	        <p class="text-muted">

@@ -789,3 +789,83 @@ textarea.hubungi {
 .textungu{
 	color:#7d0090;
 }
+
+/**================================= DETIL PEMBAHASAN TES ==================================== */
+thead.tableDetilTes{
+	background-color:#ceeaff;
+	border:none;
+}
+tbody.tableDetilTes{
+	background-color:#9ed5fe;
+	border:none;
+}
+.nilaiTes{
+	font-size:20pt;
+	font-weight:bold;
+	color:red;
+}
+.waktuTes{
+	font-size:20pt;
+	font-weight:bold;
+	color:#005393;
+}
+.titleDetilTes{
+	font-size:16pt;
+	font-weight:600;
+	margin-bottom:50px;
+}
+.contentDetilTes{
+	background-color:#fff10a;
+	padding-top:10px;
+}
+.contentDetilTes2{
+	background-color:#fff;
+	width:1100px;
+	min-height:400px;
+	padding-top:10px;
+	padding-left:20px;
+}
+.contentPembahasanTes{
+	background-color:#9c6405;
+	padding-top:10px;
+}
+.buttoncoklat{
+	background:none;
+	border:none;
+	font-size:18pt;
+	font-weight:600;
+	color: #9c6405;
+}
+.buttonkuning{
+	background:#9c6405;
+	border:none;
+	font-size:18pt;
+	font-weight:600;
+	color: #fff10a;
+	margin:none;
+}
+.pembahasanNavBar{
+	margin:none;
+	padding-right:0px;
+	padding-left:0px;
+}
+.coklat{
+	margin:none;
+	text-align:center;
+	background:#9c6405;
+	padding:none;
+}
+.kuning{
+	margin:none;
+	text-align:center;
+	background:#fff10a;
+}
+.pembahasanTesRow{
+	padding-left:20px;
+	padding-right:20px;
+	text-align:left;
+}
+.soalBenar{
+	font-weight:bold;
+	color:green;
+}
