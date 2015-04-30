@@ -3,6 +3,22 @@
 	<title>Hubungi Kami</title>
 	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
+	<script>
+	
+	
+	function validate()
+	{
+	var val = document.getElementById("isi").value;
+	var usernamecheck = /(<([^>]+)>)/gi;
+	document.getElementById("isi").value = val.replace(usernamecheck, "");
+	if(val.match(usernamecheck))
+	  {
+		alert ("Pesan tidak boleh berisi tag.");
+		return false;
+	  }
+	}
+
+</script>
     </head>
     <body>
  <!-- Navigation Bar iMath -->
@@ -63,10 +79,10 @@
 	<img class="imgLogin" src='<?php echo base_url() ?>assets/images/biru.jpg' height="700px">
 	<div class="contentsHubungiKami">
 		<h1 id="tulisanBiru" class="weight">Hubungi Kami</h1>
-		<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/hubungi_kami/create">
+		<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/hubungi_kami/create" onsubmit="return validate()" >
 		<label id="tulisanBiru">Email</label></br><input class="hubungi" type="email" name ="email" title="Email harus valid" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required>	
 		</br></br>
-		<label id="tulisanBiru">Pesan</label></br><textarea class="hubungi" name ="isi"></textarea>
+		<label id="tulisanBiru">Pesan</label></br><textarea class="hubungi" id="isi" name ="isi" required><?php if(!is_null($this->session->userdata('isipesan'))) echo $this->session->userdata('isipesan');?></textarea>
 		</br></br>
 		<label id="tulisanBiru">Kode Verifikasi</label>
 		</br>
@@ -76,6 +92,7 @@
 		</br></br>
 		<p>		
 		<button type="submit" class="orangeButton"> Kirim </button></p>
+		<!--onkeypress="validate();" onclick="validate();"-->
 		</form>
 		</div>
 	</div>
