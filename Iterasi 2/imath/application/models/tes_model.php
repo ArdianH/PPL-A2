@@ -61,14 +61,24 @@ class Tes_model extends CI_Model {
 	
 	public function getIdRapor($username)
 	{
-		$dataDB = $this->db->query("SELECT idRapor FROM rapor WHERE username = '".$username."'");
+		$dataDB = $this->db->query("SELECT idRapor FROM rapor WHERE username = ?", array($username));
 		return $dataDB;
-	}	
+	}
 	
 	public function getSoalTes($kelas)
 	{
 		$dataDB = $this->db->get_where('soal', array('idKelas' => $kelas, 'isTes' => "tes", 'isDitunjukkan' => "Ya"));
 		return $dataDB;
+	}
+	
+	function setSertifikat($username, $idKelas){
+		$res = $this->db->insert('sertifikat', array('username' => $username, 'idKelas' => $idKelas));
+		return $res;
+	}
+
+	function getJumlahSertifikatKelas($username, $idKelas){
+		$this->db->where(array('username' => $username, 'idKelas' => $idKelas));
+		return $this->db->count_all_results('sertifikat');
 	}
 	
 }

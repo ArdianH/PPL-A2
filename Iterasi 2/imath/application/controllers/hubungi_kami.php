@@ -36,7 +36,7 @@
 
 			$data = array(			
 				'email' => $this->input->post('email', TRUE),
-				'isi' => htmlspecialchars(strip_tags($isiPesan)),
+				'isi' => htmlspecialchars($isiPesan),
 				'tanggal' => date("Y-m-d")
 			);
 			$this->pesan_model->add($data);

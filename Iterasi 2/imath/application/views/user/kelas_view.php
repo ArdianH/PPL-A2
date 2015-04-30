@@ -117,7 +117,9 @@
 	<?php 
 	if(count($result) > 0):
 	foreach($result as $row):
-	?>	
+	//print_r($jumlahSoal);
+	if($jumlahSoal[$row->idMateri] >= 10):
+	?>		
 	<div class="col-md-3 kelasMateri">
 		<div class="row">
 			<p><img src="<?php echo base_url();?>uploads/<?php echo $row->gambar ?>" height="175" width="175"></p>
@@ -126,6 +128,7 @@
 		</div>
 		<div class="row">
 			<!-- Pilih Button-->
+			<!-- $this->materi_model->getJumlahSoalMateri($row->idMateri) -->
 			<?php if($this->session->userdata('loggedin')) { 
 			echo '<a class="judul" href="'.base_url().'kelas/lihatMateri/'.$row->idMateri.'">Lihat Rangkuman Materi > </a>';
 			}
@@ -143,6 +146,8 @@
 	</div>
 
         <?php 
+		else:
+		endif;
 		endforeach;
 		else: ?>
 		<br>

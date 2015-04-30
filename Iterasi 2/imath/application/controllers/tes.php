@@ -16,6 +16,7 @@ class Tes extends CI_Controller {
 	public function retrieveSoal($kelas)
 	{
 		$this->session->unset_userdata(array('setIdSoal'=>'', 'setNamaMateri'=>'', 'setNilaiMateri'=>'', 'setJawabanUser'=>'', 'currentSoal'=>'', 'idRapor'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>''));
+		//inisialisasi Tes sesuai kelas: retrieve setIdSoal, idRapor, reset skor, reset nomorSoal, dll => masukkan ke dalam session tes.
 		$dataDB = $this->tes_model->getIdSoalTes($kelas)->result_array();
 		$username = $this->session->userdata('username');
 		$dataDB2 = $this->tes_model->getIdRapor($username)->row();
@@ -35,13 +36,14 @@ class Tes extends CI_Controller {
 	
 	public function processSoal($param = '')
 	{
+		//retrieve soal pertanyaan, setting variabel pertanyaan sebelum dikirim ke view.
 		$jumlahSoal	= $this->session->userdata('jumlahSoal');
 		$nomorSoal 	= $this->session->userdata('nomorSoal');
 		$setIdSoal 	= $this->session->userdata('setIdSoal');
 		$waktuTes	= $this->input->post('waktuTes', TRUE);
 		$this->session->set_userdata('waktuTes', $waktuTes);
-	
 		
+		//jika pertanyaan masih ada (tes belum selesai).
 		if($nomorSoal < $jumlahSoal && $param != 'selesai'){
 			$satuIdSoal	= $setIdSoal[$nomorSoal]['idSoal'];
 			$satuSoal 	= $this->tes_model->getSatuSoalTes($satuIdSoal)->row();
@@ -70,40 +72,39 @@ class Tes extends CI_Controller {
 				'flagNext'		=>	FALSE
 			);
 			
-		if($param == "init"){
-			$satuSoal['flagInit'] = TRUE;
-			$setIdSoal 	= $this->session->userdata('setIdSoal');
-			$setNamaMateri;
-			$setNilaiMateri;
-			$setJawabanUser = array();
-			$jumlah = $this->session->userdata('jumlahSoal');
-			foreach($setIdSoal as $row) {
-				$satuIdMateri = $this->tes_model->getSatuIdMateriTes($row['idSoal'])->row();
-				$satuNamaMateri = $this->tes_model->getSatuNamaMateri($satuIdMateri->idMateri)->row();
-				$setNamaMateri[] = $satuNamaMateri->nama;
-				$setNilaiMateri[] = "SALAH";
+			if($param == "init"){
+				$satuSoal['flagInit'] = TRUE;
+				$setIdSoal 	= $this->session->userdata('setIdSoal');
+				$setNamaMateri;
+				$setNilaiMateri;
+				$setJawabanUser = array();
+				$jumlah = $this->session->userdata('jumlahSoal');
+				foreach($setIdSoal as $row) {
+					$satuIdMateri = $this->tes_model->getSatuIdMateriTes($row['idSoal'])->row();
+					$satuNamaMateri = $this->tes_model->getSatuNamaMateri($satuIdMateri->idMateri)->row();
+					$setNamaMateri[] = $satuNamaMateri->nama;
+					$setNilaiMateri[] = "SALAH";
+				}
+				$this->session->set_userdata('setNamaMateri', $setNamaMateri);
+				$this->session->set_userdata('setNilaiMateri', $setNilaiMateri);	
+				
+			} else {
+				$satuSoal['flagInit'] = FALSE;
 			}
-			$this->session->set_userdata('setNamaMateri', $setNamaMateri);
-			$this->session->set_userdata('setNilaiMateri', $setNilaiMateri);	
-			
-		} else {
-			$satuSoal['flagInit'] = FALSE;
-		}
-			
+				
 			$setNamaMateri = $this->session->userdata('setNamaMateri');
 			$satuSoal['namaMateri'] = $setNamaMateri[$nomorSoal];
 			$this->load->view('user/tes_view', $satuSoal);
 
 		} else {
 			$skor = $this->session->userdata('skor');
+			$kelas = $this->session->userdata('kelas');
 			$waktuTes = $this->session->userdata('waktuTes');
 			$setNamaMateri = $this->session->userdata('setNamaMateri');
 			$setNilaiMateri = $this->session->userdata('setNilaiMateri');
 			$data = array(
-				'kelas'			=>	$this->session->userdata('kelas'),
+				'kelas'			=>	$kelas,
 				'skor'			=>	$skor,
-				//'jumlahBenar'	=>	($skor/10.0),
-				//'jumlahSalah'	=>	($jumlahSoal - ($skor/10.0)),
 				'waktuTes'		=>	$waktuTes,
 				'namaPanggilan'	=>	$this->session->userdata('namaPanggilan'),
 				'username'		=>	$this->session->userdata('username'),
@@ -117,6 +118,13 @@ class Tes extends CI_Controller {
 					$jumlahBenar++;
 				}
 			}
+			
+			if($jumlahBenar == $jumlahSoal){
+				if($this->tes_model->getJumlahSertifikatKelas($this->session->userdata('username'), $kelas) == 0) {
+					$res = $this->tes_model->setSertifikat($this->session->userdata('username'), $kelas);
+				}
+			}
+			
 			$dataSimpan = array(
 				'idKelas'	=>	$data['kelas'],
 				'idRapor'	=>	$this->session->userdata('idRapor'),

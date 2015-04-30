@@ -11,7 +11,15 @@
 	public function pilih($id){
 		$this->load->model('materi_model');		
 		$this->load->model('kelas_model');
-		$data['result'] = $this->materi_model->getAllMateri($id); 
+		$data['result'] = $this->materi_model->getAllMateri($id);
+		$jumlahData = $data['result'];
+		
+		$jumlahSoalMateri = array();
+		foreach($data['result'] as $row):
+			$jumlahSoalMateri[$row->idMateri] = $this->materi_model->getJumlahSoal($row->idMateri);
+		endforeach;
+		
+		$data['jumlahSoal'] = $jumlahSoalMateri;
 		$data['kelas'] = $this->kelas_model->get($id)->result();
 		$data['all'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->view('user/kelas_view', $data);
