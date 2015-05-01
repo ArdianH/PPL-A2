@@ -3,6 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<title>Welcome to My Web </title>
+	<script>
+		function clearLocal(){
+			window.localStorage.clear();
+		}
+	</script>
 	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
 </head>
@@ -64,8 +69,7 @@
 			<button class="buttoncoklat" href="<?php echo base_url()."tes/processSoal/selesai";?>" onClick="window.history.back();">Detil Nilai Tes</button>
 		</div>
 		<div class="coklat col-md-6">
-			<button class="buttonkuning" onclick="location.href = '<?php echo base_url()."tes/solusiTes/".$kelas."/"; ?>'; localClear()">
-					 Pembahasan Tes</button>
+			<button class="buttonkuning">Pembahasan Tes</button>
 		</div>
 </div>
 
@@ -100,7 +104,7 @@
 		</div>
 		
 		<?php endfor; ?>
-		<a href= "<?php echo base_url()."kelas/pilih/".$kelas; ?>" onclick="localClear()"> Kembali ke Kelas</a>
+		<a href= "<?php echo base_url()."tes/keluarTes/".$kelas; ?>" onclick="clearLocal()">Kembali ke Kelas</a>
 	</div>
 	</div>
 </div>

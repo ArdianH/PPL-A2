@@ -19,7 +19,7 @@
 			}
 		}
 		?>
-<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
 
 </head>
@@ -82,7 +82,7 @@
 			<button class="buttoncoklat">Detil Nilai Tes</button>
 		</div>
 		<div class="coklat col-md-6">
-			<button class="buttonkuning" onclick="location.href = '<?php echo base_url()."tes/solusiTes/".$kelas."/"; ?>'; localClear()">
+			<button class="buttonkuning" onclick="location.href = '<?php echo base_url()."tes/solusiTes/".$kelas."/"; ?>';">
 					 Pembahasan Tes</button>
 		</div>
 </div>
@@ -101,7 +101,7 @@
 			</div>
 			<div class="col-md-10">
 			<div class="col-md-2">
-				<div class="nilaiTes">Nilai : <?php echo $skor; ?></div>
+				<div class="nilaiTes">Nilai : <?php echo $kebenaran*10; ?></div>
 			</div>
 			<div class="col-md-5">
 			</div>
@@ -142,7 +142,7 @@
 	<div class="col-md-1">
 	</div>
 </div>
-		<a href= "<?php echo base_url()."kelas/pilih/".$kelas; ?>" onclick="localClear()"> Kembali ke Kelas</a>
+		<a href= "<?php echo base_url()."tes/keluarTes/".$kelas; ?>" onclick="clearLocal()">Kembali ke Kelas</a>
 	</div>
 </div>
 	<footer class="footer">

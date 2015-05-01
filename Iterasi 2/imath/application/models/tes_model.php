@@ -9,33 +9,37 @@ class Tes_model extends CI_Model {
 	
 	public function getIdSoalTes($kelas)
 	{
-		$dataDB = $this->db->query("SELECT idSoal FROM soal WHERE idKelas = '".$kelas."' AND isDitunjukkan = 'Ya' AND isTes='tes'");
-		return $dataDB;
+		$this->db->select('idSoal');
+		return $this->db->get_where('soal', array('idKelas' => $kelas, 'isDitunjukkan' => 'Ya', 'isTes' => 'tes'));
 	}
 	
 	public function getSatuSoalTes($idSoal)
 	{
-		$dataDB = $this->db->get_where('soal', array('idSoal' => $idSoal));
-		return $dataDB;
+		return $this->db->get_where('soal', array('idSoal' => $idSoal));
 	}
 	
-
-	public function getSatuIdMateriTes($idSoal)
+	public function getIdRapor($username)
 	{
-		$dataDB = $this->db->query("SELECT idMateri FROM soal WHERE idSoal = '".$idSoal."'");
-		return $dataDB;
-	}
-	
-	public function getSatuNamaMateri($idMateri) {
-		$dataDB = $this->db->query("SELECT nama FROM materi WHERE idmateri = '".$idMateri."'");
-		return $dataDB;
+		$this->db->select('idRapor');
+		return $this->db->get_where('rapor', array('username' => $username));
 	}
 
 	public function getJawabanSoalTes($idSoal)
 	{
-		$dataDB = $this->db->get_where('pilihan_jawaban', array('idSoal' => $idSoal));
-		return $dataDB;
+		return $this->db->get_where('pilihan_jawaban', array('idSoal' => $idSoal));
 	}
+	
+	public function getSatuIdMateri($idSoal)
+	{
+		$this->db->select('idMateri');
+		return $this->db->get_where('soal', array('idSoal' => $idSoal));
+	}
+	
+	public function getSatuNamaMateri($idMateri) {
+		$this->db->select('nama');
+		return $this->db->get_where('materi', array('idMateri' => $idMateri));
+	}
+
 	
 	public function simpanDetailTes($dataSimpan)
 	{
@@ -57,12 +61,6 @@ class Tes_model extends CI_Model {
 		$jumlahSalah = $dataDB['jumlahSalah'] + 1;
 		$res = $this->db->update('soal', array('jumlahSalah' => $jumlahSalah), array('idSoal' => $idSoal));
 		return $res;
-	}
-	
-	public function getIdRapor($username)
-	{
-		$dataDB = $this->db->query("SELECT idRapor FROM rapor WHERE username = ?", array($username));
-		return $dataDB;
 	}
 	
 	public function getSoalTes($kelas)

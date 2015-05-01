@@ -236,8 +236,7 @@ Modified by: Ardian*/
 				<?php
 		
 		if(!$flagNext) : ?>
-			<div id='headerSoal' style="text-align:center;">Tes Kelas <?php echo substr($this->session->userdata('kelas'), 4, 1);?> <br />
-			Materi : <?php echo $namaMateri; ?></div>
+			<div id='headerSoal' style="text-align:center;">Tes Kelas <?php echo substr($this->session->userdata('kelas'), 4, 1);?></div>
 			<form method='POST' action='<?php echo base_url()."tes/processJawaban/";?>' onsubmit='return localGetMin()' >
 				<div class="row">
 					<div class="pertanyaaniMath">
@@ -272,7 +271,6 @@ Modified by: Ardian*/
 			<input type='hidden' name='desOpsiB' value='<?php echo $desOpsiB; ?>' />
 			<input type='hidden' name='desOpsiC' value='<?php echo $desOpsiC; ?>' />
 			<input type='hidden' name='desOpsiD' value='<?php echo $desOpsiD; ?>' />
-			<input type='hidden' name='jawaban' value='<?php echo $jawaban; ?>' />
 			<div class="row soaliMath"></div>
 			<div class="row soaliMath">
 				<input class="orangeButton" type='submit' value='Submit' onclick='localStore()' />
@@ -283,8 +281,7 @@ Modified by: Ardian*/
 			} ?>
 		<?php else : ?>
 		<div class="soalText">
-		<div id='headerSoal2' style="text-align:center;">Tes Kelas <?php echo substr($this->session->userdata('kelas'), 4, 1);?> <br />
-		Materi : <?php echo $namaMateri; ?></div>
+		<div id='headerSoal2' style="text-align:center;">Tes Kelas <?php echo substr($this->session->userdata('kelas'), 4, 1);?></div>
 			<form method='POST' action= '<?php echo base_url()."tes/processSoal/";?>' onsubmit='return localGetMin()'>
 				<div class="row">
 					<div class="pertanyaaniMath">
@@ -323,7 +320,7 @@ Modified by: Ardian*/
 								echo '</div>';
 								echo '</form>';
 								echo '<div class="col-md-8">';
-									echo "Jawaban Kamu Benar!";
+									echo "Jawaban Kamu <span style='color:green'>Benar!</span>";
 								echo '</div>';
 							echo '</div>';
 						echo '</div>';
@@ -335,7 +332,7 @@ Modified by: Ardian*/
 								echo '</div>';
 								echo '</form>';
 								echo '<div class="col-md-8">';
-									echo "Jawaban Kamu Salah!";
+									echo "Jawaban Kamu <span style='color:red'>Salah!</span>";
 								echo '</div>';
 							echo '</div>';
 						echo '</div>';
