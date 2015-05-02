@@ -229,8 +229,8 @@
 		</div>
 		<div class="col-md-9">
 			<div class="soalText">
-			<div id="headerSoal" style="text-align:center;">Tes Kelas <?php echo $this->session->userdata('kelas');?> <br />
-			Materi : <?php echo $namaMateri; ?></div>
+			<div id="headerSoal" style="text-align:center;">Latihan Kelas <?php echo $this->session->userdata('kelas');?> <br />
+			Materi : <?php echo $this->session->userdata('namaMateri'); ?></div>
 					<?php
 				if(!$flagNext) {
 					echo "<form method=POST action= ".base_url()."index.php/latihan/processJawaban/ >";
