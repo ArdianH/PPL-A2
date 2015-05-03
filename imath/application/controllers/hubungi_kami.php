@@ -22,27 +22,32 @@
 
 	public function creator() {
 		$captcha = $this->captcha_creator();
-		$this->session->set_flashdata('captWord', $captcha['word']);
+		$this->session->set_userdata('captWord', $captcha['word']);
 		$this->load->view('user/hubungikami_view', $captcha);
 	}
 	public function create()
 	{
 		$captcha = $this->input->post('captcha', TRUE);
-		if($this->session->flashdata('captWord') == $captcha) {
+		$isiPesan = $this->input->post('isi', TRUE);
+		$this->session->set_userdata('isipesan', $isiPesan);
+		
+		if($this->session->userdata('captWord') == $captcha) {
 			$this->load->model('pesan_model');
+
 			$data = array(			
-				'email' => $this->input->post('email'),
-				'isi' => $this->input->post('isi'),
+				'email' => $this->input->post('email', TRUE),
+				'isi' => htmlspecialchars($isiPesan),
 				'tanggal' => date("Y-m-d")
 			);
-			
 			$this->pesan_model->add($data);
-			//$data['result']=$this->Pesan->getAllPesan();
 			echo '<script type="text/javascript">alert("Pesan Kamu Berhasil Terkirim")</script>';
+			$this->session->unset_userdata('captWord');
+			$this->session->unset_userdata('isipesan');
 			redirect('hubungi_kami', 'refresh');
 		} else {
-			echo '<script type="text/javascript">alert("Pesan Kamu Berhasil Terkirim")</script>';
+			echo '<script type="text/javascript">alert("Pesan Gagal dikirim, input captcha salah")</script>';
+			$this->session->unset_userdata('captWord');
 			redirect('hubungi_kami', 'refresh');
-		}		
+		}
     }
 }

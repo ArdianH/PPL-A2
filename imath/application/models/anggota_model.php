@@ -6,9 +6,9 @@ class anggota_model extends CI_Model {
 		parent::__construct();
 	}
 	
-	function get($id){
+	function get($username){
 	    	$this->load->database();	    			
-		return $this->db->get_where('akun', array('username' => $id))->result();
+		return $this->db->get_where('akun', array('username' => $username))->result();
 	}
 	
 	//Fungsi ini mengambil semua target belajar
@@ -33,8 +33,8 @@ class anggota_model extends CI_Model {
 		return;
 	}
 	
-	function update($data, $id){
-		$this->db->where('username', $id);
+	function update($data, $username){
+		$this->db->where('username', $username);
 		$this->db->update('akun', $data);
 	}
 }

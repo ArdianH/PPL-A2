@@ -13,7 +13,7 @@ class Latihan_model extends CI_Model {
 		return $dataDB;
 	}
 	
-		function getAllMateri(){
+	function getAllMateri(){
 	    $this->load->database();
 		return $this->db->get_where('materi', array('idMateri' => $kelas))->result();
 	}
@@ -47,11 +47,24 @@ class Latihan_model extends CI_Model {
 		return $res;
 	}
 	
+	function addMedali($username, $idMateri){
+		$res = $this->db->insert('medali', array('username' => $username, 'idMateri' => $idMateri));
+		return $res;
+	}
+	
 	
 	public function getSoalTes($kelas)
 	{
 		$dataDB = $this->db->get_where('soal', array('idKelas' => $kelas, 'isTes' => "latihan", 'isDitunjukkan' => "Ya"));
 		return $dataDB;
+	}
+
+	public function getNamaMateri($idSoal)
+	{
+		$dataDB = $this->db->query('SELECT nama FROM materi WHERE idMateri in(SELECT idMateri FROM soal WHERE idSoal = ?)', array($idSoal));
+		//$dataDB = $this->db->get_where('soal', array('idKelas' => $kelas, 'isTes' => "latihan", 'isDitunjukkan' => "Ya"));
+		return $dataDB;
+		
 	}
 	
 }

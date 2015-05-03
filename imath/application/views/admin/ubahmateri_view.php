@@ -20,7 +20,7 @@
         </div>
         <!-- Navbar Atas -->
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url();?>index.php/profil">PROFIL ADMIN</a></li>
+          <ul class="nav navbar-nav navbar-right">
             <li><a href="<?php echo base_url();?>index.php/admin/dashboard">DASHBOARD</a></li>
             <li><a href="<?php echo base_url();?>index.php/home">BERANDA IMATH</a></li>
             <li><a href="<?php echo base_url();?>index.php/autentikasi/logout">LOG OUT</a></li>
@@ -49,9 +49,9 @@
     <?php $id=$result[0]->idMateri;?></div>    
 
 	<form class="formImath" method="POST" action="<?php echo base_url(); ?>index.php/admin/daftar_materi/simpanPerubahan/<?php echo $id; ?>" enctype="multipart/form-data">
-	<label>Nama</label></br><input type="text" name ="nama" pattern="^[a-zA-Z][a-zA-Z0-9]{2,50}" value="<?php echo $result[0]->nama ;?>"></br></br>
+	<label>Nama</label></br><input type="text" name ="nama" value="<?php echo $result[0]->nama ;?>"></br></br>
 	<label>Kelas</label></br><input type="text" name ="idKelas"  value="<?php echo $result[0]->idKelas ;?>"></br></br>
-	<label>Deskripsi</label></br><textarea name ="deskripsi" pattern="^[a-zA-Z][a-zA-Z0-9]{2,50}"><?php echo $result[0]->deskripsi ;?></textarea></br></br>
+	<label>Deskripsi</label></br><textarea name ="deskripsi"><?php echo $result[0]->deskripsi ;?></textarea></br></br>
 	<label>Gambar: </label></br><input type="file" name="userfile" size="20" /><img src="<?php echo base_url();?>uploads/<?php echo $result[0]->gambar ?>">		
 	</br></br>
 	<label>Rangkuman</label></br><textarea name ="rangkuman"><?php echo $result[0]->rangkuman ;?></textarea></br></br>

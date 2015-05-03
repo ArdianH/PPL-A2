@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to My Web </title>
+	<title>Latihan</title>
 	
 <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
@@ -142,12 +142,12 @@
 				if($this->session->userdata('loggedin')) { 
 					if($this->session->userdata('role') == "admin") {
 						echo '<a href="'.base_url().'admin/dashboard"> Dashboard Admin </a></li><li>';
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} else {
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} 
 				} else {
-						echo '<a href="'.base_url().'autentikasi"> Masuk </a>';
+						echo '<a href="'.base_url().'autentikasi"> LOG IN </a>';
 				}
 				?>	</li>
           </ul>
@@ -157,23 +157,22 @@
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {
 		echo '<div class="row">';
-        echo '<div class="container" id="iconbar">';
-        echo '<div class="row">';
-        echo '<div class="col-md-2"></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">RAPOR</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
+		echo '<div class="container" id="iconbar">';
+		echo '<div class="row">';
+		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">&nbspPERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
-		$gender = $this->session->userdata('gender');
-		if($gender=='Laki-Laki'){
+		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
 		}
 		else{
 			echo '<img src="'.base_url().'assets/images/boy.png" img size="height="20" width="20">';
 		}
-		echo '<a href="'.base_url().'profil"> Hai ';
-		echo $this->session->userdata('namaPanggilan')."</a>:)</div>";
+		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
+		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';
@@ -189,12 +188,15 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
-						<div class="panel-heading">
-							<h3>SOAL</h3>
+					
+						<div class="panel-heading merah">
+							
+							<h3 class="weight">SOAL</h3>
+					
 						</div>
-						<div class="panel-body">
+						<div class="panel-body abu">
 							<?php
-								echo "<h3>".$nomor."</h3>";
+								echo '<span class="panelResult">'.$nomor.'</span>';
 							 ?>
 						</div>
 					</div>
@@ -203,8 +205,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
-						<div class="panel-heading waktuSoal"><form name="cd"><h3>WAKTU</h3> </div>
-						<div class="panel-body"><input id="Time" readonly="true" type="text" value="00:00" border="0" name="disp">
+						<div class="panel-heading hijau"><form name="cd"><h3 class="weight">WAKTU</h3> </div>
+						<div class="panel-body abu"><input class="waktuBox panelResult" id="Time" readonly="true" type="text" value="00:00" border="0" name="disp">
 							</form>
 							<span id="minute"></span>
 							<span id="waktuTes"></span></h2>
@@ -215,8 +217,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
-						<div class="panel-heading nilaiLatihan"><h3>NILAI</h3></div>
-						<div class="panel-body"><h3><?php echo $skor; ?> </h3> </div>
+						<div class="panel-heading unguGelap"><h3 class="weight">NILAI</h3></div>
+						<div class="panel-body abu"><span class="panelResult"><?php echo $skor; ?> </span> </div>
 					</div>
 				</div>
 			</div>
@@ -227,6 +229,8 @@
 		</div>
 		<div class="col-md-9">
 			<div class="soalText">
+			<div id="headerSoal" style="text-align:center;">Latihan Kelas <?php echo $this->session->userdata('kelas');?> <br />
+			Materi : <?php echo $this->session->userdata('namaMateri'); ?></div>
 					<?php
 				if(!$flagNext) {
 					echo "<form method=POST action= ".base_url()."index.php/latihan/processJawaban/ >";
@@ -236,7 +240,7 @@
 					echo '</div>';
 					echo '<div class="row gambarSoaliMath">';
 					if(!is_null($gambar)){
-					echo '<img src="'.base_url().'uploads/'.$gambar.'">';
+						echo '<img src="'.base_url().'uploads/'.$gambar.'">';						
 					}
 					echo '</div>';
 					echo '</div>';
@@ -259,10 +263,11 @@
 					echo "<input type='hidden' name='desOpsiC' value='".$desOpsiC."' />";
 					echo "<input type='hidden' name='desOpsiD' value='".$desOpsiD."' />";
 					echo "<input type='hidden' name='jawaban' value=".$jawaban." />";
+					echo "<input type='hidden' name='namaMateri' value=".$namaMateri." />";
 					echo '<div class="row soaliMath">';
 					echo "<input type='hidden' name='pembahasan' value='".$pembahasan."' /></div>";
 					echo '<div class="row soaliMath">';
-					echo "<input class='loginButton' type='submit' value='Submit' onclick='localStore()' />";
+					echo "<input class='orangeButton' type='submit' value='Submit' onclick='localStore()' />";
 					echo "</form></div>";
 					if($flagInit) {
 						echo "<script> localClear(); </script>";
@@ -273,7 +278,7 @@
 					echo $pertanyaan."</div>";
 					echo '<div class="row gambarSoaliMath">';
 					if(!is_null($gambar)){
-					echo '<img src="'.base_url().'uploads/'.$gambar.'">';
+						echo '<img src="'.base_url().'uploads/'.$gambar.'">';
 					}
 					echo '</div>';
 					echo '</div>';
@@ -294,41 +299,35 @@
 					if($flagJawaban == 1) {
 						echo '<div class="result">';
 							echo '<div class="row">';
-								echo '<div class="col-md-8">';						
+								echo '<div class="col-md-3">';						
+									echo '</p><input class="orangeButton" type="submit" value="Lanjut" onclick="localStore()" /></p>';
+								echo '</div><br>';
+								echo '<div class="col-md-10">';						
 									echo "<p><div class='resultBenar'>Kerja yang baik!</div></p>";
 									echo "<details>";
 									echo "<summary>Lihat Solusi dan Pembahasan</summary></p>";
-									echo 	'<table>';
-									echo	'<tr>';
-									echo		'<td> Solusi :  '.$jawabanBenar.'</td>';
-									echo	'</tr>';
-									echo	'<tr>';
-									echo		'<td> Pembahasan : '.$pembahasanSoal.'</td>';
-									echo	'</tr>';
-									echo 	'</table>';	
+									echo '<h3 class="textungu weight">Solusi</h3><span class="weight">Jawaban Benar:</span> '.$jawabanBenar.'</td>';									
+									echo		'<br><span class="weight">Pembahasan:</span> <br>'.$pembahasanSoal.'';									
 									echo "</details>";
-								echo '</div>';
-								echo '<div class="col-md-4">';						
-									echo '</p><input class="loginButton" type="submit" value="Lanjut" onclick="localStore()" /></p>';
 								echo '</div>';
 							echo '</div>';
 						echo '</div>';
 					} else {
 						echo '<div class="result">';
 							echo '<div class="row">';
-								echo '<div class="col-md-8">';	
+								echo '<div class="col-md-3">';					
+									echo "</p><input class='orangeButton' type='submit' value='Lanjut' onclick='localStore()' /></p>";
+								echo '</div><br>';
+								echo '<div class="col-md-10">';	
 									echo "<p><div class='resultSalah'>Ups, jawabanmu belum benar </div><p>";
 								echo '</div>';
-								echo '<div class="col-md-4">';					
-									echo "</p><input class='loginButton' type='submit' value='Lanjut' onclick='localStore()' /></p>";
-								echo '</div>';
 							echo '</div>';
-							echo '<div class="row">';
-								echo '<div class="col-md-12">';
+							echo '<div class="row">';								
+								echo '<div class="col-md-10">';
 								//echo "<br/>".$jawabanBenar;
 								//echo '<td> Solusi : <br/>'.$jawabanBenar.'</td>';
-								echo 'Solusi :'.$jawabanBenar.' ';
-								echo 'Pembahasan : '.$pembahasanSoal;
+								echo '<h3 class="textungu weight">Solusi</h3><span class="weight">Jawaban Benar:</span> '.$jawabanBenar.' ';
+								echo '<br><span class="weight">Pembahasan:</span> <br> '.$pembahasanSoal;
 								echo '</div>';
 							echo '</div>';
 						echo '</div>';		

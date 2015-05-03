@@ -17,11 +17,11 @@
 		    $data['historyRow'] = count($data['history']);
 		    
 		    for($i=0; $i<count($data['result']);$i++)
-			{
-				$idTB = $data['result'][$i]->idTargetBelajar;
-				//echo $idTB;
-				$data['nama'][$i] = $this->targetbelajar_model->getNamaMateri($idTB)->row(); 
-			}
+		    {
+			$idTB = $data['result'][$i]->idTargetBelajar;
+			//echo $idTB;
+			$data['nama'][$i] = $this->targetbelajar_model->getNamaMateri($idTB)->row(); 
+		    }
 		    $this->load->view('user/targetbelajar_view',$data);
 		} 
 		else {
@@ -49,6 +49,7 @@
 			$this->load->model('targetbelajar_model');
 			
 			$this->targetbelajar_model->delete($id);
+			echo "<script type='text/javascript'>alert('Target belajar berhasil dihapus');</script>";
 			redirect('target_belajar', 'refresh');
 		} 
 		else {
@@ -57,11 +58,11 @@
 	}
 	
 	
-	public function edit($id){
+	public function edit($idTargetBelajar){
 		if($this->session->userdata('loggedin')) {
 			$this->load->model('targetbelajar_model');
 			$this->load->model('kelas_model');			
-			$data['result'] = $this->targetbelajar_model->get($id); 
+			$data['result'] = $this->targetbelajar_model->get($idTargetBelajar); 
 			$data['kelas'] = $this->kelas_model->getAllKelas()->result();		
 			$this->load->view('user/ubahtargetbelajar_view', $data);
 		} 
@@ -70,10 +71,13 @@
 		}
 	}
 	
-	public function simpanPerubahan($id){
+	public function simpanPerubahan($idTargetBelajar){
 		if($this->session->userdata('loggedin')) {
 			$this->load->model('targetbelajar_model');	
 			$username = $this->session->userdata('username'); //sudah diganti
+			$menit = $this->input->post('menit');
+			$detik = $this->input->post('detik');
+			$totalWaktu = ($menit*60) + $detik;
 			$data = array(			
 				'username' => $username,
 				'idmateri' => $this->input->post('idmateri'),
@@ -81,12 +85,16 @@
 				'banyaksoal' => $this->input->post('banyaksoal'),
 				'targetnilai' => $this->input->post('targetnilai'),			
 			);
-			
-			$this->db->where('idTargetBelajar', $id);
-			$this->db->update('target_belajar', $data);
+			if($totalWaktu > 0)
+			{
+				$data['targetwaktu'] = $totalWaktu;
+			}
+			$this->targetbelajar_model->update($data, $idTargetBelajar);
+			echo "<script type='text/javascript'>alert('Perubahan target belajar berhasil disimpan');</script>";
 			redirect('target_belajar', 'refresh');
 		} 
 		else {
+			echo "<script type='text/javascript'>alert('Perubahan target belajar tidak berhasil disimpan');</script>";
 			redirect('home');
 		}
 	}
@@ -119,16 +127,22 @@
 		if($this->session->userdata('loggedin')) {
 			$username = $this->session->userdata('username'); //sudah diganti
 			$this->load->model('targetbelajar_model');
-			$data = array(
-				'idtargetbelajar' => $this->input->post('idtargetbelajar'),
+			$menit = $this->input->post('menit');
+			$detik = $this->input->post('detik');
+			$totalWaktu = ($menit*60) + $detik;
+			$data = array(			
 				'username' => $username,
 				'idmateri' => $this->input->post('idmateri'),
 				'idkelas' => $this->input->post('idkelas'),			
 				'banyaksoal' => $this->input->post('banyaksoal'),
 				'targetnilai' => $this->input->post('targetnilai'),
-				'tanggal' => date("Y-m-d"),
+				'tanggal' => date("Y-m-d"),				
 				'isselesai' => 'tidak'
 			);
+			if($totalWaktu > 0)
+			{
+				$data['targetwaktu'] = $totalWaktu;
+			}			
 			
 			$this->targetbelajar_model->add($data);
 			redirect('target_belajar');

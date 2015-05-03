@@ -122,6 +122,12 @@
 			]
 		};
 		$("#chartContainer").CanvasJSChart(options);
+	}
+
+	function confirmDelete(url) {
+		if (confirm("Kamu yakin ingin mereset rapor? Rapor kamu akan dikembalikan ke keadaan default")) {
+			window.location.href = url;
+		}		
 	}	
 </script>
 
@@ -146,12 +152,12 @@
 				if($this->session->userdata('loggedin')) { 
 					if($this->session->userdata('role') == "admin") {
 						echo '<a href="'.base_url().'admin/dashboard"> Dashboard Admin </a></li><li>';
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} else {
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} 
 				} else {
-						echo '<a href="'.base_url().'autentikasi"> Masuk </a>';
+						echo '<a href="'.base_url().'autentikasi"> LOG IN </a>';
 				}
 				?>	</li>
           </ul>
@@ -160,14 +166,14 @@
 	<?php 
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {
-		echo '<div class="row">';
+		
         echo '<div class="container" id="iconbar">';
-        echo '<div class="row">';
-        echo '<div class="col-md-2"></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">RAPOR</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
+        
+		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">&nbspPERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
 		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
@@ -175,10 +181,9 @@
 		else{
 			echo '<img src="'.base_url().'assets/images/boy.png" img size="height="20" width="20">';
 		}
-		echo '<a href="'.base_url().'profil"> Hai ';
-		echo $this->session->userdata('namaPanggilan')."</a></div>";
-		echo '</div>';
-		echo '</div>';
+		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
+		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
+		
 		echo '</div>';
 	}
 	?>
@@ -194,7 +199,7 @@
       			<div class="col-md-8 white2">
       				<h1 class="tBelajar"> Rapor </h1><br><br>
 				<div class="right">
-					<a href=" <?php echo base_url();?>index.php/daftar_kelas/reset"><button type = "submit" class="orangeButton"> Reset</button></a>   
+					  <button type="submit" class="orangeButton" onclick="return confirmDelete('<?php echo base_url() ?>index.php/rapor/hapusHistory/<?php echo $dataId[0]->idRapor ?>');">Reset</button>
 				</div>
       			</div>
       		</div>
@@ -207,11 +212,45 @@
 		echo '<input type = "hidden" id="idRapor" value="'.$idRapor.'">';
 	?>
 	<div class="container contents">
-			<!--<button type="submit" onclick="return confirmDelete('<?php echo base_url() ?>index.php/rapor/hapusHistory/');">Reset</button>-->
-		<form method="GET" action="" >
-		<?php foreach($kelas_model as $row):?>			
-		<a href="<?php echo base_url() ?>index.php/rapor/view/<?php echo $row->idKelas?>"> <?php echo $row->idKelas ?></a>		
-		<?php endforeach?>
+			
+		<form method="GET" action="" >	
+		
+		Kelas	
+		<?php foreach($kelas_model as $row):?>
+
+			<a href="<?php echo base_url() ?>index.php/rapor/view/<?php echo $row->idKelas?>"> 
+			
+				<?php 				
+					$url = $_SERVER['REQUEST_URI'];
+					$arr = explode("/",$url);
+					$length = count($arr);
+					$id = $arr[$length - 1];
+					
+					$idKelas = $row->idKelas;
+					if($idKelas == $id)
+					{
+						echo '<button type="button" class="circleGreen buttonDelete">';
+						echo substr($idKelas,4,5);
+						echo '</button>';
+					}
+					else
+					{
+						echo '<button type="button" class="circle buttonDelete">';
+						echo substr($idKelas,4,5);
+						echo '</button>';
+					}
+					
+				?>
+			</a>
+
+			
+			
+			
+			
+		<?php endforeach ?>
+		
+		
+		
 		<input id="pilihkelas" type="hidden" name="idKelas" value="<?php 
 			$url=current_url();
 
@@ -219,12 +258,13 @@
 			$length = count($arr);
 			echo $arr[$length - 1];			
 		?>">
-	<br>
+	<br><br><br>
+		Materi
 		<select name ="idMateri" id="pilihmateri" onchange="showAlertBox()">
 		<?php foreach($result as $row):?>			
 		<option value="<?php echo $row->idMateri; ?>" ><?php echo $row->nama ?></option>
 		<?php endforeach?>
-		<option value="all" >Semua</option>
+		<option value="all" >TES</option>
 		</select>
 	
 	<br>			

@@ -92,14 +92,18 @@
       <table class="table table-hover table-striped tableimath">
     <thead>
           <tr>
+	<th class="col-md-1">No</th>
           <th class="col-md-3">Pertanyaan</th>
-          <th class="col-md-2">Jawaban</th>
-          <th class="col-md-3">Pembahasan</th>
-          <th class="col-md-4">Tindakan</th>
+          <th class="col-md-1">Jawaban</th>
+          <th class="col-md-4">Pembahasan</th>
+          <th class="col-md-3">Tindakan</th>
             </tr>
     </thead>
     <tbody>
-      <?php foreach($result as $row):?> 
+      <?php $i = 1; foreach($result as $row):?> 
+	<td>
+  		<?php echo $i; $i = $i+1; ?>
+  	</td>
   	<td>
   		<?php echo $row->pertanyaan ?>
   	</td>

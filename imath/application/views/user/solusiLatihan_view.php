@@ -24,12 +24,12 @@
 				if($this->session->userdata('loggedin')) { 
 					if($this->session->userdata('role') == "admin") {
 						echo '<a href="'.base_url().'admin/dashboard"> Dashboard Admin </a></li><li>';
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} else {
-						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} 
 				} else {
-						echo '<a href="'.base_url().'autentikasi"> Masuk </a>';
+						echo '<a href="'.base_url().'autentikasi"> LOG IN </a>';
 				}
 				?>	</li>
           </ul>
@@ -38,26 +38,24 @@
 	<?php 
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {
-		echo '<div class="row">';
+		
         echo '<div class="container" id="iconbar">';
-        echo '<div class="row">';
-        echo '<div class="col-md-2"></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">RAPOR</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
+        
+		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">&nbspPERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
-		$gender = $this->session->userdata('gender');
-		if($gender=='Laki-Laki'){
+		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
 		}
 		else{
 			echo '<img src="'.base_url().'assets/images/boy.png" img size="height="20" width="20">';
 		}
-		echo '<a href="'.base_url().'profil"> Hai ';
-		echo $this->session->userdata('namaPanggilan')."</a>:)</div>";
-		echo '</div>';
-		echo '</div>';
+		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
+		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
+		
 		echo '</div>';
 	}
 	?>
