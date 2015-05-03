@@ -2,12 +2,10 @@
 class soal_tes extends CI_Controller{
 	public function index()
 	{
-		$id = $this->input->post('idKelas');
 		$this->load->model('kelas_model');				
-		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();		
-		$data['rowKelas']= $this->kelas_model->get($id)->result();
+		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->model('soal_model');
-		$data['result'] = $this->soal_model->getAllSoalTes('SD001');
+		$data['result'] = $this->soal_model->getAllSoalTes('0');
 		$this->load->view('admin/daftarsoaltes_view',$data);
 	}
 
@@ -466,7 +464,7 @@ class soal_tes extends CI_Controller{
 	
 	public function simpan($idKelas){
 		$this->load->model('soal_model');
-		$data['result'] = $this->soal_model->getByKelas($idKelas);
+		$data['result'] = $this->soal_model->getSoal($idKelas)->result();
 		
 		for($i=0; $i<count($data['result']);$i++)
 		{

@@ -31,6 +31,9 @@
 		<?php echo $row->rangkuman ?>
 	</td>
 	<td>
+		<?php echo $row->gambar ?>
+		<img src="../uploads/28356.png">
+	<td>
 	<a href="<?php echo base_url();?>index.php/matericontroller/detail/<?php echo $row->idMateri ?>">
                                     <button type="submit">Lihat</button></a>
 	</td>

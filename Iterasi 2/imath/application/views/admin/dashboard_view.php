@@ -68,7 +68,7 @@
 	</div>	
 	<div class="row">
 		<div class="col-md-4">
-			<a href="">
+			<a href="<?php echo base_url();?>admin/soal_tes/view/SD001">
 				<img src ="<?php echo base_url() ?>assets/images/icon_soaltes.png" width="180px" height="180px">
 				<h3>Soal Tes</h3>
 			</a>
