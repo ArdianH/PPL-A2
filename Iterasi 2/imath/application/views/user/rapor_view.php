@@ -122,6 +122,12 @@
 			]
 		};
 		$("#chartContainer").CanvasJSChart(options);
+	}
+
+	function confirmDelete(url) {
+		if (confirm("Kamu yakin ingin mereset rapor? Rapor kamu akan dikembalikan ke keadaan default")) {
+			window.location.href = url;
+		}		
 	}	
 </script>
 
@@ -193,7 +199,7 @@
       			<div class="col-md-8 white2">
       				<h1 class="tBelajar"> Rapor </h1><br><br>
 				<div class="right">
-					<a href=" <?php echo base_url();?>index.php/rapor/hapusHistory/"><button type = "submit" class="orangeButton"> Reset</button></a>   
+					  <button type="submit" class="orangeButton" onclick="return confirmDelete('<?php echo base_url() ?>index.php/rapor/hapusHistory/<?php echo $dataId[0]->idRapor ?>');">Reset</button>
 				</div>
       			</div>
       		</div>
@@ -206,7 +212,7 @@
 		echo '<input type = "hidden" id="idRapor" value="'.$idRapor.'">';
 	?>
 	<div class="container contents">
-			<!--<button type="submit" onclick="return confirmDelete('<?php echo base_url() ?>index.php/rapor/hapusHistory/');">Reset</button>-->
+			
 		<form method="GET" action="" >	
 		
 		Kelas	
