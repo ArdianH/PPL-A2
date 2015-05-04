@@ -4,7 +4,18 @@
         {
 		
 	}
+
+		public function tentang_kami(){
+			$this->load->view('user/tentangkami_view');
+		}
+
+		public function kebijakan_privasi(){
+			$this->load->view('user/kebijakanprivasi_view');
+		}
 	
+		public function bantuan(){
+			$this->load->view('user/bantuan_view');
+		}
 	
 	public function hubungi_kami()
         {

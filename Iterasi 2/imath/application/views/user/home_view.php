@@ -36,14 +36,14 @@
 	<?php 
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {
-		
+		echo '<div class="row">';
         echo '<div class="container" id="iconbar">';
-        
-		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">&nbspPERMAINAN</a></div>';
+        echo '<div class="row">';
+        echo '<div class="col-md-2"></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">RAPOR</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">PRESTASI</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
 		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
@@ -53,13 +53,14 @@
 		}
 		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
 		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
-		
+		echo '</div>';
+		echo '</div>';
 		echo '</div>';
 	}
 	?>
 </nav>
 
-    <div class="container contents">    
+    <div class="container contents">
       <div class="jumbotron">
       		<div class="row">
       			<div class="col-md-4">
@@ -89,20 +90,20 @@
 	</div>
     
 
-	</div >
+</div >
 
 	
 	 	<footer class="footer">
 	      <div class="container">
 	        <p class="text-muted">
 	          <div class="row">
-			<div class="col-md-3"><a class="footerColor" href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="#"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="#"><p>BANTUAN</p></a></div>           
+	          <div class="col-md-3"><a href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
+	          <div class="col-md-3"><a href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
+	          <div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
+	          <div class="col-md-3"><a href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>        
 	        </div>
 	        <div class="row">
-	          <div class="col-md-12"><p class="footerColor">Copyright(c) 2015</p></div>
+	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>
 	        </div>
 	        </p>
 	      </div>
