@@ -30,7 +30,7 @@
 				} else {
 						echo '<a href="'.base_url().'autentikasi"> LOG IN </a>';
 				}
-			?>
+			?>	
 			</li>
 		  </ul>
 		</div><!--/.nav-collapse -->
@@ -62,21 +62,25 @@
 	?>
 </nav>
 
-<div class="container" align="center">
+<div class="container">
 	<img class="imgLogin" src='<?php echo base_url() ?>assets/images/biru.jpg' height="700px">
-	<div class="contentsTentangKami">
+	<div class="contentsTentangKami" align="center">
 		<h1 id="tulisanBiru" class="weight">Tentang Kami</h1>
-		<br/><br/>
-		<p>
-		<?php
-			foreach($stringTentangKami as $row) :
-				echo $row."<br/>";
-			endforeach;
-		?>
-		</p>
-		<br/>
+		</br>
+		<form class="formImath" method="POST" action="<?php echo base_url(); ?>info/processTentangKami/" enctype="multipart/form-data" >
+			<div align="center">
+			<textarea name="input" rows="18" cols="100" placeholder="input text here (may use inline html tag if styling is needed)" autofocus required>
+			<?php
+				foreach($stringTentangKami as $row):
+					echo $row;
+				endforeach;
+			?>
+			</textarea>
+			<br /><br />
+			<input type="submit" value="Simpan" />
+			</div>
+		</form>
 		</div>
-		<?php echo $this->session->flashdata("notifTentangKami"); ?>
 	</div>
 
 	   <footer class="footer">
@@ -84,7 +88,7 @@
 		  <p class="text-muted">
 			<div class="row">
 			<div class="col-md-3"><a href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+			<div class="col-md-3"><a href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
 			<div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
 			<div class="col-md-3"><a href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>
 		  </div>
