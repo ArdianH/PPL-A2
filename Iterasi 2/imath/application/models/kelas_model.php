@@ -38,5 +38,14 @@ class kelas_model extends CI_Model {
 		$this->db->where('idKelas', $id);
 		$this->db->update('Kelas', $data);
 	}
+
+	function setWaktu($idKelas, $inputWaktu){
+		$this->load->database();				
+		$this->db->set('waktuTes', $inputWaktu);
+		$this->db->where('idKelas', $idKelas);
+		$this->db->update('Kelas');
+		echo "LALLALA";
+		return;
+	}
 }
 ?>

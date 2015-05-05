@@ -14,6 +14,19 @@
         }   
       }
   </script>
+  <script>
+  $(document).ready(function(){
+      $("#waktuForm").hide();
+      $("#ubahwaktu").click(function(){
+          $("#waktu").hide();
+          $("#waktuForm").show();
+      });
+
+  });
+  </script>
+  <script>
+
+  </script>
     </head>
     
     <body>
@@ -57,8 +70,16 @@
   </div>
   <div class="row">
     Kelas <?php echo $rowKelas[0]->idKelas?>
+  <div id="waktu">
     Waktu : <?php echo $rowKelas[0]->waktuTes ?>
-    <a href=" "><button class="adminBiruButton"> Ubah Waktu</button></a>
+    <button id="ubahwaktu" class="adminBiruButton"> Ubah Waktu</button>
+  </div>
+  <div id="waktuForm">
+    <form method="POST" action="<?php echo base_url();?>index.php/admin/soal_tes/setWaktu">
+      <input name="inputWaktu" id="inputWaktu" value="<?php echo $rowKelas[0]->waktuTes ?>"/>
+      <input class="adminOrangeButton" type="submit" value="Submit">
+    </form>
+  </div>
   </div>
   <div class="row">
     <div class="col-md-2">
@@ -84,26 +105,26 @@
       <table class="table table-hover table-striped tableimath">
     <thead>
           <tr>
-	<th class="col-md-1">No</th>
           <th class="col-md-3">Pertanyaan</th>
           <th class="col-md-1">Jawaban</th>
           <th class="col-md-4">Pembahasan</th>
+          <th class="col-md-1">Tampilkan</th>
           <th class="col-md-3">Tindakan</th>
             </tr>
     </thead>
     <tbody>
       <?php $i = 1; foreach($result as $row):?> 
-	<td>
-  		<?php echo $i; $i = $i+1; ?>
-  	</td>
   	<td>
   		<?php echo $row->pertanyaan ?>
   	</td>
   	<td>
   		<?php echo $row->jawaban ?>
   	</td>
-    <td>
+     <td>
       <?php echo $row->pembahasan ?>
+    </td>
+    <td>
+      <?php echo $row->isDitunjukkan ?>
     </td>
     <td>
       <a href="<?php echo base_url();?>index.php/admin/soal_tes/detail/<?php echo $row->idSoal ?>">
@@ -124,10 +145,10 @@
         <div class="container">
           <p class="text-muted">
             <div class="row">
-            <div class="col-md-3"><a href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-            <div class="col-md-3"><a href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-            <div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-            <div class="col-md-3"><a href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>        
+            <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
           </div>
           <div class="row">
             <div class="col-md-12"><p>Copyright(c) 2015</p></div>
