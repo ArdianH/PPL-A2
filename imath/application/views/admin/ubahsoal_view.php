@@ -12,7 +12,8 @@
 	        <a class="navbar-brand" href="#">iMath</a>
 	      </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">            
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">PROFIL ADMIN</a></li>
             <li><a href="<?php echo base_url();?>index.php/admin/dashboard">DASHBOARD</a></li>
             <li><a href="<?php echo base_url();?>index.php/">BERANDA IMATH</a></li>
             <li><a href="<?php echo base_url();?>index.php/logout">LOG OUT</a></li>

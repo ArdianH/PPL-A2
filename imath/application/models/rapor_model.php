@@ -34,10 +34,10 @@ class rapor_model extends CI_Model {
 		return $this->db->get_where('catatan_tes', array ('idRapor'=>$id, 'idKelas'=>$idKelas))->result();
 	}
 	
-	function deleteHistory($id){
+	function deleteHistory($id, $idKelas, $idMateri){
 		$this->load->database();
-		$this->db->delete('catatan_latihan',array ('idRapor'=>$id));
-		$this->db->delete('catatan_tes',array ('idRapor'=>$id));
+		//$selesai = 'tercapai';
+		$this->db->delete('catatan_latihan',array ('idRapor'=>$id, 'idMateri'=>$idMateri, 'idKelas'=>$idKelas));
 	}
 }
 ?>

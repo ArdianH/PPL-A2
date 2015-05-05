@@ -39,11 +39,11 @@
 		}
 	}
 	
-	public function hapusHistory($id){
+	public function hapusHistory($id, $idKelas, $idMateri){
 			$this->load->model('rapor_model');
-			$this->rapor_model->deleteHistory($id);
-			$message = "Rapor telah berhasil di reset";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			//$this->load->model('rapor_model');
+			$username = $this->session->userdata('username'); //sudah diganti
+			$this->rapor_model->deleteHistory($id, $idKelas, $idMateri); 
 			redirect('rapor', 'refresh');
 	}
 	

@@ -19,7 +19,7 @@
 	      </div>
         <!-- Navbar Atas -->
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url();?>index.php/profil">PROFIL ADMIN</a></li>
             <li><a href="<?php echo base_url();?>index.php/admin/dashboard">DASHBOARD</a></li>
             <li><a href="<?php echo base_url();?>index.php/home">BERANDA IMATH</a></li>
             <li><a href="<?php echo base_url();?>index.php/autentikasi/logout">LOG OUT</a></li>
@@ -68,7 +68,7 @@
 	</div>	
 	<div class="row">
 		<div class="col-md-4">
-			<a href="<?php echo base_url();?>admin/soal_tes/view/SD001">
+			<a href="">
 				<img src ="<?php echo base_url() ?>assets/images/icon_soaltes.png" width="180px" height="180px">
 				<h3>Soal Tes</h3>
 			</a>

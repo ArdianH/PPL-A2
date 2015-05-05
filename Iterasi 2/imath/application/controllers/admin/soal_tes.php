@@ -2,9 +2,10 @@
 class soal_tes extends CI_Controller{
 	public function index()
 	{
+		$id = $this->input->post('idKelas');
 		$this->load->model('kelas_model');				
 		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();		
-		$data['rowKelas']= $this->kelas_model->get('SD001')->result();
+		$data['rowKelas']= $this->kelas_model->get($id)->result();
 		$this->load->model('soal_model');
 		$data['result'] = $this->soal_model->getAllSoalTes('SD001');
 		$this->load->view('admin/daftarsoaltes_view',$data);
@@ -476,13 +477,6 @@ class soal_tes extends CI_Controller{
 		}
 		
 		$this->session->set_flashdata('suksesSimpan', "Pengaturan tampilkan soal tes berhasil disimpan");
-		redirect('admin/soal_tes');
-	}
-
-	public function setWaktu(){				
-		$inputWaktu = $this->input->post('inputWaktu');
-		$this->load->model('kelas_model');
-		$this->kelas_model->setWaktu('SD001', $inputWaktu);
 		redirect('admin/soal_tes');
 	}	
 }

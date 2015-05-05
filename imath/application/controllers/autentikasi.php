@@ -81,21 +81,21 @@ class Autentikasi extends CI_Controller {
 			
 			//Jika terjadi duplikat email / duplikat username / captcha salah, tampilkan pesan error.
 			if($dataDB->num_rows() >= 1) {
-				$this->session->set_flashdata('messageSignup',"Akun gagal dibuat, silakan gunakan email lain.");
+				$this->session->set_flashdata('messageSignup',"Account Gagal dibuat, silahkan gunakan email lain.");
 			} else if ($dataDB2->num_rows() >= 1) {
-				$this->session->set_flashdata('messageSignup',"Akun gagal dibuat, silakan gunakan username lain.");			
+				$this->session->set_flashdata('messageSignup',"Account Gagal dibuat, silahkan gunakan username lain.");			
 			} else {
 				$res = $this->akun_model->setDataAkun($data);
 				$dataIdRapor = array('username' => $username);
 				$res2 = $this->akun_model->setIdRapor($dataIdRapor);
 				if($res==1 && $res2==1) {
-					$this->session->set_flashdata('messageSignup',"Akun berhasil dibuat");
+					$this->session->set_flashdata('messageSignup',"Account Berhasil dibuat");
 				} else {
-					$this->session->set_flashdata('messageSignup',"Akun gagal dibuat");
+					$this->session->set_flashdata('messageSignup',"Account Gagal dibuat");
 				}
 			}
 		} else {
-			$this->session->set_flashdata('messageSignup',"Akun gagal dibuat, password tidak sama");
+			$this->session->set_flashdata('messageSignup',"Account Gagal dibuat, Isian data tidak valid.");
 		}
 		redirect('/autentikasi/signup');
 	}

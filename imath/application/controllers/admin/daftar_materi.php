@@ -81,17 +81,9 @@ class daftar_materi extends CI_Controller{
 		
 		$this->load->library('upload');		
 		if ( ! $this->upload->do_upload())
-		{			
-			$this->load->model('materi_model');
-			$data = array(
-				'nama' => $this->input->post('nama'),			
-				'idKelas' => $this->input->post('idKelas'),			
-				'rangkuman' => $this->input->post('rangkuman'),
-				'deskripsi' => $this->input->post('deskripsi'),				
-			);		
-
-			$this->materi_model->update($data, $id);
-			redirect('admin/daftar_materi', 'refresh');			
+		{
+			$error = array('error' => $this->upload->display_errors());
+			echo "Error: gambar terlalu besar atau Anda belum memilih gambar";
 		}
 		else
 		{	

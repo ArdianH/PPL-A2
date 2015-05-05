@@ -25,6 +25,9 @@ class Latihan extends CI_Controller {
 		$dataDB = $this->latihan_model->getIdSoalTes($kelas)->result_array();
 		$dataDB2 = $this->latihan_model->getIdKelas($kelas)->row();
 		$idKelas = $dataDB2->idKelas;
+		$username = $this->session->userdata('username');
+		$dataDB3 = $this->latihan_model->getIdRapor($username)->row();
+		$idRapor = $dataDB3->idRapor;
 		shuffle($dataDB);
 		//$jumlahSoal = count($dataDB);
 		$jumlahSoal = 5;
@@ -34,15 +37,10 @@ class Latihan extends CI_Controller {
 			'skor'			=>	0,
 			'jumlahTrue'	=>  0,
 			'setIdSoal'		=>	$dataDB,
-			'jumlahSoal'		=>	$jumlahSoal,
-			'idKelas'		=>	$idKelas
+			'jumlahSoal'	=>	$jumlahSoal,
+			'idKelas'		=>	$idKelas,
+			'idRapor'		=>  $idRapor
 		);
-		if($this->session->userdata('loggedin')) {
-			$username = $this->session->userdata('username');
-			$dataDB3 = $this->latihan_model->getIdRapor($username)->row();
-			$idRapor = $dataDB3->idRapor;
-			$dataSession['idRapor'] = $idRapor;
-		}
 		$this->session->set_userdata($dataSession);
 		$this->processSoal("init");
 	}
@@ -62,9 +60,7 @@ class Latihan extends CI_Controller {
 			$nomorSoalUpdate = $nomorSoal + 1;
 			$this->session->set_userdata('nomorSoal', $nomorSoalUpdate);
 			$this->session->set_userdata('currentIdSoal', $satuSoal->idSoal);
-			$namaMateri = $this->latihan_model->getNamaMateri($satuSoal->idSoal)->result_array();
-			$namaMateri = $namaMateri[0]['nama'];
-			$this->session->set_userdata('namaMateri', $namaMateri);
+			
 			$pilihanJawaban = $this->latihan_model->getJawabanSoalTes($satuIdSoal)->result_array();
 
 			$satuSoal = array(
@@ -72,7 +68,7 @@ class Latihan extends CI_Controller {
 				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
 				'jawaban' 		=> 	$satuSoal->jawaban,
 				'pembahasan'	=>  $satuSoal->pembahasan,
-				'namaMateri'	=>	$namaMateri,
+				
 				'gambar'		=>  $satuSoal->gambarSoal,
 				
 				'idOpsiA'		=>	$pilihanJawaban[0]['pilihanGanda'],
@@ -99,11 +95,9 @@ class Latihan extends CI_Controller {
 			$this->load->view('user/latihan_view', $satuSoal);
 			
 		} else {
-			$waktuTes = $this->session->userdata('waktuTes');	
-			$jawabanBenar = $this->session->userdata('jawabanTrue');
-			$idMateri = $this->session->userdata('kelas');
+			$waktuTes = $this->session->userdata('waktuTes');		
 			$data = array(
-				'kelas'		=>	$this->session->userdata('kelas'),				
+				'kelas'			=>	$this->session->userdata('kelas'),				
 				'skor'			=>	$this->session->userdata('skor'),
 				'jawabanTrue'	=>  $this->session->userdata('jawabanTrue'),
 				'namaPanggilan'	=>	$this->session->userdata('namaPanggilan'),
@@ -112,26 +106,15 @@ class Latihan extends CI_Controller {
 				
 			$dataToDB = array(
 				'idKelas'			=>	$this->session->userdata('idKelas'),
-				'idMateri'			=>  $idMateri,
-				'jawabanBenar'		=>  $jawabanBenar,
+				'idMateri'			=>  $this->session->userdata('kelas'),
+				'jawabanBenar'		=>  $this->session->userdata('jawabanTrue'),
 				'idRapor'			=>	$this->session->userdata('idRapor'), //disesuaiakan dgn username di tabel AKUN
 				'tglMengerjakan' 	=>  date("Y-m-d"),
 				'lamaWaktu'			=>  $waktuTes
 			);
 			
-			if($this->session->userdata('loggedin')) {
-				$this->load->model('latihan_model');
-				$this->latihan_model->add($dataToDB);
-			
-				
-				
-				if($jawabanBenar = 10){
-					$this->load->model('latihan_model');
-					$this->latihan_model->addMedali($this->session->userdata('username'), $idMateri);
-				} else {
-					
-				}
-			}
+			$this->load->model('latihan_model');
+			$this->latihan_model->add($dataToDB);
 			$this->load->view('user/detailLatihan_view', $data);  //INIIIII MEDALI KALAU UDAH 10 SOAL YAAA :D
 		}
 		
@@ -177,8 +160,8 @@ class Latihan extends CI_Controller {
 			$satuSoal = array(
 				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
 				'jawabanBenar'	=>	$jawabanBenar,
-				'pembahasanSoal'=>  $pembahasanSoal,
-				'namaMateri'	=>	$this->session->userdata('namaMateri'),
+				'pembahasanSoal' =>  $pembahasanSoal,
+				
 				'gambar'		=>  $satuSoal->gambarSoal,
 				
 				'jawab' 		=> 	$jawabanUser,

@@ -6,30 +6,15 @@ class soal_model extends CI_Model {
 	}	
 	
 	//Fungsi ini mengambil semua soal di kelas dipilih
-	function getAllSoalLatihan($idMateri){
+	function getAllSoal($idMateri){
     	$this->load->database();
-    	return $this->db->get_where('soal', array('idMateri' => $idMateri, 'isTes' => 'latihan'))->result();
+    	return $this->db->get_where('soal', array('idMateri' => $idMateri))->result();
 	}
-	function getAllSoalTes($idKelas){
-    	$this->load->database();
-    	return $this->db->get_where('soal', array('idKelas' => $idKelas, 'isTes' => 'tes'))->result();
-	}
+
 	//Fungsi ini mengambil soal dengan id yang diinginkan
 	function get($id){
     	$this->load->database();
 		return $this->db->get_where('soal', array('idSoal' => $id))->result();
-	}
-
-	function getByKelas($id){
-    	$this->load->database();
-		return $this->db->get_where('soal', array('idKelas' => $id, 'isTes' => 'tes'))->result();
-	}
-
-	function updateTes($tampilkanTes, $idSoal){
-		$this->load->database();
-		$this->db->set('isDitunjukkan', $tampilkanTes);
-		$this->db->where('idsoal', $idSoal);
-		$this->db->update('soal', $data);
 	}
 	function getPilihanJawaban($id){
     	$this->load->database();

@@ -9,48 +9,60 @@
 
     <body>
    <nav class="navbar navbar-default navbar-static-top">
-	      <div class="container" id="navbar">
-			<div class="navbar-header" id="logobar">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				</button>
-				<a class="navbar-brand" href="<?php echo base_url();?>index.php"><img src="<?php echo base_url();?>assets/images/logo.png" height="42px" width="120px";></a>
-			</div>
-			<!-- Navbar Atas -->
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="<?php echo base_url()?>autentikasi">LOG IN</a></li>
-					<li><a href="<?php echo base_url()?>autentikasi/signup">DAFTAR</a></li>
-				</ul>
-			</div>
-		</div>  	
-	</nav>
-     <div class="container loginbg">
-     <img class="imgLogin" src='<?php echo base_url() ?>assets/images/biru.jpg' height="700px">
-	<h1 id="tulisanBiru">Lupa Password?</h1>
-		<div class="row" id="formlogin">
-			<div class="col-md-4" id="none"></div>
-			<div class="col-md-4" id="none">		
-				<div id="account-wall"> 
-					<form method="POST" action= <?php echo base_url()."autentikasi/process_forget/" ?> class="form-signin">
-						<h3>Masukkan Email</h3>
-						<p>
-							<input  class="form-control" placeholder="Email" type="email" name="email" size="30"title="Email harus valid (lowercase)" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required\>
-						</p>
-						<p>
-							<button type="submit" name="submit" class="loginButton">Submit</button>
-						</p>
-					</form>					
-				</div>
-			</div>
-		</div>
-		<br>
-		<p>
-			<a href="<?php echo base_url()."autentikasi/update_password"; ?>"> <button class="blueButton" type="button">Ganti Password</button></a>
-		</p>
-		<br>
-		<h3 id="tulisanBiru"><?php echo $this->session->flashdata('messageForget'); ?> </h3>	
-		<br>		
+      <div class="container" id="logobar">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <a class="navbar-brand" href="<?php echo base_url()?>home">iMath</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><?php
+				if($this->session->userdata('loggedin')) { 
+					if($this->session->userdata('role') == "admin") {
+						echo '<a href="'.base_url().'autentikasi/logout"> Logout </a>';
+						echo '<br/>';
+						echo '<a href="'.base_url().'admin/dashboard"> Dashboard Admin </a>';
+					} else {
+						echo '<a href="'.base_url().'autentikasi/logout"> Logout </a>';
+					} 
+				} else {
+						echo '<a href="'.base_url().'autentikasi"> Login </a>';
+				}
+				?>	</li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+     </nav>
+     <div class="container contents loginbg">
+	<h1 align="center">Forget Password Form</h1>
+	<form method="POST" action= <?php echo base_url()."autentikasi/process_forget/" ?> >
+	
+		<table align="center">
+			<tr>
+				<td>Email Address : </td>
+				<td><input type="email" name="email" size="30"title="Email harus valid (lowercase)" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required/></td>
+			</tr>		
+			<tr>
+				<td></td>
+				<td align="right"><input type="submit" name="submit" value="Submit"/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td> <?php echo $this->session->flashdata('messageForget'); ?> </td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="<?php echo base_url()."autentikasi/update_password"; ?>"> Change Password </a></td>
+			</tr>
+			<tr>
+				<td><a href="<?php echo base_url()."autentikasi/index"; ?>"> << Go Back </a></td>
+				<td></td>
+			</tr>
+		</table>		
+	</form>
 </div>
 
        <footer class="footer">

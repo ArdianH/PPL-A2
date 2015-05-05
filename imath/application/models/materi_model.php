@@ -56,9 +56,9 @@ class materi_model extends CI_Model {
 	
 	}
 	
-	function getJumlahSoal($idMateri) {
-		$this->db->where('idMateri', $idMateri);
-		return $this->db->count_all_results('soal');
+	function getAllSoal($idSoal){
+	    	$this->load->database();
+		return $this->db->get_where('soal', array('idSoal' => $idSoal))->result();
 	}
 }
 ?>

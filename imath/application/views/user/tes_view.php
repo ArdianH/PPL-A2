@@ -2,10 +2,20 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Tes</title>
+	<title>Welcome to My Web </title>
 
 <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
+	
+<style>
+#txt {
+  border:none;
+  font-family:verdana;
+  font-size:16pt;
+  font-weight:bold;
+  border-right-color:#FFFFFF
+}
+</style>
 	
 <script>
 /* This script and many more are available free online at
@@ -116,14 +126,6 @@ Modified by: Ardian*/
 	}
 
 	window.onload = cekSession;;
-	
-	$("form").submit(function() {
-    $(this).submit(function() {
-        return false;
-    });
-    return true;
-});
-	
 </script>
 	
 </head>
@@ -145,12 +147,12 @@ Modified by: Ardian*/
 				if($this->session->userdata('loggedin')) { 
 					if($this->session->userdata('role') == "admin") {
 						echo '<a href="'.base_url().'admin/dashboard"> Dashboard Admin </a></li><li>';
-						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
 					} else {
-						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
+						echo '<a href="'.base_url().'autentikasi/logout"> Keluar </a>';
 					} 
 				} else {
-						echo '<a href="'.base_url().'autentikasi"> LOG IN </a>';
+						echo '<a href="'.base_url().'autentikasi"> Masuk </a>';
 				}
 				?>	</li>
           </ul>
@@ -165,7 +167,7 @@ Modified by: Ardian*/
         echo '<div class="col-md-2"></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">RAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PRESTASI</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
 		if($this->session->userdata('gender') =="Perempuan"){
@@ -174,8 +176,8 @@ Modified by: Ardian*/
 		else{
 			echo '<img src="'.base_url().'assets/images/boy.png" img size="height="20" width="20">';
 		}
-		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
-		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
+		echo '<a href="'.base_url().'profil"> Hai ';
+		echo $this->session->userdata('namaPanggilan')."</a></div>";
 		echo '</div>';
 		echo '</div>';
 		echo '</div>';
@@ -185,84 +187,35 @@ Modified by: Ardian*/
 <!-- nav end -->
 
 <div class="container contents">
-	<div class="row">
-		<div class="soalcontainer">
-			<div class="col-md-3">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-default paneliMath">
-					
-						<div class="panel-heading merah">
-							
-							<h3>SOAL</h3>
-					
-						</div>
-						<div class="panel-body">
-							<?php
-								echo "<h3>".$nomor."</h3>";
-							 ?>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-default paneliMath">
-						<div class="panel-heading hijau"><form name="cd"><h3>WAKTU</h3> </div>
-						<div class="panel-body">
-							<input id="Time" class="waktuBox" readonly="true" type="text" value="00:00" border="0" name="disp">
-							</form>
-							<span id="minute"></span>
-							<span id="waktuTes"></span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-default paneliMath">
-						<div class="panel-heading unguGelap"><h3>NILAI</h3></div>
-						<div class="panel-body"><h3><?php echo $skor; ?> </h3> </div>
-					</div>
-				</div>
-			</div>
-			<!--<input type="hidden" name="idSoal" value= * echo $idSoal; */ />-->
+	<h1 align="center" style="color:red">Silahkan Mengerjakan Tes</h1>
+	<form name="cd">
+	Waktu Tersisa : 
+	<input id="Time" readonly="true" type="text" value="00:00" border="0" name="disp">
+	</form>
+	<span id="minute"></span>
+	<span id="waktuTes"></span>
+	<h3>Total Skor : <?php echo $skor; ?> </h3> 
+		<!--<input type="hidden" name="idSoal" value= * echo $idSoal; */ />-->
 
-			<!--Jika belum menjawab(flagNext==FALSE) maka tombol kirim muncul
-				Jika telah menjawab(flagNext==TRUE) maka tombol button NextSoal yang muncul-->
-		</div>
-		<div class="col-md-9">
-			<div class="soalText">
-				<?php
+		<!--Jika belum menjawab(flagNext==FALSE) maka tombol kirim muncul
+			Jika telah menjawab(flagNext==TRUE) maka tombol button NextSoal yang muncul-->
+		<?php
 		
 		if(!$flagNext) : ?>
-			<div id='headerSoal' style="text-align:center;">Tes Kelas <?php echo substr($this->session->userdata('kelas'), 4, 1);?></div>
 			<form method='POST' action='<?php echo base_url()."tes/processJawaban/";?>' onsubmit='return localGetMin()' >
-				<div class="row">
-					<div class="pertanyaaniMath">
-						<?php echo $pertanyaan?>
-					</div>
-				</div>
-				<div class="row gambarSoaliMath">
-				<?php
-					if(!is_null($gambar)) : ?> 
-					<img src=<?php echo base_url()."uploads/".$gambar; ?> />
-				<?php endif; ?>
-			</div>
-		</div>
-		<div class="jawabText">
-			<div class="row soaliMath">
-				<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiA; ?>' required /> A. <?php echo $desOpsiA; ?>
-			</div>
-			<div class="row soaliMath">
-				<input type='radio' name='jawab' id='idOpsiB' value='<?php echo $idOpsiB; ?>' required /> B. <?php echo $desOpsiB; ?>
-			</div>
-			<div class="row soaliMath">
-				<input type='radio' name='jawab' id='idOpsiC' value='<?php echo $idOpsiC; ?>' required /> C. <?php echo $desOpsiC; ?>
-			</div>
-			<div class="row soaliMath">
-				<input type='radio' name='jawab' id='idOpsiD' value='<?php echo $idOpsiD; ?>' required /> D. <?php echo $desOpsiD; ?>
-			</div>
+			<h1>Soal <?php echo $nomor; ?></h1>
+			<p><?php echo $pertanyaan ?></p>
+
+			
+			<?php if($gambar !== NULL) : ?>
+				<img src=<?php echo base_url()."uploads/".$gambar; ?> />
+				<br />
+			<?php endif; ?>
+			
+			<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiA; ?>' required /> A. <?php echo $desOpsiA; ?> <br/>
+			<input type='radio' name='jawab' id='idOpsiB' value='<?php echo $idOpsiB; ?>' required /> B. <?php echo $desOpsiB; ?> <br/>
+			<input type='radio' name='jawab' id='idOpsiC' value='<?php echo $idOpsiC; ?>' required /> C. <?php echo $desOpsiC; ?> <br/>
+			<input type='radio' name='jawab' id='idOpsiD' value='<?php echo $idOpsiD; ?>' required /> D. <?php echo $desOpsiD; ?> <br/>
 			<input type='hidden' name='idOpsiA' value='<?php echo $idOpsiA; ?>' />
 			<input type='hidden' name='idOpsiB' value='<?php echo $idOpsiB; ?>' />
 			<input type='hidden' name='idOpsiC' value='<?php echo $idOpsiC; ?>' />
@@ -271,80 +224,37 @@ Modified by: Ardian*/
 			<input type='hidden' name='desOpsiB' value='<?php echo $desOpsiB; ?>' />
 			<input type='hidden' name='desOpsiC' value='<?php echo $desOpsiC; ?>' />
 			<input type='hidden' name='desOpsiD' value='<?php echo $desOpsiD; ?>' />
-			<div class="row soaliMath"></div>
-			<div class="row soaliMath">
-				<input class="orangeButton" type='submit' value='Submit' onclick='localStore()' />
-		</div>
+			<input type='hidden' name='jawaban' value='<?php echo $jawaban; ?>' />
+			<input type='submit' value='Kirim' onclick='localStore()' />
 			</form>
 			<?php if($flagInit) {
 				echo "<script> localClear(); </script>";
 			} ?>
 		<?php else : ?>
-		<div class="soalText">
-		<div id='headerSoal2' style="text-align:center;">Tes Kelas <?php echo substr($this->session->userdata('kelas'), 4, 1);?></div>
 			<form method='POST' action= '<?php echo base_url()."tes/processSoal/";?>' onsubmit='return localGetMin()'>
-				<div class="row">
-					<div class="pertanyaaniMath">
-						<?php echo $pertanyaan?>
-					</div>
-				</div>
-				<div class="row gambarSoaliMath">
-				<?php
-					if(!is_null($gambar)) : ?> 
-					<img src=<?php echo base_url()."uploads/".$gambar; ?> />
-				<?php endif; ?>
-			</div>
-		</div>
-		<div class="jawabText">
-			<div class="row soaliMath">
-				<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiA; ?>' <?php echo $checkA; ?> disabled/> A. <?php echo $desOpsiA;?> <br/>
-			</div>
-			<div class="row soaliMath">
-				<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiB; ?>' <?php echo $checkB; ?> disabled/> B. <?php echo $desOpsiB;?> <br/>
-			</div>
-			<div class="row soaliMath">
-				<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiC; ?>' <?php echo $checkC; ?> disabled/> C. <?php echo $desOpsiC;?> <br/>
-			</div>
-			<div class="row soaliMath">
-				<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiD; ?>' <?php echo $checkD; ?> disabled/> D. <?php echo $desOpsiD;?> <br/>
-			</div>
+			<h1>Soal <?php echo $nomor; ?></h1>
+			<p><?php echo $pertanyaan; ?></p>
+			<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiA; ?>' <?php echo $checkA; ?> disabled/> A. <?php echo $desOpsiA;?> <br/>
+			<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiB; ?>' <?php echo $checkB; ?> disabled/> B. <?php echo $desOpsiB;?> <br/>
+			<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiC; ?>' <?php echo $checkC; ?> disabled/> C. <?php echo $desOpsiC;?> <br/>
+			<input type='radio' name='jawab' id='idOpsiA' value='<?php echo $idOpsiD; ?>' <?php echo $checkD; ?> disabled/> D. <?php echo $desOpsiD;?> <br/>
 			<input type='hidden' name='waktuTes' id='waktutes' value='01' />
-		</div>
-		<div class="row">
+			<input type='submit' value='Next Soal' onclick='localStore()' />
+			</form>
+		
 			<?php
 			if($flagJawaban == 1) {
-				echo '<div class="result">';
-							echo '<div class="row">';
-								echo '<div class="col-md-3">';						
-									echo '</p><input class="orangeButton" type="submit" value="Lanjut" onclick="localStore()" /></p>';
-								echo '</div>';
-								echo '</form>';
-								echo '<div class="col-md-8">';
-									echo "Jawaban Kamu <span style='color:green'>Benar!</span>";
-								echo '</div>';
-							echo '</div>';
-						echo '</div>';
+				echo "Jawaban Anda Benar!";
 			} else {
-				echo '<div class="result">';
-							echo '<div class="row">';
-								echo '<div class="col-md-3">';						
-									echo '</p><input class="orangeButton" type="submit" value="Lanjut" onclick="localStore()" /></p>';
-								echo '</div>';
-								echo '</form>';
-								echo '<div class="col-md-8">';
-									echo "Jawaban Kamu <span style='color:red'>Salah!</span>";
-								echo '</div>';
-							echo '</div>';
-						echo '</div>';
+				echo "Jawaban Anda Salah :(";
 			} ?>
-			</div>
+			
 		<?php endif; ?>
-	</div>
+		
+	<br/>
+	<br/>
+	<a href= "<?php echo base_url()."home"; ?>" onclick="localClear()"> << Keluar Tes >> </a>
 </div>
-</div>
-</div>
-</div>
-		<!--<input type="hidden" name="idSoal" value= * echo $idSoal; */ />-->
 
 	<footer class="footer">
         <div class="container">

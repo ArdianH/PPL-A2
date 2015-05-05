@@ -44,7 +44,7 @@
         </div>
         <!-- Navbar Atas -->
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url();?>index.php/profil">PROFIL ADMIN</a></li>
             <li><a href="<?php echo base_url();?>index.php/admin/dashboard">DASHBOARD</a></li>
             <li><a href="<?php echo base_url();?>index.php/home">BERANDA IMATH</a></li>
             <li><a href="<?php echo base_url();?>index.php/autentikasi/logout">LOG OUT</a></li>
@@ -96,7 +96,7 @@
       <option value="c" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="c") echo "selected"?>>C</option>
       <option value="d" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="d") echo "selected"?>>D</option>        
       </select></br>
-      <label>Pembahasan</label></br><textarea name ="pembahasan" required><?php echo $soal[0]->pembahasan ?></textarea></br>
+      <label>Pembahasan</label></br><textarea name ="pembahasan" required/><?php echo $soal[0]->pembahasan ?></textarea></br>
       <input type="file" name="gambarSolusi" id="gambarSolusi" size="20" /> </br></br>
         <input type="submit" name="submit" value="Submit" /></form>
         <a href = "<?php echo base_url()?>index.php/admin/soal_latihan"><button/>Batal</button></a>

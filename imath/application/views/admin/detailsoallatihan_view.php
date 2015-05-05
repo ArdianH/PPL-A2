@@ -20,7 +20,7 @@
         </div>
         <!-- Navbar Atas -->
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url();?>index.php/profil">PROFIL ADMIN</a></li>
             <li><a href="<?php echo base_url();?>index.php/admin/dashboard">DASHBOARD</a></li>
             <li><a href="<?php echo base_url();?>index.php/home">BERANDA IMATH</a></li>
             <li><a href="<?php echo base_url();?>index.php/autentikasi/logout">LOG OUT</a></li>
@@ -52,7 +52,7 @@
   		<h3>
   			Pertanyaan : <?php echo $soal[0]->pertanyaan;
         echo '</br>';
-        if(is_null($soal[0]->gambarSoal) || ($soal[0]->gambarSoal)==''){
+        if(is_null($soal[0]->gambarSoal)){
           echo '';
         }
         else{
@@ -102,11 +102,9 @@
         }?>
       </h4>
   		<h3>
-        Pembahasan: <br>
-	<?php echo $soal[0]->pembahasan;
+        Pembahasan: <?php echo $soal[0]->pembahasan;
           echo '  ';
           if(!is_null($soal[0]->gambarSolusi)){
-	  echo '<br>';
           echo '<img src="'.base_url().'uploads/';
           echo $soal[0]->gambarSolusi;
           echo '">';

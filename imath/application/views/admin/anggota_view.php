@@ -29,7 +29,7 @@
       </div>
     <!-- Navbar Atas -->
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url();?>index.php/profil">PROFIL ADMIN</a></li>
         <li><a href="<?php echo base_url();?>index.php/admin/dashboard">DASHBOARD</a></li>
         <li><a href="<?php echo base_url();?>index.php/home">BERANDA IMATH</a></li>
         <li><a href="<?php echo base_url();?>index.php/autentikasi/logout">LOG OUT</a></li>
@@ -60,7 +60,6 @@
         <table class="table table-hover table-striped tableimath">
 	        <thead>
 	    	 	<tr>
-			<th class="col-md-1">No</th>
 		            <th class="col-md-2">Username</th>
 					<th class="col-md-2">Nama</th>
 					<th class="col-md-2">Email</th>					
@@ -69,14 +68,9 @@
 	        	</tr>
 	        </thead>
 	        <tbody>
-			<?php 
-				$i = 1; 
-				foreach($result as $row):
-			?>				
+	        <?php foreach($result as $row):?>	
+				
 				<tr>
-					<td class="col-md-1">
-					 <?php echo $i; $i = $i +1;?>
-					</td>	
 					<td class="col-md-2">
 					 <?php echo $row->username ?>
 					</td>	

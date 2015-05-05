@@ -5,7 +5,7 @@ class soal_latihan extends CI_Controller{
 		$this->load->model('kelas_model');				
 		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->model('soal_model');
-		$data['result'] = $this->soal_model->getAllSoalLatihan('0');
+		$data['result'] = $this->soal_model->getAllSoal('0');
 		$this->load->view('admin/daftarsoallatihan_view',$data);
 	}
 
@@ -14,7 +14,7 @@ class soal_latihan extends CI_Controller{
 		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->model('soal_model');
 		$id = $this->input->post('idMateri');
-		$data['result'] = $this->soal_model->getAllSoalLatihan($id);
+		$data['result'] = $this->soal_model->getAllSoal($id);
 		$this->load->view('admin/daftarsoallatihan_view',$data);
 	}
 
