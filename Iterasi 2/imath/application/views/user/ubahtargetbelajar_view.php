@@ -39,6 +39,15 @@
 	</script>
     </head>
     <body>
+	<!-- Navigation Bar iMath -->
+	<nav class="navbar navbar-default navbar-static-top">
+      <div class="container" id="navbar">
+        <div class="navbar-header" id="logobar">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <a class="navbar-brand" href="<?php echo base_url();?>index.php"><img src="<?php echo base_url();?>assets/images/logo.png" height="42px" width="120px";></a>
+      </div>
 <!-- Navbar Atas -->
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -180,10 +189,10 @@
 	      <div class="container">
 	        <p class="text-muted">
 	          <div class="row">
-	          <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
-	          <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
-	          <div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-	          <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
+	         <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>        
 	        </div>
 	        <div class="row">
 	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>
