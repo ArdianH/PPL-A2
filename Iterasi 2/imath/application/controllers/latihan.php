@@ -1,7 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Latihan extends CI_Controller {
-
 	public function __construct()
 	{
             parent::__construct();
@@ -56,13 +54,11 @@ class Latihan extends CI_Controller {
 		if($nomorSoal < 10 && $param != 'selesai'){
 			$satuIdSoal	= $setIdSoal[$nomorSoal]['idSoal'];
 			$satuSoal 	= $this->latihan_model->getSatuSoalTes($satuIdSoal)->row();
-
 			$nomorSoalUpdate = $nomorSoal + 1;
 			$this->session->set_userdata('nomorSoal', $nomorSoalUpdate);
 			$this->session->set_userdata('currentIdSoal', $satuSoal->idSoal);
 			
 			$pilihanJawaban = $this->latihan_model->getJawabanSoalTes($satuIdSoal)->result_array();
-
 			$satuSoal = array(
 				'idSoal'		=>	$satuSoal->idSoal,
 				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
@@ -91,7 +87,6 @@ class Latihan extends CI_Controller {
 			} else {
 				$satuSoal['flagInit'] = FALSE;
 			}
-
 			$this->load->view('user/latihan_view', $satuSoal);
 			
 		} else {
@@ -131,7 +126,6 @@ class Latihan extends CI_Controller {
 		}
 		
 	}
-
 	public function processJawaban(){
 		
 		$jawabanUser		=	$this->input->post('jawab', TRUE);
@@ -158,10 +152,8 @@ class Latihan extends CI_Controller {
 			case($idOpsiD): $checkD = 'checked'; break;			
 			default : break;
 		}
-
 		$satuIdSoal = $this->session->userdata('currentIdSoal');
 		$satuSoal 	= $this->latihan_model->getSatuSoalTes($satuIdSoal)->row();
-
 		
 		if($jawabanUser == $jawabanBenar) {
 			//jika jawaban benar..
@@ -196,7 +188,6 @@ class Latihan extends CI_Controller {
 				'flagJawaban'	=>	1,
 				'flagNext'		=>	TRUE
 			);	
-
 		} else {
 			$satuSoal = array(
 				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
@@ -241,7 +232,6 @@ class Latihan extends CI_Controller {
 			'kelas'			=>	$this->session->userdata('kelas'),
 			'dataSoalTes'	=>	$dataTemp
 		);
-
 		$this->load->view('user/latihan_view', $data);
 	}
 }

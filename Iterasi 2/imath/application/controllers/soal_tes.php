@@ -440,7 +440,7 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->addJawaban($arrayc);
 		$this->soal_model->addJawaban($arrayd);
 
-		redirect('admin/soal_latihan');
+		redirect('admin/soal_tes');
 	}
 	}
 	
@@ -477,5 +477,12 @@ class soal_tes extends CI_Controller{
 		$this->session->set_flashdata('suksesSimpan', "Pengaturan tampilkan soal tes berhasil disimpan");
 		redirect('admin/soal_tes');
 	}	
+	public function show($idKelas){
+		$this->load->model('kelas_model');				
+		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
+		$data['result'] = $this->soal_model->getAllSoalTes($idKelas);
+		$data['isViewed'] = 'true';
+		$this->load->view('admin/daftarsoaltes_view',$data);
+	}
 }
 ?>

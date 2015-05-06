@@ -21,11 +21,9 @@
           $("#waktu").hide();
           $("#waktuForm").show();
       });
-
   });
   </script>
   <script>
-
   </script>
     </head>
     
@@ -76,7 +74,7 @@
   <div class="row">
     Kelas <?php echo $rowKelas[0]->idKelas?>
   <div id="waktu">
-    Waktu : <?php echo $rowKelas[0]->waktuTes ?>
+    Waktu : <?php echo $rowKelas[0]->waktuTes ?> menit
     <button id="ubahwaktu" class="adminBiruButton"> Ubah Waktu</button>
   </div>
   <div id="waktuForm">
@@ -104,7 +102,7 @@
       <a href=" <?php echo base_url();?>index.php/admin/soal_tes/createview"><button class="adminBiruButton"> Buat Baru</button></a>
     </div>
     <div class="col-md-3">
-      <a href="<?php echo base_url();?>admin/soal_tes/atur/SD001"><button class="adminBiruButton"> Atur Soal Ditampilkan</button></a>
+      <a href="<?php echo base_url();?>admin/soal_tes/atur/<?php ?>"><button class="adminBiruButton"> Atur Soal Ditampilkan</button></a>
     </div>
   </div>
       <table class="table table-hover table-striped tableimath">

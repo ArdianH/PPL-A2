@@ -1,11 +1,7 @@
 <?php
-
     class Rapor extends CI_Controller{
         public function index()
-        {          
-	/**    $this->load->model('kelas_model');
-		$data['kelas_model'] = $this->kelas_model->getAllKelas()->result(); 
-		$this->load->view('user/rapor_view', $data);*/
+        {          	
 		if($this->session->userdata('loggedin')) {
 			$username = $this->session->userdata('username');
 			$this->load->model('kelas_model');
@@ -71,7 +67,6 @@
 		
 			$hasil = $sum;	
 		}
-
 		$data['hasil'] = round($hasil*10);
 		echo json_encode($data); 
 		
@@ -86,13 +81,10 @@
 			$data['result']= $this->rapor_model->getCatatanLatihan($id, $idKelas, $idMateri);
 		}
 		$hasil = $data['result'];
-
 		$array = array();
-
 		$jumlahData = count($data['result']);
 		
 		$n = $jumlahData - 10; //ambil 3 terakhir
-
 		for ($i = $jumlahData-1; $i>=$n && $i>=0; $i--) {
 			array_push($array,$hasil[$i]);
 		}

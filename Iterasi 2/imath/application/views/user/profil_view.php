@@ -78,7 +78,7 @@
 				?>
       			</div>
       			<div class="col-md-8 white2">
-      				<h2 class="userDashboard">Profil</h2><br><br>
+      				<h2 class="userDashboard">Profil</h2><br>
 				<div class="right">
 					<a href="<?php echo base_url() ?>/index.php/profil/ubah/<?php echo $row->username ?>"><button type="submit" class="orangeButton">Ubah</button></a>	  
 				</div>
@@ -113,10 +113,10 @@
 	      <div class="container">
 	        <p class="text-muted">
 	          <div class="row">
-	         <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>        
+	          <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+	          <div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
 	        </div>
 	        <div class="row">
 	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>

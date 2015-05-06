@@ -1,6 +1,5 @@
 <?php
-class rapor_model extends CI_Model {
-     //INDAH
+class rapor_model extends CI_Model {   
 	function __construct(){
 		parent::__construct();
 	}	

@@ -64,5 +64,6 @@ class soal_model extends CI_Model {
 		$this->db->where('pilihanGanda', $pilihanGanda);
 		$this->db->update('pilihan_jawaban', $data);		
 	}
+		
 }
 ?>

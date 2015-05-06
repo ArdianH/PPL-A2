@@ -58,7 +58,6 @@
 			$data = array(									
 				'deskripsi' => $this->input->post('deskripsi'),				
 			);		
-
 			$this->kelas_model->update($data, $id);
 			//redirect('admin/daftar_kelas', 'refresh');			
 		}
@@ -69,16 +68,12 @@
 			$upload = $data['upload_data'];
 				//ini link gambarnya
 			$img_name = $upload['file_name'];
-
 			$this->load->model('kelas_model');
-
 			$data = array(
 				'deskripsi' => $this->input->post('deskripsi'),
 				'gambar' => $img_name
 			);		
-
 			$this->kelas_model->update($data, $id);
-
 			//redirect('admin/daftar_kelas', 'refresh');
 		}
 			echo "<script type='text/javascript'>alert('$sukses');</script>";
@@ -134,7 +129,6 @@
 					echo "<script type='text/javascript'>alert('$pesanGambar');</script>";
 					redirect('admin/daftar_kelas/buatBaru', 'refresh');
 				}
-
 				//$this->unggah($id);
 			}
 			else
@@ -144,7 +138,6 @@
 				$upload = $data['upload_data'];
 				
 				$img_name = $upload['file_name'];
-
 				$this->load->model('kelas_model');
 				$data = array(				
 					'idKelas' => $this->input->post('idKelas'),				
@@ -189,7 +182,6 @@
 				$upload = $data['upload_data'];
 				
 				$img_name = $upload['file_name'];
-
 				$this->load->model('kelas_model');
 				$data = array(								
 					'sertifikat' => $img_name

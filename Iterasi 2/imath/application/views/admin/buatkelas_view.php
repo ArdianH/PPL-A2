@@ -25,7 +25,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="<?php echo base_url()?>admin/dashboard"> DASHBOARD </a></li>
 				<li><a href="<?php echo base_url()?>"> BERANDA iMATH </a></li>
-				<li><a href="<?php echo base_url()?>autentikasi/logout"> LOG OUT </a></li>	
+				<li><a href="<?php echo base_url()?>'autentikasi/logout"> LOG OUT </a></li>	
 			</ul>
 		</div>	<!--/.nav-collapse -->
 	</div>      	
@@ -45,7 +45,6 @@
 	
 </nav>
  <!--======================= END OF ADMIN NAVBAR ============================-->
-
     <div class="container contents">
 	    <div class="titleText">    
 	    <h1>Buat Kelas</h1>
@@ -75,10 +74,10 @@
 	      <div class="container">
 	        <p class="text-muted">
 	          <div class="row">
-	          <div class="col-md-3"><a href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>      
+	          <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
 	        </div>
 	        <div class="row">
 	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>

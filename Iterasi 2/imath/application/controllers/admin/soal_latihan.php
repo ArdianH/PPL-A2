@@ -5,17 +5,14 @@ class soal_latihan extends CI_Controller{
 		$this->load->model('kelas_model');				
 		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->model('soal_model');
-		$data['result'] = $this->soal_model->getAllSoalLatihan('0');
+		$data['result'] = $this->soal_model->getAllSoal('0');
+		$data['isViewed'] = 'false';
 		$this->load->view('admin/daftarsoallatihan_view',$data);
 	}
 
-	public function view(){
-		$this->load->model('kelas_model');				
-		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
-		$this->load->model('soal_model');
-		$id = $this->input->post('idMateri');
-		$data['result'] = $this->soal_model->getAllSoalLatihan($id);
-		$this->load->view('admin/daftarsoallatihan_view',$data);
+	public function view(){		
+		$idMateri = $this->input->post('idMateri');
+		redirect('admin/soal_latihan/show/'.$idMateri);
 	}
 
 	public function delete($idSoal){
@@ -439,8 +436,21 @@ class soal_latihan extends CI_Controller{
 		$this->soal_model->addJawaban($arrayc);
 		$this->soal_model->addJawaban($arrayd);
 
-		redirect('admin/soal_latihan');
+		$inputMateri = $this->input->post('idMateri');
+		$inputKelas = $this->input->post('idKelas');
+		redirect('admin/soal_latihan/show/'.$inputMateri);
 	}
+	}
+	
+	public function show($idMateri){
+		$this->load->model('kelas_model');				
+		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
+		$this->load->model('soal_model');		
+		$data['result'] = $this->soal_model->getAllSoal($idMateri);
+		$this->load->model('materi_model');
+		$data['materi'] = $this->materi_model->get($idMateri);
+		$data['isViewed'] = 'true';
+		$this->load->view('admin/daftarsoallatihan_view',$data);
 	}
 	
 	public function materi($idKelas){

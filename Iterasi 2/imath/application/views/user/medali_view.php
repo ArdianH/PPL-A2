@@ -6,7 +6,8 @@
     </head>
 	
     <body>
-<!-- Navigation Bar iMath -->
+
+<!-- ========================= Navigation Bar iMath  =============================-->
     	<nav class="navbar navbar-default navbar-static-top">
 	      <div class="container" id="navbar">
 	        <div class="navbar-header" id="logobar">
@@ -43,7 +44,7 @@
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">&nbspPERMAINAN</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'permainan">&nbspPERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
 		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
@@ -58,7 +59,8 @@
 	}
 	?>
 </nav>
-<!-- nav end -->
+<!-- ========================= END  =============================-->
+
 <div class="container contents">      
       <div class="jumbotron dashboardUser">      
       		<div class="row">
@@ -66,41 +68,73 @@
       				<img src="<?php echo base_url();?>assets/images/medali.png" height="200" width="200">
       			</div>
       			<div class="col-md-8 white2">
-      				<h1 class="tBelajar">Prestasi</h1><br><br>				
+      				<h2 class="userDashboard">Prestasi</h2><br>
+				<div class="right">
+					<button class="purpleButton">Medali</button>
+					<a href="<?php echo base_url()?>prestasi/sertifikat"><button class="orangeButton">Sertifikat</button></a>
+				</div>
       			</div>
       		</div>
     	</div> 
-	<button class="orangeButton">Medali</button>
-	<a href="<?php echo base_url()?>prestasi/sertifikat"><button class="orangeButton">Sertifikat</button></a>
-	<br><br>
+	<?php
+		$url = $_SERVER['REQUEST_URI'];
+		$arr = explode("/", $url);
+		$currentKelas = $arr[count($arr) - 1];
+	?>
 	
-	<span id="kelas">Kelas</span>
-	<?php foreach($kelas as $row):?>
-		<?php 				
-				$idKelas = $row->idKelas;
-		?>
-		<a href="<?php echo base_url() ?>prestasi/medali/<?php echo $row->idKelas?>"><button class="circle buttonDelete">
-			<?php 				
+	<span id="kelas">KELAS</span>	
+		<?php foreach($kelas as $row):
+			$idKelas = $row->idKelas;			
+			//echo $kelas;
+			if($idKelas == $currentKelas)
+			{
+				echo '<button class="circleGreen buttonDelete">';
 				echo substr($idKelas,4,5);
+				echo '</button>';
+			}
+			else
+			{
 			?>
-		</button></a>
-	<?php endforeach ?><br>
+			<a href="<?php echo base_url() ?>prestasi/medali/<?php echo $row->idKelas?>">
+			<?php
+				echo '<button class="circle buttonDelete">';
+				echo substr($idKelas,4,5);
+				echo '</button></a>';
+			}		
+		endforeach ?><br>
 	
-	<?php foreach($medali as $row):
-		echo $row -> nama;
-		echo '<img src="'.base_url().'assets/images/medali.png" height="200" width="200">';			
-	endforeach ?>
-	
-	
+	<div class="container">
+		<div class="rangkuman">
+			<span id="medali"> Medali Kelas <?php echo substr($currentKelas,4,5)?></span>
+			<br>
+			<div class="row medaliBg">
+				<?php if(count($medali) > 0):?>			
+				<?php foreach($medali as $row):?>
+					<div class="col-md-4">		
+						<div class="fixednama">
+							<?php echo $row -> nama;?>
+						</div>
+							<?php echo '<img src="'.base_url().'assets/images/medali.png" height="200" width="200">';?>							
+					</div>				
+				<?php endforeach;
+					else:
+						echo "Kamu belum mendapat medali untuk kelas ini";
+					endif;
+				?>
+			</div>
+		</div>
+
+	</div>
+		
 </div>
     	<footer class="footer">
 	      <div class="container">
 	        <p class="text-muted">
 	          <div class="row">
-	         <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>   
+	          <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+	          <div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
 	        </div>
 	        <div class="row">
 	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>
