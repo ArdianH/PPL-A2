@@ -59,18 +59,35 @@
 	?>
 </nav>
 <div class="container contents">
-	<div class="row">
-		<div class="container">
-		<div class="col-md-3">
-			<img src="<?php echo base_url();?>assets/images/medali.png" height="200px" width="200px";>
-		</div>
-		<div class="col-md-9">
-			<div class="resultbox">
-			Selamat, kamu telah menyelesaikan latihan materi!
-		</div>
-		</div>
-	</div>
-	</div>
+			<?php 
+				if($skor == 100){
+			echo '<div class="row">';
+			echo '<div class="container">';		
+			echo '<div class="col-md-3">';
+			echo '<img src="'.base_url().'assets/images/medali.png" img size="height="200px" width="200px">';
+			echo '</div>';
+			echo '<div class="col-md-9">';
+			echo '<div class="resultbox">';
+			echo "Selamat, kamu telah menyelesaikan latihan materi!";
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+				
+				}else{
+			echo '<div class="row">';
+			echo '<div class="container">';					
+			echo '<div class="col-md-12">';
+			echo '<div class="resultbox">';
+			echo "Selamat, kamu telah menyelesaikan latihan materi!";
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';	
+				
+				}
+			?>	
+	
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default paneliMath panelResult">
