@@ -46,6 +46,7 @@ a.footerColor:hover{
 	background:none;
 	border:none;
 }
+
 .contentdetail {
 	background-color:#FFF;
 	text-align: left;
@@ -218,18 +219,7 @@ th{
 .form-control:-ms-input-placeholder { /* Internet Explorer 10+ */
    color:    #ffaf25;
 }
-#kelas{
-	font-size:25px;
-	font-weight:500;
-}
 
-#tulisanBiru{
-	color:#1947A3;
-}
-
-#tulisanMerah{
-	color:#e11a1a;
-}
 
 /*============================= BUTTON ===========================*/
 .loginButton {
@@ -335,11 +325,12 @@ h3.rapor{
 	font-weight:600;
 	text-align:left;
 }
-.raporPink{
-	background:#ffe4dd;
+.kuningBg{
+	background:#fff6c1;	
 	padding:15px;
 	margin:20px;
 }
+
 .containerTB{
 	margin-left:30px;
 }
@@ -426,6 +417,10 @@ h2.userDashboard{
 	text-align:right;
 }
 
+.left{
+	text-align:left;
+}
+
 /*Blue Button*/
 .blueButton {
 	font-size: 18pt;
@@ -466,6 +461,7 @@ a {
 	color: #3facff;
 	background: #fff;
 }
+
 /*========== Purple Button ============*/
 .purpleButton {
 	font-size: 18pt;
@@ -507,7 +503,6 @@ a {
 	color: #7c0094;
 	background: #fff;
 }
-
 /*========== Red Button ============*/
 .redButton {
 	font-size: 18pt;
@@ -638,17 +633,6 @@ h1.rangkumanText{
 	border-style:solid;
 	text-align:center;
 	padding:10px;
-}
-.linklist{
-	border-bottom-style: solid;
-	border-bottom-width:5px;
-	border-bottom-color: #ADD8E6;
-	text-align:left;
-	background-color: #FFF;
-	margin-left:10px;
-	margin-right:10px;
-	border-bottom-right-radius: 0px;
-	border-bottom-left-radius: 0px;
 }
 /*===================== KELAS MATERI =================*/
 .kelasMateri{
@@ -825,6 +809,10 @@ a.anggotaLogin:hover{
 
 #tulisanBiru{
 	color:#1947A3;
+}
+
+#tulisanMerah{
+	color:#e11a1a;
 }
 
 /**================================= HUBUNGI KAMI CSS==================================== */

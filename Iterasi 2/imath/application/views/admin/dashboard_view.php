@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
+ 
  <!--========================== ADMIN NAVBAR ============================-->
     	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container" id="navbar">
@@ -51,13 +52,13 @@
     </div>
     <div class="row">
     	<div class="col-md-4">   
-			<a href="<?php echo base_url() ?>index.php/admin/daftar_kelas/">
+			<a href="<?php echo base_url() ?>admin/daftar_kelas/">
 				<img src ="<?php echo base_url() ?>assets/images/icon_kelas.png" width="180px" height="180px">
 				<h3>Kelas</h3>
 			</a>
 		</div>
 		<div class="col-md-4">			
-			<a href="<?php echo base_url() ?>index.php/admin/daftar_materi/">
+			<a href="<?php echo base_url() ?>admin/daftar_materi/">
 				<img src ="<?php echo base_url() ?>assets/images/icon_materi.png" width="180px" height="180px">
 		                    <h3>Materi</h3>
 			</a>
@@ -71,19 +72,19 @@
 	</div>	
 	<div class="row">
 		<div class="col-md-4">
-			<a href="<?php echo base_url();?>admin/soal_tes/view/SD001">
+			<a href="<?php echo base_url() ?>admin/soal_tes/">
 				<img src ="<?php echo base_url() ?>assets/images/icon_soaltes.png" width="180px" height="180px">
 				<h3>Soal Tes</h3>
 			</a>
 		</div>
 		<div class="col-md-4">
-			<a href="<?php echo base_url() ?>index.php/admin/anggota/">
+			<a href="<?php echo base_url() ?>admin/anggota/">
 				<img src ="<?php echo base_url() ?>assets/images/icon_dataanggota.png" width="180px" height="180px">
 				<h3>Data Anggota</h3>
 			</a>
 		</div>
 		<div class="col-md-4">
-			<a href="<?php echo base_url() ?>index.php/admin/pesan/">
+			<a href="<?php echo base_url() ?>admin/pesan/">
 				<img src ="<?php echo base_url() ?>assets/images/icon_pesan.png" width="180px" height="180px">
 				<h3>Pesan</h3>
 			</a>
@@ -91,7 +92,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<a href="<?php echo base_url() ?>index.php/KelasController/">
+			<a href="">
 				<img src ="<?php echo base_url() ?>assets/images/icon_lain.png" width="180px" height="180px">
 				<h3>Lain-lain</h3>
 			</a>
@@ -103,10 +104,10 @@
       <div class="container">
         <p class="text-muted">
           <div class="row">
-          <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>       
+          <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+          <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+          <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+          <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
         </div>
         <div class="row">
           <div class="col-md-12"><p>Copyright(c) 2015</p></div>

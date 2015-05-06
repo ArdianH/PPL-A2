@@ -2,7 +2,12 @@
 class soal_latihan extends CI_Controller{
 	public function index()
 	{
-		$this->show('1');
+		$this->load->model('kelas_model');				
+		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
+		$this->load->model('soal_model');
+		$data['result'] = $this->soal_model->getAllSoal('0');
+		$data['isViewed'] = 'false';
+		$this->load->view('admin/daftarsoallatihan_view',$data);
 	}
 
 	public function view(){		
@@ -146,7 +151,7 @@ class soal_latihan extends CI_Controller{
 			$data = array(
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),
-			'isTes' => 'latihan',
+			'isTes' => "0",
 			'jawaban' => $this->input->post('jawaban'),
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'pembahasan' => $this->input->post('pembahasan'),
@@ -216,10 +221,7 @@ class soal_latihan extends CI_Controller{
 		$this->soal_model->updateJawaban($arrayb,'b', $idSoal);
 		$this->soal_model->updateJawaban($arrayc, 'c', $idSoal);
 		$this->soal_model->updateJawaban($arrayd, 'd', $idSoal);
-		$message="soal berhasil diubah";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-		$inputMateri = $this->input->post('idMateri');
-		redirect('admin/soal_latihan/show/'.$inputMateri);
+		redirect('admin/soal_latihan');
 		//redirect('admin/soal_latihan', 'refresh');
 	}
 	
@@ -363,7 +365,7 @@ class soal_latihan extends CI_Controller{
 		$data = array(
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),
-			'isTes' => 'latihan',
+			'isTes' => "0",
 			'jawaban' => $this->input->post('jawaban'),
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'pembahasan' => $this->input->post('pembahasan'),
@@ -435,18 +437,16 @@ class soal_latihan extends CI_Controller{
 		$this->soal_model->addJawaban($arrayd);
 
 		$inputMateri = $this->input->post('idMateri');
-		$message = "soal berhasil dibuat";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-
+		$inputKelas = $this->input->post('idKelas');
 		redirect('admin/soal_latihan/show/'.$inputMateri);
-		}
+	}
 	}
 	
 	public function show($idMateri){
 		$this->load->model('kelas_model');				
 		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->model('soal_model');		
-		$data['result'] = $this->soal_model->getAllSoalLatihan($idMateri);
+		$data['result'] = $this->soal_model->getAllSoal($idMateri);
 		$this->load->model('materi_model');
 		$data['materi'] = $this->materi_model->get($idMateri);
 		$data['isViewed'] = 'true';

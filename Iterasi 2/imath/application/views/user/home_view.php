@@ -21,7 +21,7 @@
             <li><?php
 				if($this->session->userdata('loggedin')) { 
 					if($this->session->userdata('role') == "admin") {
-						echo '<a href="'.base_url().'admin/dashboard"> Dashboard Admin </a></li><li>';
+						echo '<a href="'.base_url().'admin/dashboard"> DASHBOARD ADMIN </a></li><li>';
 						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
 					} else {
 						echo '<a href="'.base_url().'autentikasi/logout"> LOG OUT </a>';
@@ -43,7 +43,7 @@
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">&nbspPERMAINAN</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'permainan">&nbspPERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
 		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
@@ -92,14 +92,14 @@
 	</div >
 
 	
-	 	<footer class="footer">
+	<footer class="footer">
 	      <div class="container">
 	        <p class="text-muted">
 	          <div class="row">
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>           
+			<div class="col-md-3"><a class="footerColor" href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="#"><p>TENTANG KAMI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="#"><p>BANTUAN</p></a></div>           
 	        </div>
 	        <div class="row">
 	          <div class="col-md-12"><p class="footerColor">Copyright(c) 2015</p></div>

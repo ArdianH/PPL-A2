@@ -9,7 +9,6 @@ class soal_tes extends CI_Controller{
 		$data['result'] = $this->soal_model->getAllSoalTes('SD001');
 		$this->load->view('admin/daftarsoaltes_view',$data);
 	}
-
 	public function view(){		
 		$id = $this->input->post('idKelas');
 		$this->load->model('kelas_model');				
@@ -19,13 +18,11 @@ class soal_tes extends CI_Controller{
 		$data['result'] = $this->soal_model->getAllSoalTes($id);
 		$this->load->view('admin/daftarsoaltes_view',$data);
 	}
-
 	public function delete($idSoal){
 		$this->load->model('soal_model');
 		$this->soal_model->delete($idSoal);
 		redirect('admin/soal_tes');
 	}
-
 	public function detail($idSoal){
 		$this->load->model('soal_model');		
 		$data['soal'] = $this->soal_model->get($idSoal); 
@@ -52,10 +49,8 @@ class soal_tes extends CI_Controller{
 			{
 				$soal='TRUE';
 				echo "masuk";       
-
 			    // Initialize config for File 1
 			    $this->upload->initialize($config);
-
 			    // Upload file 1
 			    if ($this->upload->do_upload('gambarSoal'))
 			    {			    	
@@ -72,7 +67,6 @@ class soal_tes extends CI_Controller{
 				$a='TRUE';
 				  
 				$this->upload->initialize($config);
-
 			    // Upload the second file
 			    if ($this->upload->do_upload('gambara'))
 			    {			    	
@@ -82,13 +76,11 @@ class soal_tes extends CI_Controller{
 					$gambara = $upload['file_name']; //ini link gambarnya
 			    }
 			}
-
 			if (!empty($_FILES['gambarb']['name']))
 			{
 				$b='TRUE';
 				
 				$this->upload->initialize($config);
-
 				// Upload the second file
 				if ($this->upload->do_upload('gambarb'))
 			    {			    	
@@ -106,7 +98,6 @@ class soal_tes extends CI_Controller{
 				$c='TRUE';
 				  
 			    $this->upload->initialize($config);
-
 			    // Upload the second file
 			    if ($this->upload->do_upload('gambarc'))
 			    {			    	
@@ -122,7 +113,6 @@ class soal_tes extends CI_Controller{
 				$d='TRUE';
 				
 			    $this->upload->initialize($config);
-
 			    // Upload the second file
 			    if ($this->upload->do_upload('gambard'))
 			    {			    	
@@ -132,13 +122,11 @@ class soal_tes extends CI_Controller{
 						//ini link gambarnya
 					$gambard = $upload['file_name'];
 			    }
-
 			}
 			if (!empty($_FILES['gambarSolusi']['name']))
 			{
 			    $solusi='TRUE';
 			    $this->upload->initialize($config);
-
 			    // Upload the second file
 			    if ($this->upload->do_upload('gambarSolusi'))
 			    {			    	
@@ -148,11 +136,9 @@ class soal_tes extends CI_Controller{
 						//ini link gambarnya
 					$gambarSolusi = $upload['file_name'];
 			    }
-
 			}
 	    }
 		$this->load->model('soal_model');
-
 			$data = array(
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),
@@ -171,7 +157,6 @@ class soal_tes extends CI_Controller{
 		{
 			$data['gambarSolusi']=$gambarSolusi;
 		}
-
 		$this->soal_model->update($data, $idSoal);
 			
 		
@@ -226,8 +211,6 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->updateJawaban($arrayb,'b', $idSoal);
 		$this->soal_model->updateJawaban($arrayc, 'c', $idSoal);
 		$this->soal_model->updateJawaban($arrayd, 'd', $idSoal);
-		$message = "soal berhasil diubah";
-		echo "<script type='text/javascript'>alert('$message');</script>";
 		redirect('admin/soal_tes');
 	}
 	
@@ -236,8 +219,6 @@ class soal_tes extends CI_Controller{
 		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->view('admin/buatsoaltes_view', $data);
 	}
-
-
 	public function edit($id){
 		$this->load->model('kelas_model');				
 		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
@@ -269,10 +250,8 @@ class soal_tes extends CI_Controller{
 			{
 				$soal='TRUE';
 			  
-
 			    // Initialize config for File 1
 			    $this->upload->initialize($config);
-
 			    // Upload file 1
 			    if ($this->upload->do_upload('gambarSoal'))
 			    {			    	
@@ -287,7 +266,6 @@ class soal_tes extends CI_Controller{
 				$a='TRUE';
 				
 				$this->upload->initialize($config);
-
 			    // Upload the second file
 			    if ($this->upload->do_upload('gambara'))
 			    {			    	
@@ -297,13 +275,11 @@ class soal_tes extends CI_Controller{
 					$gambara = $upload['file_name']; //ini link gambarnya
 			    }
 			}
-
 			if (!empty($_FILES['gambarb']['name']))
 			{
 				$b='TRUE';
 				
 				$this->upload->initialize($config);
-
 				// Upload the second file
 				if ($this->upload->do_upload('gambarb'))
 			    {			    	
@@ -321,7 +297,6 @@ class soal_tes extends CI_Controller{
 				$c='TRUE';
 				  
 			    $this->upload->initialize($config);
-
 			    // Upload the second file
 			    if ($this->upload->do_upload('gambarc'))
 			    {			    	
@@ -337,7 +312,6 @@ class soal_tes extends CI_Controller{
 				$d='TRUE';
 				    
 			    $this->upload->initialize($config);
-
 			    // Upload the second file
 			    if ($this->upload->do_upload('gambard'))
 			    {			    	
@@ -347,13 +321,11 @@ class soal_tes extends CI_Controller{
 						//ini link gambarnya
 					$gambard = $upload['file_name'];
 			    }
-
 			}
 			if (!empty($_FILES['gambarSolusi']['name']))
 			{
 			    $solusi='TRUE';
 			    $this->upload->initialize($config);
-
 			    // Upload the second file
 			    if ($this->upload->do_upload('gambarSolusi'))
 			    {			    	
@@ -363,10 +335,7 @@ class soal_tes extends CI_Controller{
 						//ini link gambarnya
 					$gambarSolusi = $upload['file_name'];
 			    }
-
 			}
-
-
 		$this->load->model('soal_model');
 		$data = array(
 			'idMateri' => $this->input->post('idMateri'),
@@ -387,7 +356,6 @@ class soal_tes extends CI_Controller{
 		}
 		
 		$id = $this->soal_model->add($data);
-
 		$this->load->model('soal_model');
 		$idSoal = $this->db->insert_id();
 		$arraya= array(
@@ -441,9 +409,6 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->addJawaban($arrayb);
 		$this->soal_model->addJawaban($arrayc);
 		$this->soal_model->addJawaban($arrayd);
-
-		$message = "soal berhasil dibuat";
-		echo "<script type='text/javascript'>alert('$message');</script>";
 		redirect('admin/soal_tes');
 	}
 	}
@@ -453,6 +418,14 @@ class soal_tes extends CI_Controller{
 		$arr = $this->materi_model->getAllMateri($idKelas);
 		echo json_encode($arr);
 	}
+	
+	public function setWaktu(){				
+		$inputWaktu = $this->input->post('inputWaktu');
+		$this->load->model('kelas_model');
+		$this->kelas_model->setWaktu('SD001', $inputWaktu);
+		redirect('admin/soal_tes');
+	}	
+	
 	public function show(){
 		$idKelas = $this->input->post('idKelas');
 		redirect('admin/soal_tes/atur/'.$idKelas);
@@ -462,13 +435,13 @@ class soal_tes extends CI_Controller{
 		$this->load->model('kelas_model');
 		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->model('soal_model');
-		$data['result'] = $this->soal_model->getByKelas($idKelas);
+		$data['result'] = $this->soal_model->getSoal($idKelas)->result();
 		$this->load->view('admin/atursoaltes_view',$data);
 	}
 	
 	public function simpan($idKelas){
 		$this->load->model('soal_model');
-		$data['result'] = $this->soal_model->getByKelas($idKelas);
+		$data['result'] = $this->soal_model->getSoal($idKelas)->result();
 		
 		for($i=0; $i<count($data['result']);$i++)
 		{
@@ -481,12 +454,5 @@ class soal_tes extends CI_Controller{
 		$this->session->set_flashdata('suksesSimpan', "Pengaturan tampilkan soal tes berhasil disimpan");
 		redirect('admin/soal_tes');
 	}
-
-	public function setWaktu(){				
-		$inputWaktu = $this->input->post('inputWaktu');
-		$this->load->model('kelas_model');
-		$this->kelas_model->setWaktu('SD001', $inputWaktu);
-		redirect('admin/soal_tes');
-	}	
 }
 ?>

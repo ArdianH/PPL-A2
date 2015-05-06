@@ -52,12 +52,12 @@
 	
 </nav>
  <!--======================= END OF ADMIN NAVBAR ============================-->
-
+ 
     <div class="container contents">
     	<div class="titleText">
     	<h1>Daftar Kelas</h1>
     </div>
-    	<a href=" <?php echo base_url();?>index.php/admin/daftar_kelas/buatBaru"><button> Buat Baru</button></a>
+    	<a href=" <?php echo base_url();?>index.php/admin/daftar_kelas/buatBaru"><button type="button" class="btn btn-default blue"> Buat Baru</button></a>
     	<div class="table-responsive">
     	<table class="table table-hover table-striped tableimath">
 	        <thead>
@@ -105,10 +105,10 @@
 	      <div class="container">
 	        <p class="text-muted">
 	          <div class="row">
-	          <div class="col-md-3"><a href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>       
+	          <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
 	        </div>
 	        <div class="row">
 	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>

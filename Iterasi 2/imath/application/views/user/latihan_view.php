@@ -156,9 +156,9 @@
 	<?php 
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {
-		
-        echo '<div class="container" id="iconbar">';
-        
+		echo '<div class="row">';
+		echo '<div class="container" id="iconbar">';
+		echo '<div class="row">';
 		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
@@ -173,7 +173,8 @@
 		}
 		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
 		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
-		
+		echo '</div>';
+		echo '</div>';
 		echo '</div>';
 	}
 	?>
@@ -181,12 +182,6 @@
 <!-- nav end -->
 
 <div class="container contents">
-	<div class="row">
-		<ol class="linklist breadcrumb">
-		  <li><a href="<?php echo base_url().'imath/kelas/pilih/'.$this->session->userdata('idKelas'); ?>">Kelas <?php echo $this->session->userdata('kelas');?> </a></li>
-		  <li><a href="<?php echo base_url().'imath/kelas/lihatMateri/'.$this->session->userdata('idMateri'); ?>"><?php echo $this->session->userdata('namaMateri'); ?></a></li>
-		</ol>
-	</div>
 	<div class="row">
 		<div class="soalcontainer">
 		<div class="col-md-3">
@@ -234,7 +229,9 @@
 		</div>
 		<div class="col-md-9">
 			<div class="soalText">
-				<?php
+			<div id="headerSoal" style="text-align:center;">Latihan Kelas <?php echo $this->session->userdata('kelas');?> <br />
+			Materi : <?php echo $this->session->userdata('namaMateri'); ?></div>
+					<?php
 				if(!$flagNext) {
 					echo "<form method=POST action= ".base_url()."index.php/latihan/processJawaban/ >";
 					echo '<div class="row">';
@@ -349,10 +346,10 @@
         <div class="container">
           <p class="text-muted">
             <div class="row">
-            <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>      
+            <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
           </div>
           <div class="row">
             <div class="col-md-12"><p>Copyright(c) 2015</p></div>

@@ -1,18 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Tes extends CI_Controller {
-
     public function __construct()
     {
             parent::__construct();
-			$this->load->model('tes_model');
+		$this->load->model('tes_model');
+		$this->load->model('kelas_model');
     }
 	
 	public function index()
 	{	
-
 	}	
-
 	public function retrieveSoal($kelas)
 	{
 		$this->session->unset_userdata(array('setIdSoal'=>'', 'setNamaMateri'=>'', 'setNilaiMateri'=>'', 'setJawabanUser'=>'', 'currentSoal'=>'', 'idRapor'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>'', 'flagSudahJawab' => ''));
@@ -101,7 +98,7 @@ class Tes extends CI_Controller {
 			$setNamaMateri	= $this->session->userdata('setNamaMateri');
 			$setNilaiMateri	= $this->session->userdata('setNilaiMateri');
 			$data = array(
-				'kelas'			=>	$kelas,
+				'kelas'		=>	$kelas,
 				'waktuTes'		=>	$waktuTes,
 				'namaPanggilan'	=>	$this->session->userdata('namaPanggilan'),
 				'username'		=>	$username,
@@ -132,11 +129,11 @@ class Tes extends CI_Controller {
 			);
 			$this->session->set_userdata('flagSudahJawab', FALSE);
 			$this->tes_model->simpanDetailTes($dataSimpan);
+			$data['currentkelas'] = $this->kelas_model->get($kelas)->result();
 			$this->load->view('user/detailtes_view', $data);
 			
 		}
 	}
-
 	//terima input jawaban dari user (isi $jawabanUser hanya value dari idOpsi saja/A,B,C,D)
 	public function processJawaban()
 	{
@@ -255,7 +252,6 @@ class Tes extends CI_Controller {
 			$dataTemp = $this->tes_model->getSatuSoalTes($row['idSoal'])->row();
 			$dataDB[] = get_object_vars($dataTemp);
 		}
-
 		$data = array(
 			'kelas'			=>	$this->session->userdata('kelas'),
 			'dataSoalTes'	=>	$dataDB,

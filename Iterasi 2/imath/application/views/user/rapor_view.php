@@ -132,6 +132,7 @@
 </script>
 
 
+
 	
     <body>
 	
@@ -197,9 +198,9 @@
       				<img src="<?php echo base_url();?>assets/images/rapor.png" height="200" width="200">
       			</div>
       			<div class="col-md-8 white2">
-      				<h1 class="tBelajar"> Rapor </h1><br><br>
+      				<h2 class="userDashboard"> Rapor </h2><br>
 				<div class="right">
-					  <button type="submit" class="orangeButton" onclick="return confirmDelete('<?php echo base_url() ?>index.php/rapor/hapusHistory/<?php echo $dataId[0]->idRapor ?>');">Reset</button>
+					<button type="submit" class="orangeButton" onclick="return confirmDelete('<?php echo base_url() ?>index.php/rapor/hapusHistory/<?php echo $dataId[0]->idRapor ?>');">Reset</button>
 				</div>
       			</div>
       		</div>
@@ -212,10 +213,10 @@
 		echo '<input type = "hidden" id="idRapor" value="'.$idRapor.'">';
 	?>
 	<div class="container contents">
-			
+			<!--<button type="submit" onclick="return confirmDelete('<?php echo base_url() ?>index.php/rapor/hapusHistory/');">Reset</button>-->
 		<form method="GET" action="" >	
 		
-		Kelas	
+		<span id="kelas">KELAS</span>
 		<?php foreach($kelas_model as $row):?>
 
 			<a href="<?php echo base_url() ?>index.php/rapor/view/<?php echo $row->idKelas?>"> 
@@ -258,8 +259,8 @@
 			$length = count($arr);
 			echo $arr[$length - 1];			
 		?>">
-	<br><br><br>
-		Materi
+	<br><br>
+		<span id="kelas">MATERI</span>
 		<select name ="idMateri" id="pilihmateri" onchange="showAlertBox()">
 		<?php foreach($result as $row):?>			
 		<option value="<?php echo $row->idMateri; ?>" ><?php echo $row->nama ?></option>
@@ -271,24 +272,23 @@
 	</form>
 
 	<h3 class="rapor containerTB">Ringkasan</h3>
-	<div class="raporPink">
-	<p>Total Latihan: <span id="number"></span></p>
-	<p>Rata-rata Nilai: <span id="rata-rata"></span></p>
+	<div class="kuningBg">
+	<p class="left">Total Latihan: <span id="number"></span></p>
+	<p class="left"> Rata-rata Nilai: <span id="rata-rata"></span></p>
 	</div>
 		<div id="chartContainer" style="height: 400px; width: 80%;"></div>
 
 	</div>
 
 </div>
-</div>
 	<footer class="footer">
 	      <div class="container">
 	        <p class="text-muted">
 	          <div class="row">
-	         <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>   
+	          <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+	          <div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
+	          <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
 	        </div>
 	        <div class="row">
 	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>
