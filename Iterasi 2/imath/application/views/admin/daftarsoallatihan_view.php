@@ -1,6 +1,6 @@
 <html>
     <head>
-	 <title>soal</title>
+   <title>soal</title>
    <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     <meta charset="utf-8">
@@ -33,15 +33,14 @@
            $("#idKelas").change(function() {  
         fetchMateri($("#idKelas").val());
            });
-           $('#idKelas').change();
            $
          });
   </script>
     </head>
     
     <body>
-  <!--========================== ADMIN NAVBAR ============================-->
-  <nav class="navbar navbar-default navbar-static-top">
+<!--========================== ADMIN NAVBAR ============================-->
+      <nav class="navbar navbar-default navbar-static-top">
     <div class="container" id="navbar">
       <div class="navbar-header" id="logobar">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -56,7 +55,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo base_url()?>admin/dashboard"> DASHBOARD </a></li>
         <li><a href="<?php echo base_url()?>"> BERANDA iMATH </a></li>
-        <li><a href="<?php echo base_url()?>'autentikasi/logout"> LOG OUT </a></li> 
+        <li><a href="<?php echo base_url()?>autentikasi/logout"> LOG OUT </a></li> 
       </ul>
     </div>  <!--/.nav-collapse -->
   </div>        
@@ -76,30 +75,37 @@
   
 </nav>
  <!--======================= END OF ADMIN NAVBAR ============================-->
-
+ 
   <div class="container contents">
-   <div class="titleAdmin">
-      <h1>
-     Daftar Soal Latihan
-   </h1>
-  </div>
+    <h1> Daftar Soal Latihan </h1>
     <!-- Button buat soal baru -->
     <a href=" <?php echo base_url();?>index.php/admin/soal_latihan/createview"><button> Buat Baru</button></a>
     <form method="POST" action="<?php echo base_url();?>index.php/admin/soal_latihan/view">
-      Kelas <select id = "idKelas" name="idKelas">
-      <?php foreach($Kelas as $row):?>
-      <option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
-      <?php endforeach?>
-    </select>
+       Kelas <select id = "idKelas" name="idKelas">
+        <?php foreach($Kelas as $row):?>
+        <option name ="idKelas" <?php 
+        if($row->idKelas == $materi[0]->idKelas)
+          echo 'value="'.$row->idKelas.'" selected';
+        else
+          echo 'value="'.$row->idKelas.'"'; ?>>
+        <?php echo $row->idKelas ?>
+      </option>
+        <?php endforeach?>
+      </select>
       Materi
       <select id="idMateri" name="idMateri">
+        <?php 
+              echo '<option name = "idMateri" value="'.$materi[0]->idMateri.'" selected>';
+              echo $materi[0]->nama;
+              echo "</option>";
+        ?>
       </select>
-      <input type="submit" value="Submit" />
-    </form>
+       <input class="adminButton" type="submit" value="Submit">
+      </form>
       <table class="table table-hover table-striped tableimath">
     <thead>
           <tr>
-	<th class="col-md-1">No</th>
+  <th class="col-md-1">No</th>
           <th class="col-md-3">Pertanyaan</th>
           <th class="col-md-1">Jawaban</th>
           <th class="col-md-4">Pembahasan</th>
@@ -108,15 +114,15 @@
     </thead>
     <tbody>
       <?php $i = 1; foreach($result as $row):?> 
-	<td>
-  		<?php echo $i; $i = $i+1; ?>
-  	</td>
-  	<td>
-  		<?php echo $row->pertanyaan ?>
-  	</td>
-  	<td>
-  		<?php echo $row->jawaban ?>
-  	</td>
+  <td>
+      <?php echo $i; $i = $i+1; ?>
+    </td>
+    <td>
+      <?php echo $row->pertanyaan ?>
+    </td>
+    <td>
+      <?php echo $row->jawaban ?>
+    </td>
     <td>
       <?php echo $row->pembahasan ?>
     </td>
@@ -133,16 +139,16 @@
       </tr>
       <?php endforeach; ?>
     </tbody>
-  	</table>
+    </table>
 </div>
   <footer class="footer">
         <div class="container">
           <p class="text-muted">
             <div class="row">
             <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-            <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-            <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-            <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>   
+          <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
+          <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
+          <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>          
           </div>
           <div class="row">
             <div class="col-md-12"><p>Copyright(c) 2015</p></div>

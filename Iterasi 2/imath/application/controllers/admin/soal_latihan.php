@@ -2,20 +2,12 @@
 class soal_latihan extends CI_Controller{
 	public function index()
 	{
-		$this->load->model('kelas_model');				
-		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
-		$this->load->model('soal_model');
-		$data['result'] = $this->soal_model->getAllSoalLatihan('0');
-		$this->load->view('admin/daftarsoallatihan_view',$data);
+		$this->show('1');
 	}
 
-	public function view(){
-		$this->load->model('kelas_model');				
-		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
-		$this->load->model('soal_model');
-		$id = $this->input->post('idMateri');
-		$data['result'] = $this->soal_model->getAllSoalLatihan($id);
-		$this->load->view('admin/daftarsoallatihan_view',$data);
+	public function view(){		
+		$idMateri = $this->input->post('idMateri');
+		redirect('admin/soal_latihan/show/'.$idMateri);
 	}
 
 	public function delete($idSoal){
@@ -154,7 +146,7 @@ class soal_latihan extends CI_Controller{
 			$data = array(
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),
-			'isTes' => "0",
+			'isTes' => 'latihan',
 			'jawaban' => $this->input->post('jawaban'),
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'pembahasan' => $this->input->post('pembahasan'),
@@ -224,7 +216,10 @@ class soal_latihan extends CI_Controller{
 		$this->soal_model->updateJawaban($arrayb,'b', $idSoal);
 		$this->soal_model->updateJawaban($arrayc, 'c', $idSoal);
 		$this->soal_model->updateJawaban($arrayd, 'd', $idSoal);
-		redirect('admin/soal_latihan');
+		$message="soal berhasil diubah";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+		$inputMateri = $this->input->post('idMateri');
+		redirect('admin/soal_latihan/show/'.$inputMateri);
 		//redirect('admin/soal_latihan', 'refresh');
 	}
 	
@@ -368,7 +363,7 @@ class soal_latihan extends CI_Controller{
 		$data = array(
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),
-			'isTes' => "0",
+			'isTes' => 'latihan',
 			'jawaban' => $this->input->post('jawaban'),
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'pembahasan' => $this->input->post('pembahasan'),
@@ -439,8 +434,23 @@ class soal_latihan extends CI_Controller{
 		$this->soal_model->addJawaban($arrayc);
 		$this->soal_model->addJawaban($arrayd);
 
-		redirect('admin/soal_latihan');
+		$inputMateri = $this->input->post('idMateri');
+		$message = "soal berhasil dibuat";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+
+		redirect('admin/soal_latihan/show/'.$inputMateri);
+		}
 	}
+	
+	public function show($idMateri){
+		$this->load->model('kelas_model');				
+		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
+		$this->load->model('soal_model');		
+		$data['result'] = $this->soal_model->getAllSoalLatihan($idMateri);
+		$this->load->model('materi_model');
+		$data['materi'] = $this->materi_model->get($idMateri);
+		$data['isViewed'] = 'true';
+		$this->load->view('admin/daftarsoallatihan_view',$data);
 	}
 	
 	public function materi($idKelas){

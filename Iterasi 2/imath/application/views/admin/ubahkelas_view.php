@@ -8,39 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-
-<<<<<<< HEAD
-    	<nav class="navbar navbar-default navbar-static-top">
-        <div class="container" id="navbar">
-          <div class="navbar-header" id="logobar">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-          </button>
-          <a class="navbar-brand" href="#">iMath</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">PROFIL ADMIN</a></li>
-            <li><a href="<?php echo base_url();?>index.php/admin/dashboard">DASHBOARD</a></li>
-            <li><a href="<?php echo base_url();?>index.php/">BERANDA IMATH</a></li>
-            <li><a href="<?php echo base_url();?>index.php/logout">LOG OUT</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-        <div class="row">
-        <div class="container" id="iconbar">
-          <div class="row">
-          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_kelas"><p>Kelas</p></a></div>
-          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_materi"><p>Materi</p></a></div>
-          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/soal_latihan"><p>Soal Latihan</p></a></div>
-          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/soal_latihan"><p>Soal Tes</p></a></div> 
-          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/anggota"><p>Data Anggota</p></a></div> 
-          <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/pesan"><p>Pesan Anggota</p></a></div>   
-        </div>
-        </div>
-      </div>
-    </nav>
-=======
     	<!--========================== ADMIN NAVBAR ============================-->
       <nav class="navbar navbar-default navbar-static-top">
     <div class="container" id="navbar">
@@ -57,7 +24,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo base_url()?>admin/dashboard"> DASHBOARD </a></li>
         <li><a href="<?php echo base_url()?>"> BERANDA iMATH </a></li>
-        <li><a href="<?php echo base_url()?>'autentikasi/logout"> LOG OUT </a></li> 
+        <li><a href="<?php echo base_url()?>autentikasi/logout"> LOG OUT </a></li> 
       </ul>
     </div>  <!--/.nav-collapse -->
   </div>        
@@ -77,8 +44,6 @@
   
 </nav>
  <!--======================= END OF ADMIN NAVBAR ============================-->
-
->>>>>>> origin/master
     <div class="container contents">
     <div class="titleText">    
     <h1>Ubah Kelas</h1>
@@ -98,17 +63,11 @@
 	      <div class="container">
 	        <p class="text-muted">
 	          <div class="row">
-<<<<<<< HEAD
-	          <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
-	          <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
-	          <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
-	          <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
-=======
+
 	          <div class="col-md-3"><a href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
             <div class="col-md-3"><a href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
             <div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
             <div class="col-md-3"><a href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>      
->>>>>>> origin/master
 	        </div>
 	        <div class="row">
 	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>

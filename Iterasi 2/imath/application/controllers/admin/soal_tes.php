@@ -226,6 +226,8 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->updateJawaban($arrayb,'b', $idSoal);
 		$this->soal_model->updateJawaban($arrayc, 'c', $idSoal);
 		$this->soal_model->updateJawaban($arrayd, 'd', $idSoal);
+		$message = "soal berhasil diubah";
+		echo "<script type='text/javascript'>alert('$message');</script>";
 		redirect('admin/soal_tes');
 	}
 	
@@ -440,6 +442,8 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->addJawaban($arrayc);
 		$this->soal_model->addJawaban($arrayd);
 
+		$message = "soal berhasil dibuat";
+		echo "<script type='text/javascript'>alert('$message');</script>";
 		redirect('admin/soal_tes');
 	}
 	}

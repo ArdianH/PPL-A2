@@ -97,7 +97,7 @@
         <option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
         <?php endforeach?>
       </select>
-       <input class="adminOrangeButton" type="submit" value="Submit">
+       <input class="adminButton" type="submit" value="Submit">
       </form>
     </div>
     <div class="col-md-3">

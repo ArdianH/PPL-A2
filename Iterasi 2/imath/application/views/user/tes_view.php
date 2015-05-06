@@ -159,14 +159,14 @@ Modified by: Ardian*/
 	<?php 
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {
-		echo '<div class="row">';
+		
         echo '<div class="container" id="iconbar">';
-        echo '<div class="row">';
-        echo '<div class="col-md-2"></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">RAPOR</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">TARGET BELAJAR</a></div>';
+        
+		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">PERMAINAN</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">&nbspPERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
 		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
@@ -176,8 +176,7 @@ Modified by: Ardian*/
 		}
 		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
 		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
-		echo '</div>';
-		echo '</div>';
+		
 		echo '</div>';
 	}
 	?>
@@ -194,12 +193,12 @@ Modified by: Ardian*/
 					
 						<div class="panel-heading merah">
 							
-							<h3>SOAL</h3>
+							<h3 class="weight">SOAL</h3>
 					
 						</div>
-						<div class="panel-body">
+						<div class="panel-body abu">
 							<?php
-								echo "<h3>".$nomor."</h3>";
+								echo '<span class="panelResult">'.$nomor.'</span>';
 							 ?>
 						</div>
 					</div>
@@ -208,12 +207,13 @@ Modified by: Ardian*/
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
-						<div class="panel-heading hijau"><form name="cd"><h3>WAKTU</h3> </div>
-						<div class="panel-body">
-							<input id="Time" class="waktuBox" readonly="true" type="text" value="00:00" border="0" name="disp">
+						<div class="panel-heading hijau"><form name="cd"><h3 class="weight">WAKTU</h3> </div>
+						<div class="panel-body abu">
+							<div class="panel-body"><input class="waktuBox panelResult" id="Time" readonly="true" type="text" value="00:00" border="0" name="disp">
 							</form>
 							<span id="minute"></span>
-							<span id="waktuTes"></span>
+							<span id="waktuTes"></span></h2>
+						</div>
 						</div>
 					</div>
 				</div>
@@ -221,8 +221,8 @@ Modified by: Ardian*/
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
-						<div class="panel-heading unguGelap"><h3>NILAI</h3></div>
-						<div class="panel-body"><h3><?php echo $skor; ?> </h3> </div>
+						<div class="panel-heading unguGelap"><h3 class="weight">NILAI</h3></div>
+						<div class="panel-body abu"><span class="panelResult"><?php echo $skor; ?> </span> </div>
 					</div>
 				</div>
 			</div>
