@@ -25,7 +25,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="<?php echo base_url()?>admin/dashboard"> DASHBOARD </a></li>
 				<li><a href="<?php echo base_url()?>"> BERANDA iMATH </a></li>
-				<li><a href="<?php echo base_url()?>'autentikasi/logout"> LOG OUT </a></li>	
+				<li><a href="<?php echo base_url()?>autentikasi/logout"> LOG OUT </a></li>	
 			</ul>
 		</div>	<!--/.nav-collapse -->
 	</div>      	

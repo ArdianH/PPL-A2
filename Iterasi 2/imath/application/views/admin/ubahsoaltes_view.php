@@ -33,7 +33,7 @@
     </head>
     <body>
 
- <!--========================== ADMIN NAVBAR ============================-->
+<!--========================== ADMIN NAVBAR ============================-->
       <nav class="navbar navbar-default navbar-static-top">
     <div class="container" id="navbar">
       <div class="navbar-header" id="logobar">
@@ -49,7 +49,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo base_url()?>admin/dashboard"> DASHBOARD </a></li>
         <li><a href="<?php echo base_url()?>"> BERANDA iMATH </a></li>
-        <li><a href="<?php echo base_url()?>'autentikasi/logout"> LOG OUT </a></li> 
+        <li><a href="<?php echo base_url()?>autentikasi/logout"> LOG OUT </a></li> 
       </ul>
     </div>  <!--/.nav-collapse -->
   </div>        
@@ -99,8 +99,13 @@
       <option value="c" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="c") echo "selected"?>>C</option>
       <option value="d" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="d") echo "selected"?>>D</option>        
       </select></br>
-      <label>Pembahasan</label></br><textarea name ="pembahasan" required><?php echo $soal[0]->pembahasan ?></textarea></br>
+      <label>Pembahasan</label></br><textarea name ="pembahasan" required><?php echo $soal[0]->pembahasan ?></textarea></br
       <input type="file" name="gambarSolusi" id="gambarSolusi" size="20" /> </br></br>
+      <label>Apakah soal tes ini akan ditampilkan?</label>
+    </br>
+    <input type="radio" name="isDitunjukkan" value ="ya"> Ya
+    <input type="radio" name="isDitunjukkan" value ="tidak"> Tidak
+    </br></br>
         <input type="submit" name="submit" value="Submit" /></form>
         <a href = "<?php echo base_url()?>index.php/admin/soal_latihan"><button/>Batal</button></a>
     </div>
@@ -109,10 +114,10 @@
         <div class="container">
           <p class="text-muted">
             <div class="row">
-            <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-      <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-      <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-      <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>   
+            <div class="col-md-3"><a href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
+            <div class="col-md-3"><a href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
+            <div class="col-md-3"><a href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
+            <div class="col-md-3"><a href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>
           </div>
           <div class="row">
             <div class="col-md-12"><p>Copyright(c) 2015</p></div>

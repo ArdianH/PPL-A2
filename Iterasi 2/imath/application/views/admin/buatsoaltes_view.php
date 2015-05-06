@@ -99,6 +99,11 @@
 		<label>Pembahasan</label></br><textarea name ="pembahasan" required></textarea></br></br>
 		<input type="file" name="gambarSolusi" id="gambarSolusi" size="20" />	
 		</br></br>
+		<label>Apakah soal tes ini akan ditampilkan?</label>
+		</br>
+		<input type="radio" name="isDitunjukkan" value ="ya"> Ya
+		<input type="radio" name="isDitunjukkan" value ="tidak"> Tidak
+		</br></br>
 			<input type="submit" name="submit" value="Submit" />
 		</form>
 			<a href = "<?php echo base_url()?>index.php/admin/soal_latihan"><button/>Batal</button></a>
