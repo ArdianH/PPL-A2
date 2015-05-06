@@ -93,15 +93,25 @@
 	<div class="row titleDetilTes">
 	Detil Tes Kelas <?php echo $kelas; ?>
 </div>
-<div class="row">
-	
+
+	<div class="sertifikat">
+		<?php 
+		if(isset($sertifikat)) { 
+			switch($kelas) {
+				case "SD001" : echo '<img src="'.base_url().'/uploads/Sertifikat1.png" height="200" />'; break;
+				case "SD002" : echo '<img src="'.base_url().'/uploads/Sertifikat2.png" height="200" />'; break;
+				case "SD003" : echo '<img src="'.base_url().'/uploads/Sertifikat3.png" height="200" />'; break;
+				default : break;
+			}		
+		}
+		?>
 	</div>
 	<div class="row">
 			<div class="col-md-1">
 			</div>
 			<div class="col-md-10">
 			<div class="col-md-2">
-				<div class="nilaiTes">Nilai : <?php echo $kebenaran*10; ?></div>
+				<div class="nilaiTes">Nilai : <?php echo round($kebenaran/$jumlahSoal*100); ?></div>
 			</div>
 			<div class="col-md-5">
 			</div>

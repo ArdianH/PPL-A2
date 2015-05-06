@@ -116,11 +116,13 @@ class Tes extends CI_Controller {
 					$jumlahBenar++;
 				}
 			}
-			if($jumlahBenar == $jumlahSoal) {
+			if(($jumlahBenar/$jumlahSoal)*100 >= 70) {
 				if($this->tes_model->getJumlahSertifikatKelas($username, $kelas) == 0) {
 					$res = $this->tes_model->setSertifikat($username, $kelas);
 				}
+				$data['sertifikat'] = TRUE;
 			}
+			
 			$dataSimpan = array(
 				'idKelas'	=>	$data['kelas'],
 				'idRapor'	=>	$this->session->userdata('idRapor'),
