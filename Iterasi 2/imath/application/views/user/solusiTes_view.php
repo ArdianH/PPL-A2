@@ -64,6 +64,7 @@
 	}
 	?>
 </nav>
+<!-- nav end -->
 	<div class="pembahasanNavBar container">
 		<div class="kuning col-md-6">
 			<button class="buttoncoklat" href="<?php echo base_url()."tes/processSoal/selesai";?>" onClick="window.history.back();">Detil Nilai Tes</button>

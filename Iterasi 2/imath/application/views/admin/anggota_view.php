@@ -18,39 +18,42 @@
     </head>
     <body>
 
-    <!-- Navigation Bar iMath -->
-	<nav class="navbar navbar-default navbar-static-top">
-      <div class="container" id="navbar">
-        <div class="navbar-header" id="logobar">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-        </button>
-        <a class="navbar-brand" href="<?php echo base_url();?>index.php"><img src="<?php echo base_url();?>assets/images/logo.png" height="42px" width="120px";></a>
-      </div>
-    <!-- Navbar Atas -->
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="<?php echo base_url();?>index.php/admin/dashboard">DASHBOARD</a></li>
-        <li><a href="<?php echo base_url();?>index.php/home">BERANDA IMATH</a></li>
-        <li><a href="<?php echo base_url();?>index.php/autentikasi/logout">LOG OUT</a></li>
-      </ul>
-    </div>
-  </div>
-  <!-- Navbar khusus admin -->
-  <div class="row">
-    <div class="container" id="iconbar">
-      <div class="row">
-      <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_kelas"><p>Kelas</p></a></div>
-      <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/daftar_materi"><p>Materi</p></a></div>
-      <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/soal_latihan"><p>Soal Latihan</p></a></div>
-      <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/soal_latihan"><p>Soal Tes</p></a></div> 
-      <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/anggota"><p>Data Anggota</p></a></div> 
-      <div class="col-md-2"><a href="<?php echo base_url();?>index.php/admin/pesan"><p>Pesan Anggota</p></a></div>   
-    </div>
-    </div>
-  </div>
+   <!--========================== ADMIN NAVBAR ============================-->
+    	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container" id="navbar">
+			<div class="navbar-header" id="logobar">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+				</button>
+				<a class="navbar-brand" href="<?php echo base_url();?>index.php">
+					<img src="<?php echo base_url();?>assets/images/logo.png" height="42px" width="120px";>
+				</a>
+			</div>
+		<!-- Navbar Atas -->
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="<?php echo base_url()?>admin/dashboard"> DASHBOARD </a></li>
+				<li><a href="<?php echo base_url()?>"> BERANDA iMATH </a></li>
+				<li><a href="<?php echo base_url()?>'autentikasi/logout"> LOG OUT </a></li>	
+			</ul>
+		</div>	<!--/.nav-collapse -->
+	</div>      	
+	
+	<div class="container" id="iconbar">
+        
+		<ul class="navbar-nav navbar-left">
+			<li class="space"><a href="<?php echo base_url()?>admin/daftar_kelas">KELAS</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/daftar_materi">MATERI</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/soal_latihan">SOAL LATIHAN</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/soal_tes">SOAL TES</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/anggota">DATA ANGGOTA</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/pesan">PESAN</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/lain_lain">LAIN-LAIN</a></li>
+		</ul>
+	</div>
+	
 </nav>
-<!--  nav collapse -->
+ <!--======================= END OF ADMIN NAVBAR ============================-->
 
 <div class="container contents">
 	<div class="titleText">
