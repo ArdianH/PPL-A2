@@ -3,7 +3,9 @@
         public function index(){
 		if($this->session->userdata('role')=="admin") {
 			$this->load->model('kelas_model');
-			$data['result'] = $this->kelas_model->getAllKelas()->result();	    
+			$data['result'] = $this->kelas_model->getAllKelas()->result_array();	
+			$arrayId = $this->kelas_model->getAllIdKelas()->result_array();
+			$data['jumlahPengunjung'] = $this->iterasiPengunjung($arrayId);			
 			$this->load->view('admin/daftarkelas_view',$data);
 		} else {
 			redirect('home');
@@ -28,8 +30,6 @@
 		if($this->session->userdata('role')=="admin") {
 			$this->load->model('kelas_model');
 			$this->kelas_model->delete($id);
-			$message = "Kelas telah berhasil dihapus";
-			echo "<script type='text/javascript'>alert('$message');</script>";
 			redirect('admin/daftar_kelas', 'refresh');		
 		} else {
 			redirect('home');
@@ -47,19 +47,83 @@
 		}	
 	}
 	
+	//~ public function simpanPerubahan($id){
+		//~ //$deskripsi = $this->input->post('deskripsi');
+		//~ $this->load->library('upload');
+		//~ if ( ! $this->upload->do_upload())	
+		//~ {
+		//~ //echo "haha";
+			//~ //$this->load->model('kelas_model');
+			//~ $data = array('upload_data' => $this->upload->data());           
+			//~ // load images model
+			
+			//~ $upload = $data['upload_data'];
+				
+			//~ $img_name = $upload['file_name'];
+
+			//~ $this->load->model('kelas_model');
+			//~ $data = array(							
+					//~ 'deskripsi' => $this->input->post('deskripsi'),
+					//~ 'gambar' => $img_name
+			//~ );
+			//~ echo $img_name;
+			//~ $this->kelas_model->update($data, $id);
+			//~ redirect('admin/daftar_kelas', 'refresh');
+		
+		//~ }
+		//~ else
+		//~ {
+			//~ $data = array('upload_data' => $this->upload->data());           
+			//~ // load images model
+			
+			//~ $upload = $data['upload_data'];
+				
+			//~ $img_name = $upload['file_name'];
+
+			//~ $this->load->model('kelas_model');
+			//~ $data = array(							
+					//~ 'deskripsi' => $this->input->post('deskripsi'),
+					//~ 'gambar' => $img_name
+			//~ );
+			
+			//~ //$this->kelas_model->update('kelas', $data);
+			//~ //redirect('admin/daftar_kelas', 'refresh');
+			//~ $this->kelas_model->update($data, $id);
+			//~ redirect('admin/daftar_kelas', 'refresh');
+
+		//~ }
+	//~ }
+	
+	public function jumlahPengunjung($idKelas) {
+		$this->load->model('kunjungan_model');		
+		$jumlahPengunjung = $this->kunjungan_model->getJumlahPengunjungKelas($idKelas)->row(); 
+		return $jumlahPengunjung->jumlah;
+	}
+
+	public function iterasiPengunjung($arrayId) {
+		$this->load->model('kunjungan_model');
+		$arrayPengunjung = array();
+		foreach($arrayId as $row) {
+			// echo $row['idKelas'];
+			$arrayPengunjung[$row['idKelas']] = $this->jumlahPengunjung($row['idKelas']);
+		}
+		return $arrayPengunjung;
+		// $data['hasil'] = $this->getJumlahPengunjungKelas($idKelas);
+		// $this->load->view('admin/daftarkelas_view', $data);
+	}
 	
 	public function simpanPerubahan($id){
 		
-		$this->load->library('upload');
-		$sukses = "kelas berhasil diubah";		
+		$this->load->library('upload');		
 		if ( ! $this->upload->do_upload())
 		{			
 			$this->load->model('kelas_model');
 			$data = array(									
 				'deskripsi' => $this->input->post('deskripsi'),				
 			);		
+
 			$this->kelas_model->update($data, $id);
-			//redirect('admin/daftar_kelas', 'refresh');			
+			redirect('admin/daftar_kelas', 'refresh');			
 		}
 		else
 		{	
@@ -68,22 +132,22 @@
 			$upload = $data['upload_data'];
 				//ini link gambarnya
 			$img_name = $upload['file_name'];
+
 			$this->load->model('kelas_model');
 			$data = array(
 				'deskripsi' => $this->input->post('deskripsi'),
 				'gambar' => $img_name
 			);		
+
 			$this->kelas_model->update($data, $id);
-			//redirect('admin/daftar_kelas', 'refresh');
-		}
-			echo "<script type='text/javascript'>alert('$sukses');</script>";
 			redirect('admin/daftar_kelas', 'refresh');
+		}
 	}
 	
 	public function buatBaru(){
 		if($this->session->userdata('role')=="admin") {
 			$this->load->model('kelas_model');
-			$data['result'] = $this->kelas_model->getAllKelas()->result();		
+			$data['result'] = $this->kelas_model->getAllKelas()->result();	    		
 			$this->load->view('admin/buatkelas_view', $data);
 		} else {
 			redirect('home');
@@ -118,8 +182,6 @@
 				$cekKelas = $this->kelas_model->get($idKelas);
 				if($cekKelas->num_rows() < 1){
 					echo "<script type='text/javascript'>alert('$pesanGambar');</script>";
-					$message = "Kelas berhasil dibuat";
-					echo "<script type='text/javascript'>alert('$message');</script>";
 					redirect('admin/daftar_kelas/buatBaru', 'refresh');
 				}
 				else{				
@@ -129,6 +191,7 @@
 					echo "<script type='text/javascript'>alert('$pesanGambar');</script>";
 					redirect('admin/daftar_kelas/buatBaru', 'refresh');
 				}
+
 				//$this->unggah($id);
 			}
 			else
@@ -138,6 +201,7 @@
 				$upload = $data['upload_data'];
 				
 				$img_name = $upload['file_name'];
+
 				$this->load->model('kelas_model');
 				$data = array(				
 					'idKelas' => $this->input->post('idKelas'),				
@@ -147,14 +211,10 @@
 				$cekKelas = $this->kelas_model->get($idKelas);
 				if($cekKelas->num_rows() < 1){
 					$this->kelas_model->add($data);
-					$message = "Kelas berhasil dibuat";
-					echo "<script type='text/javascript'>alert('$message');</script>";
 					redirect('admin/daftar_kelas', 'refresh');
 				}
 				else{				
 					$this->session->set_flashdata('duplicatePrimaryKeyKelas',"Sudah ada ".$idKelas);
-					$message = "Kelas sudah pernah dibuat";
-					echo "<script type='text/javascript'>alert('$message');</script>";
 					redirect('admin/daftar_kelas/buatBaru', 'refresh');
 				}
 			}
@@ -182,6 +242,7 @@
 				$upload = $data['upload_data'];
 				
 				$img_name = $upload['file_name'];
+
 				$this->load->model('kelas_model');
 				$data = array(								
 					'sertifikat' => $img_name
@@ -189,8 +250,6 @@
 					
 				$this->db->where('idKelas', $id);			
 				$this->db->update('kelas', $data);
-				$message = "Sertifikat berhasil ditambahkan";
-				echo "<script type='text/javascript'>alert('$message');</script>";
 				redirect('admin/daftar_kelas', 'refresh');			
 			}
 		} else {
