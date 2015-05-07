@@ -86,6 +86,7 @@
       			</div>
       		</div>
     	</div> 
+	
 	<div class="row">
 	<span id="kelas">KELAS	</span>
 	<?php foreach($all as $row):?>
@@ -191,4 +192,3 @@
 
     </body>
 </html>
-

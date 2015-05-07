@@ -64,6 +64,20 @@ class kelas_model extends CI_Model {
 			//return $hasil= $this->db->get()->result();
 	}
 	
+	function getKunjunganHariIni($idKelas, $hariIni){
+		$this->db->select('jumlah');
+		return $this->db->get_where('kunjungan', array('idKelas' => $idKelas, 'tanggal' => $hariIni));		
+	}
+	
+	function updateKunjunganHariIni($idKelas, $hariIni, $jumlah){
+		$this->load->database();				
+		$this->db->set('jumlah', $jumlah);
+		$this->db->where('idKelas', $idKelas);
+		$this->db->where('tanggal', $hariIni);
+		$this->db->update('kunjungan');
+		return;
+	}
+	
 	function getAllIdKelas(){
 		$this->load->database();
 		$this->db->select('idKelas');
