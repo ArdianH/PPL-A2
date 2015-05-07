@@ -156,12 +156,12 @@ class soal_tes extends CI_Controller{
 			$data = array(
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),
-			'isTes' => "tes",
+			'isTes' => 'tes',
 			'jawaban' => $this->input->post('jawaban'),
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'pembahasan' => $this->input->post('pembahasan'),
-			'isDitunjukkan' => "1");
-
+			'isDitunjukkan' =>$this->input->post('isDitunjukkan')
+		) ;
 		if($soal=='TRUE')
 		{	
 			echo " in";
@@ -226,8 +226,7 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->updateJawaban($arrayb,'b', $idSoal);
 		$this->soal_model->updateJawaban($arrayc, 'c', $idSoal);
 		$this->soal_model->updateJawaban($arrayd, 'd', $idSoal);
-		redirect('admin/soal_latihan');
-		//redirect('admin/soal_latihan', 'refresh');
+		redirect('admin/soal_tes');
 	}
 	
 	public function createview(){
@@ -370,11 +369,11 @@ class soal_tes extends CI_Controller{
 		$data = array(
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),
-			'isTes' => "tes",
+			'isTes' => 'tes',
 			'jawaban' => $this->input->post('jawaban'),
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'pembahasan' => $this->input->post('pembahasan'),
-			'isDitunjukkan' => "1"
+			'isDitunjukkan' =>$this->input->post('isDitunjukkan')
 		);
 		if($soal=='TRUE')
 		{
@@ -441,7 +440,7 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->addJawaban($arrayc);
 		$this->soal_model->addJawaban($arrayd);
 
-		redirect('admin/soal_latihan');
+		redirect('admin/soal_tes');
 	}
 	}
 	

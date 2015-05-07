@@ -218,7 +218,18 @@ th{
 .form-control:-ms-input-placeholder { /* Internet Explorer 10+ */
    color:    #ffaf25;
 }
+#kelas{
+	font-size:25px;
+	font-weight:500;
+}
 
+#tulisanBiru{
+	color:#1947A3;
+}
+
+#tulisanMerah{
+	color:#e11a1a;
+}
 
 /*============================= BUTTON ===========================*/
 .loginButton {
@@ -455,6 +466,47 @@ a {
 	color: #3facff;
 	background: #fff;
 }
+/*========== Purple Button ============*/
+.purpleButton {
+	font-size: 18pt;
+	background-color: #7c0094;
+	padding: 5px 25px;
+	display: inline-block;
+	margin: 2px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 300;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	border: 3px solid #7c0094;
+	color: white;
+	font-weight:600;
+	width:200px
+}
+
+.purpleButton:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+
+a {
+	color: #888;
+	text-decoration: none;
+}
+
+.purpleButton:hover,
+.purpleButton:active {
+	color: #7c0094;
+	background: #fff;
+}
 
 /*========== Red Button ============*/
 .redButton {
@@ -596,7 +648,7 @@ h1.rangkumanText{
 	margin-left:65px;
 	margin-bottom:50px;
 	margin-top:50px;
-	height: 400px;
+	height: 470px;
 	padding-top: 20px;
 }
 
@@ -616,6 +668,14 @@ a.judul:hover{
 	color:#d600ff;
 }
 
+.judulMateri{
+	height:50px;	
+}
+
+.deskripsiMateri{
+	padding:15px;
+	height:75px;	
+}
 
 /*============ HOME ============*/
 .homeview{
@@ -868,4 +928,106 @@ tbody.tableDetilTes{
 .soalBenar{
 	font-weight:bold;
 	color:green;
+}
+
+/*=========== MEDALI =======*/
+#medali{
+	color: #7c0094;
+	text-align:center;
+	font-size:27pt;
+	font-weight:bold;
+}
+
+.medaliBg{
+	background-color:#fff9d5;
+	margin:20px;
+	padding:15px;
+	font-weight:bold;
+}
+
+.fixednama{
+	height:40px;	
+}
+
+
+/*============================= BUTTON ===========================*/
+.darkorangeButton {
+	font-size: 12pt;
+	background-color: #3facff;
+	padding-top: 12px;
+	padding-bottom:12px;
+	padding-left:5px;
+	padding-right:5x;
+	display: inline-block;
+	margin: 5px;
+	margin-top:8px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 300;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	border: 3px solid #3facff;
+	color: white;
+	font-weight:600;
+	width:200px
+}
+
+.darkorangeButton:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+
+a {
+	color: #888;
+	text-decoration: none;
+}
+
+.darkorangeButton:hover,
+.darkorangeButton:active {
+	color: #aadaff;
+	background: #1175c2;
+}
+
+/*=========== Permainan ===============*/
+.permainan{
+	text-align: center;	
+	border: 5px solid #5eb2ee;
+	margin-left:80px;
+	margin-right:80px;
+	margin-bottom:50px;
+	margin-top:50px;
+	height: 350px;
+	padding-top: 20px;
+}
+
+.pv{
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+/*========= ADMIN ============*/
+.blue{
+	background-color:#458ccc;	
+	color:white;		
+}
+.blue:hover,
+.blue:active{
+	background-color:#1947A3;	
+	color:white;	
+}
+
+.space{
+	margin-left:7px;
+	margin-right:75px;
+	margin-top:0px;
+	margin-bottom:0px;
+	padding:2px;
 }

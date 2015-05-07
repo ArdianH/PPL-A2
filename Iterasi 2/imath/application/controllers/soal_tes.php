@@ -155,11 +155,11 @@ class soal_tes extends CI_Controller{
 			$data = array(
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),
-			'isTes' => "tes",
+			'isTes' => 'tes',
 			'jawaban' => $this->input->post('jawaban'),
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'pembahasan' => $this->input->post('pembahasan'),
-			'isDitunjukkan' => "1");
+			'isDitunjukkan' => $this->input->post('isDitunjukkan'));
 
 		if($soal=='TRUE')
 		{	
@@ -369,11 +369,11 @@ class soal_tes extends CI_Controller{
 		$data = array(
 			'idMateri' => $this->input->post('idMateri'),
 			'idKelas' => $this->input->post('idKelas'),
-			'isTes' => "tes",
+			'isTes' => 'tes',
 			'jawaban' => $this->input->post('jawaban'),
 			'pertanyaan' => $this->input->post('pertanyaan'),
 			'pembahasan' => $this->input->post('pembahasan'),
-			'isDitunjukkan' => "1"
+			'isDitunjukkan' => $this->input->post('isDitunjukkan'),
 		);
 		if($soal=='TRUE')
 		{

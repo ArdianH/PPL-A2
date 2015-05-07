@@ -44,14 +44,14 @@
 	<?php 
 	//jika user telah login
 	if($this->session->userdata('loggedin')) {
-		echo '<div class="row">';
-		echo '<div class="container" id="iconbar">';
-		echo '<div class="row">';
+		
+        echo '<div class="container" id="iconbar">';
+        
 		echo '<div class="col-md-2"><img src="'.base_url().'assets/images/home.png" img size="height="20" width="20"><a href="'.base_url().'">&nbspBERANDA</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">&nbspPERMAINAN</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'permainan">&nbspPERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
 		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
@@ -61,12 +61,12 @@
 		}
 		echo '<span class="weight"><a href="'.base_url().'profil"> Hai ';
 		echo $this->session->userdata('namaPanggilan')."</a></span></div>";
-		echo '</div>';
-		echo '</div>';
+		
 		echo '</div>';
 	}
 	?>
 </nav>
+
 <div class="container contents">
       <div class="jumbotron">
       		<div class="row">
@@ -87,7 +87,7 @@
       		</div>
     	</div> 
 	<div class="row">
-	<span id="kelas">Kelas	</span>
+	<span id="kelas">KELAS	</span>
 	<?php foreach($all as $row):?>
 		<?php 				
 			$idKelas = $row->idKelas;
@@ -118,17 +118,21 @@
 	if(count($result) > 0):
 	foreach($result as $row):
 	//print_r($jumlahSoal);
-	if($jumlahSoal[$row->idMateri] >= 10):
-	?>		
+	?>
 	<div class="col-md-3 kelasMateri">
 		<div class="row">
 			<p><img src="<?php echo base_url();?>uploads/<?php echo $row->gambar ?>" height="175" width="175"></p>
-			<h3 class="judul"><?php echo $row->nama ?></h2>
+			<!-- Judul-->
+			<div class="judulMateri">
+				<h3 class="judul"><?php echo $row->nama ?></h3>	
+			</div>
+			
+			<div class="deskripsiMateri">
 			<p><?php echo $row->deskripsi ?></p>
+			</div>
 		</div>
 		<div class="row">
-			<!-- Pilih Button-->
-			<!-- $this->materi_model->getJumlahSoalMateri($row->idMateri) -->
+			<!-- Pilih Button-->			
 			<?php if($this->session->userdata('loggedin')) { 
 			echo '<a class="judul" href="'.base_url().'kelas/lihatMateri/'.$row->idMateri.'">Lihat Rangkuman Materi > </a>';
 			}
@@ -137,17 +141,24 @@
 				$alert="'Log in dulu yaa baru bisa lihat materi :)'";
 				echo '<a class="judul" href="'.base_url().'autentikasi/index" onclick="window.alert('.$alert.')">Lihat Rangkuman Materi ></a>';
 			}
-			?>			
-			<p>
+			?>						
 			<!-- Pilih Button-->
+			<?php if($jumlahSoal[$row->idMateri] >= 10):?>
+			<p>
 			<a href="<?php echo base_url() ?>index.php/latihan/retrieveSoal/<?php echo $row->idMateri ?>"><button class="orangeButton">Latihan</button> </a>
 			</p>
-		</div>
-	</div>
 
         <?php 
 		else:
-		endif;
+	?>
+			<p>
+			<button class="darkorangeButton">Belum ada latihan</button>
+			</p>
+	<?php
+		endif;?>
+		</div>
+	</div>
+	<?php
 		endforeach;
 		else: ?>
 		<br>
@@ -169,7 +180,7 @@
 	          <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
 			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
 			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>      
+			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>            
 	        </div>
 	        <div class="row">
 	          <div class="col-md-12"><p>Copyright(c) 2015</p></div>
@@ -180,4 +191,3 @@
 
     </body>
 </html>
-
