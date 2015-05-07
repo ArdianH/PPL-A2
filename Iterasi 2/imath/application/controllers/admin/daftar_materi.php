@@ -49,6 +49,8 @@ class daftar_materi extends CI_Controller{
 			$this->load->model('targetbelajar_model');
 			$this->materi_model->delete($id);
 			$this->targetbelajar_model->deleteByMateri($id);
+			$message = "Materi telah berhasil dihapus";
+			echo "<script type='text/javascript'>alert('$message');</script>";
 			redirect('admin/daftar_materi', 'refresh');
 		} else {
 			redirect('home');
@@ -91,6 +93,8 @@ class daftar_materi extends CI_Controller{
 			);		
 
 			$this->materi_model->update($data, $id);
+			$message = "Materi telah berhasil diubah";
+			echo "<script type='text/javascript'>alert('$message');</script>";
 			redirect('admin/daftar_materi', 'refresh');			
 		}
 		else
@@ -111,6 +115,8 @@ class daftar_materi extends CI_Controller{
 			);		
 
 			$this->materi_model->update($data, $id);
+			$message = "Materi telah berhasil diubah";
+			echo "<script type='text/javascript'>alert('$message');</script>";
 			redirect('admin/daftar_materi', 'refresh');
 		}
 	}
@@ -140,6 +146,8 @@ class daftar_materi extends CI_Controller{
 					'deskripsi' => $this->input->post('deskripsi'),				
 				);
 				$this->materi_model->add($data);
+				$message = "Materi telah berhasil dibuat";
+				echo "<script type='text/javascript'>alert('$message');</script>";
 				redirect('admin/daftar_materi/view/'.$idKelas, 'refresh');
 			}
 			else
@@ -159,6 +167,8 @@ class daftar_materi extends CI_Controller{
 					'gambar' => $img_name
 				);
 				$this->materi_model->add($data);
+				$message = "Materi telah berhasil dibuat";
+				echo "<script type='text/javascript'>alert('$message');</script>";
 				redirect('admin/daftar_materi/view/'.$idKelas, 'refresh');
 			}
 		} else {
