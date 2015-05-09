@@ -747,6 +747,19 @@ a.homeview{
 .panelResult{
 	font-size:25pt;
 }
+
+.linklist{
+	border-bottom-style: solid;
+	border-bottom-width:5px;
+	border-bottom-color: #ADD8E6;
+	text-align:left;
+	background-color: #FFF;
+	margin-left:10px;
+	margin-right:10px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
 /*=========== RAPOR ============*/
 .rapor{
 	font-size:14pt;

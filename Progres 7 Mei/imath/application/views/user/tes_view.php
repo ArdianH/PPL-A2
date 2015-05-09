@@ -166,7 +166,7 @@ Modified by: Ardian*/
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/rapor.png" img size="height="20" width="20"><a href="'.base_url().'rapor">&nbspRAPOR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/clock.png" img size="height="20" width="20"><a href="'.base_url().'target_belajar">&nbspTARGET BELAJAR</a></div>';
 		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/medali.png" img size="height="20" width="20"><a href="'.base_url().'prestasi">&nbspPRESTASI</a></div>';
-		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'permainan">&nbspPERMAINAN</a></div>';
+		echo '<div class="col-md-2"> <img src="'.base_url().'assets/images/game.png" img size="height="20" width="20"><a href="'.base_url().'underconstruction">&nbspPERMAINAN</a></div>';
 		echo '<div class="col-md-2">';
 		if($this->session->userdata('gender') =="Perempuan"){
 			echo '<img src="'.base_url().'assets/images/girl.png" img size="height="20" width="20">';
@@ -185,6 +185,11 @@ Modified by: Ardian*/
 
 <div class="container contents">
 	<div class="row">
+		<ol class="linklist breadcrumb">
+		  <li><a href="<?php echo base_url().'kelas/pilih/'.$this->session->userdata('idKelas'); ?>">Kelas <?php echo $this->session->userdata('kelas');?> </a></li>
+		</ol>
+	</div>
+	<div class="row">
 		<div class="soalcontainer">
 			<div class="col-md-3">
 			<div class="row">
@@ -193,7 +198,7 @@ Modified by: Ardian*/
 					
 						<div class="panel-heading merah">
 							
-							<h3>SOAL</h3>
+							<h3 class="weight">SOAL</h3>
 					
 						</div>
 						<div class="panel-body abu">
@@ -209,10 +214,11 @@ Modified by: Ardian*/
 					<div class="panel panel-default paneliMath">
 						<div class="panel-heading hijau"><form name="cd"><h3 class="weight">WAKTU</h3> </div>
 						<div class="panel-body abu">
-							<input id="Time" class="waktuBox panelResult"readonly="true" type="text" value="00:00" border="0" name="disp">
+							<div class="panel-body"><input class="waktuBox panelResult" id="Time" readonly="true" type="text" value="00:00" border="0" name="disp">
 							</form>
 							<span id="minute"></span>
-							<span id="waktuTes"></span>
+							<span id="waktuTes"></span></h2>
+						</div>
 						</div>
 					</div>
 				</div>
@@ -220,8 +226,8 @@ Modified by: Ardian*/
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
-						<div class="panel-heading unguGelap"><h3>NILAI</h3></div>
-						<div class="panel-body abu"><span class="panelResult"><?php echo $skor; ?> </span></div>
+						<div class="panel-heading unguGelap"><h3 class="weight">NILAI</h3></div>
+						<div class="panel-body abu"><span class="panelResult"><?php echo $skor; ?> </span> </div>
 					</div>
 				</div>
 			</div>
@@ -235,7 +241,6 @@ Modified by: Ardian*/
 				<?php
 		
 		if(!$flagNext) : ?>
-			<div id='headerSoal' style="text-align:center;">Tes Kelas <?php echo substr($this->session->userdata('kelas'), 4, 1);?></div>
 			<form method='POST' action='<?php echo base_url()."tes/processJawaban/";?>' onsubmit='return localGetMin()' >
 				<div class="row">
 					<div class="pertanyaaniMath">
@@ -349,10 +354,10 @@ Modified by: Ardian*/
         <div class="container">
           <p class="text-muted">
             <div class="row">
-            <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
-            <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
-            <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
-            <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
+            <div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
+			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>        
           </div>
           <div class="row">
             <div class="col-md-12"><p>Copyright(c) 2015</p></div>
