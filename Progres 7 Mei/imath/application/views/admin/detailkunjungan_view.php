@@ -23,20 +23,16 @@
 
 			$.get(location, function(data, status){				
 				var obj = JSON.parse(data);
-				alert(obj);
 				$tanggal = [];
 				$valuesY = [];
-				var dateSaja;
 				for ($i = obj.length-1; $i>=0; $i--) {
-					dateSaja = Date.parse(obj[$i]["tanggal"]);
-					alert(dateSaja);
 					$tanggal.push(new Date(obj[$i]["tanggal"]));
 					$valuesY.push(obj[$i]["jumlah"]);					
 				}
 				$nilaiX = [];
 				$.each($tanggal, function(i) {
 					$twoDigitMonth = ($tanggal[i].getMonth()+1)+"";if($twoDigitMonth.length==1)	$twoDigitMonth="0" +$twoDigitMonth;
-					$twoDigitDate = ($tanggal[i].getDate()+1)+"";if($twoDigitDate.length==1)	$twoDigitDate="0" +$twoDigitDate;
+					$twoDigitDate = ($tanggal[i].getDate())+"";if($twoDigitDate.length==1)	$twoDigitDate="0" +$twoDigitDate;
 					$currentDate = $twoDigitDate + "-" + $twoDigitMonth + "-" + $tanggal[i].getFullYear();
 					$nilaiX.push($currentDate);
 				});
@@ -56,13 +52,13 @@
 				var dataPoints = [];
 				var total = 0
 				for (var i = 0; i<$currentDate.length; i++){
-					total+=parseInt($y[i])
+					//total+=parseInt($y[i])
 					dataPoints.push({ 
 
 						x: i+1,
-						y: total,
+						y: parseInt($y[i]),
 						
-						z: ("Nilai : " + ($y[i]) + "<br>" + "Tanggal : " + $currentDate[i])
+						z: ("Jumlah Pengunjung : " + ($y[i]) + "<br>" + "Tanggal : " + $currentDate[i])
 					});
 					
 				}
@@ -93,7 +89,7 @@
 				titleFontFamily: "comic sans ms"
 			},
 			axisY: {
-				  title: "Jumlah Pengunjungan",
+				  title: "Jumlah Pengunjung",
 				  titleFontFamily: "comic sans ms",
 				  labelFontSize: 15,
 				  titleFontSize: 20,
