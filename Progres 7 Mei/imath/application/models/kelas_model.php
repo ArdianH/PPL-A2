@@ -57,6 +57,7 @@ class kelas_model extends CI_Model {
 			->count_all_results('soal');
 	}
 	
+	//=============== KUNJUNGAN ====================
 	function getJumlahPengunjungKelas($idKelas){
 			$this->db->select_sum('jumlah');
 			//$this->db->join('kelas', 'kelas.idKelas=kunjungan.idKelas');
@@ -69,12 +70,22 @@ class kelas_model extends CI_Model {
 		return $this->db->get_where('kunjungan', array('idKelas' => $idKelas, 'tanggal' => $hariIni));		
 	}
 	
+	function getKunjunganKelas($idKelas){
+		$this->db->select('jumlah');
+		return $this->db->get_where('kunjungan', array('idKelas' => $idKelas));
+	}
+	
 	function updateKunjunganHariIni($idKelas, $hariIni, $jumlah){
 		$this->load->database();				
 		$this->db->set('jumlah', $jumlah);
 		$this->db->where('idKelas', $idKelas);
 		$this->db->where('tanggal', $hariIni);
 		$this->db->update('kunjungan');
+		return;
+	}
+	
+	function addKunjungan($data){
+		$this->db->insert('kunjungan', $data);
 		return;
 	}
 	
