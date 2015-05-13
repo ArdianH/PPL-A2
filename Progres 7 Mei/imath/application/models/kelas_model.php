@@ -71,7 +71,7 @@ class kelas_model extends CI_Model {
 	}
 	
 	function getKunjunganKelas($idKelas){
-		$this->db->select('jumlah');
+		//$this->db->select('jumlah');
 		return $this->db->get_where('kunjungan', array('idKelas' => $idKelas));
 	}
 	
