@@ -37,7 +37,7 @@
 			<input type="text" name="username" class="form-control noBorder" placeholder="Username" title="Username harus valid (2-16 alphanumeric)" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,15}$" required ></input>
 			<input type="password" name="password" class="form-control noBorder" placeholder="Password" title="Minimum 5 karakter" pattern=".{5,}" required ></input>
 			<button class="loginButton" type="submit" value="Login">LOG IN</button>
-			<?php echo $this->session->flashdata('messageLogin'); ?>
+			<span class="weight"><?php echo $this->session->flashdata('messageLogin'); ?></span>
 			<p><a href = "<?php echo base_url()?>autentikasi/forget" id="lupaPassword">Lupa Password?</a></p>
 			</form>
 		    </div>

@@ -72,6 +72,7 @@
    </h1>
   </div>
   <div class="row">
+  <span class="weight" id="tulisanBiru"><?php echo $this->session->flashdata('suksesSimpan'); ?></span>
   <?php if($isViewed == "true") {?>
     
   <div id="waktu">
@@ -106,8 +107,8 @@
 	endforeach?>
       </select>
        <input class="adminOrangeButton" type="submit" value="Submit">
-      </form>
-    </div>
+      </form>      
+    </div>   
     <div class="col-md-3">
       <a href=" <?php echo base_url();?>index.php/admin/soal_tes/createview"><button class="adminBiruButton"> Buat Baru</button></a>
     </div>
@@ -140,7 +141,10 @@
       <?php echo $row->pembahasan ?>
     </td>
     <td>
-      <?php echo $row->isDitunjukkan ?>
+	<?php if ($row->isDitunjukkan == "Ya") {?>
+		<span id="tulisanBiru" class="weight"><?php echo $row->isDitunjukkan ?></span>
+	<?php } else{ ?>
+	<span id="tulisanMerah" class="weight"><?php echo $row->isDitunjukkan ?></span><?php } ?>
     </td>
     <td>
       <a href="<?php echo base_url();?>index.php/admin/soal_tes/detail/<?php echo $row->idSoal ?>">

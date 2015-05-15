@@ -13,7 +13,8 @@
 			redirect('home');
 		}
 	}
-	    
+	
+
 	public function hasil($idKelas)
 	{		
 		$this->load->model('kelas_model');

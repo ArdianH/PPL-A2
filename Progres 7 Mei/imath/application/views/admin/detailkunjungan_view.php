@@ -176,8 +176,7 @@
       				<h2 class="userDashboard">Daftar Kunjungan</h2><br>				
       			</div>
       		</div>
-    	</div> 
- 		
+    	</div>  		
 		<div class="ungu fontt">
 			<div class="row">
 				<div class="col-md-3">Kelas </div>
@@ -186,7 +185,8 @@
 					<?php foreach($kelas as $row):?>			
 					<option value="<?php echo $row->idKelas?>"><?php echo $row->idKelas ?> </option>
 					<?php endforeach?>
-					</select>					
+					
+					</select>			
 				</div>
 			</div>			
 
