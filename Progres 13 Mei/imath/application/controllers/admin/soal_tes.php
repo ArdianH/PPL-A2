@@ -29,6 +29,8 @@ class soal_tes extends CI_Controller{
 	public function delete($idSoal){
 		$this->load->model('soal_model');
 		$this->soal_model->delete($idSoal);
+		$message = "Soal berhasil dihapus";
+		$this->session->set_flashdata('messageSoal',$message);
 		redirect('admin/soal_tes');
 	}
 	public function detail($idSoal){
@@ -219,6 +221,8 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->updateJawaban($arrayb,'b', $idSoal);
 		$this->soal_model->updateJawaban($arrayc, 'c', $idSoal);
 		$this->soal_model->updateJawaban($arrayd, 'd', $idSoal);
+		$message = "Soal berhasil diubah";
+		$this->session->set_flashdata('messageSoal',$message);
 		redirect('admin/soal_tes');
 	}
 	
@@ -417,6 +421,9 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->addJawaban($arrayb);
 		$this->soal_model->addJawaban($arrayc);
 		$this->soal_model->addJawaban($arrayd);
+
+		$message = "Soal berhasil dibuat";
+		$this->session->set_flashdata('messageSoal',$message);
 		redirect('admin/soal_tes');
 	}
 	}

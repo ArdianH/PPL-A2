@@ -56,6 +56,7 @@
 	    <div class="titleText">  
 	    <h1> Pesan </h1>
 	</div>
+	<span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messagePesan'); ?></span><br>
    <div class="table-responsive">
         <table class="table table-hover table-striped tableimath">
 	        <thead>

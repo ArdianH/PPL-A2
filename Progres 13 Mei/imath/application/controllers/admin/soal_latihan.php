@@ -28,6 +28,8 @@ class soal_latihan extends CI_Controller{
 	public function delete($idSoal, $idMateri){
 		$this->load->model('soal_model');
 		$this->soal_model->delete($idSoal);
+		$message = "Soal berhasil dihapus";
+		$this->session->set_flashdata('messageSoal',$message);	
 		redirect('admin/soal_latihan/show/'.$idMateri);
 	}
 
@@ -232,8 +234,8 @@ class soal_latihan extends CI_Controller{
 		$this->soal_model->updateJawaban($arrayc, 'c', $idSoal);
 		$this->soal_model->updateJawaban($arrayd, 'd', $idSoal);
 		
-		$message="soal berhasil diubah";
-		echo "<script type='text/javascript'>alert('$message');</script>";
+		$message = "Soal berhasil diubah";
+		$this->session->set_flashdata('messageSoal',$message);
 		$inputMateri = $this->input->post('idMateri');
 		redirect('admin/soal_latihan/show/'.$inputMateri);
 //		redirect('admin/soal_latihan');
@@ -456,9 +458,8 @@ class soal_latihan extends CI_Controller{
 		$inputMateri = $this->input->post('idMateri');
 		$inputKelas = $this->input->post('idKelas');
 		
-		$message="soal berhasil diubah";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-		
+		$message = "Soal berhasil dibuat";
+		$this->session->set_flashdata('messageSoal',$message);
 		redirect('admin/soal_latihan/show/'.$inputMateri);
 		//redirect('admin/soal_latihan/show/'.$inputMateri);
 	}

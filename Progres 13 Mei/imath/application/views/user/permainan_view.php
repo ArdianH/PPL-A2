@@ -80,8 +80,9 @@
 				</a>
 			</div>
 			<div class="col-md-4 permainan">
-				<img src="<?php echo base_url();?>assets/images/ut.png" height="200" width="200">
-				<h2 class="weight" id="tulisanBiru">ULAR TANGGA</h2>
+				<a href="<?php echo base_url();?>permainan/ulartangga">
+					<img src="<?php echo base_url();?>assets/images/ut.png" height="200" width="200">
+					<h2 class="weight" id="tulisanBiru">ULAR TANGGA</h2>
 			</div>
 		</div>
 	</div>	

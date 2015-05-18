@@ -17,6 +17,11 @@ class materi_model extends CI_Model {
 		return $this->db->get_where('Materi', array('idMateri' => $id))->result();
 	}
 
+	function getByName($nama){
+    	$this->load->database();	    			
+		return $this->db->get_where('Materi', array('nama' => $nama))->result();
+	}
+
 	function delete($id){
 		$this->load->database();		
 		$this->db->delete('Materi', array('idMateri' => $id));

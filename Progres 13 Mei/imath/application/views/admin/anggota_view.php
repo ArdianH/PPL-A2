@@ -59,6 +59,7 @@
 	<div class="titleText">
 	    <h1> Daftar Anggota </h1>
 	</div>
+	<span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageAnggota'); ?></span><br>
     <div class="table-responsive">
         <table class="table table-hover table-striped tableimath">
 	        <thead>
