@@ -79,6 +79,7 @@
   <div class="container contents">
     <h1> Daftar Soal Latihan </h1>
     <!-- Button buat soal baru -->
+    <span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageSoal'); ?></span><br>
     <a href=" <?php echo base_url();?>index.php/admin/soal_latihan/createview/<?php echo $materi[0] -> idMateri?>/<?php echo $materi[0] -> idKelas?>"><button> Buat Baru</button></a>
     <form method="POST" action="<?php echo base_url();?>index.php/admin/soal_latihan/view">
        Kelas <select id = "idKelas" name="idKelas">

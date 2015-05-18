@@ -49,6 +49,8 @@ class daftar_materi extends CI_Controller{
 			$this->load->model('targetbelajar_model');
 			$this->materi_model->delete($id);
 			$this->targetbelajar_model->deleteByMateri($id);
+			$message = "Materi berhasil dihapus";
+			$this->session->set_flashdata('messageMateri',$message);	
 			redirect('admin/daftar_materi', 'refresh');
 		} else {
 			redirect('home');
@@ -91,6 +93,8 @@ class daftar_materi extends CI_Controller{
 			);		
 
 			$this->materi_model->update($data, $id);
+			$message = "Materi berhasil diubah";
+			$this->session->set_flashdata('messageMateri',$message);	
 			redirect('admin/daftar_materi', 'refresh');			
 		}
 		else
@@ -111,6 +115,8 @@ class daftar_materi extends CI_Controller{
 			);		
 
 			$this->materi_model->update($data, $id);
+			$message = "Materi berhasil diubah";
+			$this->session->set_flashdata('messageMateri',$message);	
 			redirect('admin/daftar_materi', 'refresh');
 		}
 	}
@@ -131,16 +137,19 @@ class daftar_materi extends CI_Controller{
 			$this->load->library('upload');
 			if ( ! $this->upload->do_upload())
 			{			
-				$idKelas = $this->input->post('idKelas');
-				$this->load->model('materi_model');
-				$data = array(
-					'nama' => $this->input->post('nama'),			
-					'idKelas' => $this->input->post('idKelas'),			
-					'rangkuman' => $this->input->post('rangkuman'),
-					'deskripsi' => $this->input->post('deskripsi'),				
-				);
-				$this->materi_model->add($data);
-				redirect('admin/daftar_materi/view/'.$idKelas, 'refresh');
+				$idKelas = $this->input->post('idKelas'); 
+				$nama = $this->input->post('nama');
+					$this->load->model('materi_model');
+					$data = array(
+						'nama' => $this->input->post('nama'),			
+						'idKelas' => $this->input->post('idKelas'),			
+						'rangkuman' => $this->input->post('rangkuman'),
+						'deskripsi' => $this->input->post('deskripsi'),				
+					);			
+					$this->materi_model->add($data);
+					$message = "Materi berhasil dibuat";
+					$this->session->set_flashdata('messageMateri',$message);	
+					redirect('admin/daftar_materi/view/'.$idKelas, 'refresh');					
 			}
 			else
 			{	
@@ -159,6 +168,8 @@ class daftar_materi extends CI_Controller{
 					'gambar' => $img_name
 				);
 				$this->materi_model->add($data);
+				$message = "Materi berhasil dibuat";
+				$this->session->set_flashdata('messageMateri',$message);	
 				redirect('admin/daftar_materi/view/'.$idKelas, 'refresh');
 			}
 		} else {

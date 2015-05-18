@@ -56,6 +56,7 @@
     <div class="container contents">
     	<div class="titleText">
     	<h1> Daftar Materi </h1>
+    	<span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageMateri'); ?></span><br>
     </div>
     	<div class="row">
     		<div class="col-md-4">

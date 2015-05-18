@@ -71,6 +71,7 @@
      Daftar Soal Tes<?php if($isViewed == "true")  echo ' Kelas '.substr($currentkelas[0]->idKelas, 4, 5)?>
    </h1>
   </div>
+  <span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageSoal'); ?></span><br>
   <div class="row">
   <?php if($isViewed == "true") {?>
     

@@ -24,6 +24,8 @@
 	public function delete($id){
 		$this->load->model('anggota_model');		
 		$this->anggota_model->delete($id);
+		$message = "Anggota berhasil dihapus";
+		$this->session->set_flashdata('messageAnggota',$message);
 		redirect('admin/anggota', 'refresh');
 	}
 	
@@ -49,6 +51,8 @@
 		
 		$this->db->where('username', $id);
 		$this->db->update('Akun', $data);
+		$message = "Anggota berhasil diubah";
+		$this->session->set_flashdata('messageAnggota',$message);
 		redirect('admin/anggota', 'refresh');
 	}
 	
