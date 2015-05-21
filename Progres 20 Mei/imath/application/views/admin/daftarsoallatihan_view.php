@@ -130,8 +130,7 @@
       </select>
       <button class="asButton" type="submit">Submit</button>
     </form>
-    
-    
+    <span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageSoal'); ?></span><br>    
       <table class="table table-hover table-striped tableimath">
     <thead>
           <tr>

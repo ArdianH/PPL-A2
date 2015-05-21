@@ -30,8 +30,8 @@
 		if($this->session->userdata('role')=="admin") {
 			$this->load->model('kelas_model');
 			$this->kelas_model->delete($id);
-			$message = "Kelas berhasil dihapus";
-			$this->session->set_flashdata('hapusKelas',$message);			
+			$message = "Kelas ".$id." berhasil dihapus";
+			$this->session->set_flashdata('messageKelas',$message);			
 			redirect('admin/daftar_kelas', 'refresh');		
 		} else {
 			redirect('home');
@@ -48,24 +48,7 @@
 			redirect('home');
 		}	
 	}
-	
-	public function jumlahPengunjung($idKelas) {
-		$this->load->model('kelas_model');		
-		$jumlahPengunjung = $this->kelas_model->getJumlahPengunjungKelas($idKelas)->row(); 
-		return $jumlahPengunjung->jumlah;
-	}
 
-	public function iterasiPengunjung($arrayId) {
-		$this->load->model('kelas_model');
-		$arrayPengunjung = array();
-		foreach($arrayId as $row) {
-			// echo $row['idKelas'];
-			$arrayPengunjung[$row['idKelas']] = $this->jumlahPengunjung($row['idKelas']);
-		}
-		return $arrayPengunjung;
-		// $data['hasil'] = $this->getJumlahPengunjungKelas($idKelas);
-		// $this->load->view('admin/daftarkelas_view', $data);
-	}
 	
 	public function simpanPerubahan($id){
 		
@@ -77,9 +60,7 @@
 				'deskripsi' => $this->input->post('deskripsi'),				
 			);		
 	
-			$this->kelas_model->update($data, $id);
-			echo "<script type='text/javascript'>alert('Sukses menyimpan perubahan kelas');</script>";
-			redirect('admin/daftar_kelas', 'refresh');			
+			$this->kelas_model->update($data, $id);		
 		}
 		else
 		{	
@@ -96,9 +77,10 @@
 			);		
 
 			$this->kelas_model->update($data, $id);
-			echo "<script type='text/javascript'>alert('Sukses menyimpan perubahan kelas');</script>";
-			redirect('admin/daftar_kelas', 'refresh');
 		}
+		$message = "Kelas ".$id." berhasil diubah";
+		$this->session->set_flashdata('messageKelas',$message);
+		redirect('admin/daftar_kelas', 'refresh');	
 	}
 	
 	public function buatBaru(){
@@ -168,7 +150,9 @@
 				$cekKelas = $this->kelas_model->get($idKelas);
 				if($cekKelas->num_rows() < 1){
 					$this->kelas_model->add($data);
-					redirect('admin/daftar_kelas', 'refresh');
+					$message = "Kelas ".$idKelas." berhasil dibuat";
+					$this->session->set_flashdata('messageKelas',$message);
+					redirect('admin/daftar_kelas', 'refresh');	
 				}
 				else{				
 					$this->session->set_flashdata('duplicatePrimaryKeyKelas',"Sudah ada ".$idKelas);
@@ -207,13 +191,16 @@
 					
 				$this->db->where('idKelas', $id);			
 				$this->db->update('kelas', $data);
+				$message = "Sertifikat Kelas ".$id." berhasil diunggah";
+				$this->session->set_flashdata('messageKelas',$message);
 				redirect('admin/daftar_kelas', 'refresh');			
 			}
 		} else {
 			redirect('home');
 		}	
 	}
-	//===========================KUNJUNGAN==============================
+
+		//===========================KUNJUNGAN==============================
 	public function kunjungan()
         {          	
 		if($this->session->userdata('loggedin')) {
@@ -272,5 +259,25 @@
 		//echo json_encode($array); 
 	
 	}
+
+		
+	public function jumlahPengunjung($idKelas) {
+		$this->load->model('kelas_model');		
+		$jumlahPengunjung = $this->kelas_model->getJumlahPengunjungKelas($idKelas)->row(); 
+		return $jumlahPengunjung->jumlah;
+	}
+
+	public function iterasiPengunjung($arrayId) {
+		$this->load->model('kelas_model');
+		$arrayPengunjung = array();
+		foreach($arrayId as $row) {
+			// echo $row['idKelas'];
+			$arrayPengunjung[$row['idKelas']] = $this->jumlahPengunjung($row['idKelas']);
+		}
+		return $arrayPengunjung;
+		// $data['hasil'] = $this->getJumlahPengunjungKelas($idKelas);
+		// $this->load->view('admin/daftarkelas_view', $data);
+	}
+	
     }
 ?>

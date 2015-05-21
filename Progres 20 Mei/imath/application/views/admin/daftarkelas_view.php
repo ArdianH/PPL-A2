@@ -57,7 +57,7 @@
     	<div class="titleText">
     	<h1>Daftar Kelas</h1>
     </div>
-	<span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('hapusKelas'); ?></span><br>
+	<span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageKelas'); ?></span><br>
     	<a href=" <?php echo base_url();?>index.php/admin/daftar_kelas/buatBaru"><button type="button" class="adminButton"> Buat Baru</button></a>
 	<br><br>
     	<div class="table-responsive">

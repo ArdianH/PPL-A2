@@ -55,11 +55,12 @@
 		<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/daftar_materi/create" enctype="multipart/form-data"> 	
 		<label>Nama Materi</label></br>
 		<input type="text" name ="nama" required></br></br>
-		<label>Kelas</label></br><select name ="idKelas">
-		<?php foreach($Kelas as $row): ?>			
-			<option value="<?php echo $row->idKelas ?>" ><?php echo $row->idKelas ?></option>
-		<?php endforeach ?>
-		</select>
+		<label>Kelas</label></br>
+		<select id = "idKelas" name="idKelas">
+			<?php foreach($Kelas as $row):?>			
+			<option value="<?php echo $row->idKelas?>" name ="idKelas" <?php if($row->idKelas == $currentKelas) echo "selected";?>><?php echo $row->idKelas ?> </option>
+			<?php endforeach?>
+			</select>
 		</br></br>
 		<label>Deskripsi singkat</label></br>
 		<textarea type="text" name ="deskripsi" rows="4" cols="50" maxlength="50" required title="maksimal 50 karakter untuk deskripsi singkat"></textarea></br></br>

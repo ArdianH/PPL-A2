@@ -31,8 +31,8 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="<?php echo base_url()?>admin/dashboard"> DASHBOARD </a></li>
-				<li><a href="<?php echo base_url()?>"> BERANDA</a></li>
-				<li><a href="<?php echo base_url()?>autentikasi/logout"> LOG OUT </a></li>	
+				<li><a href="<?php echo base_url()?>"> BERANDA iMATH </a></li>
+				<li><a href="<?php echo base_url()?>'autentikasi/logout"> LOG OUT </a></li>	
 			</ul>
 		</div>	<!--/.nav-collapse -->
 	</div>      	
@@ -55,63 +55,70 @@
  
     <div class="container contents">
     	<div class="titleText">
-    	<h1> Daftar Materi </h1>
+    	<?php if($isViewed == 'true'){
+			echo '<h1> Daftar Materi Kelas ';
+			echo substr($currentKelas,4,5).' '.substr($currentKelas,0,2).'</h1>';	
+			echo '<a href="'.base_url().'admin/daftar_materi/createview/'.$currentKelas.'"><button class="adminButton"> Buat Baru</button></a>';
+			}
+			else{
+			echo "<h1> Daftar Materi</h1>";
+		}?>
     	<span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageMateri'); ?></span><br>
     </div>
     	<div class="row">
     		<div class="col-md-4">
     		<form method="POST" action="<?php echo base_url();?>index.php/admin/daftar_materi/viewMateri">
-			    <select name ="idKelas">
-				<?php foreach($Kelas as $row):?>			
-				<option value="<?php echo $row->idKelas ?>" ><?php echo substr($row->idKelas, 0, 2).' '.substr($row->idKelas, 4, 5) ?></option>
-				<?php endforeach?>
-				</select>
+			    Kelas <select id = "idKelas" name="idKelas">
+					    <?php foreach($Kelas as $row):?>
+					      <option name ="idKelas" <?php 
+					        if($row->idKelas == $currentKelas)
+					          echo 'value="'.$row->idKelas.'" selected';
+					        else
+					          echo 'value="'.$row->idKelas.'"'; ?>>
+					        <?php echo $row->idKelas ?>
+					     </option>
+					        <?php endforeach?>
+					   </select>
 				<input type="submit" value="Submit" />
 			</form>
 		</div>
-		<div class="col-md-4">
-			<a href=" <?php echo base_url();?>index.php/admin/daftar_materi/createview"><button> Buat Baru</button></a>
-		</div>
 	</div>
 		<div class="table-responsive">
-			<table class="table table-hover table-striped tableimath">
-				<thead>
-					<tr>
-						<th class="col-md-1">No</th>
-						<th class="col-md-2">Materi</th>
-						<th class="col-md-2">Deskripsi</th>
-						<th class="col-md-4">Rangkuman</th>
+	    	<table class="table table-hover table-striped tableimath">
+		        <thead>
+		    	 	<tr>
+		    	 		<th class="col-md-1">No</th>
+			            <th class="col-md-2">Materi</th>
+						<th class="col-md-3">Deskripsi</th>
+						<th class="col-md-3">Rangkuman</th>
 						<th class="col-md-3">Tindakan</th>
-					</tr>
-				</thead>
-					<?php $i=1;?>
-				<tbody>
+		        	</tr>
+		        </thead>
+		        <?php $i=1;?>		        <tbody>
 					<?php foreach($result as $row):?>
 					<tr>	
-						<td>	
-							<?php echo $i; $i = $i+1; ?>
-						</td>
-						<td class="col-md-2">
-							<?php echo $row->nama ?>
-						</td>
-						<td class="col-md-3">
-							<?php echo $row->deskripsi ?>
-						</td>
-						<td class="col-md-4">
-							<?php echo $row->rangkuman ?>
-						</td>
-						<td class="col-md-3">
-							<a href="<?php echo base_url();?>admin/daftar_materi/detail/<?php echo $row->idMateri ?>">
-								<img src="<?php echo base_url() ?>assets/images/info.png" width="50px" height="50px"></a>				
-								<!-- Edit Button-->
-							<a href="<?php echo base_url();?>admin/daftar_materi/edit/<?php echo $row->idMateri ?>">
-								<img src="<?php echo base_url() ?>assets/images/editicon.png" width="50px" height="50px">
-							</a>
-								<!-- Hapus Button-->
-							<button class="buttonDelete" onclick="return confirmDelete('<?php echo base_url() ?>admin/daftar_materi/delete/<?php echo $row->idMateri?>');">
-								<img src="<?php echo base_url() ?>assets/images/deleteicon.png" width="50px" height="50px">
-							</button>
-						</td>
+					<td>	
+						<?php echo $i; $i = $i+1; ?>
+					</td>
+					<td class="col-md-2">
+						<?php echo $row->nama ?>
+					</td>
+					<td class="col-md-3">
+						<?php echo $row->deskripsi ?>
+					</td>
+					<td class="col-md-4">
+						<?php echo $row->rangkuman ?>
+					</td>
+					<td class="col-md-3">
+					<a href="<?php echo base_url();?>index.php/admin/daftar_materi/detail/<?php echo $row->idMateri ?>">
+				                                    <img src="<?php echo base_url() ?>assets/images/info.png" width="50px" height="50px"></a>				
+					<!-- Edit Button-->
+					<a href="<?php echo base_url();?>index.php/admin/daftar_materi/edit/<?php echo $row->idMateri ?>">
+				                                    <img src="<?php echo base_url() ?>assets/images/editicon.png" width="50px" height="50px"></a>				
+					<!-- Hapus Button-->
+					<button class="buttonDelete" onclick="return confirmDelete('<?php echo base_url() ?>admin/daftar_materi/delete/<?php echo $row->idMateri?>/<?php echo $row->idKelas?>');">
+				                                    <img src="<?php echo base_url() ?>assets/images/deleteicon.png" width="50px" height="50px"></button>
+					</td>
 				   </tr><?php endforeach; ?>
 				</table>
 			</div>
