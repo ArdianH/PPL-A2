@@ -84,7 +84,7 @@
 					</td>
 					<td class="col-md-3">
 					<!-- Edit Button-->
-					<a href="<?php echo base_url();?>/admin/daftar_kelas/viewKunjungan/<?php echo $result[$i]['idKelas'] ?>">
+					<a href="<?php echo base_url();?>admin/daftar_kelas/viewKunjungan/<?php echo $result[$i]['idKelas'] ?>">
 					
 					<p><?php echo $jumlahPengunjung[$result[$i]['idKelas']]; ?></p></a>
 

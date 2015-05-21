@@ -102,7 +102,7 @@
 		<label>Apakah soal tes ini akan ditampilkan?</label>
 		</br>
 		<input type="radio" name="isDitunjukkan" value ="ya"> Ya
-		<input type="radio" name="isDitunjukkan" value ="tidak"> Tidak
+		<input type="radio" name="isDitunjukkan" value ="tidak" required> Tidak
 		</br></br>
 			<input type="submit" name="submit" value="Submit" />
 		</form>

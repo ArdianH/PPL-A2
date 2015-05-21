@@ -8,7 +8,7 @@ Sebuah benda berbentuk trapesium dengan sisi-sisi yang sejajar adalah 15 cm dan 
 Taksiran kira-kira 6.421 - 2.640 adalah 3000
 Lambang bilangan XXIV adalah   24
 Andi sedang mendaki gunung. Ia berada pada ketinggian 175 m di atas permukaan laut. Kemudian ia naik lagi sejauh 125 m. Andi sekarang berada pada ketinggian  300
-Q X 24 + 18 = 1.146 Nilia Q adalah   47
+Q X 24 + 18 = 1.146 Nilai Q adalah   47
 Jumlah kelereng Anton 369 butir. Jumlah kelereng Toni 216 butir. Jumlah kelereng mereka adalah  585
 420 + 72 : 3 X 5 =  540
 2.500 : 25 =  100

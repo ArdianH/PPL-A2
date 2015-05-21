@@ -28,10 +28,12 @@ class soal_tes extends CI_Controller{
 	
 	public function delete($idSoal){
 		$this->load->model('soal_model');
+		$soal = $this->soal_model->get($idSoal);
+		$currentKelas = $soal[0]->idKelas;
 		$this->soal_model->delete($idSoal);
 		$message = "Soal berhasil dihapus";
 		$this->session->set_flashdata('messageSoal',$message);
-		redirect('admin/soal_tes');
+		redirect('admin/soal_tes/daftar_soal/'.$currentKelas);
 	}
 	public function detail($idSoal){
 		$this->load->model('soal_model');		
@@ -221,9 +223,10 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->updateJawaban($arrayb,'b', $idSoal);
 		$this->soal_model->updateJawaban($arrayc, 'c', $idSoal);
 		$this->soal_model->updateJawaban($arrayd, 'd', $idSoal);
+		$currentKelas -> $this->input->post('idKelas');
 		$message = "Soal berhasil diubah";
 		$this->session->set_flashdata('messageSoal',$message);
-		redirect('admin/soal_tes');
+		redirect('admin/soal_tes/daftar_soal'.$currentKelas);
 	}
 	
 	public function createview($idKelas){
@@ -424,8 +427,9 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->addJawaban($arrayd);
 
 		$message = "Soal berhasil dibuat";
+		$currentKelas = $this->input->post('idKelas');
 		$this->session->set_flashdata('messageSoal',$message);
-		redirect('admin/soal_tes');
+		redirect('admin/soal_tes/daftar_soal/'.$currentKelas);
 	}
 	}
 	

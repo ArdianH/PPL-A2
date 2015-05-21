@@ -102,7 +102,7 @@
 			data: [
 			{
 				color: "dodgerblue",
-				type: "column", //change it to line, area, bar, pie, etc
+				type: "spline", //change it to line, area, bar, pie, etc
 				dataPoints: dataPoints
 			}
 			]			
