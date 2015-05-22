@@ -1,6 +1,6 @@
 <html>
     <head>        
-	<title>Ubah soal</title>
+	 <title>Ubah soal</title>
   <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     <meta charset="utf-8">
@@ -12,13 +12,22 @@
          function fetchMateri(idKelas) {         
       var getUrl = window.location;
       var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
-      var location = baseUrl + "/index.php/admin/soal_latihan/materi/" + idKelas;
+      var location = baseUrl + "/index.php/admin/SOAL_TES/materi/" + idKelas;
       //~ alert("Hi" + location);
       //var linkJSON = $(location).attr('href',toController);
       $.getJSON(location, function(arrayMateri) {
-        var content = '';
-        arrayMateri.forEach(function (materi) {
-          content += '<option value="' + materi.idMateri + '">' + materi.nama + '</option>';
+        var content = '';       
+        arrayMateri.forEach(function (materi) {         
+          var currentMateri = <?php echo $currentMateri ?>;
+          if (materi.idMateri == currentMateri)
+          {
+            content += '<option value="' + materi.idMateri + '" selected>' + materi.nama +'  </option>';
+          }
+          else
+          {
+            content += '<option value="' + materi.idMateri + '">' + materi.nama +'</option>';
+          }
+          
         });
         $('#idMateri').html(content);
       });
@@ -33,7 +42,7 @@
     </head>
     <body>
 
-<!--========================== ADMIN NAVBAR ============================-->
+ <!--========================== ADMIN NAVBAR ============================-->
       <nav class="navbar navbar-default navbar-static-top">
     <div class="container" id="navbar">
       <div class="navbar-header" id="logobar">
@@ -49,7 +58,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo base_url()?>admin/dashboard"> DASHBOARD </a></li>
         <li><a href="<?php echo base_url()?>"> BERANDA</a></li>
-        <li><a href="<?php echo base_url()?>autentikasi/logout"> LOG OUT </a></li> 
+        <li><a href="<?php echo base_url()?>autentikasi/logout"> LOG OUT </a></li>  
       </ul>
     </div>  <!--/.nav-collapse -->
   </div>        
@@ -68,15 +77,16 @@
   </div>
   
 </nav>
- <!--======================= END OF ADMIN NAVBAR ============================-->
-   
+ <!--======================= END OF ADMIN NAVBAR ============================-->  
     <div class="container contents">    
       <h1>Ubah soal </h1>
-      <form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/soal_latihan/simpanPerubahan/<?php echo $soal[0]->idSoal ?>" enctype="multipart/form-data">
+      <form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/SOAL_TES/simpanPerubahan/<?php echo $soal[0]->idSoal ?>" enctype="multipart/form-data">
       Kelas 
         <select id = "idKelas" name="idKelas">
         <?php foreach($Kelas as $row):?>      
-        <option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
+        <option value="<?php echo $row->idKelas?>" name ="idKelas" <?php if($row->idKelas == $currentKelas) echo "selected";?>>
+          <?php echo substr($row->idKelas, 0, 2).' '.substr($row->idKelas, 4, 5) ?>
+        </option>
         <?php endforeach?>
         </select>
       Materi
@@ -84,13 +94,13 @@
         </select></br></br>
       <label>Pertanyaan</label></br><textarea name ="pertanyaan" required><?php echo $soal[0]->pertanyaan ;?></textarea>
             <input type="file" name="gambarSoal" id="gambarSoal" size="20" /></br>
-      <label>A.  </label><input type="text" name ="optiona" value="<?php echo $pilihanJawaban[0]->deskripsi ;?>" required></input>
+      <label>A.  </label><input type="text" name ="optiona" value="<?php echo $pilihanjawaban[0]->deskripsi ;?>" required></input>
       <input type="file" name="gambara" id="gambara" size="20" /></br></br>
-      <label>B.  </label><input type="text" name ="optionb" value="<?php echo $pilihanJawaban[1]->deskripsi ;?>" required>
+      <label>B.  </label><input type="text" name ="optionb" value="<?php echo $pilihanjawaban[1]->deskripsi ;?>" required>
       <input type="file" name="gambarb" id="gambarb" size="20" /></br></br>
-      <label>C.  </label><input type="text" name ="optionc" value="<?php echo $pilihanJawaban[2]->deskripsi ;?>" required>
+      <label>C.  </label><input type="text" name ="optionc" value="<?php echo $pilihanjawaban[2]->deskripsi ;?>" required>
       <input type="file" name="gambarc" id="gambarc" size="20" /></br></br>
-      <label>D.  </label><input type="text" name ="optiond" value="<?php echo $pilihanJawaban[3]->deskripsi ;?>" required>
+      <label>D.  </label><input type="text" name ="optiond" value="<?php echo $pilihanjawaban[3]->deskripsi ;?>" required>
       <input type="file" name="gambard" id="gambard" size="20" /></br>
       <label>Jawaban</label>
       <select name ="jawaban">
@@ -99,33 +109,31 @@
       <option value="c" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="c") echo "selected"?>>C</option>
       <option value="d" <?php $jawabanBenar = $soal[0]->jawaban; if($jawabanBenar=="d") echo "selected"?>>D</option>        
       </select></br>
-      <label>Pembahasan</label></br><textarea name ="pembahasan" required><?php echo $soal[0]->pembahasan ?></textarea></br
-      <input type="file" name="gambarSolusi" id="gambarSolusi" size="20" /> </br></br>
-      <label>Apakah soal tes ini akan ditampilkan?</label>
+      <label>Pembahasan</label></br><textarea name ="pembahasan" required><?php echo $soal[0]->pembahasan ?></textarea></br>
+      <input type="file" name="gambarSolusi" id="gambarSolusi" size="20" /> </br></br><label>Apakah soal tes ini akan ditampilkan?</label>
     </br>
-    <input type="radio" name="isDitunjukkan" value ="ya"> Ya
+    <input type="radio" name="isDitunjukkan" value ="ya" required> Ya
     <input type="radio" name="isDitunjukkan" value ="tidak"> Tidak
     </br></br>
         <input type="submit" name="submit" value="Submit" /></form>
-        <a href = "<?php echo base_url()?>index.php/admin/soal_latihan"><button/>Batal</button></a>
+        <a href = "<?php echo base_url()?>index.php/admin/SOAL_TES"><button/>Batal</button></a>
     </div>
-	
-    <!-- ========================= Footer =============================-->
-	<footer class="footer">
-	      <div class="container">
-	        <p class="text-muted">
-	          <div class="row">
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/kebijakan_privasi"?>"><p>KEBIJAKAN PRIVASI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/tentang_kami"?>"><p>TENTANG KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/hubungi_kami"?>"><p>HUBUNGI KAMI</p></a></div>
-			<div class="col-md-3"><a class="footerColor" href="<?php echo base_url()."info/bantuan"?>"><p>BANTUAN</p></a></div>           
-	        </div>
-	        <div class="row">
-	          <div class="col-md-12"><p class="footerColor">Copyright(c) 2015</p></div>
-	        </div>
-	        </p>
-	      </div>
-	</footer>
-	<!-- ===================== END OF FOOTER ======================-->
+  
+    <footer class="footer">
+        <div class="container">
+          <p class="text-muted">
+            <div class="row">
+            <div class="col-md-3"><a href="#"><p>KEBIJAKAN PRIVASI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>TENTANG KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>HUBUNGI KAMI</p></a></div>
+            <div class="col-md-3"><a href="#"><p>BANTUAN</p></a></div>        
+          </div>
+          <div class="row">
+            <div class="col-md-12"><p>Copyright(c) 2015</p></div>
+          </div>
+          </p>
+        </div>
+      </footer>
     </body>
 </html>
+      

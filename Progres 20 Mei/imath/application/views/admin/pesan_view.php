@@ -78,8 +78,8 @@
 				</td>
 				<td class="col-md-2">
 				<!-- Hapus Button-->
-				<button class="buttonDelete" type="submit" onclick="<?php echo base_url() ?>/index.php/admin/pesan/delete/<?php echo $row->idPesan?>">
-			                                    <img src="<?php echo base_url() ?>assets/images/deleteicon.png" width="50px" height="50px"></button>
+				<a onclick="return confirmDelete('<?php echo base_url() ?>index.php/admin/pesan/delete/<?php echo $row->idPesan ?>');">
+	<img src="<?php echo base_url() ?>assets/images/deleteicon.png" width="50px" height="50px">
 				</td>
         </tr>
         <?php endforeach; ?>

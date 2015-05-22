@@ -223,10 +223,10 @@ class soal_tes extends CI_Controller{
 		$this->soal_model->updateJawaban($arrayb,'b', $idSoal);
 		$this->soal_model->updateJawaban($arrayc, 'c', $idSoal);
 		$this->soal_model->updateJawaban($arrayd, 'd', $idSoal);
-		$currentKelas -> $this->input->post('idKelas');
+		$currentkelas = $this->input->post('idKelas');
 		$message = "Soal berhasil diubah";
 		$this->session->set_flashdata('messageSoal',$message);
-		redirect('admin/soal_tes/daftar_soal'.$currentKelas);
+		redirect('admin/soal_tes/daftar_soal/'.$currentkelas);
 	}
 	
 	public function createview($idKelas){
@@ -239,8 +239,11 @@ class soal_tes extends CI_Controller{
 		$this->load->model('kelas_model');				
 		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->model('soal_model');		
-		$data['soal'] = $this->soal_model->get($id); 
-		$data['pilihanJawaban']	= $this->soal_model->getPilihanJawaban($id);
+		$soal = $this->soal_model->get($id); 		
+		$data['pilihanjawaban']	= $this->soal_model->getPilihanJawaban($id);
+		$data['soal'] = $soal;
+		$data['currentMateri']  = $soal[0]->idMateri;
+		$data['currentKelas'] = $soal[0]->idKelas;
 		$this->load->view('admin/ubahsoaltes_view', $data);
 	}	
 	

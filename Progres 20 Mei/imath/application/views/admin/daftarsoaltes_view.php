@@ -98,9 +98,9 @@
        Kelas <select id = "idKelas" name="idKelas">
         <?php foreach($Kelas as $row):?>
 	<?php if($isViewed == 'true'){ ?>
-		<option value="<?php echo $row->idKelas?>" <?php if($currentkelas[0]->idKelas == $row->idKelas) echo "selected"?> name ="idKelas"><?php echo $row->idKelas ?> </option>
+		<option value="<?php echo $row->idKelas?>" <?php if($currentkelas[0]->idKelas == $row->idKelas) echo "selected"?> name ="idKelas"><?php echo substr($row->idKelas, 0, 2).' '.substr($row->idKelas, 4, 5) ?> </option>
 	<?php } else { ?>
-		<option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
+		<option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo substr($row->idKelas, 0, 2).' '.substr($row->idKelas, 4, 5) ?></option>
 	<?php }
 	?>		
         <?php

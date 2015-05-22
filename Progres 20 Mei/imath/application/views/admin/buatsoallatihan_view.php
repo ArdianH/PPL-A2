@@ -83,7 +83,9 @@
 		Kelas 
 			<select id = "idKelas" name="idKelas">
 			<?php foreach($Kelas as $row):?>			
-			<option value="<?php echo $row->idKelas?>" name ="idKelas" <?php if($row->idKelas == $currentKelas) echo "selected";?>><?php echo $row->idKelas ?> </option>
+			<option value="<?php echo $row->idKelas?>" name ="idKelas" <?php if($row->idKelas == $currentKelas) echo "selected";?>>
+				<?php echo substr($row->idKelas, 0, 2).' '.substr($row->idKelas, 4, 5) ?>
+			</option>
 			<?php endforeach?>
 			</select>
 		Materi
@@ -110,7 +112,7 @@
 		</br></br>
 			<input type="submit" name="submit" value="Submit" />
 		</form>
-			<a href = "<?php echo base_url()?>index.php/admin/soal_latihan"><button/>Batal</button></a>
+			<a href = "<?php echo base_url()?>index.php/admin/soal_latihan/show/<?php echo $currentMateri?>"><button/>Batal</button></a>
 	</div>
 	<footer class="footer">
 	      <div class="container">

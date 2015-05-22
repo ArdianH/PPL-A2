@@ -29,7 +29,6 @@ class soal_model extends CI_Model {
 		$this->load->database();
 		$this->db->set('isDitunjukkan', $tampilkanTes);
 		$this->db->where('idsoal', $idSoal);
-		$this->db->update('soal');
 	}
 	function getPilihanJawaban($id){
     	$this->load->database();

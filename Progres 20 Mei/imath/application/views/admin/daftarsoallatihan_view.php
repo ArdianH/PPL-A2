@@ -162,7 +162,7 @@
             <a href="<?php echo base_url();?>index.php/admin/soal_latihan/edit/<?php echo $row->idSoal ?>">
                                               <img src="<?php echo base_url() ?>assets/images/editicon.png" width="50px" height="50px"></a>
             <!-- Hapus Button-->
-            <button class="buttonDelete" onclick="return confirmDelete('<?php echo base_url() ?>admin/soal_latihan/delete/<?php echo $row->idSoal?>');">
+            <button class="buttonDelete" onclick="return confirmDelete('<?php echo base_url() ?>admin/soal_latihan/delete/<?php echo $row->idSoal?>/<?php echo $row->idMateri?>');">
                                               <img src="<?php echo base_url() ?>assets/images/deleteicon.png" width="50px" height="50px"></button>
     </td>
       </tr>

@@ -70,12 +70,8 @@
       <h4>
          A. 
          <?php echo $pilihanJawaban[0]->deskripsi;
-          echo '  ';
-          if(!is_null($pilihanJawaban[0]->gambarJawaban) || $pilihanJawaban[0]->gambarJawaban!=''){
-          echo '<br><img src="'.base_url().'uploads/';
-          echo $pilihanJawaban[0]->gambarJawaban;
-          echo '">';
-        }?>
+         
+        ?>
       </h4>
        <h4>
           B. <?php echo $pilihanJawaban[1]->deskripsi;

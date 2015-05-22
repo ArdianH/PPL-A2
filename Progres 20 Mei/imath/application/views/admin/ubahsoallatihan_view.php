@@ -16,9 +16,18 @@
       //~ alert("Hi" + location);
       //var linkJSON = $(location).attr('href',toController);
       $.getJSON(location, function(arrayMateri) {
-        var content = '';
-        arrayMateri.forEach(function (materi) {
-          content += '<option value="' + materi.idMateri + '">' + materi.nama + '</option>';
+        var content = '';       
+        arrayMateri.forEach(function (materi) {         
+          var currentMateri = <?php echo $currentMateri ?>;
+          if (materi.idMateri == currentMateri)
+          {
+            content += '<option value="' + materi.idMateri + '" selected>' + materi.nama +'  </option>';
+          }
+          else
+          {
+            content += '<option value="' + materi.idMateri + '">' + materi.nama +'</option>';
+          }
+          
         });
         $('#idMateri').html(content);
       });
@@ -48,7 +57,7 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="<?php echo base_url()?>admin/dashboard"> DASHBOARD </a></li>
-				<li><a href="<?php echo base_url()?>"> BERANDA</a></li>
+				<li><a href="<?php echo base_url()?>"> BERANDA iMATH </a></li>
 				<li><a href="<?php echo base_url()?>autentikasi/logout"> LOG OUT </a></li>	
 			</ul>
 		</div>	<!--/.nav-collapse -->
@@ -75,7 +84,9 @@
       Kelas 
         <select id = "idKelas" name="idKelas">
         <?php foreach($Kelas as $row):?>      
-        <option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo $row->idKelas ?> </option>
+        <option value="<?php echo $row->idKelas?>" name ="idKelas" <?php if($row->idKelas == $currentKelas) echo "selected";?>>
+          <?php echo substr($row->idKelas, 0, 2).' '.substr($row->idKelas, 4, 5) ?>
+        </option>
         <?php endforeach?>
         </select>
       Materi
@@ -101,7 +112,7 @@
       <label>Pembahasan</label></br><textarea name ="pembahasan" required><?php echo $soal[0]->pembahasan ?></textarea></br>
       <input type="file" name="gambarSolusi" id="gambarSolusi" size="20" /> </br></br>
         <input type="submit" name="submit" value="Submit" /></form>
-        <a href = "<?php echo base_url()?>index.php/admin/soal_latihan"><button/>Batal</button></a>
+        <a href = "<?php echo base_url()?>index.php/admin/soal_latihan/show/<?php echo $currentMateri?>"><button/>Batal</button></a>
     </div>
 	
     <footer class="footer">

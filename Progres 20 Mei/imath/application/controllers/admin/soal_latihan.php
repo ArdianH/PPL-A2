@@ -252,6 +252,9 @@ class soal_latihan extends CI_Controller{
 		$this->load->model('soal_model');		
 		$data['soal'] = $this->soal_model->get($id); 
 		$data['pilihanJawaban']	= $this->soal_model->getPilihanJawaban($id);
+		$data['soal'] = $soal;
+		$data['currentMateri']  = $soal[0]->idMateri;
+		$data['currentKelas'] = $soal[0]->idKelas;
 		$this->load->view('admin/ubahsoallatihan_view', $data);
 	}	
 	
