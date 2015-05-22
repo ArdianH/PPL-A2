@@ -4,50 +4,15 @@
 	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
 	<style type="text/css">
-		#s1{
-			position: absolute;
-			left: 32%;
-			top: -6%;
-		}
-		#s2{
-			position: absolute;
-			left: 54%;
-			top: -7%;
-		}
-		#s3{
-			position: absolute;
-			left: 49.5%;
-			top: -1%;
-		}
-		#s4{
-			position: absolute;
-			left: 27%;
-			top: 3%;
-		}
-		#l1{
-			position: absolute;
-			left: 28.5%;
-			top: 30.8%;
-		}
-		#l2{
-			position: absolute;
-			left: 50.5%;
-			top: 20.8%;
-		}
-		#l3{
-			position: absolute;
-			left: 41%;
-			top: -19%;
-		}
 		#player{
 			position: absolute;
-			left: 74.5%;
-			top: 55%;
+			left: 64.5%;
+			top: 85%;
 		}		
 		#dice{
 			position: absolute;
-			left: 74.5%;
-			top: 65%;
+			left: 64.5%;
+			top: 92.3%;
 		}
 		td{
 			font-size:20px;
@@ -362,7 +327,7 @@
 			str+="</table>";							
 
 			document.getElementById("board").innerHTML=str;		//draw board pada div id board.
-			newImage = "url(<?php echo base_url()?>assets/images/lds/bg.png)";
+			newImage = "url(<?php echo base_url()?>assets/images/lds/bg2.png)";
             document.getElementById('board').style.backgroundImage = newImage;
 			document.getElementById(num*num).innerHTML= "<img src='<?php echo base_url()?>/assets/images/lds/giphy.gif' width=\"70\" height=\"70\"></img>";	//lambang block finish
 			document.getElementById(owls[0]).innerHTML="<img src='<?php echo base_url()?>/assets/images/lds/owl2.png' width=\"70\" height=\"70\"></img>";
