@@ -102,22 +102,18 @@
       			</div>
       			<div class="col-md-8 white2">
       				<h2 class="userDashboard">Buat Target Belajar Baru</h2><br>
-				<form method="POST" action="create"> 
-				<div class="right">
-					<button class="blueButton" type="submit">Buat</button>
-					<a href="<?php echo base_url()?>index.php/target_belajar"><button type="button" class="redButton">Batal</button></a>
-				</div>
+								
       			</div>
       		</div>
     	</div> 
- 		
+ 		<form method="POST" action="create"> 
 		<div class="ungu fontt">
 			<div class="row">
 				<div class="col-md-3">Kelas </div>
 				<div class="col-md-9">					
 					<select class="noBorder tb" id = "pilihkelas" name ="idkelas">
 					<?php foreach($kelas as $row):?>			
-					<option value="<?php echo $row->idKelas?>"><?php echo $row->idKelas ?> </option>
+					<option value="<?php echo $row->idKelas?>"><?php echo substr($row->idKelas, 0, 2)." ".substr($row->idKelas, 4, 5) ?> </option>
 					<?php endforeach?>
 					</select>					
 				</div>
@@ -157,6 +153,8 @@
 			</div>
 
 		</div>		
+		<button class="blueButton" type="submit">Buat</button>
+		<a href="<?php echo base_url()?>index.php/target_belajar"><button type="button" class="redButton">Batal</button></a>
 	</form>
 	
 </div>

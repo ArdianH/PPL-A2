@@ -102,19 +102,15 @@
       			</div>
       			<div class="col-md-8 white2">
       				<h2 class="userDashboard"> Ubah Target Belajar </h2><br><br>
-				<?php $id=$result[0]->idTargetBelajar;  ?>
-				<div class="right">
-						<form id="ubahtargetbelajar" method="POST" action="<?php echo base_url()?>index.php/target_belajar/simpanPerubahan/<?php echo $id?>" 
-						onsubmit="return confirm('Kamu yakin ingin mengubah target belajar ini?');">
-					<button class="blueButton" type="submit">Simpan</button>
-					<a href="<?php echo base_url()?>index.php/target_belajar"><button type="button" class="redButton">Batal</button></a>
-				</div>
+				<?php $id=$result[0]->idTargetBelajar;  ?>				
       			</div>
       		</div>
     	</div> 
 	
 	
 <div class="container formiMath">  
+<form id="ubahtargetbelajar" method="POST" action="<?php echo base_url()?>index.php/target_belajar/simpanPerubahan/<?php echo $id?>" 
+						onsubmit="return confirm('Kamu yakin ingin mengubah target belajar ini?');">
 	<div class="ungu fontt">	
 		<div class="row">
 			<div class="col-md-3">
@@ -123,7 +119,9 @@
 			<div class="col-md-9">
 				<select class="noBorder tb" name = "kelas" id = "pilihkelas" onchange="showMateri(this.value)">
 				<?php foreach($kelas as $row):?>			
-					<option value="<?php echo $row->idKelas?>" name ="idkelas" <?php $idKelas=$row->idKelas; $kelasSelected = $result[0]->idKelas; if ($idKelas == $kelasSelected) echo "selected";?>><?php echo $row->idKelas ?> </option>		
+					<option value="<?php echo $row->idKelas?>" name ="idkelas" <?php $idKelas=$row->idKelas; $kelasSelected = $result[0]->idKelas; if ($idKelas == $kelasSelected) echo "selected";?>>
+						<?php echo substr($row->idKelas, 0, 2)." ".substr($row->idKelas, 4, 5) ?>
+					</option>
 				<?php endforeach?>		
 				</select>
 			</div>
@@ -181,6 +179,8 @@
 			</div>
 		</div>
 	</div>
+	<button class="blueButton" type="submit">Simpan</button>
+	<a href="<?php echo base_url()?>index.php/target_belajar"><button type="button" class="redButton">Batal</button></a>
 	
 	</form>
 </div>	

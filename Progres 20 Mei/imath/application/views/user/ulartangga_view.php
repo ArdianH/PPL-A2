@@ -327,7 +327,7 @@
 			str+="</table>";							
 
 			document.getElementById("board").innerHTML=str;		//draw board pada div id board.
-			newImage = "url(<?php echo base_url()?>assets/images/lds/bg2.png)";
+			newImage = "url(<?php echo base_url()?>assets/images/lds/bg.png)";
             document.getElementById('board').style.backgroundImage = newImage;
 			document.getElementById(num*num).innerHTML= "<img src='<?php echo base_url()?>/assets/images/lds/giphy.gif' width=\"70\" height=\"70\"></img>";	//lambang block finish
 			document.getElementById(owls[0]).innerHTML="<img src='<?php echo base_url()?>/assets/images/lds/owl2.png' width=\"70\" height=\"70\"></img>";
