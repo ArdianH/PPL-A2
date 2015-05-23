@@ -20,7 +20,14 @@
 		    {
 			$idTB = $data['result'][$i]->idTargetBelajar;
 			//echo $idTB;
-			$data['nama'][$i] = $this->targetbelajar_model->getNamaMateri($idTB)->row(); 
+			$data['nama'][$i] = $this->targetbelajar_model->getNamaMateri($idTB)->row(); 		    
+		    }
+		    
+		    for($i=0; $i<count($data['history']);$i++)
+		    {
+			$idHistory = $data['history'][$i]->idTargetBelajar;
+			//echo $idTB;
+			$data['namaHistory'][$i] = $this->targetbelajar_model->getNamaMateri($idHistory)->row(); 
 		    }
 		    $this->load->view('user/targetbelajar_view',$data);
 		} 
