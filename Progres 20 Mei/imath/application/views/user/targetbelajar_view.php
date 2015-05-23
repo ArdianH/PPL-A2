@@ -103,6 +103,8 @@
       		</div>
     	</div> 
 	<h1 class="tbelajar containerTB">Target Belajar</h1>
+	<span id="tulisanBiru" class="weight"><?php echo $this->session->flashdata('messageTargetBelajar'); ?></span>
+	<span id="tulisanBiru" class="weight"><?php echo $this->session->flashdata('deleteTargetBelajar'); ?></span>
 	<div class="tbelajarPink">
 	<div class="table-responsive">    	
     <table>
@@ -162,9 +164,8 @@
 		<?php 
 		for($i = 0; $i < $historyRow; $i++)
 			{?>
-			 Menyelesaikan <?php echo $history[$i]->banyakSoal ?> soal latihan materi 
-			 <!--<?php echo $materiHistory[$i]->nama?>-->	 
-			 <?php echo $history[$i]->idMateri?> 
+			 Menyelesaikan <?php echo $history[$i]->banyakSoal ?> soal latihan materi 			 
+			 <?php echo $namaHistory[$i]->nama?> 
 			 kelas <?php $idKelas = $history[$i]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2)?> 
 			 dengan target nilai <?php echo $history[$i]->targetNilai?>
 			  <?php 
