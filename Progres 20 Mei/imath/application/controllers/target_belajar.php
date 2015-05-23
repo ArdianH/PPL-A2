@@ -49,7 +49,9 @@
 			$this->load->model('targetbelajar_model');
 			
 			$this->targetbelajar_model->delete($id);
-			echo "<script type='text/javascript'>alert('Target belajar berhasil dihapus');</script>";
+			
+			$message='Target belajar berhasil dihapus';
+			$this->session->set_flashdata('deleteTargetBelajar',$message);
 			redirect('target_belajar', 'refresh');
 		} 
 		else {
@@ -90,7 +92,8 @@
 				$data['targetwaktu'] = $totalWaktu;
 			}
 			$this->targetbelajar_model->update($data, $idTargetBelajar);
-			echo "<script type='text/javascript'>alert('Perubahan target belajar berhasil disimpan');</script>";
+			$message='Perubahan target belajar berhasil disimpan';
+			$this->session->set_flashdata('messageTargetBelajar',$message);
 			redirect('target_belajar', 'refresh');
 		} 
 		else {
@@ -145,6 +148,8 @@
 			}			
 			
 			$this->targetbelajar_model->add($data);
+			$message='Target belajar baru berhasil dibuat';
+			$this->session->set_flashdata('messageTargetBelajar',$message);
 			redirect('target_belajar');
 		} 
 		else {
