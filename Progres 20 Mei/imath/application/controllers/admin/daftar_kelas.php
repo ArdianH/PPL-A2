@@ -31,7 +31,7 @@
 			$this->load->model('kelas_model');
 			$this->kelas_model->delete($id);
 			$message = "Kelas ".$id." berhasil dihapus";
-			$this->session->set_flashdata('messageKelas',$message);			
+			$this->session->set_flashdata('messageKelas',$message);
 			redirect('admin/daftar_kelas', 'refresh');		
 		} else {
 			redirect('home');

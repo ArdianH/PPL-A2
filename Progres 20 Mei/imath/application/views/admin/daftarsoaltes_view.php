@@ -71,56 +71,51 @@
      Daftar Soal Tes<?php if($isViewed == "true")  echo ' Kelas '.substr($currentkelas[0]->idKelas, 4, 5)?>
    </h1>
   </div>
-  <span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageSoal'); ?></span><br>
-  <div class="row">
+  <span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageSoal'); ?></span>  
   <span class="weight" id="tulisanBiru"><?php echo $this->session->flashdata('suksesSimpan'); ?></span>
-  <?php if($isViewed == "true") {?>
-    
-  <div id="waktu">
-    Waktu : <?php echo $currentkelas[0]->waktuTes ?> menit
-    <button id="ubahwaktu" class="adminBiruButton"> Ubah Waktu</button>
-  </div>
-  
-  <div id="waktuForm">
-    <form method="POST" action="<?php echo base_url();?>admin/soal_tes/setWaktu">
-      <input name="inputWaktu" id="inputWaktu" value="<?php echo $currentkelas[0]->waktuTes ?>" type="number" min="1" max="600"/> menit
-      <input type="hidden" name="idKelas" id="idKelas" value="<?php echo $currentkelas[0]->idKelas?>"/>
-      <input class="adminOrangeButton" type="submit" value="Submit">
-    </form>    
-  </div>
-  <?php } ?>
-  </div>
   <div class="row">
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-3">    
-      <form method="POST" action="<?php echo base_url();?>admin/soal_tes/view">
-       Kelas <select id = "idKelas" name="idKelas">
-        <?php foreach($Kelas as $row):?>
-	<?php if($isViewed == 'true'){ ?>
-		<option value="<?php echo $row->idKelas?>" <?php if($currentkelas[0]->idKelas == $row->idKelas) echo "selected"?> name ="idKelas"><?php echo substr($row->idKelas, 0, 2).' '.substr($row->idKelas, 4, 5) ?> </option>
-	<?php } else { ?>
-		<option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo substr($row->idKelas, 0, 2).' '.substr($row->idKelas, 4, 5) ?></option>
-	<?php }
-	?>		
-        <?php
-	endforeach?>
-      </select>
-       <input class="adminOrangeButton" type="submit" value="Submit">
-      </form>      
-    </div>   
-    <div class="col-md-3">
-    <?php if($isViewed == 'true'){ ?>
-	<a href=" <?php echo base_url();?>admin/soal_tes/createview/<?php echo $currentkelas[0]->idKelas?>"><button class="adminBiruButton"> Buat Baru</button></a>
+  <?php if($isViewed == 'true'){ ?>
+	<a href=" <?php echo base_url();?>admin/soal_tes/createview/<?php echo $currentkelas[0]->idKelas?>"><button class="adminButton"> Buat Baru</button></a>
 	<?php }?>
-    </div>
-    <div class="col-md-3">
-      <?php if($isViewed == "true"){
-		echo '<a href="'.base_url().'admin/soal_tes/atur/'.$currentkelas[0]->idKelas.'"><button class="adminBiruButton"> Atur Soal Ditampilkan</button></a>';
-	}
-	?>
-    </div>
   </div>
+	<div class="row">	
+		
+		<div class="col-md-4">    
+			<?php if($isViewed == "true") {?>
+			<div id="waktu">
+				Waktu : <?php echo $currentkelas[0]->waktuTes ?> menit
+				<button id="ubahwaktu" class="asButton"> Ubah Waktu</button>
+			</div>
+		  
+			<div id="waktuForm">
+				<form method="POST" action="<?php echo base_url();?>admin/soal_tes/setWaktu">
+				<input name="inputWaktu" id="inputWaktu" value="<?php echo $currentkelas[0]->waktuTes ?>" type="number" min="1" max="600"/> menit
+				<input type="hidden" name="idKelas" id="idKelas" value="<?php echo $currentkelas[0]->idKelas?>"/>
+				<button class="asButton" type="submit">Simpan</button>
+				</form>    
+			</div>
+		<?php } ?>
+	    </div>
+	<div class="col-md-4">    
+		<form method="POST" action="<?php echo base_url();?>admin/soal_tes/view">
+			Kelas <select id = "idKelas" name="idKelas">
+				<?php foreach($Kelas as $row):?>
+				<?php if($isViewed == 'true'){ ?>
+					<option value="<?php echo $row->idKelas?>" <?php if($currentkelas[0]->idKelas == $row->idKelas) echo "selected"?> name ="idKelas"><?php echo substr($row->idKelas, 0, 2).' '.substr($row->idKelas, 4, 5) ?> </option>
+				<?php } else { ?>
+					<option value="<?php echo $row->idKelas?>" name ="idKelas"><?php echo substr($row->idKelas, 0, 2).' '.substr($row->idKelas, 4, 5) ?></option>
+				<?php }	endforeach?>
+			</select>
+			<button class="asButton" type="submit">Submit</button>
+		</form>      
+		</div>   
+	<div class="col-md-3">
+	      <?php if($isViewed == "true"){
+			echo '<a href="'.base_url().'admin/soal_tes/atur/'.$currentkelas[0]->idKelas.'"><button class="asButton"> Atur Soal Ditampilkan</button></a>';
+		}
+		?>
+	    </div>
+	</div>
       <table class="table table-hover table-striped tableimath">
     <thead>
           <tr>

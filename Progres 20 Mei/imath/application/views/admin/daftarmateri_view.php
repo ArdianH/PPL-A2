@@ -66,8 +66,8 @@
     	<span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageMateri'); ?></span><br>
     </div>
     	<div class="row">
-    		<div class="col-md-4">
-    		<form method="POST" action="<?php echo base_url();?>index.php/admin/daftar_materi/viewMateri">
+    		
+    		<form method="POST" action="<?php echo base_url();?>admin/daftar_materi/viewMateri">
 			    Kelas <select id = "idKelas" name="idKelas">
 					    <?php foreach($Kelas as $row):?>
 					      <option name ="idKelas" <?php 
@@ -75,13 +75,12 @@
 					          echo 'value="'.$row->idKelas.'" selected';
 					        else
 					          echo 'value="'.$row->idKelas.'"'; ?>>
-					        <?php echo $row->idKelas ?>
+					        <?php echo substr($row->idKelas, 0, 2)." ".substr($row->idKelas, 4, 5) ?> 
 					     </option>
 					        <?php endforeach?>
 					   </select>
-				<input type="submit" value="Submit" />
-			</form>
-		</div>
+				<button class="asButton" type="submit">Submit</button>
+			</form>		
 	</div>
 		<div class="table-responsive">
 	    	<table class="table table-hover table-striped tableimath">

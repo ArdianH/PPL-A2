@@ -72,7 +72,16 @@ a.footerColor:hover{
 	padding-left: 40px;
 	padding-right:40px;
 	background-color: #FFFFFF;
+	
 }
+
+.titleText2 {
+	padding-left: 30px;
+	padding-right:30px;
+	background-color: #FFFFFF;
+	text-align:left;
+}
+
 .loginbg{
 	text-align: center;
 	padding-top: 10px;
@@ -1121,5 +1130,85 @@ a {
 .asButton:hover,
 .asButton:active {
 	color: #7c0094;
+	background: #fff;
+}
+
+/*========= ADMIN Orange BUTTON =======*/
+.orButton {
+	font-size: 12pt;
+	background-color: #ffaf24;
+	padding: 2px 10px;
+	display: inline-block;
+	margin: 2px;	
+	letter-spacing: 1px;
+	font-weight: 300;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	border: 3px solid #ffaf24;
+	color: white;
+	font-weight:500;
+}
+
+.orButton:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+
+a {
+	color: #888;
+	text-decoration: none;
+}
+
+.orButton:hover,
+.orButton:active {
+	color: #ffaf24;
+	background: #fff;
+}
+
+/*========== Red Button  Admin ============*/
+.rdButton {
+	font-size: 12pt;
+	background-color: #ff3334;
+	padding: 2px 10px;
+	display: inline-block;
+	margin: 2px;	
+	letter-spacing: 1px;
+	font-weight: 300;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	border: 3px solid #ff3334;
+	color: white;
+	font-weight:500;
+}
+
+.rdButton:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+
+a {
+	color: #888;
+	text-decoration: none;
+}
+
+.rdButton:hover,
+.rdutton:active {
+	color: #ff3334;
 	background: #fff;
 }

@@ -29,7 +29,7 @@ class Autentikasi extends CI_Controller {
 		$dataDB = $this->akun_model->getDataAkun($username, $password);
 		//jika tidak ada hasil query yang dikembalikan dari database (pasangan username-password tidak ditemukan).
 		if($dataDB->num_rows() < 1) {
-			$this->session->set_flashdata('messageLogin', "Username atau Password Salah !");
+			$this->session->set_flashdata('messageLogin', "Username atau Password Salah!");
 		} else {
 			//jika ada hasil query dari database (ditemukan kecocokan username dan password).
 			//proses data return query menjadi data session, agar nantinya diload pada view.

@@ -1,7 +1,6 @@
 <html>
-    <head>
-        <!--<title><?=$page_title?></title>-->
-	<title>Kelas</title>
+    <head>        
+	<title>Detail Kelas <?php $idKelas=$result[0]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2); ?> - iMath</title>
     <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     <meta charset="utf-8">

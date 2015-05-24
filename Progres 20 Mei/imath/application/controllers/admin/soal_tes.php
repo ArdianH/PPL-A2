@@ -36,8 +36,10 @@ class soal_tes extends CI_Controller{
 		redirect('admin/soal_tes/daftar_soal/'.$currentKelas);
 	}
 	public function detail($idSoal){
-		$this->load->model('soal_model');		
+		$this->load->model('soal_model');
+		$this->load->model('materi_model');
 		$data['soal'] = $this->soal_model->get($idSoal); 
+		$data['materi'] = $this->materi_model->get($data['soal'][0]->idMateri);
 		$data['pilihanJawaban']	= $this->soal_model->getPilihanJawaban($idSoal);
 		$this->load->view('admin/detailsoaltes_view',$data);
 	}

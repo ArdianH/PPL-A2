@@ -106,7 +106,7 @@
 		</br></br>
 			<input type="submit" name="submit" value="Submit" />
 		</form>
-			<a href = "<?php echo base_url()?>index.php/admin/soal_tes"><button/>Batal</button></a>
+			<a href = "<?php echo base_url()?>admin/soal_tes/daftar_soal/<?php echo $currentKelas?>"><button/>Batal</button></a>
 	</div>
 
 	<footer class="footer">

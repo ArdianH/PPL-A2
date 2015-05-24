@@ -23,8 +23,12 @@ class kelas_model extends CI_Model {
 	
 	function delete($id){
 		$this->load->database();
+		$this->db->delete('Pilihan_jawaban', array('idKelas' => $id));
+		$this->db->delete('Soal', array('idKelas' => $id));
+		$this->db->delete('Target_Belajar', array('idKelas' => $id));
+		$this->db->delete('Materi', array('idKelas' => $id));
 		$this->db->delete('Kunjungan', array('idKelas' => $id));
-		$this->db->delete('Kelas', array('idKelas' => $id));		
+		$this->db->delete('Kelas', array('idKelas' => $id));	
 	}
 	
 	function update($data, $id){

@@ -204,7 +204,7 @@
       		</div>
     	</div> 
 
-
+	<span class="weight" id="tulisanmerah"><?php echo $this->session->flashdata('resetRapor'); ?></span>
 	<div class="table-responsive"> 
 
 		<?php $idRapor=$dataId[0]->idRapor;

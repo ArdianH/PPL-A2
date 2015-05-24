@@ -48,28 +48,28 @@
    
     <div class="container contents">    
     	<div class="contentdetail">
-    	<div class="titleText">
+    	<div class="titleText2">
 	    <h1>Buat Materi</h1>
-	</div>
-	    </br>
+	</div><hr>	    
 		<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/daftar_materi/create" enctype="multipart/form-data"> 	
 		<label>Nama Materi</label></br>
-		<input type="text" name ="nama" required></br></br>
+		<input type="text" name ="nama" size="50" required></br></br>
 		<label>Kelas</label></br>
 		<select id = "idKelas" name="idKelas">
 			<?php foreach($Kelas as $row):?>			
-			<option value="<?php echo $row->idKelas?>" name ="idKelas" <?php if($row->idKelas == $currentKelas) echo "selected";?>><?php echo $row->idKelas ?> </option>
+			<option value="<?php echo $row->idKelas?>" name ="idKelas" <?php if($row->idKelas == $currentKelas) echo "selected";?>><?php echo substr($row->idKelas, 0, 2)." ".substr($row->idKelas, 4, 5) ?> </option>
 			<?php endforeach?>
 			</select>
 		</br></br>
-		<label>Deskripsi singkat</label></br>
+		<label>Deskripsi Singkat</label></br>
 		<textarea type="text" name ="deskripsi" rows="4" cols="50" maxlength="50" required title="maksimal 50 karakter untuk deskripsi singkat"></textarea></br></br>
 		<label>Rangkuman</label></br>
 		<textarea type="text" name ="rangkuman" rows="4" cols="50" required></textarea></br></br>
 		<label>Unggah Gambar</label></br>
 		<input type="file" name="userfile" size="20" required></br></br>
-		<input type="submit" value="Submit" /> </form>
-		<a href = "<?php echo base_url()?>index.php/admin/daftar_materi"><button/>Batal</button></a>
+		<button type="submit" class="asButton">Buat</button> 
+		<a href = "<?php echo base_url()?>index.php/admin/daftar_materi/view/<?php echo $currentKelas?>"><button class="rdButton" type="button">Batal</button></a>
+		</form>		
 	</div>
 	</div>
 

@@ -103,7 +103,7 @@
 	echo "<h1> Daftar Soal Latihan</h1>";
 	}?>
 	
-    <form method="POST" action="<?php echo base_url();?>index.php/admin/soal_latihan/view">
+    <form method="POST" action="<?php echo base_url();?>admin/soal_latihan/view">
       Kelas 
       <select id = "idKelas" name="idKelas">
       <?php $i = 0; 
@@ -156,10 +156,10 @@
       <?php echo $row->pembahasan ?>
     </td>
     <td>
-      <a href="<?php echo base_url();?>index.php/admin/soal_latihan/detail/<?php echo $row->idSoal ?>">
+      <a href="<?php echo base_url();?>admin/soal_latihan/detail/<?php echo $row->idSoal ?>">
                                               <img src="<?php echo base_url() ?>assets/images/info.png" width="50px" height="50px"></a>
             <!-- Edit Button-->
-            <a href="<?php echo base_url();?>index.php/admin/soal_latihan/edit/<?php echo $row->idSoal ?>">
+            <a href="<?php echo base_url();?>admin/soal_latihan/edit/<?php echo $row->idSoal ?>">
                                               <img src="<?php echo base_url() ?>assets/images/editicon.png" width="50px" height="50px"></a>
             <!-- Hapus Button-->
             <button class="buttonDelete" onclick="return confirmDelete('<?php echo base_url() ?>admin/soal_latihan/delete/<?php echo $row->idSoal?>/<?php echo $row->idMateri?>');">

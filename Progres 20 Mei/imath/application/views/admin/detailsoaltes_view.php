@@ -1,6 +1,6 @@
 <html>
     <head>
-	<title>DETAIL MATERI</title>
+	<title>Detail Soal Tes - iMath</title>
     <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     <meta charset="utf-8">
@@ -49,8 +49,8 @@
     <div class="container contents">
       <div class="contentdetail">
       <h1> Soal Tes</h1><hr>
-      <h2 class="weight" id="tulisanBiru">Kelas <?php $idKelas=$soal[0]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2); ?></h2>
-      <h3 class="weight"> Materi <?php echo $soal[0]->idMateri ?></h3>
+      <h2 class="weight" id="tulisanBiru"> Kelas <?php $idKelas=$soal[0]->idKelas; echo substr($idKelas,4,5)." ".substr($idKelas, 0,2); ?></h2>
+      <h3 class="weight"> Materi <?php echo $materi[0]->nama ?></h3>
       		
   		<h3>
   			Pertanyaan : <?php echo $soal[0]->pertanyaan;

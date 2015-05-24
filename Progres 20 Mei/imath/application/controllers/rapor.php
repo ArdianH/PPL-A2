@@ -39,7 +39,8 @@
 			$this->load->model('rapor_model');
 			$this->rapor_model->deleteHistory($id);
 			$message = "Rapor telah berhasil di reset";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			$this->session->set_flashdata('resetRapor', "Username atau Password Salah!");
+			//echo "<script type='text/javascript'>alert('$message');</script>";
 			redirect('rapor', 'refresh');
 	}
 	

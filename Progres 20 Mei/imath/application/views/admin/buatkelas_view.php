@@ -1,6 +1,6 @@
 <html>
     <head>        
-	<title>Buat Kelas</title>
+	<title>Buat Kelas - iMath</title>
     <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     <meta charset="utf-8">
@@ -46,12 +46,12 @@
 </nav>
  <!--======================= END OF ADMIN NAVBAR ============================-->
     <div class="container contents">
-	    <div class="titleText">    
+	    <div class="titleText2">    
 	    <h1>Buat Kelas</h1>
-	</div>
-    <div class="container">
+	</div>    
+    <hr>
 	<span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('duplicatePrimaryKeyKelas'); ?></span>
-	<form class="formiMath" method="POST" action="<?php echo base_url()?>index.php/admin/daftar_kelas/create" enctype="multipart/form-data"> 	
+	<form class="formiMath" method="POST" action="<?php echo base_url()?>admin/daftar_kelas/create" enctype="multipart/form-data"> 	
 	 <label>Kode Kelas </label></br><select name ="idKelas">	 
 		<option value="SD001">SD 1</option>
 		<option value="SD002">SD 2</option>
@@ -65,9 +65,9 @@
 	<label>Unggah Gambar </label>
 	<input type="file" name="userfile" size="20" required/>
 	<br /><br />
-	<input type="submit" value="Simpan" /> </form>
-	<a href = "<?php echo base_url()?>index.php/admin/daftar_kelas/simpanPerubahan/idKelas"><button/>Batal</button></a>
-</div>
+	<button type="submit" class="asButton">Buat</button> 
+	<a href = "<?php echo base_url()?>admin/daftar_kelas/"><button type="button" class="rdButton">Batal</button></a>
+	</form>	
 </div>
 	
 

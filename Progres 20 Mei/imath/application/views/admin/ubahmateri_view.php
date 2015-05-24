@@ -1,6 +1,6 @@
 <html>
     <head>        
-	<title>Ubah Kelas</title>
+	<title>Ubah Materi - iMath</title>
    	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     <meta charset="utf-8">
@@ -47,20 +47,32 @@
  <!--======================= END OF ADMIN NAVBAR ============================-->
  
     <div class="container contents">
-    <div class="titleText">    
+    <div class="titleText2">    
     <h1>Ubah Materi </h1>
     <?php $id=$result[0]->idMateri;?></div>    
 
-	<form class="formImath" method="POST" action="<?php echo base_url(); ?>index.php/admin/daftar_materi/simpanPerubahan/<?php echo $id; ?>" enctype="multipart/form-data">
-	<label>Nama</label></br><input type="text" name ="nama" value="<?php echo $result[0]->nama ;?>"></br></br>
-	<label>Kelas</label></br><input type="text" name ="idKelas"  value="<?php echo $result[0]->idKelas ;?>"></br></br>
-	<label>Deskripsi singkat</label></br>
+	<form class="formImath" method="POST" action="<?php echo base_url(); ?>admin/daftar_materi/simpanPerubahan/<?php echo $id; ?>" enctype="multipart/form-data">
+		<label>Nama</label></br><input size="50" type="text" name ="nama" value="<?php echo $result[0]->nama ;?>"></br></br>
+	
+		<label>Kelas</label></br>
+			<select id = "idKelas" name="idKelas">
+				<?php foreach($Kelas as $row):?>			
+				<option value="<?php echo $row->idKelas?>" name ="idKelas" <?php if($row->idKelas == $result[0]->idKelas ) echo "selected";?>><?php echo substr($row->idKelas, 0, 2)." ".substr($row->idKelas, 4, 5) ?> </option>
+				<?php endforeach?>
+			</select><br><br>
+		<label>Deskripsi Singkat</label></br>
 		<textarea type="text" name ="deskripsi" rows="4" cols="50" maxlength="50" required title="maksimal 50 karakter untuk deskripsi singkat"></textarea></br></br>
-	<label>Gambar: </label></br><input type="file" name="userfile" size="20" /><img src="<?php echo base_url();?>uploads/<?php echo $result[0]->gambar ?>">		
-	</br></br>
-	<label>Rangkuman</label></br><textarea name ="rangkuman"><?php echo $result[0]->rangkuman ;?></textarea></br></br>
-	<input type="submit" value="Simpan" /> </form>
-	<a href = "<?php echo base_url()?>index.php/admin/daftar_kelas"><button/>Batal</button></a>
+		<label>Gambar: </label></br><input type="file" name="userfile" size="20" /><br>
+		<?php
+			if(is_null($result[0]->gambar) || ($result[0]->gambar)==''){ echo '';}
+			else{?>
+		<img src="<?php echo base_url();?>uploads/<?php echo $result[0]->gambar ?>" height="200" width="200">		
+		<?php }?>
+		</br></br>
+		<label>Rangkuman</label></br><textarea name ="rangkuman" rows="4" cols="50"><?php echo $result[0]->rangkuman ;?></textarea></br></br>	
+		<button type="submit" class="asButton">Simpan</button> 
+		<a href = "<?php echo base_url()?>admin/daftar_materi/view/<?php echo $result[0]->idKelas?>"><button type="button" class="rdButton">Batal</button></a>
+	</form>	
 </div>
 </div>
 
