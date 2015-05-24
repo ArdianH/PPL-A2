@@ -79,4 +79,9 @@ class Tes_model extends CI_Model {
 		return $this->db->count_all_results('sertifikat');
 	}
 	
+	function getWaktuTes($idKelas){
+		$this->db->select('waktuTes');
+		return $this->db->get_where('kelas', array('idKelas' => $idKelas));
+	}
+	
 }

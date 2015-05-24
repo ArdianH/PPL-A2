@@ -107,7 +107,7 @@ Modified by: Ardian*/
 		document.getElementById("minute").value = localGetMin();
 		if (!(localGetMin()) || (localGetMin() === "") )
 		{
-			tempMins = "60";
+			tempMins = "<?php echo $this->session->userdata('waktuT');?>";
 			tempSecs = "01";
 			countDown(tempMins, tempSecs);
 		} else {
@@ -187,6 +187,7 @@ Modified by: Ardian*/
 	<div class="row">
 		<ol class="linklist breadcrumb">
 		<?php $idKelas = $this->session->userdata('kelas')?>
+		<?php $jumlahSoal = $this->session->userdata('jumlahSoal');?>
 		
 		  <li><a href="<?php echo base_url().'kelas/pilih/'.$idKelas; ?>">Kelas <?php echo substr($idKelas,4,5);?> </a></li>
 		</ol>
@@ -228,8 +229,8 @@ Modified by: Ardian*/
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default paneliMath">
-						<div class="panel-heading unguGelap"><h3 class="weight">NILAI</h3></div>
-						<div class="panel-body abu"><span class="panelResult"><?php echo $skor; ?> </span> </div>
+						<div class="panel-heading unguGelap"><h3 class="weight">NILAI </h3></div>
+						<div class="panel-body abu"><span class="panelResult"><?php echo $skor; ?>/<?php echo $jumlahSoal?> </span> </div>
 					</div>
 				</div>
 			</div>
@@ -239,10 +240,9 @@ Modified by: Ardian*/
 				Jika telah menjawab(flagNext==TRUE) maka tombol button NextSoal yang muncul-->
 		</div>
 		<div class="col-md-9">
-			<div class="soalText">
-				<?php
-		
-		if(!$flagNext) : ?>
+		<div class="soalText">
+			<?php if(!$flagNext) : ?>
+			<!--<div id='headerSoal1' style="text-align:center;">Tes Kelas <?php //echo substr($this->session->userdata('kelas'), 4, 1);?></div>-->
 			<form method='POST' action='<?php echo base_url()."tes/processJawaban/";?>' onsubmit='return localGetMin()' >
 				<div class="row">
 					<div class="pertanyaaniMath">
@@ -287,7 +287,7 @@ Modified by: Ardian*/
 			} ?>
 		<?php else : ?>
 		<div class="soalText">
-		<div id='headerSoal2' style="text-align:center;">Tes Kelas <?php echo substr($this->session->userdata('kelas'), 4, 1);?></div>
+		<!--<div id='headerSoal2' style="text-align:center;">Tes Kelas <?php //echo substr($this->session->userdata('kelas'), 4, 1);?></div>-->
 			<form method='POST' action= '<?php echo base_url()."tes/processSoal/";?>' onsubmit='return localGetMin()'>
 				<div class="row">
 					<div class="pertanyaaniMath">

@@ -19,6 +19,7 @@
 		$jumlahData = $data['result'];
 		
 		$jumlahSoalMateri = array();
+		sleep(2);
 		foreach($data['result'] as $row):
 			$jumlahSoalMateri[$row->idMateri] = $this->materi_model->getJumlahSoal($row->idMateri);
 		endforeach;

@@ -77,7 +77,7 @@
 			echo '</div>';
 			echo '<div class="col-md-9">';
 			echo '<div class="resultbox">';
-			echo "Selamat, kamu telah menyelesaikan latihan materi!";
+			echo "Selamat, kamu telah menyelesaikan latihan materi<br/>".$namaMateri." !";
 			echo '</div>';
 			echo '</div>';
 			echo '</div>';
@@ -88,7 +88,7 @@
 			echo '<div class="container">';					
 			echo '<div class="col-md-12">';
 			echo '<div class="resultbox">';
-			echo "Selamat, kamu telah menyelesaikan latihan materi!";
+			echo "Selamat, kamu telah menyelesaikan latihan materi<br/>".$namaMateri."!";
 			echo '</div>';
 			echo '</div>';
 			echo '</div>';

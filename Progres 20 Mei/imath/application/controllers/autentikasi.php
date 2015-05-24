@@ -77,7 +77,7 @@ class Autentikasi extends CI_Controller {
 			//Cek apakah email sudah terdaftar pada database atau belum.
 			$dataDB = $this->akun_model->getEmailAkun($email);
 			//Cek apakah username sudah terdaftar pada database atau belum.
-			$dataDB2 = $this->akun_model->getDataAkun($username, $password);
+			$dataDB2 = $this->akun_model->getDataAkun($username);
 			
 			//Jika terjadi duplikat email / duplikat username / captcha salah, tampilkan pesan error.
 			if($dataDB->num_rows() >= 1) {

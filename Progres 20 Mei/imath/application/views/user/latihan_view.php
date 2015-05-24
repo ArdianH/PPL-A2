@@ -183,7 +183,7 @@
 	<div class="row">
 		<ol class="linklist breadcrumb">
 		  <li><a href="<?php echo base_url().'kelas/pilih/'.$this->session->userdata('idKelas'); ?>">Kelas <?php echo $this->session->userdata('kelas');?> </a></li>
-		  <li><a href="<?php echo base_url().'kelas/lihatMateri/'.$this->session->userdata('idMateri'); ?>"><?php echo $this->session->userdata('namaMateri'); ?></a></li>
+		  <li><a href="<?php echo base_url().'kelas/lihatMateri/'.$this->session->userdata('kelas'); ?>"><?php echo $this->session->userdata('namaMateri'); ?></a></li>
 		</ol>
 	</div>
 	<div class="row">
@@ -286,13 +286,13 @@
 					echo '</div>';
 					echo '<div class="jawabText">';
 					echo '<div class="row soaliMath">';
-					echo "<input type='radio' name='jawab' id='idOpsiA' value='".$idOpsiA."' ".$checkA." /> A. ".$desOpsiA."</div>";
+					echo "<input type='radio' name='jawab' id='idOpsiA' value='".$idOpsiA."' ".$checkA." disabled/> A. ".$desOpsiA."</div>";
 					echo '<div class="row soaliMath">';
-					echo "<input type='radio' name='jawab' id='idOpsiB' value='".$idOpsiB."' ".$checkB." /> B. ".$desOpsiB."</div>";
+					echo "<input type='radio' name='jawab' id='idOpsiB' value='".$idOpsiB."' ".$checkB." disabled/> B. ".$desOpsiB."</div>";
 					echo '<div class="row soaliMath">';
-					echo "<input type='radio' name='jawab' id='idOpsiC' value='".$idOpsiC."' ".$checkC." /> C. ".$desOpsiC."</div>";
+					echo "<input type='radio' name='jawab' id='idOpsiC' value='".$idOpsiC."' ".$checkC." disabled/> C. ".$desOpsiC."</div>";
 					echo '<div class="row soaliMath">';
-					echo "<input type='radio' name='jawab' id='idOpsiD' value='".$idOpsiD."' ".$checkD." /> D. ".$desOpsiD."</div>";
+					echo "<input type='radio' name='jawab' id='idOpsiD' value='".$idOpsiD."' ".$checkD." disabled/> D. ".$desOpsiD."</div>";
 					//echo "<input type='text' name='jawab' size='30' value=".$jawab." readonly/>";
 					echo "<input type='hidden' name='waktuTes' id='waktutes' value='01' />";
 					echo '<div class="row">';

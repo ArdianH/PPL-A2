@@ -37,5 +37,6 @@ class anggota_model extends CI_Model {
 		$this->db->where('username', $username);
 		$this->db->update('akun', $data);
 	}
+	
 }
 ?>

@@ -48,10 +48,13 @@
 			'email' => $this->input->post('email'),
 			'namaPanggilan' => $this->input->post('namaPanggilan')
 		);
-		
-		$this->db->where('username', $id);
-		$this->db->update('Akun', $data);
-		$message = "Anggota berhasil diubah";
+		if($this->anggota_model->get($data['username']) >= 1) {
+			$message = "Username Anggota gagal diubah, silahkan pilih username lain.";
+		} else {
+			$this->db->where('username', $id);
+			$this->db->update('Akun', $data);
+			$message = "Anggota berhasil diubah";
+		}
 		$this->session->set_flashdata('messageAnggota',$message);
 		redirect('admin/anggota', 'refresh');
 	}

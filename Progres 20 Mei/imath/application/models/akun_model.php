@@ -7,9 +7,9 @@ class Akun_model extends CI_Model {
         parent::__construct();
     }
 	
-	public function getDataAkun($username, $password)
+	public function getDataAkun($username)
 	{
-		$dataDB = $this->db->get_where('akun', array('username' => $username, 'password' => $password));
+		$dataDB = $this->db->get_where('akun', array('username' => $username));
 		return $dataDB;
 	}
 	

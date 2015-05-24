@@ -120,7 +120,7 @@
 			<td width="30px" height="30px"><div id="dice"></div></td>
 		</tr>
 		<tr>	
-			<td colspan="2" align="center">Sisa Move : <span id="moveLeft"></span></td>	
+			<td colspan="2" align="center">Sisa Move : <span id="moveLeft">30</span></td>	
 		</tr>
 		<tr>
 			<td align="center">				

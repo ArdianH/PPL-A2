@@ -72,7 +72,6 @@ class Latihan extends CI_Controller {
 				'pembahasan'	=>  $satuSoal->pembahasan,
 				'namaMateri'	=>	$namaMateri,
 				'gambar'		=>  $satuSoal->gambarSoal,
-				
 				'idOpsiA'		=>	$pilihanJawaban[0]['pilihanGanda'],
 				'idOpsiB'		=>	$pilihanJawaban[1]['pilihanGanda'],
 				'idOpsiC'		=>	$pilihanJawaban[2]['pilihanGanda'],
@@ -102,6 +101,7 @@ class Latihan extends CI_Controller {
 			$data = array(
 				'kelas'		=>	$this->session->userdata('kelas'),				
 				'skor'			=>	$this->session->userdata('skor'),
+				'namaMateri'	=>	$this->session->userdata('namaMateri'),
 				'jawabanTrue'	=>  $this->session->userdata('jawabanTrue'),
 				'namaPanggilan'	=>	$this->session->userdata('namaPanggilan'),
 				'waktuTes'		=>	$waktuTes,

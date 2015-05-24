@@ -92,7 +92,7 @@
 		<div class="row pembahasanTesRow">
 			<div class="col-md-9">
 				<div class="soalBenar">Soal <?php $j=$i+1; echo $j; ?> : <?php echo $dataSoalTes[$i]['jawaban']; ?></div>
-			 <?php echo $dataSoalTes[$i]['pertanyaan']; ?>   <?php echo $dataSoalTes[$i]['pembahasan']; ?>
+				<?php echo $dataSoalTes[$i]['pertanyaan']; ?> <br/> <?php echo $dataJawabanTes[$i];?> <br/> <?php echo $dataSoalTes[$i]['pembahasan']; ?>
 			</div>
 			<div class="col-md-3"><?php 
 				if(isset($setJawabanUser[$i])):

@@ -2,7 +2,7 @@
 class Tes extends CI_Controller {
     public function __construct()
     {
-            parent::__construct();
+        parent::__construct();
 		$this->load->model('tes_model');
 		$this->load->model('kelas_model');
     }
@@ -12,11 +12,12 @@ class Tes extends CI_Controller {
 	}	
 	public function retrieveSoal($kelas)
 	{
-		$this->session->unset_userdata(array('setIdSoal'=>'', 'setNamaMateri'=>'', 'setNilaiMateri'=>'', 'setJawabanUser'=>'', 'currentSoal'=>'', 'idRapor'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>'', 'flagSudahJawab' => ''));
+		$this->session->unset_userdata(array('setIdSoal'=>'', 'setNamaMateri'=>'', 'setNilaiMateri'=>'', 'setJawabanUser'=>'', 'currentSoal'=>'', 'idRapor'=>'', 'jumlahSoal' =>'', 'waktuTes'=>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>'', 'flagSudahJawab' => ''));
 		//inisialisasi Tes sesuai kelas: retrieve setIdSoal, idRapor, reset parameter tes => masukkan ke dalam session tes.
 		$setIdSoal	= $this->tes_model->getIdSoalTes($kelas)->result_array();
 		$username	= $this->session->userdata('username');
 		$idRapor	= $this->tes_model->getIdRapor($username)->row()->idRapor;
+		$waktuT	= $this->tes_model->getWaktuTes($kelas)->row()->waktuTes;
 		$jumlahSoal	= count($setIdSoal);
 		$dataSession = array(
 			'kelas'			=>	$kelas,
@@ -24,6 +25,7 @@ class Tes extends CI_Controller {
 			'skor'			=>	0,
 			'setIdSoal'		=>	$setIdSoal,
 			'jumlahSoal'	=>	$jumlahSoal,
+			'waktuT'		=>	$waktuT,
 			'idRapor'		=>	$idRapor
 		);
 		$this->session->set_userdata($dataSession);
@@ -51,7 +53,7 @@ class Tes extends CI_Controller {
 			$satuSoal = array(
 				'idSoal'		=>	$satuSoal->idSoal,
 				'pertanyaan' 	=> 	$satuSoal->pertanyaan,
-				'gambar'		=>  	$satuSoal->gambarSoal,
+				'gambar'		=>  $satuSoal->gambarSoal,
 				'idOpsiA'		=>	$pilihanJawaban[0]['pilihanGanda'],
 				'idOpsiB'		=>	$pilihanJawaban[1]['pilihanGanda'],
 				'idOpsiC'		=>	$pilihanJawaban[2]['pilihanGanda'],
@@ -60,7 +62,7 @@ class Tes extends CI_Controller {
 				'desOpsiB'		=>	$pilihanJawaban[1]['deskripsi'],
 				'desOpsiC'		=>	$pilihanJawaban[2]['deskripsi'],
 				'desOpsiD'		=>	$pilihanJawaban[3]['deskripsi'],
-				'nomor'		=> 	$nomorSoalUpdate,
+				'nomor'			=> 	$nomorSoalUpdate,
 				'skor'			=>	$this->session->userdata('skor'),
 				'flagJawaban'	=>	0,
 				'flagNext'		=>	FALSE
@@ -178,7 +180,7 @@ class Tes extends CI_Controller {
 		//jika jawaban benar(idOpsi dari $jawabanUser == idOpsi $jawabanBenar)..
 		if(strcasecmp($jawabanUser, $jawabanBenar) == 0) {
 			$this->tes_model->updateJumlahBenar($satuIdSoal);
-			$skorUpdate = $this->session->userdata('skor') + 10;
+			$skorUpdate = $this->session->userdata('skor') + 1;
 			$this->session->set_userdata('skor', $skorUpdate);
 			
 			$satuSoal = array(
@@ -240,7 +242,7 @@ class Tes extends CI_Controller {
 	
 	public function keluarTes($kelas) 
 	{
-		$this->session->unset_userdata(array('setIdSoal'=>'', 'setNamaMateri'=>'', 'setNilaiMateri'=>'', 'setJawabanUser'=>'', 'currentSoal'=>'', 'idRapor'=>'', 'jumlahSoal' =>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>'', 'flagSudahJawab' => ''));
+		$this->session->unset_userdata(array('setIdSoal'=>'', 'setNamaMateri'=>'', 'setNilaiMateri'=>'', 'setJawabanUser'=>'', 'currentSoal'=>'', 'idRapor'=>'', 'jumlahSoal' =>'', 'waktuTes'=>'', 'nomorSoal'=>'', 'skor'=>'', 'kelas'=>'', 'flagSudahJawab' => ''));
 		redirect('/kelas/pilih/'.$kelas.'');
 	}
 	
@@ -249,12 +251,16 @@ class Tes extends CI_Controller {
 		$setJawabanUser = $this->session->userdata('setJawabanUser');
 		$dataDB;
 		foreach($setIdSoal as $row) {
-			$dataTemp = $this->tes_model->getSatuSoalTes($row['idSoal'])->row();
-			$dataDB[] = get_object_vars($dataTemp);
+			$dataSoalTemp = $this->tes_model->getSatuSoalTes($row['idSoal'])->row();
+			$dataJawabanTemp = $this->tes_model->getJawabanSoalTes($row['idSoal'])->result_array(); 
+			$dataSoalTes[] = get_object_vars($dataSoalTemp);
+			//$dataJawabanTemp = get_object_vars($dataJawabanTemp);
+			$dataJawabanTes[] = $dataJawabanTemp[0]['pilihanGanda'].".".$dataJawabanTemp[0]['deskripsi']."&emsp;".$dataJawabanTemp[1]['pilihanGanda'].".".$dataJawabanTemp[1]['deskripsi']."&emsp;".$dataJawabanTemp[2]['pilihanGanda'].".".$dataJawabanTemp[2]['deskripsi']."&emsp;".$dataJawabanTemp[3]['pilihanGanda'].".".$dataJawabanTemp[3]['deskripsi'];
 		}
 		$data = array(
 			'kelas'			=>	$this->session->userdata('kelas'),
-			'dataSoalTes'	=>	$dataDB,
+			'dataSoalTes'	=>	$dataSoalTes,
+			'dataJawabanTes'=>	$dataJawabanTes,
 			'jumlahSoal'	=>	$this->session->userdata('jumlahSoal'),
 			'setJawabanUser'=>	$setJawabanUser
 		);
