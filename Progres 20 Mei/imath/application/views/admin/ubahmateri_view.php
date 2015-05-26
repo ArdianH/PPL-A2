@@ -51,7 +51,8 @@
     <h1>Ubah Materi </h1>
     <?php $id=$result[0]->idMateri;?></div>    
 
-	<form class="formImath" method="POST" action="<?php echo base_url(); ?>admin/daftar_materi/simpanPerubahan/<?php echo $id; ?>" enctype="multipart/form-data">
+	<form class="formImath" method="POST" action="<?php echo base_url(); ?>admin/daftar_materi/simpanPerubahan/<?php echo $id; ?>" 
+		onsubmit="return confirm('Kamu yakin ingin mengubah materi ini?');" enctype="multipart/form-data">
 		<label>Nama</label></br><input size="50" type="text" name ="nama" value="<?php echo $result[0]->nama ;?>"></br></br>
 	
 		<label>Kelas</label></br>

@@ -80,7 +80,8 @@
  <!--======================= END OF ADMIN NAVBAR ============================-->  
     <div class="container contents">    
       <h1>Ubah soal </h1>
-      <form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/SOAL_TES/simpanPerubahan/<?php echo $soal[0]->idSoal ?>" enctype="multipart/form-data">
+      <form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/SOAL_TES/simpanPerubahan/<?php echo $soal[0]->idSoal ?>" 
+        onsubmit="return confirm('Kamu yakin ingin mengubah soal ini?');" enctype="multipart/form-data">
       Kelas 
         <select id = "idKelas" name="idKelas">
         <?php foreach($Kelas as $row):?>      

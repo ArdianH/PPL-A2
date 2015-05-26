@@ -51,7 +51,8 @@
 		<h1>Ubah Kelas</h1>
 	</div><hr>
 	     <?php $id=$result[0]->idKelas;?>
-		<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/daftar_kelas/simpanPerubahan/<?php echo $id?>" enctype="multipart/form-data">
+		<form class="formImath" method="POST" action="<?php echo base_url()?>index.php/admin/daftar_kelas/simpanPerubahan/<?php echo $id?>" 
+			onsubmit="return confirm('Kamu yakin ingin mengubah kelas ini?');" enctype="multipart/form-data">
 			<label>Kode Kelas</label></br><?php echo $result[0]->idKelas ;?></br></br>
 			<label>Deskripsi</label></br> <textarea type="text" name ="deskripsi" rows="4" cols="50" required><?php echo $result[0]->deskripsi ;?></textarea></br></br>
 			<label>Unggah Gambar </label><input type="file" name="userfile" />				 <br>
