@@ -55,7 +55,7 @@
 			<label>Kode Kelas</label></br><?php echo $result[0]->idKelas ;?></br></br>
 			<label>Deskripsi</label></br> <textarea type="text" name ="deskripsi" rows="4" cols="50" required><?php echo $result[0]->deskripsi ;?></textarea></br></br>
 			<label>Unggah Gambar </label><input type="file" name="userfile" />				 <br>
-				<button type="submit" class="asButton">Buat</button>
+				<button type="submit" class="asButton">Ubah</button>
 				<a href = "<?php echo base_url()?>admin/daftar_kelas">
 					<button type="button" class="rdButton">
 						Batal

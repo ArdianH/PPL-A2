@@ -115,8 +115,8 @@
     <input type="radio" name="isDitunjukkan" value ="ya" required> Ya
     <input type="radio" name="isDitunjukkan" value ="tidak"> Tidak
     </br></br>
-        <input type="submit" name="submit" value="Submit" /></form>
-        <a href = "<?php echo base_url()?>index.php/admin/SOAL_TES"><button/>Batal</button></a>
+      <input class="asButton" type="submit" name="submit" value="Simpan" /><a href = "<?php echo base_url()?>index.php/admin/SOAL_TES"><input type="button" class="rdButton" value="Batal"/></a></form>
+        
     </div>
   
     <footer class="footer">

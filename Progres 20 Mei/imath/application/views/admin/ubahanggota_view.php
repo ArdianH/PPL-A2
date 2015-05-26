@@ -60,10 +60,11 @@
 	<input type="text" name="namaPanggilan" title="Nama Panggilan harus valid" size="30" required/  value="<?php echo $result[0]->namaPanggilan ;?>"></br></br>
 	<label>Email</label></br>
 	<input type="email" name="email" size="30" title="Email harus valid" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required/  value="<?php echo $result[0]->email ;?>"></br></br>	
-	<input class="buatButton" type="submit" value="Ubah" />
+	<input class="asButton" type="submit" value="Ubah" />
 		
+	
+	<a href = "<?php echo base_url()?>index.php/admin/anggota"><button class="rdButton"/>Batal</button></a>
 	</form>
-	<a href = "<?php echo base_url()?>index.php/admin/anggota"><button class="batalButton"/>Batal</button></a>
 	</div>
 </div>
 	<!-- ========================= Footer =============================-->

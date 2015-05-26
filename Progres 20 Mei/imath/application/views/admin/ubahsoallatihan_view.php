@@ -111,8 +111,9 @@
       </select></br>
       <label>Pembahasan</label></br><textarea name ="pembahasan" required><?php echo $soal[0]->pembahasan ?></textarea></br>
       <input type="file" name="gambarSolusi" id="gambarSolusi" size="20" /> </br></br>
-        <input type="submit" name="submit" value="Submit" /></form>
-        <a href = "<?php echo base_url()?>index.php/admin/soal_latihan/show/<?php echo $currentMateri?>"><button/>Batal</button></a>
+        <input class="asButton"type="submit" name="submit" value="Simpan" />
+        <a href = "<?php echo base_url()?>index.php/admin/soal_latihan/show/<?php echo $currentMateri?>"><input type = "button"class="rdButton" value="Batal"/></a>
+      </form>
     </div>
 	
     <footer class="footer">

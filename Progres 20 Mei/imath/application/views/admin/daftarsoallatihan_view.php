@@ -96,8 +96,7 @@
 	$currentKelas = $materi[0]->idKelas;  
 	$currentMateri = $materi[0]->idMateri;
 	echo '<h1> Daftar Soal Latihan Kelas ';
-	echo substr($currentKelas,4,5).' '.substr($currentKelas,0,2).'</h1>';	
-	echo '<a href="'.base_url().'admin/soal_latihan/createview/'.$currentKelas.'/'.$currentMateri.'"><button class="adminButton"> Buat Baru</button></a>';
+	echo substr($currentKelas,4,5).' '.substr($currentKelas,0,2).'</h1>';		
 	}
 	else{
 	echo "<h1> Daftar Soal Latihan</h1>";
@@ -124,13 +123,20 @@
 			<option value="<?php echo $Kelas[$i]->idKelas;?>" name ="idKelas"><?php echo substr($shownKelas,0,2).' '.substr($shownKelas,4,5); ?> </option>
 		<?php } 		
 	}?>
+
     </select>
       Materi
       <select id="idMateri" name="idMateri">
       </select>
       <button class="asButton" type="submit">Submit</button>
     </form>
-    <span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageSoal'); ?></span><br>    
+      <div class="row">
+    <?php if($isViewed == 'true'){
+	echo '<a href="'.base_url().'admin/soal_latihan/createview/'.$currentKelas.'/'.$currentMateri.'"><button class="adminButton"> Buat Baru</button></a>';
+}
+?>
+</div>
+    <span id="tulisanMerah" class="weight"><?php echo $this->session->flashdata('messageSoal'); ?></span><br>  
       <table class="table table-hover table-striped tableimath">
     <thead>
           <tr>

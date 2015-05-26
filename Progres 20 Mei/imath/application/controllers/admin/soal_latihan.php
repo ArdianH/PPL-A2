@@ -250,7 +250,7 @@ class soal_latihan extends CI_Controller{
 		$this->load->model('kelas_model');				
 		$data['Kelas'] = $this->kelas_model->getAllKelas()->result();
 		$this->load->model('soal_model');		
-		$data['soal'] = $this->soal_model->get($id); 
+		$soal = $this->soal_model->get($id); 
 		$data['pilihanJawaban']	= $this->soal_model->getPilihanJawaban($id);
 		$data['soal'] = $soal;
 		$data['currentMateri']  = $soal[0]->idMateri;

@@ -32,13 +32,18 @@ class soal_model extends CI_Model {
 	}
 	function getPilihanJawaban($id){
     	$this->load->database();
-		return $this->db->get_where('pilihan_jawaban', array('idSoal' => $id))->result();
+    	return $this->db->get_where('pilihan_jawaban', array('idSoal' => $id))->result();
+	}
+
+	function deletePilihanJawaban($id){
+		$this->load->database();
+		$this->db->delete('pilihan_jawaban', array('idSoal' => $id));
 	}
 
 	function delete($id){
-		$this->load->database();		
-		$this->db->delete('pilihan_jawaban', array('idSoal' => $id));
-		$this->db->delete('soal', array('idSoal' => $id));		
+		$this->load->database();
+		$this->deletePilihanJawaban($id);
+		$this->db->delete('soal', array('idSoal' => $id));
 	}
 		
 	function add($data){

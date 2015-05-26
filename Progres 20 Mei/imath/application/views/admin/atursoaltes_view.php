@@ -9,7 +9,7 @@
     </head>
     
     <body>
-      <!--========================== ADMIN NAVBAR ============================-->
+ <!--========================== ADMIN NAVBAR ============================-->
     	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container" id="navbar">
 			<div class="navbar-header" id="logobar">
@@ -28,24 +28,21 @@
 				<li><a href="<?php echo base_url()?>autentikasi/logout"> LOG OUT </a></li>	
 			</ul>
 		</div>	<!--/.nav-collapse -->
-	</div>      
-	<?php 
-	//jika user telah login
-	if($this->session->userdata('loggedin')) {
-		
-		echo '<div class="container" id="iconbar">';
+	</div>      	
+	
+	<div class="container" id="iconbar">
         
-		echo '<div class="col-md-2"><a href="'.base_url().'admin/daftar_kelas">KELAS</a></div>';
-		echo '<div class="col-md-2"><a href="'.base_url().'admin/daftar_materi">MATERI</a></div>';
-		echo '<div class="col-md-2"><a href="'.base_url().'admin/soal_latihan">SOAL LATIHAN</a></div>';
-		echo '<div class="col-md-2"><a href="'.base_url().'admin/soal_tes">SOAL TES</a></div>';
-		echo '<div class="col-md-2"><a href="'.base_url().'admin/anggota">DATA ANGGOTA</a></div>';
-		echo '<div class="col-md-2"><a href="'.base_url().'admin/pesan">PESAN</a></div>';
-		echo '<div class="col-md-2"><a href="'.base_url().'admin/lain_lain">LAIN-LAIN</a></div>';
-		
-	echo '</div>';
-	}
-	?>
+		<ul class="navbar-nav navbar-left">
+			<li class="space"><a href="<?php echo base_url()?>admin/daftar_kelas">KELAS</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/daftar_materi">MATERI</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/soal_latihan">SOAL LATIHAN</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/soal_tes">SOAL TES</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/anggota">DATA ANGGOTA</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/pesan">PESAN</a></li>
+			<li class="space"><a href="<?php echo base_url()?>admin/lain_lain">LAIN-LAIN</a></li>
+		</ul>
+	</div>
+	
 </nav>
  <!--======================= END OF ADMIN NAVBAR ============================-->
 
@@ -56,7 +53,7 @@
 			$kelas = $arr[count($arr) - 1];
 		?>
 		
-		<h1> Atur Soal Tes <?php echo substr($kelas,4,5)?></h1>
+		<h1> Atur Soal Tes Kelas <?php echo substr($kelas,4,5)?></h1>
 		<form method="POST" action="<?php echo base_url();?>index.php/admin/soal_tes/show">		
 			Kelas 
 			<select id = "idKelas" name="idKelas">
@@ -69,11 +66,11 @@
 				<?php endif; 
 				endforeach?>
 			</select>      
-			<input type="submit" value="Submit" />
+			<input class="asButton" type="submit" value="Submit" />
 		    </form>
 		    
 		    <form method="POST" action="<?php echo base_url();?>admin/soal_tes/simpan<?php echo '/'.$kelas?>">
-		    <button type="submit">Simpan</button>
+		    <button class="adminButton"type="submit">Simpan</button>
 		    <table class="table table-hover table-striped tableimath">
 			<thead>
 				<tr>
