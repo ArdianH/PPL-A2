@@ -1,6 +1,6 @@
 <html>
     <head>
-	 <title>Daftar Soal Latihan</title>
+	 <title>Daftar Soal Tes</title>
    <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/imath.css" rel="stylesheet">
     <meta charset="utf-8">
